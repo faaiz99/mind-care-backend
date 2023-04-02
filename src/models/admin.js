@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const clientSchema = new Schema({
+const adminSchema = new Schema({
 	firstName: {
 		type: String,
 		required: true,
@@ -43,9 +43,5 @@ const clientSchema = new Schema({
 	}
 });
 
-const clientModel = mongoose.model('client',clientSchema)
-module.exports = clientModel;
-
-//const hash = await bcrypt.hash(password, Number(bcryptSalt));
-//const isValid = await bcrypt.compare(token, passwordResetToken.token);
-
+const adminModel = mongoose.model('admin',adminSchema)
+module.exports = adminModel;

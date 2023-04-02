@@ -1,14 +1,18 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
+const authenticateToken = require('../middlewares/auth').authenticateToken
+const revalidateToken = require('../middlewares/auth').revalidateToken
+const Signup = require('../controllers/adminController').Signup
+const Login = require('../controllers/adminController').Login
+const renewTokens = require('../controllers/adminController').renewTokens
 
-// Home page route.
-router.get("/", function (req, res) {
-  res.send("Admin home page");
+router.get("/profile", authenticateToken, (req, res) => {
+  res.send("About this admin");
+});
+router.get("/", authenticateToken, (req, res) => {
+  res.send("Therapist admin");
 });
 
-// About page route.
-router.get("/profile", function (req, res) {
-  res.send("About this Admin");
-});
-
+router.post('/signup', Signup)
+router.get('/refresh-token', revalidateToken, renewTokens)
+router.post('/login', Login)
 module.exports = router;

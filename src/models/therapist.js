@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const clientSchema = new Schema({
+const therapistSchema = new Schema({
 	firstName: {
 		type: String,
 		required: true,
@@ -39,13 +39,9 @@ const clientSchema = new Schema({
 	},
 	dateofBirth:{
 		type: Date,
-		required:false
+		required:true
 	}
 });
 
-const clientModel = mongoose.model('client',clientSchema)
-module.exports = clientModel;
-
-//const hash = await bcrypt.hash(password, Number(bcryptSalt));
-//const isValid = await bcrypt.compare(token, passwordResetToken.token);
-
+const therapistModel = mongoose.model('therapist',therapistSchema)
+module.exports = therapistModel;

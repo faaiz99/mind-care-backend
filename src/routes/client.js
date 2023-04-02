@@ -1,51 +1,32 @@
 const router = require("express").Router();
 const authenticateToken = require('../middlewares/auth').authenticateToken
 const revalidateToken = require('../middlewares/auth').revalidateToken
-const assignTokens = require('../middlewares/auth').assignTokens
-const Client = require('../models/client')
-router.get("/", (req, res) => {
-  res.send("Client home page");
-});
+const Signup = require('../controllers/clientController').Signup
+const Login = require('../controllers/clientController').Login
+const verifyAccount = require('../controllers/clientController').verifyAccount
+const renewTokens = require('../controllers/clientController').renewTokens
+const sendEmail = require('../controllers/clientController').sendverificationEmail
+const resetPassword = require('../controllers/clientController').resetPassword
+const enternewPassword = require('../controllers/clientController').enternewPassword
 
-router.post('/signup', async (req, res) => {
-  try {
-    const client = await Client.create(req.body);
-    res.json({ status: "ok" });
-  } catch (err) {
-    res.json({ status: "error" });
-  }
-})
 
-router.get('/refresh-token', revalidateToken, (req,res,next)=>{
-  const client = req.user.user
-  const tokens = assignTokens(client)
-  const {accessToken, refreshToken} = tokens
-  if (tokens != null || tokens != undefined) {
-    return res.json({ status: "OK", accessToken:accessToken, refreshToken:refreshToken });
-  }
-  else
-    return res.json({ status: "error", user: false });
-  next()
-})
+
+router.post('/password/:token', enternewPassword)
+
+router.post('/reset-password', resetPassword)
 
 router.get("/profile", authenticateToken, (req, res) => {
   res.send("About this Client");
 });
+router.get("/", authenticateToken, (req, res) => {
+  res.send("Client home page");
+});
 
-router.post('/login', async (req, res) => {
-  const client = await Client.findOne({
-    email: req.body.email,
-    password: req.body.password,
-  })
+router.get('/verify/:token', authenticateToken, verifyAccount)
 
-  if(client== null || client == undefined)
-    return res.json({status:404, message:"Account does not exist"})
-  const tokens = assignTokens(client)
-  const {accessToken, refreshToken} = tokens
-  if (tokens != null || tokens != undefined) {
-    return res.json({ status: "OK", accessToken: accessToken, refreshToken:refreshToken });
-  }
-  else
-    return res.json({ status: "error", user: false });
-})
+router.post('/send-verification-email', sendEmail)
+
+router.post('/signup', Signup)
+router.get('/refresh-token', revalidateToken, renewTokens)
+router.post('/login', Login)
 module.exports = router;
