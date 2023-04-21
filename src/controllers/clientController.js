@@ -5,6 +5,8 @@ const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");
 
 exports.enternewPassword = async (req, res) => {
+
+	// Can also be used to change password from profile
 	var email = req.body.email;
 	var password = req.body.password
 	const client = await Client.findOneAndUpdate({

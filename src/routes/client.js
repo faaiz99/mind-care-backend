@@ -9,8 +9,6 @@ const sendEmail = require('../controllers/clientController').sendverificationEma
 const resetPassword = require('../controllers/clientController').resetPassword
 const enternewPassword = require('../controllers/clientController').enternewPassword
 
-
-
 router.post('/password/:token', enternewPassword)
 
 router.post('/reset-password', resetPassword)
