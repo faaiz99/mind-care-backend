@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const lookingforwardtoTomorrowSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
   date:{
     type:Date
   }
 });
 
-const lookingforwardtoTomorrow = mongoose.model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);
-module.exports = lookingforwardtoTomorrow;
+const LookingforwardtoTomorrow = mongoose.model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);
+module.exports = LookingforwardtoTomorrow;

@@ -5,10 +5,10 @@ const Schema = mongoose.Schema;
 
 const sleepJournalSchema = new Schema({
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
   date:{
     type:Date

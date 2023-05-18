@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const findingpeacefulSpaceSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
   date:{
     type:Date
   }
 });
 
-const findingpeacefulSpace = mongoose.model("findingpeacefulSpace", findingpeacefulSpaceSchema);
-module.exports = findingpeacefulSpace;
+const FindingpeacefulSpace = mongoose.model("findingpeacefulSpace", findingpeacefulSpaceSchema);
+module.exports = FindingpeacefulSpace;

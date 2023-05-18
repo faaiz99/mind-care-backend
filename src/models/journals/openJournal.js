@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const openJournalSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
 });
 
-const openJournalModel = mongoose.model("openJournal", openJournalSchema);
-module.exports = openJournalModel;
+const OpenJournalModel = mongoose.model("openJournal", openJournalSchema);
+module.exports = OpenJournalModel;

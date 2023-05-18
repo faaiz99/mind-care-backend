@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const selfAffirmationJournalSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
 });
 
-const reflectionJournalModel = mongoose.model(
-  "reflectionJournal",
-  reflectionJournalSchema
+const SelfAffirmationJournal = mongoose.model(
+  "SelfAffirmationJournal",
+  selfAffirmationJournalSchema
 );
-module.exports = reflectionJournalModel;
+module.exports = SelfAffirmationJournal;

@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const planningthedayAheadSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
   date:{
     type:Date
   }
 });
 
-const planningthedayAhead = mongoose.model("planningthedayAhead", planningthedayAheadSchema);
-module.exports = planningthedayAhead;
+const PlanningthedayAhead = mongoose.model("planningthedayAhead", planningthedayAheadSchema);
+module.exports = PlanningthedayAhead;

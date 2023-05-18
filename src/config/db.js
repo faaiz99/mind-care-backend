@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const { MONGO_URI } = process.env;
 console.log('DB URI: ',MONGO_URI)
@@ -18,3 +18,5 @@ exports.connect = () => {
       process.exit(1);
     });
 };
+
+

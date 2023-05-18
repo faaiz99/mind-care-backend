@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const challengingNegativeThoughtsAboutYourselfJournalSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
 });
 
-const challengingNegativeThoughtsAboutYourselfJournalModel = mongoose.model(
+const ChallengingNegativeThoughtsAboutYourselfJournalModel = mongoose.model(
   "challengingNegativeThoughtsAboutYourselfJournal",
   challengingNegativeThoughtsAboutYourselfJournalSchema
 );
-module.exports = challengingNegativeThoughtsAboutYourselfJournalModel;
+module.exports = ChallengingNegativeThoughtsAboutYourselfJournalModel;

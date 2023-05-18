@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const dreamJournalSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
   date:{
     type:Date
   }
 });
 
-const dreamJournal = mongoose.model("dreamJournal", dreamJournalSchema);
-module.exports = dreamJournal;
+const DreamJournal = mongoose.model("dreamJournal", dreamJournalSchema);
+module.exports = DreamJournal;

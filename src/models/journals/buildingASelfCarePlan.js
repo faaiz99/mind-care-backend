@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const buildingASelfCarePlanSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: String,
+    type: Array,
   },
   answers: {
-    type: String,
+    type: Array,
   },
 });
 
-const buildingASelfCarePlanModel = mongoose.model(
+const BuildingASelfCarePlanModel = mongoose.model(
   "buildingASelfCarePlan",
   buildingASelfCarePlanSchema
 );
-module.exports = buildingASelfCarePlanModel;
+module.exports = BuildingASelfCarePlanModel;
