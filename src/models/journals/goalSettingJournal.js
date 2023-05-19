@@ -18,7 +18,7 @@ const goalSettingJournalSchema = new Schema({
 })
 
 const GoalSettingJournal = mongoose.model(
-	"goalSettingJournal",
+	"GoalSettingJournal",
 	goalSettingJournalSchema
 );
 

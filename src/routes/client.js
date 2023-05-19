@@ -81,11 +81,11 @@ router.delete('/planningthedayAhead', journalsController.deletePlanningDayAhead)
 
 const reminderController = require('../controllers/reminderController')
 
-router.get('/reminder',reminderController.getReminders)
+router.get('/reminder', reminderController.getReminders)
 
-router.post('/reminder',reminderController.createReminder)
+router.post('/reminder', reminderController.createReminder)
 
-router.patch('/reminder',reminderController.editReminder)
+router.patch('/reminder', reminderController.editReminder)
 
 router.delete('/reminder', reminderController.deleteReminder)
 

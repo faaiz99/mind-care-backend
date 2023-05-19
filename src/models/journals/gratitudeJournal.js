@@ -7,7 +7,7 @@ const gratitudeJournalSchema = new Schema({
     ref: 'client'
   },
   questions: {
-    type: Array,
+    type: Array
   },
   answers: {
     type: Array,

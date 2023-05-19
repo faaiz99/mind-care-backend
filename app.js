@@ -4,6 +4,37 @@ require("./src/config/db").connect();
 const {PORT} = process.env;
 const baseUrl = '/api/v1'
 
+// API Docs //
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc')
+//const swaggerDocument = require('./swagger.json');
+const options = {
+	definition: {
+	  info: {
+		title: "Mind Care",
+		version: "v1",
+		description:
+		  "Mind Care API Documentation",
+		contact: {
+		  name: "Mind Care",
+		},
+	  },
+	  servers: [
+		{
+		  url: "http://localhost:8080/api/v1/",
+		},
+	  ],
+	},
+	apis: ['./src/routes/*.js'],
+  };
+  
+
+  const swaggerSpec = swaggerJsdoc(options);
+  
+
+  // Router //
+
 const therapistRouter = require('./src/routes/therapist')
 const clientRouter = require('./src/routes/client')
 const adminRouter = require('./src/routes/admin')
@@ -14,6 +45,9 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(`${baseUrl}/api-docs`, swaggerUi.serve);
+app.get(`${baseUrl}/api-docs`, swaggerUi.setup(swaggerSpec));
 
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');

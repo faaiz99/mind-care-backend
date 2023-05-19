@@ -2,11 +2,14 @@ const Reminder = require('../models/reminder')
 
 
 exports.getReminders = async (req, res) => {
-	const reminder = await Reminder.find({})
-	if (reminder)
-		res.json({ status: 200, message: 'List of all Reminders', reminder })
-	else
-		res.json({ status: 404, message: 'No Reminders Found', reminder })
+	const reminder = req.body.clientId
+	var result;
+	try {
+		result = await Reminder.find({ clientId: reminder })
+	} catch (error) {
+		console.log('Reminders could not be found', error)
+	}
+	res.json({ status: 200, message: 'List of all Reminders', result })
 
 }
 exports.createReminder = async (req, res) => {
@@ -22,10 +25,10 @@ exports.createReminder = async (req, res) => {
 }
 
 exports.editReminder = async (req, res) => {
-	const reminder = req.body
+	const reminder = req.body.clientId
 	var result
 	try {
-		result = await Reminder.findOneAndUpdate(reminder)
+		result = await Reminder.findOneAndUpdate({ clientId: reminder })
 	} catch (e) {
 		console.log('Reminder could not be modified')
 	}
@@ -33,10 +36,10 @@ exports.editReminder = async (req, res) => {
 }
 
 exports.deleteReminder = async (req, res) => {
-	const reminder = req.body
+	const reminder = req.body.clientId
 	var result
 	try {
-		result = await Reminder.findOneAndDelete(reminder)
+		result = await Reminder.findOneAndDelete({ clientId: reminder })
 	} catch (e) {
 		console.log('Reminder could not be deleted')
 	}
