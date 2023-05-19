@@ -57,6 +57,9 @@ router.delete('/problemsolvingJournal', journalsController.deleteProblemSolvingJ
 router.post('/goalsettingJournal', journalsController.createGoalSettingJournal)
 router.delete('/goalsettingJournal', journalsController.deleteGoalSettingJournal)
 
+router.post('/gratitudeJournal', journalsController.createGratitudeJournal)
+router.delete('/gratitudeJournal', journalsController.deleteGratitudeJournal)
+
 // Sleep Journals and It's types // 
 
 router.post('/calmingtheMind', journalsController.createCalmingtheMind)

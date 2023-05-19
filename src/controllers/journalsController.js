@@ -1,5 +1,40 @@
 // Journal Types & Models //
 
+const GratitudeJournal = require('../models/journals/gratitudeJournal')
+
+exports.getGratitudeJournal = async (req, res) => {
+	const gratitudeJournal = req.body.clientId;
+	var result;
+	try {
+		result = await GratitudeJournal.find({ clientId: gratitudeJournal })
+	} catch (error) {
+		console.log('Gratitude Journal could not be found', error)
+	}
+	res.json({ status: 200, message: 'Gratitide Journal found', result })
+}
+
+exports.createGratitudeJournal = async (req, res) => {
+	const gratitudeJournal = req.body;
+	var result;
+	try {
+		result = await GratitudeJournal.create(gratitudeJournal)
+	} catch (error) {
+		console.log('Gratitude Journal could not be created', error)
+	}
+	res.json({ status: 200, message: 'Gratitide Journal created', result })
+}
+
+exports.deleteGratitudeJournal = async (req, res) => {
+	const gratitudeJournal = req.body.journaIld;
+	var result;
+	try {
+		result = await GratitudeJournal.deleteOne({id:gratitudeJournal})
+	} catch (error) {
+		console.log('Gratitude Journal could not be deleted', error)
+	}
+	res.json({ status: 200, message: 'Gratitide Journal deleted', result })
+}
+
 const ProblemSolvingJournal = require('../models/journals/problemSolvingJournal')
 
 exports.getProblemSolvingJournal = async (req, res) => {
@@ -40,36 +75,36 @@ const GoalSettingJournal = require('../models/journals/goalSettingJournal')
 exports.getGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = red.body.clientId;
 	var result;
-	try{
-		result = await GoalSettingJournal.find({clientId:goalSettingJournal})
-	}catch(error){
-		console.log('Goal Setting Journal could not be found',error)
+	try {
+		result = await GoalSettingJournal.find({ clientId: goalSettingJournal })
+	} catch (error) {
+		console.log('Goal Setting Journal could not be found', error)
 	}
-	res.json({status:200, message:"Goal Setting Journal found", result})
+	res.json({ status: 200, message: "Goal Setting Journal found", result })
 
 }
 
 exports.createGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = req.body
 	var result;
-	try{
+	try {
 		result = await GoalSettingJournal.create(goalSettingJournal)
-	}catch(error){
+	} catch (error) {
 		console.log('Goal Setting Journal could not be created', error)
 	}
-	res.json({status:200, message:'Goal Setting Journal created', result})
+	res.json({ status: 200, message: 'Goal Setting Journal created', result })
 
 }
 
 exports.deleteGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = req.body.journalId
 	var result;
-	try{
-		result = await GoalSettingJournal.deleteOne({journaIld:goalSettingJournal})
-	}catch(error){
+	try {
+		result = await GoalSettingJournal.deleteOne({ journaIld: goalSettingJournal })
+	} catch (error) {
 		console.log('Goal Setting Journal could not be deleted', error)
 	}
-	res.json({status:200, message:'Goal Setting Journal deleted', result})
+	res.json({ status: 200, message: 'Goal Setting Journal deleted', result })
 
 
 }
