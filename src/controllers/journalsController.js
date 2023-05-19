@@ -1,4 +1,79 @@
 // Journal Types & Models //
+
+const ProblemSolvingJournal = require('../models/journals/problemSolvingJournal')
+
+exports.getProblemSolvingJournal = async (req, res) => {
+	const problemSolvingJournal = req.body.clientId
+	var result;
+	try {
+		result = await ProblemSolvingJournal.find({ clientId: problemSolvingJournal })
+	} catch (error) {
+		console.log('Problem Solving Journal could not be found', error)
+	}
+	res.json({ status: 200, message: "Problem Solving Journal found", result })
+}
+
+exports.createProblemSolvingJournal = async (req, res) => {
+	const problemSolvingJournal = req.body
+	var result;
+	try {
+		result = await ProblemSolvingJournal.create(problemSolvingJournal)
+	} catch (error) {
+		console.log('Problem Solving Journal could not be created', error)
+	}
+	res.json({ status: 200, message: "Problem Solving Journal created", result })
+}
+
+exports.deleteProblemSolvingJournal = async (req, res) => {
+	const problemSolvingJournal = req.body.journalId
+	var result;
+	try {
+		result = await ProblemSolvingJournal.deleteOne({ journalId: problemSolvingJournal })
+	} catch (error) {
+		console.log('Problem Solving Journal could not be deleted', error)
+	}
+	res.json({ status: 200, message: "Problem Solving Journal deleted", result })
+}
+
+const GoalSettingJournal = require('../models/journals/goalSettingJournal')
+
+exports.getGoalSettingJournal = async (req, res) => {
+	const goalSettingJournal = red.body.clientId;
+	var result;
+	try{
+		result = await GoalSettingJournal.find({clientId:goalSettingJournal})
+	}catch(error){
+		console.log('Goal Setting Journal could not be found',error)
+	}
+	res.json({status:200, message:"Goal Setting Journal found", result})
+
+}
+
+exports.createGoalSettingJournal = async (req, res) => {
+	const goalSettingJournal = req.body
+	var result;
+	try{
+		result = await GoalSettingJournal.create(goalSettingJournal)
+	}catch(error){
+		console.log('Goal Setting Journal could not be created', error)
+	}
+	res.json({status:200, message:'Goal Setting Journal created', result})
+
+}
+
+exports.deleteGoalSettingJournal = async (req, res) => {
+	const goalSettingJournal = req.body.journalId
+	var result;
+	try{
+		result = await GoalSettingJournal.deleteOne({journaIld:goalSettingJournal})
+	}catch(error){
+		console.log('Goal Setting Journal could not be deleted', error)
+	}
+	res.json({status:200, message:'Goal Setting Journal deleted', result})
+
+
+}
+
 const SelfAffirmationJournal = require('../models/journals/selfAffirmationJournal')
 
 exports.getSelfAffirmationJournal = async (req, res) => {
@@ -114,7 +189,7 @@ exports.getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) =>
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.clientId;
 	var result;
 	try {
-		result = await ChallengingNegativeThoughtsAboutYourselfJournal.find({clientId:challengingNegativeThoughtsAboutYourselfJournal})
+		result = await ChallengingNegativeThoughtsAboutYourselfJournal.find({ clientId: challengingNegativeThoughtsAboutYourselfJournal })
 	} catch (error) {
 		console.log('Challenge Negative Thoughts Journal could not be found', error)
 	}
@@ -138,7 +213,7 @@ exports.deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res)
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.journalId;
 	var result;
 	try {
-		result = await ChallengingNegativeThoughtsAboutYourselfJournal.deleteOne({journalId:challengingNegativeThoughtsAboutYourselfJournal})
+		result = await ChallengingNegativeThoughtsAboutYourselfJournal.deleteOne({ journalId: challengingNegativeThoughtsAboutYourselfJournal })
 	} catch (error) {
 		console.log('Challenge Negative Thoughts Journal could not be deleted', error)
 	}
@@ -218,7 +293,7 @@ exports.deleteAnxietyThoughtReccordJournal = async (req, res) => {
 }
 // Sleep Journal has own types & Models //
 
-const CalmingtheMind  = require('../models/journals/sleepJournal/calmingtheMind')
+const CalmingtheMind = require('../models/journals/sleepJournal/calmingtheMind')
 exports.getCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body.clientId
 	var result;
@@ -352,7 +427,7 @@ exports.deleteLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body.journalId
 	var result;
 	try {
-		result = await LookingforwardtoTomorrow.deleteOne({id:lookingforwardtoTomorrow})
+		result = await LookingforwardtoTomorrow.deleteOne({ id: lookingforwardtoTomorrow })
 	} catch (error) {
 		console.log('Looking Forward to Tomorrow Journal could not be deleted', error)
 	}
@@ -365,36 +440,36 @@ const PlanningthedayAhead = require('../models/journals/sleepJournal/planningthe
 exports.getPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.clientId
 	var result;
-	try{
-		result = await PlanningthedayAhead.find({clientId:planningthedayAhead})
-	}catch(error){
+	try {
+		result = await PlanningthedayAhead.find({ clientId: planningthedayAhead })
+	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be found')
 	}
-	res.json({status:200, message:"Planning the Day Ahead Journal found", result})
+	res.json({ status: 200, message: "Planning the Day Ahead Journal found", result })
 
 }
 
 exports.createPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body
 	var result;
-	try{
+	try {
 		result = await PlanningthedayAhead.create(planningthedayAhead)
-	}catch(error){
+	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be created', error)
 	}
-	res.json({status:200, message:'Planning the day Ahead Journal created', result})
+	res.json({ status: 200, message: 'Planning the day Ahead Journal created', result })
 
 }
 
 exports.deletePlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.journalId
 	var result;
-	try{
-		result = await PlanningthedayAhead.deleteOne({journalId:planningthedayAhead})
-	}catch(error){
+	try {
+		result = await PlanningthedayAhead.deleteOne({ journalId: planningthedayAhead })
+	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be deleted', error)
 	}
-	res.json({status:200, message:'Planning the day Ahead Journal deleted', result})
+	res.json({ status: 200, message: 'Planning the day Ahead Journal deleted', result })
 
 }
 

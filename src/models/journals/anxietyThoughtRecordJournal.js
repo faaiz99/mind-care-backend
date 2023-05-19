@@ -12,6 +12,9 @@ const anxietyThoughtRecordJournalSchema = new Schema({
   answers: {
     type: Array,
   },
+  createdAt:{
+		type:Date
+	  }
 });
 
 const AnxietyThoughtRecordJournal= mongoose.model(

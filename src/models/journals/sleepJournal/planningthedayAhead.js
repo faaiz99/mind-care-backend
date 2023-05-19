@@ -12,9 +12,9 @@ const planningthedayAheadSchema = new Schema({
   answers: {
     type: Array,
   },
-  date:{
-    type:Date
-  }
+  createdAt:{
+		type:Date
+	  }
 });
 
 const PlanningthedayAhead = mongoose.model("planningthedayAhead", planningthedayAheadSchema);

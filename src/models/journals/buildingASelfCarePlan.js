@@ -11,7 +11,10 @@ const buildingASelfCarePlanSchema = new Schema({
   },
   answers: {
     type: Array,
-  },
+  }, 
+  createdAt:{
+		type:Date
+	  }
 });
 
 const BuildingASelfCarePlanModel = mongoose.model(

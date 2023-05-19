@@ -12,6 +12,9 @@ const challengingNegativeThoughtsAboutYourselfJournalSchema = new Schema({
   answers: {
     type: Array,
   },
+  createdAt:{
+		type:Date
+	  }
 });
 
 const ChallengingNegativeThoughtsAboutYourselfJournalModel = mongoose.model(

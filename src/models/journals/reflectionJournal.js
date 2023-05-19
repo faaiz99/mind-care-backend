@@ -11,7 +11,9 @@ const reflectionJournalSchema = new Schema({
   },
   answers: {
     type: Array,
-  },
+  }, createdAt:{
+		type:Date
+	  }
 });
 
 const ReflectionJournalModel = mongoose.model(

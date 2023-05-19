@@ -12,9 +12,9 @@ const findingpeacefulSpaceSchema = new Schema({
   answers: {
     type: Array,
   },
-  date:{
-    type:Date
-  }
+  createdAt:{
+		type:Date
+	  }
 });
 
 const FindingpeacefulSpace = mongoose.model("findingpeacefulSpace", findingpeacefulSpaceSchema);

@@ -12,6 +12,9 @@ const openJournalSchema = new Schema({
   answers: {
     type: Array,
   },
+  createdAt:{
+		type:Date
+	  }
 });
 
 const OpenJournalModel = mongoose.model("openJournal", openJournalSchema);

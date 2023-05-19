@@ -11,7 +11,9 @@ const selfAffirmationJournalSchema = new Schema({
   },
   answers: {
     type: Array,
-  },
+  }, createdAt:{
+		type:Date
+	  }
 });
 
 const SelfAffirmationJournal = mongoose.model(

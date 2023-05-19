@@ -45,12 +45,17 @@ router.delete('/negativethoughtsJournal', journalsController.deleteChallengingNe
 router.post('/openJournal', journalsController.createOpenJournal)
 router.delete('/openJournal', journalsController.deleteOpenJournal)
 
-
 router.post('/reflectionJournal', journalsController.createReflectionJournal)
 router.delete('/reflectionJournal', journalsController.deleteReflectionJournal)
 
 router.post('/selfAffirmationJournal', journalsController.createSelfAffirmationJournal)
 router.delete('/selfAffirmationJournal', journalsController.deleteSelfAffirmationJournal)
+
+router.post('/problemsolvingJournal', journalsController.createProblemSolvingJournal)
+router.delete('/problemsolvingJournal', journalsController.deleteProblemSolvingJournal)
+
+router.post('/goalsettingJournal', journalsController.createGoalSettingJournal)
+router.delete('/goalsettingJournal', journalsController.deleteGoalSettingJournal)
 
 // Sleep Journals and It's types // 
 

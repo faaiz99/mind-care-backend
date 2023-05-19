@@ -12,9 +12,9 @@ const calmingtheMindSchema = new Schema({
   answers: {
     type: Array,
   },
-  date:{
-    type:Date
-  }
+  createdAt:{
+		type:Date
+	  }
 });
 
 const CalmingtheMind = mongoose.model("calmingtheMind", calmingtheMindSchema);

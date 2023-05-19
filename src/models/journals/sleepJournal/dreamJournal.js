@@ -12,9 +12,9 @@ const dreamJournalSchema = new Schema({
   answers: {
     type: Array,
   },
-  date:{
-    type:Date
-  }
+  createdAt:{
+		type:Date
+	  }
 });
 
 const DreamJournal = mongoose.model("dreamJournal", dreamJournalSchema);

@@ -12,9 +12,9 @@ const lookingforwardtoTomorrowSchema = new Schema({
   answers: {
     type: Array,
   },
-  date:{
-    type:Date
-  }
+  createdAt:{
+		type:Date
+	  }
 });
 
 const LookingforwardtoTomorrow = mongoose.model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);

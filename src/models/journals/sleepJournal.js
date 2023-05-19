@@ -10,9 +10,9 @@ const sleepJournalSchema = new Schema({
   answers: {
     type: Array,
   },
-  date:{
-    type:Date
-  }
+  createdAt:{
+		type:Date
+	  }
 });
 
 const sleepJournalModel = mongoose.model("sleepJournal", sleepJournalSchema);
