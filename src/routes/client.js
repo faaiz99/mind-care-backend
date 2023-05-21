@@ -19,10 +19,10 @@ router.post('/send-verification-email', clientController.sendverificationEmail)
 router.post('/signup', clientController.Signup)
 router.get('/refresh-token', revalidateToken, clientController.renewTokens)
 router.post('/login', clientController.Login)
-router.get("/profile", authenticateToken, (req, res) => {
+router.get("/profile", (req, res) => {
   res.send("About this Client");
 });
-router.get("/", authenticateToken, (req, res) => {
+router.get("/", (req, res) => {
   res.send("Client home page");
 });
 
