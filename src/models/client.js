@@ -45,7 +45,7 @@ const clientSchema = new Schema({
     required: false,
   },
   createdAt: {
-    type: Date.now(),
+    type: Date,
   },
 });
 
