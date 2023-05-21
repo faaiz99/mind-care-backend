@@ -9,7 +9,7 @@ router.get("/profile", authenticateToken, (req, res) => {
   res.send("About this admin");
 });
 router.get("/", authenticateToken, (req, res) => {
-  res.send("Therapist admin");
+  res.send("Admin home page");
 });
 
 router.post('/signup', Signup)

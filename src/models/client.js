@@ -26,7 +26,7 @@ const clientSchema = new Schema({
   },
   role: {
     type: String,
-    required: true,
+    required: false,
   },
   password: {
     type: String,
@@ -45,7 +45,7 @@ const clientSchema = new Schema({
     required: false,
   },
   createdAt: {
-    type: Date,
+    type: Date.now(),
   },
 });
 

@@ -20,7 +20,7 @@ router.get("/profile", (req, res) => {
   res.send("About this Client");
 });
 router.get("/", (req, res) => {
-  res.send("Client home page");
+  res.send("Therapist home page");
 });
 
 router.get('/verify/:token', authenticateToken, verifyAccount)
