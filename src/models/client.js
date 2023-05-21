@@ -8,12 +8,10 @@ const clientSchema = new Schema({
   firstName: {
     type: String,
     required: true,
-    unique: false,
   },
   lastName: {
     type: String,
     required: true,
-    unique: false,
   },
   email: {
     type: String,
@@ -22,7 +20,7 @@ const clientSchema = new Schema({
   },
   gender: {
     type: String,
-    required: true,
+    required: false,
   },
   role: {
     type: String,
