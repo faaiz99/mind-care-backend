@@ -60,13 +60,14 @@ exports.Login = async (req, res) => {
 	  return res.json({ status: "error", user: false });
   }
 exports.Signup = async (req, res) => {
-	console.log(req)
+	const therapist = req.body
+	var result;
 	try {
-	  const therapist = await Therapist.create(req.body);
-	  res.json({ status: 200, message:"Therapist Account created" });
-	} catch (err) {
-	  res.json({ status: "error", message:err });
+	  result = await Therapist.create(req.body);
+	} catch (error) {
+	 console.log('therapist account could not be created',error)
 	}
+	res.json({ status: 200, message:"Therapist Account created" , result});
 }
 exports.renewTokens = (req,res,next)=>{
 	const therapist = req.user.user

@@ -23,7 +23,7 @@ const therapistSchema = new Schema({
   },
   role: {
     type: String,
-    required: true,
+    required: false,
   },
   password: {
     type: String,
@@ -33,7 +33,7 @@ const therapistSchema = new Schema({
     type: Boolean,
     required: false,
   },
-  profilePicture: {
+  picture: {
     type: String,
     required: false,
   },
@@ -60,7 +60,7 @@ const therapistSchema = new Schema({
     type: String,
     required: true,
   },
-  resume: {
+  downloadURL: {
     type: String,
     required: true,
   },

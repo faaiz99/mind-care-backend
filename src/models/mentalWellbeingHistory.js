@@ -22,7 +22,7 @@ const mentalWellbeingHistorySchema = new Schema({
     type: String,
     required: true,
   },
-  depressionScpre: {
+  depressionScore: {
     type: String,
     required: true,
   },
@@ -52,5 +52,5 @@ const mentalWellbeingHistorySchema = new Schema({
   },
 });
 
-const paymentModel = mongoose.model("payment", paymentSchema);
-module.exports = paymentModel;
+const MentalWellBeingHistory = mongoose.model("mentalWellbeingHistorySchema", mentalWellbeingHistorySchema);
+module.exports = MentalWellBeingHistory;
