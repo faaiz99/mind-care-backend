@@ -68,7 +68,7 @@ exports.Login = async (req, res) => {
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken });
+		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, therapist });
 	}
 	// Wont execute
 	else

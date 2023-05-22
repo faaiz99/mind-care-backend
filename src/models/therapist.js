@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const therapistSchema = new Schema({
-  therapistId:{
-    type:mongoose.Types.ObjectId
-  },
+
   firstName: {
     type: String,
     required: true,
