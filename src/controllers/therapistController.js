@@ -10,7 +10,7 @@ exports.updateProfile = async (req, res) => {
 	var filter = req.body.email;
 	var result
 	try {
-		result = await Therapist.findOneandUpdate(filter, newProfile, {
+		result = await Therapist.findOneAndUpdate(filter, newProfile, {
 			returnOriginal: false
 		})
 	} catch (error) {
