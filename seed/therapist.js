@@ -7,7 +7,7 @@ const generateTherapists = (num) => {
 	for (let i = 0; i < num; i++) {
 		let firstName = faker.person.firstName();
 		let lastName = faker.person.lastName()
-		let email = faker.internet.email();
+		let email = faker.internet.email({firstName:firstName, lastName:lastName});
 		let gender = faker.person.sex()
 		let password = faker.internet.password()
 		let picture = faker.internet.avatar()
@@ -16,11 +16,11 @@ const generateTherapists = (num) => {
 		let dateOfAvailability = faker.date.future()
 		let timeOfAvailability = faker.date.future()
 		let sessionCharges = faker.commerce.price({ min: 1500, max: 5000 })
-		let experience = faker.number.int({ min: 1, max: 10 }) 
+		let experience = faker.number.int({ min: 1, max: 15 })
 		let specialization = array[Math.floor(Math.random() * array.length)];
 		let verifiedAccount = faker.datatype.boolean(0.5)
 		let downloadURL = faker.internet.url()
-		
+
 		therapist.push({
 			firstName,
 			lastName,
@@ -42,20 +42,19 @@ const generateTherapists = (num) => {
 	return therapist;
 };
 
-var therapist = generateTherapists(5);
+var therapist = generateTherapists(100);
 //therapist = JSON.stringify(therapist, null, '\t')
 
-console.log(typeof therapist)
+//console.log(typeof therapist)
 
-// fs.writeFileSync('data.json', JSON.stringify(therapist, null, '\t'));
+fs.writeFileSync('therapist.json', JSON.stringify(therapist, null, '\t'));
 
+// const seedData = async () => {
 
-const seedData = async () => {
+// 	fs.writeFileSync('data.json', JSON.stringify(dataObj, null, '\t'));
 
-	// fs.writeFileSync('data.json', JSON.stringify(dataObj, null, '\t'));
+// 	result = await Therapist.insertMany(therapist)
+// 	console.log('done', result)
+// }
 
-	result = await Therapist.insertMany(therapist)
-	console.log('done', result)
-}
-
- seedData()
+// seedData()

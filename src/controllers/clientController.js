@@ -66,10 +66,12 @@ exports.Login = async (req, res) => {
 		if (client == null || client == undefined)
 			return res.json({ status: 401, message: "Incorrect password" })
 	}
+	// setting password to undefined for security purposes
+	client.password = undefined
 	const tokens = issueTokens(client)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken });
+		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, client });
 	}
 	// Wont execute
 	else

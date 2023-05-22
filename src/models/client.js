@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const clientSchema = new Schema({
-  clientId :{
-    type:mongoose.Types.ObjectId
-  },
   firstName: {
     type: String,
     required: true,
@@ -19,10 +16,6 @@ const clientSchema = new Schema({
     unique: true,
   },
   gender: {
-    type: String,
-    required: false,
-  },
-  role: {
     type: String,
     required: false,
   },
@@ -47,8 +40,8 @@ const clientSchema = new Schema({
   },
 });
 
-const clientModel = mongoose.model("client", clientSchema);
-module.exports = clientModel;
+const client = mongoose.model("client", clientSchema);
+module.exports = client;
 
 //const hash = await bcrypt.hash(password, Number(bcryptSalt));
 //const isValid = await bcrypt.compare(token, passwordResetToken.token);

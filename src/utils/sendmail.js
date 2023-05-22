@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { user, pass } = process.env
+const { user, pass, API_URL } = process.env
 exports.emailSender = async (email, token, role) => {
 	let testAccount = await nodemailer.createTestAccount();
 	// create reusable transporter object using the default SMTP transport
@@ -26,7 +26,7 @@ exports.emailSender = async (email, token, role) => {
 		html: `
 		<h3>Reset Password</h3>
 		<p>
-		Please click on the  <a href="http://localhost:8080/api/v1/${entryPoint}/verify/${token}">link</a> to change your password
+		Please click on the  <a href="${API_URL}/${entryPoint}/verify/${token}">link</a> to change your password
 		</p>`
 	});
 	console.log("Message sent: %s", info.messageId);
@@ -35,6 +35,8 @@ exports.emailSender = async (email, token, role) => {
 	// Preview only available when sending through an Ethereal account
 	console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 	// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+	const emailPreview = nodemailer.getTestMessageUrl(info)
+	return emailPreview
 }
 exports.resetPassword = async (email, token, role) => {
 	let testAccount = await nodemailer.createTestAccount();

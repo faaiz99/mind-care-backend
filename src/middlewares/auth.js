@@ -26,6 +26,7 @@ exports.revalidateToken = (req, res, next) => {
 }
 
 exports.issueTokens = (userBody) => {
+  // used for both therapist and client
   const token = jwt.sign(
     {
       user: userBody,

@@ -4,6 +4,26 @@ const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");
 
+exports.updateProfile = async (req, res) => {
+	//A therapist profile already exists
+	var newProfile = req.body
+	var filter = req.body.email;
+	var result
+	try {
+		result = await Therapist.findOneandUpdate(filter, newProfile, {
+			returnOriginal: false
+		})
+	} catch (error) {
+		console.log('Therapist Profile could not be updated', error)
+		res.json({ status: 500, message: 'Therapist Profile could not be updated', error })
+	}
+	if(result!=null || result!= undefined){
+		return res.json({ status: 200, message:"Therapist Profile updated", result});
+	}
+	// Wont execute 99%
+	else
+		return res.json({ status: 500, message: 'Server Error' });
+	}
 
 exports.enternewPassword = async (req, res) => {
 	var email = req.body.email;
@@ -41,8 +61,9 @@ exports.verifyAccount = async (req, res) => {
 exports.sendverificationEmail = async (req, res, next) => {
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'therapist'
-	emailSender(email, token, role)
-	next()
+	var emailPreview = emailSender(email, token, role)
+	res.json({status:200, message:'Email Verification Sent', emailPreview})
+	//next()
 }
 exports.Login = async (req, res) => {
 	// check existance by email
@@ -66,6 +87,7 @@ exports.Login = async (req, res) => {
 			return res.json({ status: 401, message: "Incorrect password" })
 	}
 	const tokens = issueTokens(therapist)
+	therapist.password = undefined
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
 		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, therapist });
