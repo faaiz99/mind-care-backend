@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const mentalWellbeingHistorySchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   checkinDate: {
     type: Date,
   },

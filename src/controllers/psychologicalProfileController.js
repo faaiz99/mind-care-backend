@@ -1,6 +1,6 @@
 const MentalWellbeingHistory = require('../models/mentalWellbeingHistory')
 const Client = require('../models/client')
-exports.buildPsychologicalProfile = async (req, res) => {
+exports.buildPsychologicalProfile = async (req, res,next) => {
 	const filter = { clientId: req.body.clientId }
 	var profile = req.body
 	let options = { upsert: true, new: true, setDefaultsOnInsert: true };
@@ -14,7 +14,7 @@ exports.buildPsychologicalProfile = async (req, res) => {
 	res.json({ status: 200, message: 'Psychological Profile Build', result })
 
 }
-exports.setTestScore = async (req, res) => {
+exports.setTestScore = async (req, res,next) => {
 	const filter = { clientId: req.body.clientId }
 	var profile = req.body
 	let options = { upsert: true, new: true, setDefaultsOnInsert: true };
@@ -29,7 +29,7 @@ exports.setTestScore = async (req, res) => {
 
 }
 
-exports.getPsychologicalProfile = async (req, res) => {
+exports.getPsychologicalProfile = async (req, res,next) => {
 	const filter = { clientId: req.body.clientId }
 	var result;
 	try {
