@@ -4,15 +4,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const sleepJournalSchema = new Schema({
+  clientId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'client'
+  },
   questions: {
-    type: Array,
+    type: [String],
   },
   answers: {
-    type: Array,
-  },
-  createdAt:{
-		type:Date
-	  }
+    type: [String],
+  }, createdAt: {
+    type: Date
+  }
 });
 
 const sleepJournalModel = mongoose.model("sleepJournal", sleepJournalSchema);

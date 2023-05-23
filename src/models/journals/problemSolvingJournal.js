@@ -7,10 +7,10 @@ const problemSolvingJournalSchema = new Schema({
 		ref: 'client'
 	  },
 	  questions: {
-		type: Array,
+		type: [String],
 	  },
 	  answers: {
-		type: Array,
+		type: [String],
 	  },
 	  createdAt:{
 		type:Date

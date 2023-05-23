@@ -7,11 +7,11 @@ const reflectionJournalSchema = new Schema({
     ref: 'client'
   },
   questions: {
-    type: Array,
-  },
-  answers: {
-    type: Array,
-  }, createdAt:{
+		type: [String],
+	  },
+	  answers: {
+		type: [String],
+	  }, createdAt:{
 		type:Date
 	  }
 });

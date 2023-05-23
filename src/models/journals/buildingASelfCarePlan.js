@@ -7,11 +7,11 @@ const buildingASelfCarePlanSchema = new Schema({
     ref: 'client'
   },
   questions: {
-    type: Array,
-  },
-  answers: {
-    type: Array,
-  }, 
+		type: [String],
+	  },
+	  answers: {
+		type: [String],
+	  },
   createdAt:{
 		type:Date
 	  }

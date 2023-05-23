@@ -7,13 +7,13 @@ const selfAffirmationJournalSchema = new Schema({
     ref: 'client'
   },
   questions: {
-    type: Array,
+    type: [String],
   },
   answers: {
-    type: Array,
-  }, createdAt:{
-		type:Date
-	  }
+    type: [String],
+  }, createdAt: {
+    type: Date
+  }
 });
 
 const SelfAffirmationJournal = mongoose.model(
