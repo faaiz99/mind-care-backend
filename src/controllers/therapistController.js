@@ -4,7 +4,7 @@ const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");
 
-exports.updateProfile = async (req, res) => {
+exports.updateProfile = async (req, res,next) => {
 	//A therapist profile already exists
 	var newProfile = req.body
 	var filter = req.body.email;
@@ -15,7 +15,8 @@ exports.updateProfile = async (req, res) => {
 		})
 	} catch (error) {
 		console.log('Therapist Profile could not be updated', error)
-		res.json({ status: 500, message: 'Therapist Profile could not be updated', error })
+		next(error)
+		//res.json({ status: 500, message: 'Therapist Profile could not be updated', error })
 	}
 	if(result!=null || result!= undefined){
 		return res.json({ status: 200, message:"Therapist Profile updated", result});
@@ -23,8 +24,7 @@ exports.updateProfile = async (req, res) => {
 	// Wont execute 99%
 	else
 		return res.json({ status: 500, message: 'Server Error' });
-	}
-
+}
 exports.enternewPassword = async (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password
@@ -65,7 +65,7 @@ exports.sendverificationEmail = async (req, res, next) => {
 	res.json({status:200, message:'Email Verification Sent', emailPreview})
 	//next()
 }
-exports.Login = async (req, res) => {
+exports.Login = async (req, res, next) => {
 	// check existance by email
 	var exists = await Therapist.exists({
 		email: req.body.email
@@ -113,6 +113,7 @@ exports.Signup = async (req, res) => {
 	} catch (error) {
 		console.log('Therapist account could not be created', error)
 		// res.json({ status: 200, message:"Therapist Account created" , result});
+		next(error)
 	}
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Therapist Account created", result });

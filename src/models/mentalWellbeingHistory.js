@@ -17,39 +17,39 @@ const mentalWellbeingHistorySchema = new Schema({
     type: String,
     required: true,
   },
-
   elaborationText: {
     type: String,
-    required: true,
-  },
-  depressionScore: {
-    type: String,
-    required: true,
-  },
-  anxietyScore: {
-    type: String,
-    required: true,
-  },
-  depressionTestTime: {
-    type: Date,
-    required: true,
-  },
-  anxietyTestTime: {
-    type: Date,
-    required: true,
-  },
-  depressionTestEnabled: {
-    type: Boolean,
-    required: true,
-  },
-  anxietyTestEnabled: {
-    type: Boolean,
     required: true,
   },
   stressTimeline: {
     type: String,
     required: true,
   },
+  depressionScore: {
+    type: String,
+    required: false,
+  },
+  anxietyScore: {
+    type: String,
+    required: false,
+  },
+  depressionTestTime: {
+    type: Date,
+    required: false,
+  },
+  anxietyTestTime: {
+    type: Date,
+    required: false,
+  },
+  depressionTestEnabled: {
+    type: Boolean,
+    required: false,
+  },
+  anxietyTestEnabled: {
+    type: Boolean,
+    required: false,
+  },
+ 
 });
 
 const MentalWellBeingHistory = mongoose.model("mentalWellbeingHistorySchema", mentalWellbeingHistorySchema);

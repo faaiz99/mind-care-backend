@@ -63,7 +63,7 @@ exports.resetPassword = async (email, token, role) => {
 		html: `
   		<h3>Reset Password</h3>
   		<p>
-  		Please click on the  <a href="http://localhost:8080/api/v1/${entryPoint}/password/${token}">link</a> to change your password
+  		Please click on the  <a href="${API_URL}/${entryPoint}/password/${token}">link</a> to change your password
   		</p>`, // html body
 	});
 	console.log("Message sent: %s", info.messageId);

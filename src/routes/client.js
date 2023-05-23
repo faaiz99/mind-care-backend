@@ -26,6 +26,15 @@ router.get("/", (req, res) => {
   res.send("Client home page");
 });
 
+// Psychological Profile/Mental health Wellbeing //
+
+const psychologicalProfileController = require('../controllers/psychologicalProfileController')
+// ClientId required in body// 
+router.post('/psychologicalProfile', psychologicalProfileController.buildPsychologicalProfile)
+router.post('/psychologicalProfileStats', psychologicalProfileController.getPsychologicalProfile)
+router.post('/psychologicalTest', psychologicalProfileController.setTestScore)
+
+
 
 // Guided Journaling // 
 // Journals can only be fetched, created or deleted //

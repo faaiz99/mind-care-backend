@@ -8,7 +8,6 @@ const baseUrl = '/api/v1'
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc')
-//const swaggerDocument = require('./swagger.json');
 const options = {
 	definition: {
 	  info: {
@@ -29,10 +28,8 @@ const options = {
 	apis: ['./src/routes/*.js'],
   };
   
-
-  const swaggerSpec = swaggerJsdoc(options);
+const swaggerSpec = swaggerJsdoc(options);
   
-
   // Router //
 
 const therapistRouter = require('./src/routes/therapist')
