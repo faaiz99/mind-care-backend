@@ -42,8 +42,8 @@ const journalsController = require('../controllers/journalsController')
 
 router.get('/allJournals', journalsController.getAllEntries)
 
-router.post('/axnietyJournal', journalsController.createAnxietyThoughtReccordJournal)
-router.delete('/axnietyJournal', journalsController.deleteAnxietyThoughtReccordJournal)
+router.post('/anxietyJournal', journalsController.createAnxietyThoughtReccordJournal)
+router.delete('/anxietyJournal', journalsController.deleteAnxietyThoughtReccordJournal)
 
 router.post('/selfcareJournal', journalsController.createBuildingASelfCarePlan)
 router.delete('/selfcareJournal', journalsController.deleteBuildingASelfCarePlan)
