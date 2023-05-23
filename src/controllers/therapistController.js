@@ -4,7 +4,26 @@ const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");
 
-exports.updateProfile = async (req, res,next) => {
+
+exports.changePassword = async (req, res) => {
+	console.log('fn changePassword')
+	var email = req.body.email;
+	var password = req.body.password
+	var result;
+	try {
+		result = await Therapist.findOneAndUpdate({
+			email: email
+		}, {
+			password: password
+		})
+	} catch (error) {
+		console.log('Therapist Account Password could not be changed', error)
+		next(error)
+	}
+	res.json({ status: 200, message: 'Account Password Changed',result})
+}
+
+exports.updateProfile = async (req, res, next) => {
 	//A therapist profile already exists
 	var newProfile = req.body
 	var filter = req.body.email;
@@ -18,8 +37,8 @@ exports.updateProfile = async (req, res,next) => {
 		next(error)
 		//res.json({ status: 500, message: 'Therapist Profile could not be updated', error })
 	}
-	if(result!=null || result!= undefined){
-		return res.json({ status: 200, message:"Therapist Profile updated", result});
+	if (result != null || result != undefined) {
+		return res.json({ status: 200, message: "Therapist Profile updated", result });
 	}
 	// Wont execute 99%
 	else
@@ -62,7 +81,7 @@ exports.sendverificationEmail = async (req, res, next) => {
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'therapist'
 	var emailPreview = emailSender(email, token, role)
-	res.json({status:200, message:'Email Verification Sent', emailPreview})
+	res.json({ status: 200, message: 'Email Verification Sent', emailPreview })
 	//next()
 }
 exports.Login = async (req, res, next) => {

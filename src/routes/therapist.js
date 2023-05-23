@@ -9,9 +9,11 @@ const sendEmail = require('../controllers/therapistController').sendverification
 const resetPassword = require('../controllers/therapistController').resetPassword
 const enternewPassword = require('../controllers/therapistController').enternewPassword
 const updateProfile = require('../controllers/therapistController').updateProfile
-
+const changePassword = require('../controllers/therapistController').changePassword
 
 router.post('/signup', Signup)
+
+router.post('/changePassword', changePassword)
 
 router.post('/password/:token', enternewPassword)
 
