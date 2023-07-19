@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const authenticateToken = require('../middlewares/auth').authenticateToken
 const revalidateToken = require('../middlewares/auth').revalidateToken
-const Signup = require('../controllers/adminController').Signup
-const Login = require('../controllers/adminController').Login
-const renewTokens = require('../controllers/adminController').renewTokens
+const Signup = require('../controllers/admin.controller').Signup
+const Login = require('../controllers/admin.controller').Login
+const renewTokens = require('../controllers/admin.controller').renewTokens
 
 router.get("/profile", authenticateToken, (req, res) => {
   res.send("About this admin");

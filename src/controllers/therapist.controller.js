@@ -1,11 +1,11 @@
-const Therapist = require('../models/therapist')
+const Therapist = require('../models/therapist.model')
 const issueTokens = require('../middlewares/auth').issueTokens
 const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");
 
 
-exports.changePassword = async (req, res) => {
+exports.changePassword = async (req, res, next) => {
 	console.log('fn changePassword')
 	var email = req.body.email;
 	var password = req.body.password
@@ -20,7 +20,7 @@ exports.changePassword = async (req, res) => {
 		console.log('Therapist Account Password could not be changed', error)
 		next(error)
 	}
-	res.json({ status: 200, message: 'Account Password Changed',result})
+	res.json({ status: 200, message: 'Account Password Changed', result })
 }
 
 exports.updateProfile = async (req, res, next) => {
@@ -44,7 +44,7 @@ exports.updateProfile = async (req, res, next) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-exports.enternewPassword = async (req, res) => {
+exports.enternewPassword = async (req, res, next) => {
 	var email = req.body.email;
 	var password = req.body.password
 	const therapist = await Therapist.findOneAndUpdate({
@@ -67,7 +67,7 @@ exports.resetPassword = async (req, res, next) => {
 	resetPassword(email, token, role)
 	next()
 }
-exports.verifyAccount = async (req, res) => {
+exports.verifyAccount = async (req, res, next) => {
 	const therapist = await Therapist.findOneAndUpdate({
 		email: req.body.email,
 	}, {
@@ -115,7 +115,7 @@ exports.Login = async (req, res, next) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-exports.Signup = async (req, res) => {
+exports.Signup = async (req, res, next) => {
 	const therapist = req.body
 	// check existance by email
 	var exists = await Therapist.exists({
@@ -130,7 +130,7 @@ exports.Signup = async (req, res) => {
 	try {
 		result = await Therapist.create(req.body);
 	} catch (error) {
-		console.log('Therapist account could not be created', error)
+		console.log('Therapist Account could not be created', error)
 		// res.json({ status: 200, message:"Therapist Account created" , result});
 		next(error)
 	}

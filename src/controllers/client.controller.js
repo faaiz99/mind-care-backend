@@ -1,4 +1,4 @@
-const Client = require('../models/client')
+const Client = require('../models/client.model')
 const issueTokens = require('../middlewares/auth').issueTokens
 const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword

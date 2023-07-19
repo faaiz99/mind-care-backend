@@ -9,7 +9,7 @@ const revalidateToken = require('../middlewares/auth').revalidateToken
 
 // User Profile Management Module //
 
-const clientController = require('../controllers/clientController')
+const clientController = require('../controllers/client.controller')
 
 
 router.post('/password/:token', clientController.enternewPassword)

@@ -1,5 +1,5 @@
 const MentalWellbeingHistory = require('../models/mentalWellbeingHistory')
-const Client = require('../models/client')
+const Client = require('../models/client.model')
 exports.buildPsychologicalProfile = async (req, res,next) => {
 	const filter = { clientId: req.body.clientId }
 	var profile = req.body

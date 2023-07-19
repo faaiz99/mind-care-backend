@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const authenticateToken = require('../middlewares/auth').authenticateToken
 const revalidateToken = require('../middlewares/auth').revalidateToken
-const Signup = require('../controllers/therapistController').Signup
-const Login = require('../controllers/therapistController').Login
-const verifyAccount = require('../controllers/therapistController').verifyAccount
-const renewTokens = require('../controllers/therapistController').renewTokens
-const sendEmail = require('../controllers/therapistController').sendverificationEmail
-const resetPassword = require('../controllers/therapistController').resetPassword
-const enternewPassword = require('../controllers/therapistController').enternewPassword
-const updateProfile = require('../controllers/therapistController').updateProfile
-const changePassword = require('../controllers/therapistController').changePassword
+const Signup = require('../controllers/therapist.controller').Signup
+const Login = require('../controllers/therapist.controller').Login
+const verifyAccount = require('../controllers/therapist.controller').verifyAccount
+const renewTokens = require('../controllers/therapist.controller').renewTokens
+const sendEmail = require('../controllers/therapist.controller').sendverificationEmail
+const resetPassword = require('../controllers/therapist.controller').resetPassword
+const enternewPassword = require('../controllers/therapist.controller').enternewPassword
+const updateProfile = require('../controllers/therapist.controller').updateProfile
+const changePassword = require('../controllers/therapist.controller').changePassword
 
 router.post('/signup', Signup)
 
@@ -28,7 +28,6 @@ router.post('/send-verification-email', sendEmail)
 router.get("/profile", (req, res) => {
   res.send("About this Therapist");
 });
-
 
 router.get('/refresh-token', revalidateToken, renewTokens)
 router.post('/login', Login)
