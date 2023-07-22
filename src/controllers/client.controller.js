@@ -1,5 +1,5 @@
 const Client = require('../models/client.model')
-const issueTokens = require('../middlewares/auth').issueTokens
+const issueTokens = require('../middlewares/auth.middleware').issueTokens
 const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");

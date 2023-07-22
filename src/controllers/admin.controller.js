@@ -1,5 +1,5 @@
 const Admin = require('../models/admin.model')
-const issueTokens = require('../middlewares/auth').issueTokens
+const issueTokens = require('../middlewares/auth.middleware').issueTokens
 
 exports.Login = async (req, res) => {
 	const admin = await Admin.findOne({

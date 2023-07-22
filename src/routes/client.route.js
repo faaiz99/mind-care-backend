@@ -4,8 +4,8 @@ const router = require("express").Router();
 
 // Middleware for Authentication and Issueing JWT Token // 
 
-const authenticateToken = require('../middlewares/auth').authenticateToken
-const revalidateToken = require('../middlewares/auth').revalidateToken
+const authenticateToken = require('../middlewares/auth.middleware').authenticateToken
+const revalidateToken = require('../middlewares/auth.middleware').revalidateToken
 
 // User Profile Management Module //
 
