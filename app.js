@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-require("./src/config/db").connect();
+require("./src/config/db.config").connect();
 const { PORT } = process.env;
 const baseUrl = '/api/v1'
 
@@ -61,6 +61,8 @@ app.get(`${baseUrl}`, (req, res) => {
 	res.send('Mind Care API')
 })
 
+// Entry Points for Users //
+
 app.use(`${baseUrl}/client`, clientRouter)
 app.use(`${baseUrl}/therapist`, therapistRouter)
 app.use(`${baseUrl}/admin`, adminRouter)
@@ -68,6 +70,7 @@ app.use(`${baseUrl}/admin`, adminRouter)
 app.listen(PORT, () => {
 	console.log(`Mind Care Backend on port ${PORT}`)
 })
+
 
 
 

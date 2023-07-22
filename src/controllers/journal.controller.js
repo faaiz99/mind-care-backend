@@ -28,7 +28,7 @@ exports.deleteGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.journaIld;
 	var result;
 	try {
-		result = await GratitudeJournal.deleteOne({id:gratitudeJournal})
+		result = await GratitudeJournal.deleteOne({ id: gratitudeJournal })
 	} catch (error) {
 		console.log('Gratitude Journal could not be deleted', error)
 	}

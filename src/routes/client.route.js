@@ -38,7 +38,7 @@ router.post('/psychologicalTest', psychologicalProfileController.setTestScore)
 
 // Guided Journaling // 
 // Journals can only be fetched, created or deleted //
-const journalsController = require('../controllers/journalsController')
+const journalsController = require('../controllers/journal.controller')
 
 router.get('/allJournals', journalsController.getAllEntries)
 

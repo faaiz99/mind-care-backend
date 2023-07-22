@@ -1,12 +1,11 @@
 const Therapist = require('../models/therapist.model')
-const issueTokens = require('../middlewares/auth').issueTokens
+const issueTokens = require('../middlewares/auth.middleware').issueTokens
 const emailSender = require('../utils/sendmail').emailSender
 const resetPassword = require('../utils/sendmail').resetPassword
 const crypto = require("crypto");
 
 
 exports.changePassword = async (req, res, next) => {
-	console.log('fn changePassword')
 	var email = req.body.email;
 	var password = req.body.password
 	var result;
