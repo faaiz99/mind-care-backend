@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const mentalWellbeingHistorySchema = new Schema({
+const psychologicalProfileSchema = new Schema({
   clientId: {
     type: mongoose.Types.ObjectId,
     ref: 'client'
@@ -56,5 +56,5 @@ const mentalWellbeingHistorySchema = new Schema({
  
 });
 
-const MentalWellBeingHistory = mongoose.model("mentalWellbeingHistorySchema", mentalWellbeingHistorySchema);
-module.exports = MentalWellBeingHistory;
+const psychologicalProfile = mongoose.model("psychologicalProfileSchema", psychologicalProfileSchema);
+module.exports = psychologicalProfile;

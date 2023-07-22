@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
 
 // Psychological Profile/Mental health Wellbeing //
 
-const psychologicalProfileController = require('../controllers/psychologicalProfileController')
+const psychologicalProfileController = require('../controllers/psychologicalProfile.controller')
 // ClientId required in body// 
 router.post('/psychologicalProfile', psychologicalProfileController.buildPsychologicalProfile)
 router.post('/psychologicalProfileStats', psychologicalProfileController.getPsychologicalProfile)
@@ -88,7 +88,7 @@ router.delete('/planningthedayAhead', journalsController.deletePlanningDayAhead)
 
 // Reminder and Daily Tasks Module // 
 
-const reminderController = require('../controllers/reminderController')
+const reminderController = require('../controllers/reminder.controller')
 
 router.get('/reminder', reminderController.getReminders)
 

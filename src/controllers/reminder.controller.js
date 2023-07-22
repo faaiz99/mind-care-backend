@@ -1,4 +1,4 @@
-const Reminder = require('../models/reminder')
+const Reminder = require('../models/reminder/reminder.model')
 
 
 exports.getReminders = async (req, res) => {

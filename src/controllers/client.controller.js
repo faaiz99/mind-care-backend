@@ -1,7 +1,7 @@
-const Client = require('../models/client.model')
+const Client = require('../models/client/client.model')
 const issueTokens = require('../middlewares/auth.middleware').issueTokens
-const emailSender = require('../utils/sendmail').emailSender
-const resetPassword = require('../utils/sendmail').resetPassword
+const emailSender = require('../utils/sendmail.util').emailSender
+const resetPassword = require('../utils/sendmail.util').resetPassword
 const crypto = require("crypto");
 
 exports.enternewPassword = async (req, res) => {

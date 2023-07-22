@@ -1,4 +1,4 @@
-const Admin = require('../models/admin.model')
+const Admin = require('../models/admin/admin.model')
 const issueTokens = require('../middlewares/auth.middleware').issueTokens
 
 exports.Login = async (req, res) => {

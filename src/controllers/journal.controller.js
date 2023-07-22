@@ -1,6 +1,6 @@
 // Journal Types & Models //
 
-const GratitudeJournal = require('../models/journals/gratitudeJournal')
+const GratitudeJournal = require('../models/journals/gratitudeJournal.model')
 
 exports.getGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.clientId;
@@ -35,7 +35,7 @@ exports.deleteGratitudeJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Gratitide Journal deleted', result })
 }
 
-const ProblemSolvingJournal = require('../models/journals/problemSolvingJournal')
+const ProblemSolvingJournal = require('../models/journals/problemSolvingJournal.model')
 
 exports.getProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body.clientId
@@ -70,7 +70,7 @@ exports.deleteProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal deleted", result })
 }
 
-const GoalSettingJournal = require('../models/journals/goalSettingJournal')
+const GoalSettingJournal = require('../models/journals/goalSettingJournal.model')
 
 exports.getGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = red.body.clientId;
@@ -109,7 +109,7 @@ exports.deleteGoalSettingJournal = async (req, res) => {
 
 }
 
-const SelfAffirmationJournal = require('../models/journals/selfAffirmationJournal')
+const SelfAffirmationJournal = require('../models/journals/selfAffirmationJournal.model')
 
 exports.getSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body.clientId
@@ -145,7 +145,7 @@ exports.deleteSelfAffirmationJournal = async (req, res) => {
 
 }
 
-const ReflectionJournal = require('../models/journals/reflectionJournal')
+const ReflectionJournal = require('../models/journals/reflectionJournal.model')
 
 exports.getReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body.clientId
@@ -181,7 +181,7 @@ exports.deleteReflectionJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Relfection Journal deleted', result })
 
 }
-const OpenJournal = require('../models/journals/openJournal')
+const OpenJournal = require('../models/journals/openJournal.model')
 
 exports.getOpenJournal = async (req, res) => {
 	const openJournal = req.body.clientId
@@ -217,7 +217,7 @@ exports.deleteOpenJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Open Journal deleted', result })
 }
 
-const ChallengingNegativeThoughtsAboutYourselfJournal = require('../models/journals/challengingNegativeThoughtsAboutYourselfJournal')
+const ChallengingNegativeThoughtsAboutYourselfJournal = require('../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model')
 
 exports.getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 
@@ -255,7 +255,7 @@ exports.deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res)
 	res.json({ status: 200, message: 'Challenge Negative Thoughts Journal deleted', result })
 
 }
-const BuildingASelfCarePlan = require('../models/journals/buildingASelfCarePlan')
+const BuildingASelfCarePlan = require('../models/journals/buildingASelfCarePlan.model')
 
 exports.getBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body.clientId
@@ -290,7 +290,7 @@ exports.deleteBuildingASelfCarePlan = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Building Self-Care Journal deleted', result })
 }
-const AnxietyThoughtRecordJournal = require('../models/journals/anxietyThoughtRecordJournal')
+const AnxietyThoughtRecordJournal = require('../models/journals/anxietyThoughtRecordJournal.model')
 
 exports.getAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body.clientId
@@ -328,7 +328,7 @@ exports.deleteAnxietyThoughtReccordJournal = async (req, res) => {
 }
 // Sleep Journal has own types & Models //
 
-const CalmingtheMind = require('../models/journals/sleepJournal/calmingtheMind')
+const CalmingtheMind = require('../models/journals/sleepJournal/calmingtheMind.model')
 exports.getCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body.clientId
 	var result;
@@ -363,7 +363,7 @@ exports.deleteCalmingtheMind = async (req, res) => {
 	res.json({ status: 200, message: 'Calming the Mind Journal deleted', result })
 }
 
-const DreamJournal = require('../models/journals/sleepJournal/dreamJournal')
+const DreamJournal = require('../models/journals/sleepJournal/dreamJournal.model')
 
 exports.getDreamJournal = async (req, res) => {
 	const dreamJournal = req.body.clientId
@@ -397,7 +397,7 @@ exports.deleteDreamJournal = async (req, res) => {
 
 }
 
-const FindingpeacefulSpace = require('../models/journals/sleepJournal/findingapeacefulSpace')
+const FindingpeacefulSpace = require('../models/journals/sleepJournal/findingapeacefulSpace.model')
 
 exports.getFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body.clientId;
@@ -432,7 +432,7 @@ exports.deleteFindingPeaceFulSpace = async (req, res) => {
 	res.json({ status: 200, message: 'Finding Peaceful Space Journal deleted', result })
 }
 
-const LookingforwardtoTomorrow = require('../models/journals/sleepJournal/lookingforwardtoTomorrow')
+const LookingforwardtoTomorrow = require('../models/journals/sleepJournal/lookingforwardtoTomorrow.model')
 
 exports.getLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body.clientId
@@ -470,7 +470,7 @@ exports.deleteLookingForwardToTomorrow = async (req, res) => {
 
 
 }
-const PlanningthedayAhead = require('../models/journals/sleepJournal/planningthedayAhead')
+const PlanningthedayAhead = require('../models/journals/sleepJournal/planningthedayAhead.model')
 
 exports.getPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.clientId

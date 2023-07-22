@@ -1,7 +1,7 @@
-const Therapist = require('../models/therapist.model')
+const Therapist = require('../models/therapist/therapist.model')
 const issueTokens = require('../middlewares/auth.middleware').issueTokens
-const emailSender = require('../utils/sendmail').emailSender
-const resetPassword = require('../utils/sendmail').resetPassword
+const emailSender = require('../utils/sendmail.util').emailSender
+const resetPassword = require('../utils/sendmail.util').resetPassword
 const crypto = require("crypto");
 
 
