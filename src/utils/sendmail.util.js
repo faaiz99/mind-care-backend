@@ -1,13 +1,14 @@
-const nodemailer = require("nodemailer");
+import nodemailer from 'nodemailer'
+
 const { user, pass, API_URL } = process.env
-exports.emailSender = async (email, token, role) => {
+export const emailSender = async (email, token, role) => {
 	let testAccount = await nodemailer.createTestAccount();
 	// create reusable transporter object using the default SMTP transport
 	var entryPoint;
-	if(role == 'therapist')
+	if (role == 'therapist')
 		entryPoint = 'therapist'
 	else
-		entryPoint = 'client' 
+		entryPoint = 'client'
 
 	let transporter = nodemailer.createTransport({
 		host: 'smtp.ethereal.email',
@@ -38,7 +39,7 @@ exports.emailSender = async (email, token, role) => {
 	const emailPreview = nodemailer.getTestMessageUrl(info)
 	return emailPreview
 }
-exports.resetPassword = async (email, token, role) => {
+export const resetAccountPassword = async (email, token, role) => {
 	let testAccount = await nodemailer.createTestAccount();
 	// create reusable transporter object using the default SMTP transport
 	let transporter = nodemailer.createTransport({
@@ -50,10 +51,10 @@ exports.resetPassword = async (email, token, role) => {
 		},
 	});
 	var entryPoint;
-	if(role == 'therapist')
+	if (role == 'therapist')
 		entryPoint = 'therapist'
 	else
-		entryPoint = 'client' 
+		entryPoint = 'client'
 	// send mail with defined transport object
 	let info = await transporter.sendMail({
 		from: 'support@mindcare.com', // sender address

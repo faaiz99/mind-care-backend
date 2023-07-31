@@ -1,18 +1,16 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-// const client = require('../client/client.model')
+import {Schema, model, Types } from 'mongoose'
 
 const postSchema = new Schema({
   postId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
   },
   clientId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client',
     required:false
   },
   therapistId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'therapist',
     required:false
   },
@@ -33,18 +31,17 @@ const postSchema = new Schema({
     required: true 
   }],
   comments:[{
-    type:mongoose.Types.ObjectId,
+    type:Types.ObjectId,
     ref:'comment'
   }],
   upvotes:[{
-    type:mongoose.Types.ObjectId,
+    type:ypes.ObjectId,
     ref:'upvote'
   }],
   downvotes:[{
-    type:mongoose.Types.ObjectId,
+    type:Types.ObjectId,
     ref:'downvote'
   }]
 });
 
-const post = mongoose.model("post", postSchema);
-module.exports = post;
+export const post = model("post", postSchema);

@@ -2076,3 +2076,4 @@ node_modules/semver/internal/parse-options.js
 node_modules/semver/internal/re.js
 node_modules/semver/ranges/intersects.js
 node_modules/semver/ranges/subset.js
+node_modules/.package-lock.json

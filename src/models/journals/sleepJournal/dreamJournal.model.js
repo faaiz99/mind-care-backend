@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const dreamJournalSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -17,5 +16,5 @@ const dreamJournalSchema = new Schema({
 	  }
 });
 
-const DreamJournal = mongoose.model("dreamJournal", dreamJournalSchema);
-module.exports = DreamJournal;
+export const DreamJournal = model("dreamJournal", dreamJournalSchema);
+

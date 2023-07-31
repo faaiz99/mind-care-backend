@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema, model , Types} from 'mongoose'
 
 const reminderSchema = new Schema({
   clientId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   type: {
@@ -15,12 +14,11 @@ const reminderSchema = new Schema({
   repeatDaily: {
     type: Boolean,
   },
-  turnOn:{
-    type:Boolean,
+  turnOn: {
+    type: Boolean,
   }
-}); 
+});
 
-const Reminder = mongoose.model("reminder", reminderSchema);
-module.exports = Reminder;
+export const Reminder = model("reminder", reminderSchema);
 
 

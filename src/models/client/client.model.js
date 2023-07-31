@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 
 const clientSchema = new Schema({
   firstName: {
@@ -40,8 +39,8 @@ const clientSchema = new Schema({
   },
 });
 
-const client = mongoose.model("client", clientSchema);
-module.exports = client;
+export const Client = model("client", clientSchema);
+
 
 //const hash = await bcrypt.hash(password, Number(bcryptSalt));
 //const isValid = await bcrypt.compare(token, passwordResetToken.token);

@@ -1,26 +1,31 @@
 // Instantiate Express Router //
-
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router()
 
 // Middleware for Authentication and Issueing JWT Token // 
 
-const authenticateToken = require('../../../middlewares/auth.middleware').authenticateToken
-const revalidateToken = require('../../../middlewares/auth.middleware').revalidateToken
+import {
+  authenticateToken,
+  revalidateToken,
+} from "../../../middlewares/auth.middleware.js";
 
 // User Profile Management Module //
 
-const clientController = require('../../../controllers/client.controller')
+import {
+  enternewPassword, resetPassword,
+  verifyAccount, sendverificationEmail,
+  login, signup, renewTokens
+} from "../../../controllers/client.controller.js";
 
-router.post('/password/:token', clientController.enternewPassword)
-router.post('/reset-password', clientController.resetPassword)
-router.get('/verify/:token', authenticateToken, clientController.verifyAccount)
-router.post('/send-verification-email', clientController.sendverificationEmail)
-router.post('/signup', clientController.Signup)
-router.get('/refresh-token', revalidateToken, clientController.renewTokens)
-router.post('/login', clientController.Login)
+router.post('/password/:token', enternewPassword)
+router.post('/reset-password', resetPassword)
+router.get('/verify/:token', authenticateToken, verifyAccount)
+router.post('/send-verification-email', sendverificationEmail)
+router.post('/signup', signup)
+router.get('/refresh-token', revalidateToken, renewTokens)
+router.post('/login', login)
 router.get("/profile", (req, res) => {
   res.send("About this Client");
 });
 
-
-module.exports = router
+export { router as authRoutes }

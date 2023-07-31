@@ -1,9 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model, Types } from 'mongoose'
 const selfAffirmationJournalSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -16,8 +14,7 @@ const selfAffirmationJournalSchema = new Schema({
   }
 });
 
-const SelfAffirmationJournal = mongoose.model(
+export const SelfAffirmationJournal = model(
   "SelfAffirmationJournal",
   selfAffirmationJournalSchema
 );
-module.exports = SelfAffirmationJournal;

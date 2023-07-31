@@ -1,11 +1,18 @@
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router()
 
 // Psychological Profile/Mental health Wellbeing //
 
-const psychologicalProfileController = require('../../../controllers/psychologicalProfile.controller')
-// ClientId required in body// 
-router.post('/psychologicalProfile', psychologicalProfileController.buildPsychologicalProfile)
-router.post('/psychologicalProfileStats', psychologicalProfileController.getPsychologicalProfile)
-router.post('/psychologicalTest', psychologicalProfileController.setTestScore)
+import {
+	buildPsychologicalProfile,
+	getPsychologicalProfile,
+	setTestScore
+}
+from "../../../controllers/psychologicalProfile.controller.js";
 
-module.exports = router;
+// ClientId required in body// 
+router.post('/psychological-profile', buildPsychologicalProfile)
+router.post('/psychological-profile-stats', getPsychologicalProfile)
+router.post('/psychological-test', setTestScore)
+
+export {router as psychologicalProfileRoutes}

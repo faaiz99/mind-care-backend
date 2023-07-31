@@ -1,21 +1,19 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const planningthedayAheadSchema = new Schema({
-  clientId: {
-    type: mongoose.Types.ObjectId,
-    ref: 'client'
-  },
-  questions: {
+	clientId: {
+		type: Types.ObjectId,
+		ref: 'client'
+	},
+	questions: {
 		type: [String],
-	  },
-	  answers: {
+	},
+	answers: {
 		type: [String],
-	  },
-  createdAt:{
-		type:Date
-	  }
+	},
+	createdAt: {
+		type: Date
+	}
 });
 
-const PlanningthedayAhead = mongoose.model("planningthedayAhead", planningthedayAheadSchema);
-module.exports = PlanningthedayAhead;
+export const PlanningTheDayAhead = model("planningthedayAhead", planningthedayAheadSchema);

@@ -1,9 +1,10 @@
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router()
 
-const authRoutes = require('./auth/auth.route')
-const journalRoutes = require('./journal/journal.route')
-const reminderRoutes = require('./reminder/reminder.route')
-const psychologicalProfileRoutes = require('./psychologicalProfile/psychologicalProfile.route')
+import { authRoutes } from "./auth/auth.route.js";
+import { reminderRoutes } from "./reminder/reminder.route.js";
+import { psychologicalProfileRoutes } from "./psychologicalProfile/psychologicalProfile.route.js";
+import { journalRoutes } from "./journal/journal.route.js";
 
 router.use(authRoutes)
 router.use(journalRoutes)
@@ -14,4 +15,4 @@ router.get("/", (req, res) => {
   res.send("Client home page");
 });
 
-module.exports = router;
+export { router as clientRouter }

@@ -1,7 +1,6 @@
-const Reminder = require('../models/reminder/reminder.model')
+import { Reminder } from '../models/reminder/reminder.model.js';
 
-
-exports.getReminders = async (req, res) => {
+export const getReminders = async (req, res) => {
 	const reminder = req.body.clientId
 	var result;
 	try {
@@ -12,7 +11,7 @@ exports.getReminders = async (req, res) => {
 	res.json({ status: 200, message: 'List of all Reminders', result })
 
 }
-exports.createReminder = async (req, res) => {
+export const createReminder = async (req, res) => {
 	const reminder = req.body
 	var result
 	try {
@@ -24,7 +23,7 @@ exports.createReminder = async (req, res) => {
 	res.json({ status: 200, message: 'Reminder created', result })
 }
 
-exports.editReminder = async (req, res) => {
+export const editReminder = async (req, res) => {
 	const reminder = req.body.clientId
 	var result
 	try {
@@ -35,7 +34,7 @@ exports.editReminder = async (req, res) => {
 	res.json({ status: 200, message: 'Reminder modified', result })
 }
 
-exports.deleteReminder = async (req, res) => {
+export const deleteReminder = async (req, res) => {
 	const reminder = req.body.clientId
 	var result
 	try {

@@ -1,8 +1,8 @@
 // Journal Types & Models //
 
-const GratitudeJournal = require('../models/journals/gratitudeJournal.model')
+import { GratitudeJournal } from '../models/journals/gratitudeJournal.model.js';
 
-exports.getGratitudeJournal = async (req, res) => {
+export const getGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.clientId;
 	var result;
 	try {
@@ -12,8 +12,7 @@ exports.getGratitudeJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Gratitide Journal found', result })
 }
-
-exports.createGratitudeJournal = async (req, res) => {
+export const createGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body;
 	var result;
 	try {
@@ -23,8 +22,7 @@ exports.createGratitudeJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Gratitide Journal created', result })
 }
-
-exports.deleteGratitudeJournal = async (req, res) => {
+export const deleteGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.journaIld;
 	var result;
 	try {
@@ -35,9 +33,9 @@ exports.deleteGratitudeJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Gratitide Journal deleted', result })
 }
 
-const ProblemSolvingJournal = require('../models/journals/problemSolvingJournal.model')
+import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.model.js';
 
-exports.getProblemSolvingJournal = async (req, res) => {
+export const getProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body.clientId
 	var result;
 	try {
@@ -48,7 +46,7 @@ exports.getProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal found", result })
 }
 
-exports.createProblemSolvingJournal = async (req, res) => {
+export const createProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body
 	var result;
 	try {
@@ -59,7 +57,7 @@ exports.createProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal created", result })
 }
 
-exports.deleteProblemSolvingJournal = async (req, res) => {
+export const deleteProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body.journalId
 	var result;
 	try {
@@ -70,9 +68,9 @@ exports.deleteProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal deleted", result })
 }
 
-const GoalSettingJournal = require('../models/journals/goalSettingJournal.model')
+import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.js';
 
-exports.getGoalSettingJournal = async (req, res) => {
+export const getGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = red.body.clientId;
 	var result;
 	try {
@@ -84,7 +82,7 @@ exports.getGoalSettingJournal = async (req, res) => {
 
 }
 
-exports.createGoalSettingJournal = async (req, res) => {
+export const createGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = req.body
 	var result;
 	try {
@@ -96,7 +94,7 @@ exports.createGoalSettingJournal = async (req, res) => {
 
 }
 
-exports.deleteGoalSettingJournal = async (req, res) => {
+export const deleteGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = req.body.journalId
 	var result;
 	try {
@@ -109,9 +107,9 @@ exports.deleteGoalSettingJournal = async (req, res) => {
 
 }
 
-const SelfAffirmationJournal = require('../models/journals/selfAffirmationJournal.model')
+import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal.model.js';
 
-exports.getSelfAffirmationJournal = async (req, res) => {
+export const getSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body.clientId
 	var result;
 	try {
@@ -122,7 +120,7 @@ exports.getSelfAffirmationJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Self-Affirmation Journal found', result })
 }
 
-exports.createSelfAffirmationJournal = async (req, res) => {
+export const createSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body
 	var result;
 	try {
@@ -133,7 +131,7 @@ exports.createSelfAffirmationJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Self-Affirmation Journal Created', result })
 }
 
-exports.deleteSelfAffirmationJournal = async (req, res) => {
+export const deleteSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body.journalId
 	var result;
 	try {
@@ -145,9 +143,9 @@ exports.deleteSelfAffirmationJournal = async (req, res) => {
 
 }
 
-const ReflectionJournal = require('../models/journals/reflectionJournal.model')
+import { ReflectionJournal } from '../models/journals/reflectionJournal.model.js';
 
-exports.getReflectionJournal = async (req, res) => {
+export const getReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body.clientId
 	var result;
 	try {
@@ -158,7 +156,7 @@ exports.getReflectionJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Reflection Journal found', result })
 
 }
-exports.createReflectionJournal = async (req, res) => {
+export const createReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body;
 	var result;
 	try {
@@ -170,7 +168,7 @@ exports.createReflectionJournal = async (req, res) => {
 
 }
 
-exports.deleteReflectionJournal = async (req, res) => {
+export const deleteReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body.journalId;
 	var result;
 	try {
@@ -181,9 +179,9 @@ exports.deleteReflectionJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Relfection Journal deleted', result })
 
 }
-const OpenJournal = require('../models/journals/openJournal.model')
+import { OpenJournal } from '../models/journals/openJournal.model.js';
 
-exports.getOpenJournal = async (req, res) => {
+export const getOpenJournal = async (req, res) => {
 	const openJournal = req.body.clientId
 	var result;
 	try {
@@ -195,7 +193,7 @@ exports.getOpenJournal = async (req, res) => {
 
 }
 
-exports.createOpenJournal = async (req, res) => {
+export const createOpenJournal = async (req, res) => {
 	const openJournal = req.body;
 	var result;
 	try {
@@ -206,7 +204,7 @@ exports.createOpenJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Open Journal created', result })
 }
 
-exports.deleteOpenJournal = async (req, res) => {
+export const deleteOpenJournal = async (req, res) => {
 	const openJournal = req.body.journalId;
 	var result;
 	try {
@@ -217,9 +215,9 @@ exports.deleteOpenJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Open Journal deleted', result })
 }
 
-const ChallengingNegativeThoughtsAboutYourselfJournal = require('../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model')
+import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model.js';
 
-exports.getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
+export const getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.clientId;
 	var result;
@@ -232,7 +230,7 @@ exports.getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) =>
 
 }
 
-exports.createChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
+export const createChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body;
 	var result;
 	try {
@@ -244,7 +242,7 @@ exports.createChallengingNegativeThoughtsAboutYourselfJournal = async (req, res)
 
 }
 
-exports.deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
+export const deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.journalId;
 	var result;
 	try {
@@ -255,9 +253,9 @@ exports.deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res)
 	res.json({ status: 200, message: 'Challenge Negative Thoughts Journal deleted', result })
 
 }
-const BuildingASelfCarePlan = require('../models/journals/buildingASelfCarePlan.model')
+import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.model.js';
 
-exports.getBuildingASelfCarePlan = async (req, res) => {
+export const getBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body.clientId
 	var result;
 	try {
@@ -269,7 +267,7 @@ exports.getBuildingASelfCarePlan = async (req, res) => {
 
 }
 
-exports.createBuildingASelfCarePlan = async (req, res) => {
+export const createBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body
 	var result;
 	try {
@@ -280,7 +278,7 @@ exports.createBuildingASelfCarePlan = async (req, res) => {
 	res.json({ status: 200, message: 'Building Self-Care Journal created', result })
 }
 
-exports.deleteBuildingASelfCarePlan = async (req, res) => {
+export const deleteBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body.journalId
 	var result;
 	try {
@@ -290,9 +288,9 @@ exports.deleteBuildingASelfCarePlan = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Building Self-Care Journal deleted', result })
 }
-const AnxietyThoughtRecordJournal = require('../models/journals/anxietyThoughtRecordJournal.model')
+import { AnxietyThoughtRecordJournal } from '../models/journals/anxietyThoughtRecordJournal.model.js';
 
-exports.getAnxietyThoughtReccordJournal = async (req, res) => {
+export const getAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body.clientId
 	var result;
 	try {
@@ -303,7 +301,7 @@ exports.getAnxietyThoughtReccordJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Anxiety Thought Reccord Journal found', result })
 }
 
-exports.createAnxietyThoughtReccordJournal = async (req, res) => {
+export const createAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body
 	var result;
 	try {
@@ -315,7 +313,7 @@ exports.createAnxietyThoughtReccordJournal = async (req, res) => {
 
 }
 
-exports.deleteAnxietyThoughtReccordJournal = async (req, res) => {
+export const deleteAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body.journalId
 	var result;
 	try {
@@ -328,8 +326,10 @@ exports.deleteAnxietyThoughtReccordJournal = async (req, res) => {
 }
 // Sleep Journal has own types & Models //
 
-const CalmingtheMind = require('../models/journals/sleepJournal/calmingtheMind.model')
-exports.getCalmingtheMind = async (req, res) => {
+
+import { CalmingtheMind } from '../models/journals/sleepJournal/calmingtheMind.model.js';
+
+export const getCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body.clientId
 	var result;
 	try {
@@ -340,7 +340,7 @@ exports.getCalmingtheMind = async (req, res) => {
 	res.json({ status: 200, message: 'Calming the Mind Journal found', result })
 }
 
-exports.createCalmingtheMind = async (req, res) => {
+export const createCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body
 	var result;
 	try {
@@ -352,7 +352,7 @@ exports.createCalmingtheMind = async (req, res) => {
 
 }
 
-exports.deleteCalmingtheMind = async (req, res) => {
+export const deleteCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body.journalId
 	var result;
 	try {
@@ -363,9 +363,9 @@ exports.deleteCalmingtheMind = async (req, res) => {
 	res.json({ status: 200, message: 'Calming the Mind Journal deleted', result })
 }
 
-const DreamJournal = require('../models/journals/sleepJournal/dreamJournal.model')
+import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model.js';
 
-exports.getDreamJournal = async (req, res) => {
+export const getDreamJournal = async (req, res) => {
 	const dreamJournal = req.body.clientId
 	var result;
 	try {
@@ -375,7 +375,7 @@ exports.getDreamJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Dream Journal found', result })
 }
-exports.createDreamJournal = async (req, res) => {
+export const createDreamJournal = async (req, res) => {
 	const dreamJournal = req.body
 	var result;
 	try {
@@ -385,7 +385,7 @@ exports.createDreamJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Dream Journal created', result })
 }
-exports.deleteDreamJournal = async (req, res) => {
+export const deleteDreamJournal = async (req, res) => {
 	const dreamJournal = req.body.journalId
 	var result;
 	try {
@@ -397,9 +397,9 @@ exports.deleteDreamJournal = async (req, res) => {
 
 }
 
-const FindingpeacefulSpace = require('../models/journals/sleepJournal/findingapeacefulSpace.model')
+import { FindingpeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.js';
 
-exports.getFindingPeaceFulSpace = async (req, res) => {
+export const getFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body.clientId;
 	var result;
 	try {
@@ -410,7 +410,7 @@ exports.getFindingPeaceFulSpace = async (req, res) => {
 	res.json({ status: 200, message: 'Finding Peaceful Space Journal found', result })
 }
 
-exports.createFindingPeaceFulSpace = async (req, res) => {
+export const createFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body;
 	var result;
 	try {
@@ -421,7 +421,7 @@ exports.createFindingPeaceFulSpace = async (req, res) => {
 	res.json({ status: 200, message: 'Finding Peaceful Space Journal found', result })
 }
 
-exports.deleteFindingPeaceFulSpace = async (req, res) => {
+export const deleteFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body.journalId;
 	var result;
 	try {
@@ -432,9 +432,9 @@ exports.deleteFindingPeaceFulSpace = async (req, res) => {
 	res.json({ status: 200, message: 'Finding Peaceful Space Journal deleted', result })
 }
 
-const LookingforwardtoTomorrow = require('../models/journals/sleepJournal/lookingforwardtoTomorrow.model')
+import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.js';
 
-exports.getLookingForwardToTomorrow = async (req, res) => {
+export const getLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body.clientId
 	var result;
 	try {
@@ -446,7 +446,7 @@ exports.getLookingForwardToTomorrow = async (req, res) => {
 
 }
 
-exports.createLookingForwardToTomorrow = async (req, res) => {
+export const createLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body
 	var result;
 	try {
@@ -458,7 +458,7 @@ exports.createLookingForwardToTomorrow = async (req, res) => {
 
 }
 
-exports.deleteLookingForwardToTomorrow = async (req, res) => {
+export const deleteLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body.journalId
 	var result;
 	try {
@@ -470,13 +470,13 @@ exports.deleteLookingForwardToTomorrow = async (req, res) => {
 
 
 }
-const PlanningthedayAhead = require('../models/journals/sleepJournal/planningthedayAhead.model')
+import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.js';
 
-exports.getPlanningDayAhead = async (req, res) => {
+export const getPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.clientId
 	var result;
 	try {
-		result = await PlanningthedayAhead.find({ clientId: planningthedayAhead })
+		result = await PlanningTheDayAhead.find({ clientId: planningthedayAhead })
 	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be found')
 	}
@@ -484,11 +484,11 @@ exports.getPlanningDayAhead = async (req, res) => {
 
 }
 
-exports.createPlanningDayAhead = async (req, res) => {
+export const createPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body
 	var result;
 	try {
-		result = await PlanningthedayAhead.create(planningthedayAhead)
+		result = await PlanningTheDayAhead.create(planningthedayAhead)
 	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be created', error)
 	}
@@ -496,11 +496,11 @@ exports.createPlanningDayAhead = async (req, res) => {
 
 }
 
-exports.deletePlanningDayAhead = async (req, res) => {
+export const deletePlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.journalId
 	var result;
 	try {
-		result = await PlanningthedayAhead.deleteOne({ journalId: planningthedayAhead })
+		result = await PlanningTheDayAhead.deleteOne({ journalId: planningthedayAhead })
 	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be deleted', error)
 	}
@@ -510,7 +510,7 @@ exports.deletePlanningDayAhead = async (req, res) => {
 
 // Get all Journals // 
 
-exports.getAllEntries = (req, res) => {
+export const getAllEntries = (req, res) => {
 
 }
 

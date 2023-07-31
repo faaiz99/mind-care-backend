@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const sleepJournalSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -18,5 +18,5 @@ const sleepJournalSchema = new Schema({
   }
 });
 
-const sleepJournalModel = mongoose.model("sleepJournal", sleepJournalSchema);
-module.exports = sleepJournalModel;
+export const SleepJournalModel = mongoose.model("sleepJournal", sleepJournalSchema);
+

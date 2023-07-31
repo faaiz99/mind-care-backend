@@ -1,31 +1,29 @@
-const mongoose = require('mongoose')
-const Schema = require("mongoose").Schema
+import {Schema, model, Types } from 'mongoose'
 
 const downvoteSchema = new Schema({
 	downvoteId: {
-		type: mongoose.Schema.Types.ObjectId
+		type: Types.ObjectId
 	},
 	clientId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Types.ObjectId,
 		ref: 'client',
 		required: false
 	},
 	therapistId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Types.ObjectId,
 		ref: 'therapist',
 		required: false
 	},
 	postId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Types.ObjectId,
 		ref: 'post',
 		required: false
 	},
 	commentId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Types.ObjectId,
 		ref: 'comment',
 		required: false
 	},
 })
 
-const downvote = mongoose.model('downvote', downvoteSchema)
-module.exports = downvote
+export const downvote = model('downvote', downvoteSchema)

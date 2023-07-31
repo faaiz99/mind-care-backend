@@ -1,37 +1,43 @@
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router()
 
-const authenticateToken = require('../../../middlewares/auth.middleware').authenticateToken
-const revalidateToken = require('../../../middlewares/auth.middleware').revalidateToken
-const Signup = require('../../../controllers/therapist.controller').Signup
-const Login = require('../../../controllers/therapist.controller').Login
-const verifyAccount = require('../../../controllers/therapist.controller').verifyAccount
-const renewTokens = require('../../../controllers/therapist.controller').renewTokens
-const sendEmail = require('../../../controllers/therapist.controller').sendverificationEmail
-const resetPassword = require('../../../controllers/therapist.controller').resetPassword
-const enternewPassword = require('../../../controllers/therapist.controller').enternewPassword
-const updateProfile = require('../../../controllers/therapist.controller').updateProfile
-const changePassword = require('../../../controllers/therapist.controller').changePassword
+import { authenticateToken } from "../../../middlewares/auth.middleware.js";
+import { revalidateToken } from "../../../middlewares/auth.middleware.js";
 
-router.post('/signup', Signup)
+import {
+  signup,
+  login,
+  verifyAccount,
+  sendverificationEmail,
+  resetPassword,
+  updateProfile,
+  changePassword,
+  enternewPassword,
+  renewTokens,
 
-router.post('/changePassword', changePassword)
+} from "../../../controllers/therapist.controller.js";
+
+
+router.post('/signup', signup)
+
+router.post('/change-password', changePassword)
 
 router.post('/password/:token', enternewPassword)
 
 router.post('/reset-password', resetPassword)
 
-router.patch("/updateProfile", updateProfile);
+router.patch("/update-profile", updateProfile);
 
 router.get('/verify/:token', authenticateToken, verifyAccount)
 
-router.post('/send-verification-email', sendEmail)
+router.post('/send-verification-email', sendverificationEmail)
 
 router.get("/profile", (req, res) => {
   res.send("About this Therapist");
 });
 
 router.get('/refresh-token', revalidateToken, renewTokens)
-router.post('/login', Login)
+router.post('/login', login)
 
 
-module.exports = router
+export { router as authRoutes }

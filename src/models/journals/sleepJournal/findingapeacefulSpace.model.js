@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const findingpeacefulSpaceSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -17,5 +16,4 @@ const findingpeacefulSpaceSchema = new Schema({
 	  }
 });
 
-const FindingpeacefulSpace = mongoose.model("findingpeacefulSpace", findingpeacefulSpaceSchema);
-module.exports = FindingpeacefulSpace;
+export const FindingpeacefulSpace = model("findingpeacefulSpace", findingpeacefulSpaceSchema);

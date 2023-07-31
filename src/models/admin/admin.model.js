@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const adminSchema = new Schema({
 	firstName: {
@@ -18,30 +17,29 @@ const adminSchema = new Schema({
 		unique: true
 	},
 	gender: {
-		type:String,
-		required:true,
+		type: String,
+		required: true,
 	},
-	role:{
-		type:String,
-		required:true
+	role: {
+		type: String,
+		required: true
 	},
-	password:{
-		type:String,
-		required:true
+	password: {
+		type: String,
+		required: true
 	},
-	verifiedAccount:{
-		type:Boolean,
-		required:false
+	verifiedAccount: {
+		type: Boolean,
+		required: false
 	},
-	profilePicture:{
-		type:String,
-		required:false
+	profilePicture: {
+		type: String,
+		required: false
 	},
-	dateofBirth:{
+	dateofBirth: {
 		type: Date,
-		required:false
+		required: false
 	}
 });
 
-const adminModel = mongoose.model('admin',adminSchema)
-module.exports = adminModel;
+export const Admin = model('admin', adminSchema)

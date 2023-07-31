@@ -1,25 +1,23 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const problemSolvingJournalSchema = new Schema({
 	clientId: {
-		type: mongoose.Types.ObjectId,
+		type: Types.ObjectId,
 		ref: 'client'
-	  },
-	  questions: {
+	},
+	questions: {
 		type: [String],
-	  },
-	  answers: {
+	},
+	answers: {
 		type: [String],
-	  },
-	  createdAt:{
-		type:Date
-	  }
+	},
+	createdAt: {
+		type: Date
+	}
 })
 
-const ProblemSolvingJournal = mongoose.model(
+export const ProblemSolvingJournal = model(
 	"problemSolvingJournal",
 	problemSolvingJournalSchema
 );
 
-module.exports = ProblemSolvingJournal;

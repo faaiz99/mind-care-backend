@@ -1,8 +1,9 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'
 
-const { MONGO_URI } = process.env;
+const MONGO_URI  = dotenv.config().parsed.MONGO_URI
 console.log('DB URI: ',MONGO_URI)
-exports.connect = () => {
+export const connect = () => {
   // Connecting to the database
   mongoose
     .connect(MONGO_URI, {

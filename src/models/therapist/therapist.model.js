@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model, Types } from 'mongoose'
 const therapistSchema = new Schema({
 
   firstName: {
@@ -71,5 +69,4 @@ const therapistSchema = new Schema({
   },
 });
 
-const therapistModel = mongoose.model("therapist", therapistSchema);
-module.exports = therapistModel;
+export const Therapist = model("therapist", therapistSchema);

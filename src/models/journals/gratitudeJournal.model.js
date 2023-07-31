@@ -1,9 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model, Types } from 'mongoose'
 const gratitudeJournalSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -17,8 +15,8 @@ const gratitudeJournalSchema = new Schema({
 	  }
 });
 
-const GratitudeJournal = mongoose.model(
+export const GratitudeJournal = model(
   "GratitudeJournal",
   gratitudeJournalSchema
 );
-module.exports = GratitudeJournal;
+

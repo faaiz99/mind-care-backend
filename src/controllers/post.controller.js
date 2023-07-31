@@ -1,2 +1,3 @@
-const post = require('../models/communityForums/post.model')
+
+import { post } from '../models/communityForums/post.model'
 

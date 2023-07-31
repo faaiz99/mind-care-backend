@@ -1,10 +1,11 @@
-const Client = require('../models/client/client.model')
-const issueTokens = require('../middlewares/auth.middleware').issueTokens
-const emailSender = require('../utils/sendmail.util').emailSender
-const resetPassword = require('../utils/sendmail.util').resetPassword
-const crypto = require("crypto");
+import { Client } from '../models/client/client.model.js'
 
-exports.enternewPassword = async (req, res) => {
+import { issueTokens } from '../middlewares/auth.middleware.js'
+import { emailSender, resetAccountPassword } from '../utils/sendmail.util.js'
+
+import crypto from 'crypto'
+
+export const enternewPassword = async (req, res) => {
 
 	// Can also be used to change password from profile
 	var email = req.body.email;
@@ -17,7 +18,7 @@ exports.enternewPassword = async (req, res) => {
 	)
 	res.json({ status: 200, message: 'Account Password Changed' })
 }
-exports.resetPassword = async (req, res, next) => {
+export const resetPassword = async (req, res, next) => {
 	var email = req.body.email;
 	const client = await Client.findOne({
 		email: email
@@ -26,10 +27,10 @@ exports.resetPassword = async (req, res, next) => {
 		return res.json({ status: 404, message: "Account does not exist" })
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'client'
-	resetPassword(email, token, role)
+	resetAccountPassword(email, token, role)
 	next()
 }
-exports.verifyAccount = async (req, res) => {
+export const verifyAccount = async (req, res) => {
 	const client = await Client.findOneAndUpdate({
 		email: req.body.email,
 	}, {
@@ -39,13 +40,13 @@ exports.verifyAccount = async (req, res) => {
 	})
 	res.json({ status: 200, message: 'Account successfully verified' })
 }
-exports.sendverificationEmail = async (req, res, next) => {
+export const sendverificationEmail = async (req, res, next) => {
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'client'
 	emailSender(email, token, role)
 	next()
 }
-exports.Login = async (req, res) => {
+export const login = async (req, res) => {
 	// check existance by email
 	var exists = await Client.exists({
 		email: req.body.email
@@ -77,7 +78,7 @@ exports.Login = async (req, res) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-exports.Signup = async (req, res) => {
+export const signup = async (req, res) => {
 	const client = req.body
 	// check existance by email
 	var exists = await Client.exists({
@@ -98,7 +99,7 @@ exports.Signup = async (req, res) => {
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Client Account created", result });
 }
-exports.renewTokens = (req, res, next) => {
+export const renewTokens = (req, res, next) => {
 	const client = req.user.user
 	const tokens = issueTokens(client)
 	const { accessToken, refreshToken } = tokens

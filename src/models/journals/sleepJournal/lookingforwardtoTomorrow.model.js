@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const lookingforwardtoTomorrowSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -17,5 +16,4 @@ const lookingforwardtoTomorrowSchema = new Schema({
 	  }
 });
 
-const LookingforwardtoTomorrow = mongoose.model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);
-module.exports = LookingforwardtoTomorrow;
+export const LookingforwardtoTomorrow = model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);

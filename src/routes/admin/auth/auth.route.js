@@ -1,9 +1,8 @@
-const router = require("express").Router();
-const authenticateToken = require('../../../middlewares/auth.middleware').authenticateToken
-const revalidateToken = require('../../../middlewares/auth.middleware').revalidateToken
-const Signup = require('../../../controllers/admin.controller').Signup
-const Login = require('../../../controllers/admin.controller').Login
-const renewTokens = require('../../../controllers/admin.controller').renewTokens
+import { Router } from "express";
+const router = Router()
+
+import { authenticateToken, revalidateToken } from "../../../middlewares/auth.middleware.js";
+import { signup, login, renewTokens } from "../../../controllers/admin.controller.js";
 
 router.get("/profile", authenticateToken, (req, res) => {
   res.send("About this admin");
@@ -12,8 +11,9 @@ router.get("/", authenticateToken, (req, res) => {
   res.send("Admin home page");
 });
 
-router.post('/signup', Signup)
+router.post('/signup', signup)
 router.get('/refresh-token', revalidateToken, renewTokens)
-router.post('/login', Login)
+router.post('/login', login)
 
-module.exports = router;
+
+export { router as authRoutes }

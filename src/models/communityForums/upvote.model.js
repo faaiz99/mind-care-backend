@@ -1,27 +1,25 @@
-const mongoose = require('mongoose')
-const Schema = require("mongoose").Schema
+import {Schema, model, Types } from 'mongoose'
 
 const upvoteSchema = new Schema({
 	upvoteId:{
-		type:mongoose.Schema.Types.ObjectId
+		type:Types.ObjectId
 	},
 	clientId:{
-		type:mongoose.Schema.Types.ObjectId,
+		type:Types.ObjectId,
 		ref:'client'
 	},
 	therapistId:{
-		type:mongoose.Schema.Types.ObjectId,
+		type:Types.ObjectId,
 		ref:'therapist'
 	},
 	postId:{
-		type:mongoose.Schema.Types.ObjectId,
+		type:Types.ObjectId,
 		ref:'post'
 	},
 	commentId:{
-		type:mongoose.Schema.Types.ObjectId,
+		type:Types.ObjectId,
 		ref:'comment'
 	},
 })
 
-const upvote = mongoose.model('upvote', upvoteSchema)
-module.exports = upvote
+export const upvote = model('upvote', upvoteSchema)

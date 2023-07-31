@@ -1,11 +1,11 @@
-const Therapist = require('../models/therapist/therapist.model')
-const issueTokens = require('../middlewares/auth.middleware').issueTokens
-const emailSender = require('../utils/sendmail.util').emailSender
-const resetPassword = require('../utils/sendmail.util').resetPassword
-const crypto = require("crypto");
+import { Therapist } from '../models/therapist/therapist.model.js'
+import { issueTokens } from '../middlewares/auth.middleware.js'
 
+import { emailSender, resetAccountPassword } from '../utils/sendmail.util.js'
 
-exports.changePassword = async (req, res, next) => {
+import crypto from 'crypto'
+
+export const changePassword = async (req, res, next) => {
 	var email = req.body.email;
 	var password = req.body.password
 	var result;
@@ -22,7 +22,7 @@ exports.changePassword = async (req, res, next) => {
 	res.json({ status: 200, message: 'Account Password Changed', result })
 }
 
-exports.updateProfile = async (req, res, next) => {
+export const updateProfile = async (req, res, next) => {
 	//A therapist profile already exists
 	var newProfile = req.body
 	var filter = req.body.email;
@@ -43,7 +43,7 @@ exports.updateProfile = async (req, res, next) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-exports.enternewPassword = async (req, res, next) => {
+export const enternewPassword = async (req, res, next) => {
 	var email = req.body.email;
 	var password = req.body.password
 	const therapist = await Therapist.findOneAndUpdate({
@@ -54,7 +54,7 @@ exports.enternewPassword = async (req, res, next) => {
 	)
 	res.json({ status: 200, message: 'Account Password Changed' })
 }
-exports.resetPassword = async (req, res, next) => {
+export const resetPassword = async (req, res, next) => {
 	var email = req.body.email;
 	const therapist = await Therapist.findOne({
 		email: email
@@ -63,10 +63,10 @@ exports.resetPassword = async (req, res, next) => {
 		return res.json({ status: 404, message: "Account does not exist" })
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'therapist'
-	resetPassword(email, token, role)
+	resetAccountPassword(email, token, role)
 	next()
 }
-exports.verifyAccount = async (req, res, next) => {
+export const verifyAccount = async (req, res, next) => {
 	const therapist = await Therapist.findOneAndUpdate({
 		email: req.body.email,
 	}, {
@@ -76,14 +76,14 @@ exports.verifyAccount = async (req, res, next) => {
 	})
 	res.json({ status: 200, message: 'Account successfully verified' })
 }
-exports.sendverificationEmail = async (req, res, next) => {
+export const sendverificationEmail = async (req, res, next) => {
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'therapist'
 	var emailPreview = emailSender(email, token, role)
 	res.json({ status: 200, message: 'Email Verification Sent', emailPreview })
 	//next()
 }
-exports.Login = async (req, res, next) => {
+export const login = async (req, res, next) => {
 	// check existance by email
 	var exists = await Therapist.exists({
 		email: req.body.email
@@ -114,7 +114,7 @@ exports.Login = async (req, res, next) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-exports.Signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
 	const therapist = req.body
 	// check existance by email
 	var exists = await Therapist.exists({
@@ -136,7 +136,7 @@ exports.Signup = async (req, res, next) => {
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Therapist Account created", result });
 }
-exports.renewTokens = (req, res, next) => {
+export const renewTokens = (req, res, next) => {
 	const therapist = req.user.user
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens

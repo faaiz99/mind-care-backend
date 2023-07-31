@@ -1,37 +1,38 @@
-const Admin = require('../models/admin/admin.model')
-const issueTokens = require('../middlewares/auth.middleware').issueTokens
+import { Admin } from '../models/admin/admin.model.js'
 
-exports.Login = async (req, res) => {
+import { issueTokens } from '../middlewares/auth.middleware.js'
+
+export const login = async (req, res) => {
 	const admin = await Admin.findOne({
-	  email: req.body.email,
-	  password: req.body.password,
+		email: req.body.email,
+		password: req.body.password,
 	})
-	if(admin== null || admin == undefined)
-	  return res.json({status:404, message:"Account does not exist"})
+	if (admin == null || admin == undefined)
+		return res.json({ status: 404, message: "Account does not exist" })
 	const tokens = issueTokens(admin)
-	const {accessToken, refreshToken} = tokens
+	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-	  return res.json({ status: "OK", accessToken: accessToken, refreshToken:refreshToken });
+		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken });
 	}
 	else
-	  return res.json({ status: "error", user: false });
-  }
-exports.Signup = async (req, res) => {
+		return res.json({ status: "error", user: false });
+}
+export const signup = async (req, res) => {
 	console.log(req)
 	try {
-	  const admin = await Admin.create(req.body);
-	  res.json({ status: 200, message:"admin Account created" });
+		const admin = await Admin.create(req.body);
+		res.json({ status: 200, message: "admin Account created" });
 	} catch (err) {
-	  res.json({ status: "error", message:err });
+		res.json({ status: "error", message: err });
 	}
 }
-exports.renewTokens = (req,res,next)=>{
+export const renewTokens = (req, res, next) => {
 	const admin = req.user.user
 	const tokens = issueTokens(admin)
-	const {accessToken, refreshToken} = tokens
+	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-	  return res.json({ status: "OK", accessToken:accessToken, refreshToken:refreshToken });
+		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken });
 	}
 	else
-	  return res.json({ status: "error", user: false });
+		return res.json({ status: "error", user: false });
 }

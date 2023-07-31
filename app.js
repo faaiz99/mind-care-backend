@@ -1,13 +1,20 @@
-const express = require("express");
-require("dotenv").config();
-require("./src/config/db.config").connect();
+import express from "express"
+import dotenv from 'dotenv'
+import bodyParser from "body-parser"
+import { connect } from './src/config/db.config.js'
+
+dotenv.config()
+connect()
 const { PORT } = process.env;
 const baseUrl = '/api/v1'
 
+
+
 // API Docs //
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc')
+import swaggerUi from 'swagger-ui-express'
+import swaggerJSDoc from "swagger-jsdoc";
+
 const options = {
 	definition: {
 		info: {
@@ -28,15 +35,19 @@ const options = {
 	apis: ['./src/routes/*.js'],
 };
 
-const swaggerSpec = swaggerJsdoc(options);
+const swaggerSpec = swaggerJSDoc(options);
 
 // Router //
 
-const therapistRouter = require('./src/routes/therapist/therapist.route')
-const clientRouter = require('./src/routes/client/client.route')
-const adminRouter = require('./src/routes/admin/admin.route')
+import { therapistRouter } from "./src/routes/therapist/therapist.route.js"
+import { adminRouter } from './src/routes/admin/admin.route.js'
+import { clientRouter} from './src/routes/client/client.route.js'
 
-const bodyParser = require("body-parser");
+// const therapistRouter = require('./src/routes/therapist/therapist.route')
+// const clientRouter = require('./src/routes/client/client.route')
+// const adminRouter = require('./src/routes/admin/admin.route')
+
+
 
 const app = express();
 app.use(express.json());

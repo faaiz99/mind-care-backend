@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types } from 'mongoose'
 
 const psychologicalProfileSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   checkinDate: {
@@ -56,5 +55,4 @@ const psychologicalProfileSchema = new Schema({
  
 });
 
-const psychologicalProfile = mongoose.model("psychologicalProfileSchema", psychologicalProfileSchema);
-module.exports = psychologicalProfile;
+export const psychologicalProfile = model("psychologicalProfile", psychologicalProfileSchema);

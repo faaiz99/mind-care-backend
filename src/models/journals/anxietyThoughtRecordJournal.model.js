@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model, Types} from 'mongoose'
+
 
 const anxietyThoughtRecordJournalSchema = new Schema({
   clientId: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'client'
   },
   questions: {
@@ -17,8 +17,7 @@ const anxietyThoughtRecordJournalSchema = new Schema({
 	  }
 });
 
-const AnxietyThoughtRecordJournal= mongoose.model(
+export const AnxietyThoughtRecordJournal= model(
   "anxietyThoughtRecordJournal",
   anxietyThoughtRecordJournalSchema
 );
-module.exports = AnxietyThoughtRecordJournal;

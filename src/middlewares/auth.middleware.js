@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
 const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
 
-exports.authenticateToken = (req, res, next) => {
+export const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   let token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
@@ -13,7 +13,7 @@ exports.authenticateToken = (req, res, next) => {
   });
 }
 
-exports.revalidateToken = (req, res, next) => {
+export const revalidateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   let refreshToken = authHeader && authHeader.split(" ")[1];
   if (refreshToken == null) return res.sendStatus(401);
@@ -25,7 +25,7 @@ exports.revalidateToken = (req, res, next) => {
   });
 }
 
-exports.issueTokens = (userBody) => {
+export const issueTokens = (userBody) => {
   // used for both therapist and client
   const token = jwt.sign(
     {

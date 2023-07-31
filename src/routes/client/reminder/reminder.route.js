@@ -1,15 +1,18 @@
-const router = require('express').Router()
+import { Router } from "express";
+const router = Router()
 // Reminder and Daily Tasks Module // 
 
+import {
+	getReminders, createReminder,
+	editReminder, deleteReminder
+} from '../../../controllers/reminder.controller.js'
 
-const reminderController = require('../../../controllers/reminder.controller')
+router.get('/reminder', getReminders)
 
-router.get('/reminder', reminderController.getReminders)
+router.post('/reminder', createReminder)
 
-router.post('/reminder', reminderController.createReminder)
+router.patch('/reminder', editReminder)
 
-router.patch('/reminder', reminderController.editReminder)
+router.delete('/reminder', deleteReminder)
 
-router.delete('/reminder', reminderController.deleteReminder)
-
-module.exports = router
+export {router as reminderRoutes}
