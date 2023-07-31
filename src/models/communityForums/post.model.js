@@ -1,26 +1,50 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+// const client = require('../client/client.model')
 
 const postSchema = new Schema({
   postId: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
   },
-  postBody: {
+  clientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'client',
+    required:false
+  },
+  therapistId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'therapist',
+    required:false
+  },
+  pictureLink: {
     type: String,
+    required:false
   },
-  postTag: {
+  title:{
+    type:String,
+    required:true
+  },
+  body: {
     type: String,
+    required:true
   },
-  numberOfUpvotes: {
-    type: Number,
-  },
-  numberOfDownvotes: {
-    type: Number,
-  },
-  numberOfComments: {
-    type: Number,
-  },
+  tags: [{ 
+    type: String, 
+    required: true 
+  }],
+  comments:[{
+    type:mongoose.Types.ObjectId,
+    ref:'comment'
+  }],
+  upvotes:[{
+    type:mongoose.Types.ObjectId,
+    ref:'upvote'
+  }],
+  downvotes:[{
+    type:mongoose.Types.ObjectId,
+    ref:'downvote'
+  }]
 });
 
-const postModel = mongoose.model("post", postSchema);
-module.exports = postModel;
+const post = mongoose.model("post", postSchema);
+module.exports = post;

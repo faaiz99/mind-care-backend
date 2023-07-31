@@ -5,26 +5,47 @@ const commentSchema = new Schema({
   commentId: {
     type: mongoose.Types.ObjectId,
   },
-  commentBody: {
+  postId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'post',
+    required:true
+  },
+  therapistId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'therapist',
+    required:false
+
+  },
+  clientId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'client',
+    required:false
+  },
+  parentId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'comment',
+    required:false
+  },
+  body: {
     type: String,
+    required:true
   },
-  commentTag: {
-    type: String,
-  },
-  numberOfUpvotes: {
-    type: Number,
-  },
-  numberOfDownvotes: {
-    type: Number,
-  },
-  numberOfReplies: {
-    type: Number,
-  },
-  postId: {
-    type: mongoose.Types.ObjectId,
-    ref: postId,
-  },
+  children:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'comment',
+    required:false
+  }],
+  upvotes:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'upvote',
+    required:false
+  }],
+  downvotes:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'downvote',
+    required:false
+  }],
 });
 
-const commentModel = mongoose.model("comment", commentSchema);
-module.exports = commentModel;
+const comment = mongoose.model("comment", commentSchema);
+module.exports = comment;

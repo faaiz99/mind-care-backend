@@ -14,7 +14,7 @@ const options = {
 			title: "Mind Care",
 			version: "v1",
 			description:
-				"Mind Care API Documentation",
+				"API Documentation",
 			contact: {
 				name: "Mind Care",
 			},

@@ -9,17 +9,17 @@ const therapistRemarksSchema = new Schema({
     type: String,
   },
   therapist: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: therapist,
   },
   client: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: client,
   },
 });
 
-const therapistRemarksModel = mongoose.model(
+const therapistRemarks = mongoose.model(
   "therapistRemarks",
   therapistRemarksSchema
 );
-module.exports = therapistRemarksModel;
+module.exports = therapistRemarks;
