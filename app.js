@@ -32,9 +32,9 @@ const swaggerSpec = swaggerJsdoc(options);
 
 // Router //
 
-const therapistRouter = require('./src/routes/therapist.route')
-const clientRouter = require('./src/routes/client.route')
-const adminRouter = require('./src/routes/admin.route')
+const therapistRouter = require('./src/routes/therapist/therapist.route')
+const clientRouter = require('./src/routes/client/client.route')
+const adminRouter = require('./src/routes/admin/admin.route')
 
 const bodyParser = require("body-parser");
 

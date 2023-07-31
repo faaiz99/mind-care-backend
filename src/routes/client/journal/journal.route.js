@@ -1,44 +1,11 @@
-// Instantiate Express Router //
-
-const router = require("express").Router();
-
-// Middleware for Authentication and Issueing JWT Token // 
-
-const authenticateToken = require('../middlewares/auth.middleware').authenticateToken
-const revalidateToken = require('../middlewares/auth.middleware').revalidateToken
-
-// User Profile Management Module //
-
-const clientController = require('../controllers/client.controller')
-
-
-router.post('/password/:token', clientController.enternewPassword)
-router.post('/reset-password', clientController.resetPassword)
-router.get('/verify/:token', authenticateToken, clientController.verifyAccount)
-router.post('/send-verification-email', clientController.sendverificationEmail)
-router.post('/signup', clientController.Signup)
-router.get('/refresh-token', revalidateToken, clientController.renewTokens)
-router.post('/login', clientController.Login)
-router.get("/profile", (req, res) => {
-  res.send("About this Client");
-});
-router.get("/", (req, res) => {
-  res.send("Client home page");
-});
-
-// Psychological Profile/Mental health Wellbeing //
-
-const psychologicalProfileController = require('../controllers/psychologicalProfile.controller')
-// ClientId required in body// 
-router.post('/psychologicalProfile', psychologicalProfileController.buildPsychologicalProfile)
-router.post('/psychologicalProfileStats', psychologicalProfileController.getPsychologicalProfile)
-router.post('/psychologicalTest', psychologicalProfileController.setTestScore)
-
+const router = require('express').Router()
 
 
 // Guided Journaling // 
 // Journals can only be fetched, created or deleted //
-const journalsController = require('../controllers/journal.controller')
+
+
+const journalsController = require('../../../controllers/journal.controller')
 
 router.get('/allJournals', journalsController.getAllEntries)
 
@@ -86,16 +53,5 @@ router.delete('/lookingforwardtoTomorrow', journalsController.deleteLookingForwa
 router.post('/planningthedayAhead', journalsController.createPlanningDayAhead)
 router.delete('/planningthedayAhead', journalsController.deletePlanningDayAhead)
 
-// Reminder and Daily Tasks Module // 
 
-const reminderController = require('../controllers/reminder.controller')
-
-router.get('/reminder', reminderController.getReminders)
-
-router.post('/reminder', reminderController.createReminder)
-
-router.patch('/reminder', reminderController.editReminder)
-
-router.delete('/reminder', reminderController.deleteReminder)
-
-module.exports = router;
+module.exports = router
