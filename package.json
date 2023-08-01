@@ -22,7 +22,8 @@
     "nodemailer": "^6.9.1",
     "path": "^0.12.7",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.1",

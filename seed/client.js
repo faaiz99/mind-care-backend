@@ -1,12 +1,13 @@
-const Client = require('../src/models/client')
-const { faker } = require('@faker-js/faker');
-const fs = require('fs')
+import { Client } from '../src/models/client/client.model.js'
+import { faker } from '@faker-js/faker';
+import fs from 'fs'
+
 const generateClients = (num) => {
 	const client = [];
 	for (let i = 0; i < num; i++) {
 		let firstName = faker.person.firstName();
 		let lastName = faker.person.lastName()
-		let email = faker.internet.email({firstName:firstName, lastName:lastName});
+		let email = faker.internet.email({ firstName: firstName, lastName: lastName });
 		let gender = faker.person.sex()
 		let password = faker.internet.password()
 		let picture = faker.internet.avatar()
@@ -31,4 +32,4 @@ const generateClients = (num) => {
 
 var client = generateClients(100);
 
- fs.writeFileSync('client.json', JSON.stringify(client, null, '\t'));
+fs.writeFileSync('client.json', JSON.stringify(client, null, '\t'));

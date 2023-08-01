@@ -1,6 +1,8 @@
-const Therapist = require('../src/models/therapist')
-const { faker } = require('@faker-js/faker');
-const fs = require('fs')
+
+import {Therapist} from '../src/models/therapist/therapist.model.js'
+import { faker } from '@faker-js/faker';
+import { fs } from 'fs';
+
 const generateTherapists = (num) => {
 	const therapist = [];
 	const array = ['Therapist', 'Counsellor', 'Psychologist']

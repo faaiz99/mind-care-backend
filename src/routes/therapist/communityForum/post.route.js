@@ -14,13 +14,13 @@ import {
 
 router.get('/posts', getPosts) // Dynamic Feed
 
-router.post('/post', createPost)
+router.post('/posts', createPost)
 
 router.get('/posts/:id', getPost)
 
 router.patch('/posts/:id', updatePost)
 
-router.delete('/post/:id', deletePost)
+router.delete('/posts/:id', deletePost)
 
 router.post('report-post/:id', reportPost)
 

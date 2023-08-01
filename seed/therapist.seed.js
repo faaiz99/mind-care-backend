@@ -1,7 +1,9 @@
-const Therapist = require('../src/models/therapist')
-require("dotenv").config();
-const mongoose = require('mongoose');
-MONGO_URI = 'mongodb://localhost:27017/mind-care'
+import mongoose from 'mongoose';
+import { Therapist } from '../src/models/therapist/therapist.model.js'
+import dotenv from 'dotenv'
+dotenv.config()
+const MONGO_URI = 'mongodb://localhost:27017/mind-care'
+
 mongoose
 	.connect(MONGO_URI, {
 		useNewUrlParser: true,

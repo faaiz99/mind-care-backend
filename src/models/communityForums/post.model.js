@@ -2,7 +2,8 @@ import {Schema, model, Types } from 'mongoose'
 
 const postSchema = new Schema({
   postId: {
-    type: Types.ObjectId,
+    type: String,
+    required:true
   },
   clientId: {
     type: Types.ObjectId,
@@ -32,16 +33,19 @@ const postSchema = new Schema({
   }],
   comments:[{
     type:Types.ObjectId,
-    ref:'comment'
+    ref:'comment',
+    required:false
   }],
   upvotes:[{
     type:Types.ObjectId,
-    ref:'upvote'
+    ref:'upvote',
+    required:false
   }],
   downvotes:[{
     type:Types.ObjectId,
-    ref:'downvote'
+    ref:'downvote',
+    required:false
   }]
 });
 
-export const post = model("post", postSchema);
+export const Post = model("post", postSchema);
