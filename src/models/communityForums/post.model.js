@@ -35,7 +35,7 @@ const postSchema = new Schema({
     ref:'comment'
   }],
   upvotes:[{
-    type:ypes.ObjectId,
+    type:Types.ObjectId,
     ref:'upvote'
   }],
   downvotes:[{

@@ -3,7 +3,7 @@ import {Schema, model, Types } from 'mongoose'
 
 const commentSchema = new Schema({
   commentId: {
-    type: Types.ObjectIdId,
+    type: Types.ObjectId,
   },
   postId:{
     type:Types.ObjectId,
