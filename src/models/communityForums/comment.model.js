@@ -1,50 +1,54 @@
-import {Schema, model, Types } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 
 const commentSchema = new Schema({
   commentId: {
     type: Types.ObjectId,
   },
-  postId:{
-    type:Types.ObjectId,
-    ref:'post',
-    required:true
+  postId: {
+    type: Types.ObjectId,
+    ref: 'post',
+    required: true
   },
-  therapistId:{
-    type:Types.ObjectId,
-    ref:'therapist',
-    required:false
+  therapistId: {
+    type: Types.ObjectId,
+    ref: 'therapist',
+    required: false
 
   },
-  clientId:{
-    type:Types.ObjectId,
-    ref:'client',
-    required:false
+  clientId: {
+    type: Types.ObjectId,
+    ref: 'client',
+    required: false
   },
-  parentId:{
-    type:Types.ObjectId,
-    ref:'comment',
-    required:false
+  parentId: {
+    type: Types.ObjectId,
+    ref: 'comment',
+    required: false
   },
   body: {
     type: String,
-    required:true
+    required: true
   },
-  children:[{
-    type:Types.ObjectId,
-    ref:'comment',
-    required:false
+  children: [{
+    type: Types.ObjectId,
+    ref: 'comment',
+    required: false
   }],
-  upvotes:[{
-    type:Types.ObjectId,
-    ref:'upvote',
-    required:false
+  upvotes: [{
+    type: Types.ObjectId,
+    ref: 'upvote',
+    required: false
   }],
-  downvotes:[{
-    type:Types.ObjectId,
-    ref:'downvote',
-    required:false
+  downvotes: [{
+    type: Types.ObjectId,
+    ref: 'downvote',
+    required: false
   }],
+  commentReport: [{
+    type: Types.ObjectId,
+    ref: 'report'
+  }]
 });
 
-export const comment = model("comment", commentSchema);
+export const Comment = model("comment", commentSchema);

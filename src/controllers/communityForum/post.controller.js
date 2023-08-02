@@ -1,5 +1,7 @@
 import { Post } from '../../models/communityForums/post.model.js'
-import { upvote } from '../../models/communityForums/upvote.model.js'
+import { Upvote } from '../../models/communityForums/upvote.model.js'
+import { Downvote } from '../../models/communityForums/downvote.model.js'
+import { Report } from '../../models/communityForums/report.model.js'
 import { uuid } from 'uuidv4';
 
 export const createPost = async (req, res, next) => {
@@ -90,9 +92,11 @@ export const getPost = async (req, res, next) => {
 
 export const upvotePost = async (req, res, next) => {
 
-	var upvote = req.body;
+	var upvote;
 	var result;
+
 	try {
+		upvote = await Upvote.create(req.body)
 		result = await Post.findOneAndUpdate({ postId: req.params.id }, {
 			$push: { upvotes: upvote }
 		})
@@ -100,7 +104,7 @@ export const upvotePost = async (req, res, next) => {
 		res.json({ status: 400, message: 'Post could not be upvoted', error: error.message })
 		next(error)
 	}
-	if (result != null || result != undefined) {
+	if (result != null || result != undefined || upvote != null || upvote != undefined) {
 		res.json({ status: 200, message: 'Post upvoted', data: result })
 	}
 	next()
@@ -108,10 +112,10 @@ export const upvotePost = async (req, res, next) => {
 }
 
 export const downvotePost = async (req, res, next) => {
-
-	var downvote = req.body;
+	var downvote
 	var result;
 	try {
+		downvote = await Downvote.create(req.body)
 		result = await Post.findOneAndUpdate({ postId: req.params.id }, {
 			$push: { downvotes: downvote }
 		})
@@ -119,12 +123,27 @@ export const downvotePost = async (req, res, next) => {
 		res.json({ status: 400, message: 'Post could not be downvoted', error: error.message })
 		next(error)
 	}
-	if (result != null || result != undefined) {
+	if (result != null || result != undefined || downvote != null || downvote != undefined) {
 		res.json({ status: 200, message: 'Post downvoted', data: result })
 	}
 	next()
 }
 
-export const reportPost = (req, res, next) => {
+export const reportPost = async (req, res, next) => {
+	var report;
+	var result;
+	try {
+		report = await Report.create(req.body)
+		result = await Post.findOneAndUpdate({ postId: req.params.id }, {
+			$push: { postReport: report }
+		})
+	} catch (error) {
+		res.json({ status: 400, message: 'Post could not be reported', error: error.message })
+		next(error)
+	}
+	if (result != null || result != undefined || report != null || report != undefined) {
+		res.json({ status: 200, message: 'Post reported', data: result })
+	}
+	next()
 
 }

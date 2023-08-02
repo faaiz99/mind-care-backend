@@ -22,4 +22,4 @@ const upvoteSchema = new Schema({
 	},
 })
 
-export const upvote = model('upvote', upvoteSchema)
+export const Upvote = model('upvote', upvoteSchema)

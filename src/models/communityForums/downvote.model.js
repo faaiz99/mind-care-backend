@@ -26,4 +26,4 @@ const downvoteSchema = new Schema({
 	},
 })
 
-export const downvote = model('downvote', downvoteSchema)
+export const Downvote = model('downvote', downvoteSchema)

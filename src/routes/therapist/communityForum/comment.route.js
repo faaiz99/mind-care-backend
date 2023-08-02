@@ -5,15 +5,18 @@ import {
 	createComment,
 	updateComment,
 	getComments,
+	replyComment,
 	deleteComment,
 	upvoteComment,
 	downvoteComment,
 	reportComment
 } from '../../../controllers/communityForum/comment.controller.js'
 
-router.get('/comments', getComments) // Dynamic Feed
+router.get('/comments', getComments) 
 
 router.post('/comments', createComment)
+
+router.post('reply-to-comment', replyComment)
 
 router.patch('/comments/:id', updateComment)
 
