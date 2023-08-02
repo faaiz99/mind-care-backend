@@ -18,7 +18,54 @@ import {
 } from "../../../controllers/therapist.controller.js";
 
 
+/**
+ * @swagger
+ * /Sign Up:
+ *   post:
+ *     description: Login to the application
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: username
+ *         description: Username to use for login.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User's password.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
 router.post('/signup', signup)
+
+/**
+ * @swagger
+ * /Login:
+ *   post:
+ *     description: Login to the application
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: username
+ *         description: Username to use for login.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User's password.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
+
+router.post('/login', login)
 
 router.post('/change-password', changePassword)
 
@@ -37,7 +84,7 @@ router.get("/profile", (req, res) => {
 });
 
 router.get('/refresh-token', revalidateToken, renewTokens)
-router.post('/login', login)
+
 
 
 export { router as authRoutes }
