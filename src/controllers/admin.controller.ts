@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction, RequestHandler } from 'express'
+
 import { Admin } from '../models/admin/admin.model.js'
 
 import { issueTokens } from '../middlewares/auth.middleware.js'

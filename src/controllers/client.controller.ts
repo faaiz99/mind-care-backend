@@ -1,7 +1,7 @@
-import { Client } from '../models/client/client.model.js'
+import { Client } from '../models/client/client.model'
 
-import { issueTokens } from '../middlewares/auth.middleware.js'
-import { emailSender, resetAccountPassword } from '../utils/sendmail.util.js'
+import { issueTokens } from '../middlewares/auth.middleware'
+import { emailSender, resetAccountPassword } from '../utils/sendmail.util'
 
 import crypto from 'crypto'
 

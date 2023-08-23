@@ -10,7 +10,7 @@ import {
 	reportPost,
 	upvotePost,
 	downvotePost
-} from '../../../controllers/communityForum/post.controller.js'
+} from '../../../controllers/communityForum/post.controller'
 
 /**
  * @swagger

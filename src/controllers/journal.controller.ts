@@ -1,6 +1,6 @@
 // Journal Types & Models //
 
-import { GratitudeJournal } from '../models/journals/gratitudeJournal.model.js';
+import { GratitudeJournal } from '../models/journals/gratitudeJournal.model';
 
 export const getGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.clientId;

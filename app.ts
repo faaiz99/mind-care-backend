@@ -1,9 +1,10 @@
-import express from "express"
+
 import dotenv from 'dotenv'
+import express from "express"
+import { Application } from 'express'
 import bodyParser from "body-parser"
 import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from "swagger-jsdoc";
-
 import { connect } from './src/config/db.config.js'
 import { therapistRouter } from "./src/routes/therapist/therapist.route.js"
 import { adminRouter } from './src/routes/admin/admin.route.js'
@@ -16,9 +17,9 @@ dotenv.config()
 // Database Connection //
 connect()
 
-const { PORT } = process.env;
-const baseUrl = '/api/v1'
-const app = express();
+const { PORT }= process.env;
+const baseUrl:string = '/api/v1'
+const app:Application = express();
 const swaggerSpec = swaggerJSDoc(options);
 
 // API Documentation Setup //
@@ -34,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(corsPolicy);
 
 // Entry Points for Users //
-app.use(`${baseUrl}/client`, clientRouter)
+// app.use(`${baseUrl}/client`, clientRouter)
 app.use(`${baseUrl}/therapist`, therapistRouter)
 app.use(`${baseUrl}/admin`, adminRouter)
 

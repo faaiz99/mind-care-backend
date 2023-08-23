@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer'
-
 const { user, pass, API_URL } = process.env
 export const emailSender = async (email, token, role) => {
 	let testAccount = await nodemailer.createTestAccount();

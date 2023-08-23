@@ -1,10 +1,11 @@
-import { Post } from '../../models/communityForums/post.model.js'
-import { Upvote } from '../../models/communityForums/upvote.model.js'
-import { Downvote } from '../../models/communityForums/downvote.model.js'
-import { Report } from '../../models/communityForums/report.model.js'
+import { Request, Response, NextFunction, RequestHandler } from 'express'
+import { Post } from '../../models/communityForums/post.model'
+import { Upvote } from '../../models/communityForums/upvote.model'
+import { Downvote } from '../../models/communityForums/downvote.model'
+import { Report } from '../../models/communityForums/report.model'
 import { uuid } from 'uuidv4';
 
-export const createPost = async (req, res, next) => {
+export const createPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 
 	/*
 		postId -> generate at creation
@@ -21,7 +22,7 @@ export const createPost = async (req, res, next) => {
 	try {
 		result = await Post.create(post)
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be created', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be created', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined) {
@@ -30,13 +31,13 @@ export const createPost = async (req, res, next) => {
 	next()
 }
 
-export const updatePost = async (req, res, next) => {
+export const updatePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	var post = req.body;
 	var result;
 	try {
 		result = await Post.findOneAndUpdate({ postId: req.params.id, post })
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be updated', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be updated', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined) {
@@ -45,12 +46,12 @@ export const updatePost = async (req, res, next) => {
 	next()
 }
 
-export const deletePost = async (req, res, next) => {
+export const deletePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	var result;
 	try {
 		result = await Post.findOneAndDelete({ postId: req.params.id })
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be deleted', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be deleted', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined) {
@@ -60,12 +61,12 @@ export const deletePost = async (req, res, next) => {
 
 }
 
-export const getPosts = async (req, res, next) => {
+export const getPosts: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	var result;
 	try {
 		result = await Post.find()
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be retrieved', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be retrieved', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined) {
@@ -75,12 +76,12 @@ export const getPosts = async (req, res, next) => {
 
 }
 
-export const getPost = async (req, res, next) => {
+export const getPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	var result;
 	try {
 		result = await Post.findOne({ postId: req.params.id })
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be found', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be found', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined) {
@@ -90,7 +91,7 @@ export const getPost = async (req, res, next) => {
 
 }
 
-export const upvotePost = async (req, res, next) => {
+export const upvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 
 	var upvote;
 	var result;
@@ -101,7 +102,7 @@ export const upvotePost = async (req, res, next) => {
 			$push: { upvotes: upvote }
 		})
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be upvoted', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be upvoted', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined || upvote != null || upvote != undefined) {
@@ -111,7 +112,7 @@ export const upvotePost = async (req, res, next) => {
 
 }
 
-export const downvotePost = async (req, res, next) => {
+export const downvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	var downvote
 	var result;
 	try {
@@ -120,7 +121,7 @@ export const downvotePost = async (req, res, next) => {
 			$push: { downvotes: downvote }
 		})
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be downvoted', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be downvoted', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined || downvote != null || downvote != undefined) {
@@ -129,7 +130,7 @@ export const downvotePost = async (req, res, next) => {
 	next()
 }
 
-export const reportPost = async (req, res, next) => {
+export const reportPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	var report;
 	var result;
 	try {
@@ -138,7 +139,7 @@ export const reportPost = async (req, res, next) => {
 			$push: { postReport: report }
 		})
 	} catch (error) {
-		res.json({ status: 400, message: 'Post could not be reported', error: error.message })
+		//res.json({ status: 400, message: 'Post could not be reported', error: error.message })
 		next(error)
 	}
 	if (result != null || result != undefined || report != null || report != undefined) {
