@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction, RequestHandler} from 'express'
-import { Comment } from '../../models/communityForums/comment.model'
-import { Upvote } from '../../models/communityForums/upvote.model'
-import { Downvote } from '../../models/communityForums/downvote.model'
-import { Report } from '../../models/communityForums/report.model'
-import { Post } from '../../models/communityForums/post.model'
+import { Comment } from '../../models/communityForums/comment.model.js'
+import { Upvote } from '../../models/communityForums/upvote.model.js'
+import { Downvote } from '../../models/communityForums/downvote.model.js'
+import { Report } from '../../models/communityForums/report.model.js'
+import { Post } from '../../models/communityForums/post.model.js'
 import { uuid } from 'uuidv4';
 
 export const createComment:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {

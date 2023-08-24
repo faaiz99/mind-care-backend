@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router = Router()
 
-import { authenticateToken } from "../../../middlewares/auth.middleware";
-import { revalidateToken } from "../../../middlewares/auth.middleware";
+import { authenticateToken } from "../../../middlewares/auth.middleware.js";
+import { revalidateToken } from "../../../middlewares/auth.middleware.js";
 
 import {
   signup,
@@ -84,7 +84,6 @@ router.get("/profile", (req, res) => {
 });
 
 router.get('/refresh-token', revalidateToken, renewTokens)
-
 
 
 export { router as authRoutes }
