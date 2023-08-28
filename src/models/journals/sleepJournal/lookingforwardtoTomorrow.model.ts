@@ -1,19 +1,19 @@
-import {Schema, model, Types } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 const lookingforwardtoTomorrowSchema = new Schema({
-  clientId: {
-    type: Types.ObjectId,
-    ref: 'client'
-  },
-  questions: {
+	clientId: {
+		type: Types.ObjectId,
+		ref: 'client'
+	},
+	questions: {
 		type: [String],
-	  },
-	  answers: {
+	},
+	answers: {
 		type: [String],
-	  },
-  createdAt:{
-		type:Date
-	  }
+	},
+	createdAt: {
+		type: Date
+	}
 });
 
 export const LookingforwardtoTomorrow = model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);

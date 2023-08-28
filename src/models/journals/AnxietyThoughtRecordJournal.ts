@@ -1,4 +1,4 @@
-import {Schema, model, Types} from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 
 const anxietyThoughtRecordJournalSchema = new Schema({
@@ -7,17 +7,17 @@ const anxietyThoughtRecordJournalSchema = new Schema({
     ref: 'client'
   },
   questions: {
-		type: [String],
-	  },
-	  answers: {
-		type: [String],
-	  },
-  createdAt:{
-		type:Date
-	  }
+    type: [String],
+  },
+  answers: {
+    type: [String],
+  },
+  createdAt: {
+    type: Date
+  }
 });
 
-export const AnxietyThoughtRecordJournal= model(
+export const AnxietyThoughtRecordJournal = model(
   "anxietyThoughtRecordJournal",
   anxietyThoughtRecordJournalSchema
 );

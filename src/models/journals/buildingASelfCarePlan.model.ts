@@ -1,4 +1,4 @@
-import {Schema, model, Types } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 const buildingASelfCarePlanSchema = new Schema({
   clientId: {
@@ -6,14 +6,14 @@ const buildingASelfCarePlanSchema = new Schema({
     ref: 'client'
   },
   questions: {
-		type: [String],
-	  },
-	  answers: {
-		type: [String],
-	  },
-  createdAt:{
-		type:Date
-	  }
+    type: [String],
+  },
+  answers: {
+    type: [String],
+  },
+  createdAt: {
+    type: Date
+  }
 });
 
 export const BuildingASelfCarePlan = model(

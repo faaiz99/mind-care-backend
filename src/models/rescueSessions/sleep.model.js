@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model} from 'mongoose'
 const sleepSchema = new Schema({
   questions: {
     type: String,
@@ -16,5 +14,5 @@ const sleepSchema = new Schema({
   },
 });
 
-const sleepModel = mongoose.model("sleep", sleepSchema);
-module.exports = sleepModel;
+export const sleepModel = model("sleep", sleepSchema);
+

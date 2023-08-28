@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import { Therapist } from '../models/therapist/therapist.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
@@ -7,10 +6,10 @@ import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
 
 import crypto from 'crypto'
 
-export const changePassword:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	var email = req.body.email;
-	var password = req.body.password
-	var result;
+export const changePassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	const email = req.body.email;
+	const password = req.body.password
+	let result;
 	try {
 		result = await Therapist.findOneAndUpdate({
 			email: email
@@ -23,12 +22,11 @@ export const changePassword:RequestHandler = async (req:Request, res:Response, n
 	}
 	res.json({ status: 200, message: 'Account Password Changed', result })
 }
-
-export const updateProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
+export const updateProfile: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	//A therapist profile already exists
-	var newProfile = req.body
-	var filter = req.body.email;
-	var result
+	const newProfile = req.body
+	const filter = req.body.email;
+	let result
 	try {
 		result = await Therapist.findOneAndUpdate(filter, newProfile, {
 			returnOriginal: false
@@ -45,9 +43,9 @@ export const updateProfile:RequestHandler = async (req:Request, res:Response, ne
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-export const enternewPassword:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	var email = req.body.email;
-	var password = req.body.password
+export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	const email = req.body.email;
+	const password = req.body.password
 	const therapist = await Therapist.findOneAndUpdate({
 		email: email
 	}, {
@@ -56,19 +54,19 @@ export const enternewPassword:RequestHandler = async (req:Request, res:Response,
 	)
 	res.json({ status: 200, message: 'Account Password Changed' })
 }
-export const resetPassword:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	var email = req.body.email;
+export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	const email = req.body.email;
 	const therapist = await Therapist.findOne({
 		email: email
 	})
 	if (therapist == null || therapist == undefined)
 		return res.json({ status: 404, message: "Account does not exist" })
-	var token = crypto.randomBytes(32).toString("hex")
-	var role = 'therapist'
+	const token = crypto.randomBytes(32).toString("hex")
+	const role = 'therapist'
 	resetAccountPassword(email, token, role)
 	next()
 }
-export const verifyAccount:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
+export const verifyAccount: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const therapist = await Therapist.findOneAndUpdate({
 		email: req.body.email,
 	}, {
@@ -78,16 +76,16 @@ export const verifyAccount:RequestHandler = async (req:Request, res:Response, ne
 	})
 	res.json({ status: 200, message: 'Account successfully verified' })
 }
-export const sendverificationEmail:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	var token = crypto.randomBytes(32).toString("hex")
-	var role = 'therapist'
-	var emailPreview = emailSender(email, token, role)
+export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	const token = crypto.randomBytes(32).toString("hex")
+	const role = 'therapist'
+	const emailPreview = emailSender(email, token, role)
 	res.json({ status: 200, message: 'Email Verification Sent', emailPreview })
 	//next()
 }
-export const login:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
+export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	// check existance by email
-	var exists = await Therapist.exists({
+	const exists = await Therapist.exists({
 		email: req.body.email
 	})
 
@@ -96,18 +94,18 @@ export const login:RequestHandler = async (req:Request, res:Response, next:NextF
 	if (exists == null || exists == undefined) {
 		return res.json({ status: 404, message: "Account does not exists" })
 	}
-	var therapist;
+	let therapist;
 	if (exists) {
 		// get therapist details if password is correct
 		therapist = await Therapist.findOne({
 			email: req.body.email,
 			password: req.body.password,
 		})
+		therapist.password = ''
 		if (therapist == null || therapist == undefined)
 			return res.json({ status: 401, message: "Incorrect password" })
 	}
 	const tokens = issueTokens(therapist)
-	therapist.password = undefined
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
 		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, therapist });
@@ -116,10 +114,9 @@ export const login:RequestHandler = async (req:Request, res:Response, next:NextF
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-export const signup:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	const therapist = req.body
+export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	// check existance by email
-	var exists = await Therapist.exists({
+	const exists = await Therapist.exists({
 		email: req.body.email
 	})
 	// email exists
@@ -127,7 +124,7 @@ export const signup:RequestHandler = async (req:Request, res:Response, next:Next
 	if (exists != null || exists != undefined) {
 		return res.json({ status: 409, message: "Email already exists!" })
 	}
-	var result;
+	let result;
 	try {
 		result = await Therapist.create(req.body);
 	} catch (error) {
@@ -138,7 +135,7 @@ export const signup:RequestHandler = async (req:Request, res:Response, next:Next
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Therapist Account created", result });
 }
-export const renewTokens:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+export const renewTokens: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const therapist = req.user.user
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens

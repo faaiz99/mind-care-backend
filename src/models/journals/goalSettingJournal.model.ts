@@ -1,19 +1,19 @@
-import {Schema, model, Types } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 const goalSettingJournalSchema = new Schema({
 	clientId: {
 		type: Types.ObjectId,
 		ref: 'client'
-	  },
-	  questions: {
+	},
+	questions: {
 		type: [String],
-	  },
-	  answers: {
+	},
+	answers: {
 		type: [String],
-	  },
-	  createdAt:{
-		type:Date
-	  }
+	},
+	createdAt: {
+		type: Date
+	}
 })
 
 export const GoalSettingJournal = model(

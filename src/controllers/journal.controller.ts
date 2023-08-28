@@ -4,7 +4,7 @@ import { GratitudeJournal } from '../models/journals/gratitudeJournal.model.ts';
 
 export const getGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.clientId;
-	var result;
+	let result;
 	try {
 		result = await GratitudeJournal.find({ clientId: gratitudeJournal })
 	} catch (error) {
@@ -14,7 +14,7 @@ export const getGratitudeJournal = async (req, res) => {
 }
 export const createGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body;
-	var result;
+	let result;
 	try {
 		result = await GratitudeJournal.create(gratitudeJournal)
 	} catch (error) {
@@ -24,7 +24,7 @@ export const createGratitudeJournal = async (req, res) => {
 }
 export const deleteGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.journaIld;
-	var result;
+	let result;
 	try {
 		result = await GratitudeJournal.deleteOne({ id: gratitudeJournal })
 	} catch (error) {
@@ -37,7 +37,7 @@ import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.
 
 export const getProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await ProblemSolvingJournal.find({ clientId: problemSolvingJournal })
 	} catch (error) {
@@ -48,7 +48,7 @@ export const getProblemSolvingJournal = async (req, res) => {
 
 export const createProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body
-	var result;
+	let result;
 	try {
 		result = await ProblemSolvingJournal.create(problemSolvingJournal)
 	} catch (error) {
@@ -59,7 +59,7 @@ export const createProblemSolvingJournal = async (req, res) => {
 
 export const deleteProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await ProblemSolvingJournal.deleteOne({ journalId: problemSolvingJournal })
 	} catch (error) {
@@ -72,7 +72,7 @@ import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.
 
 export const getGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = red.body.clientId;
-	var result;
+	let result;
 	try {
 		result = await GoalSettingJournal.find({ clientId: goalSettingJournal })
 	} catch (error) {
@@ -84,7 +84,7 @@ export const getGoalSettingJournal = async (req, res) => {
 
 export const createGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = req.body
-	var result;
+	let result;
 	try {
 		result = await GoalSettingJournal.create(goalSettingJournal)
 	} catch (error) {
@@ -96,7 +96,7 @@ export const createGoalSettingJournal = async (req, res) => {
 
 export const deleteGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await GoalSettingJournal.deleteOne({ journaIld: goalSettingJournal })
 	} catch (error) {
@@ -111,7 +111,7 @@ import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJourna
 
 export const getSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await SelfAffirmationJournal.find({ clientId: selfAffirmationJournal })
 	} catch (error) {
@@ -122,7 +122,7 @@ export const getSelfAffirmationJournal = async (req, res) => {
 
 export const createSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body
-	var result;
+	let result;
 	try {
 		result = await SelfAffirmationJournal.create(selfAffirmationJournal)
 	} catch (error) {
@@ -133,7 +133,7 @@ export const createSelfAffirmationJournal = async (req, res) => {
 
 export const deleteSelfAffirmationJournal = async (req, res) => {
 	const selfAffirmationJournal = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await SelfAffirmationJournal.deleteOne({ id, selfAffirmationJournal })
 	} catch (error) {
@@ -147,7 +147,7 @@ import { ReflectionJournal } from '../models/journals/reflectionJournal.model.js
 
 export const getReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await ReflectionJournal.find({ clientId: reflectionJournal })
 	} catch (error) {
@@ -158,7 +158,7 @@ export const getReflectionJournal = async (req, res) => {
 }
 export const createReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body;
-	var result;
+	let result;
 	try {
 		result = await ReflectionJournal.create(reflectionJournal)
 	} catch (error) {
@@ -170,7 +170,7 @@ export const createReflectionJournal = async (req, res) => {
 
 export const deleteReflectionJournal = async (req, res) => {
 	const reflectionJournal = req.body.journalId;
-	var result;
+	let result;
 	try {
 		result = await ReflectionJournal.deleteOne({ id, reflectionJournal })
 	} catch (error) {
@@ -183,7 +183,7 @@ import { OpenJournal } from '../models/journals/openJournal.model.js';
 
 export const getOpenJournal = async (req, res) => {
 	const openJournal = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await OpenJournal.find({ clientId: openJournal })
 	} catch (error) {
@@ -195,7 +195,7 @@ export const getOpenJournal = async (req, res) => {
 
 export const createOpenJournal = async (req, res) => {
 	const openJournal = req.body;
-	var result;
+	let result;
 	try {
 		result = await OpenJournal.create(openJournal)
 	} catch (error) {
@@ -206,7 +206,7 @@ export const createOpenJournal = async (req, res) => {
 
 export const deleteOpenJournal = async (req, res) => {
 	const openJournal = req.body.journalId;
-	var result;
+	let result;
 	try {
 		result = await OpenJournal.deleteOne({ id, openJournal })
 	} catch (error) {
@@ -220,7 +220,7 @@ import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journ
 export const getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.clientId;
-	var result;
+	let result;
 	try {
 		result = await ChallengingNegativeThoughtsAboutYourselfJournal.find({ clientId: challengingNegativeThoughtsAboutYourselfJournal })
 	} catch (error) {
@@ -232,7 +232,7 @@ export const getChallengingNegativeThoughtsAboutYourselfJournal = async (req, re
 
 export const createChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body;
-	var result;
+	let result;
 	try {
 		result = await ChallengingNegativeThoughtsAboutYourselfJournal.create(challengingNegativeThoughtsAboutYourselfJournal)
 	} catch (error) {
@@ -244,7 +244,7 @@ export const createChallengingNegativeThoughtsAboutYourselfJournal = async (req,
 
 export const deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.journalId;
-	var result;
+	let result;
 	try {
 		result = await ChallengingNegativeThoughtsAboutYourselfJournal.deleteOne({ journalId: challengingNegativeThoughtsAboutYourselfJournal })
 	} catch (error) {
@@ -257,7 +257,7 @@ import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.
 
 export const getBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await BuildingASelfCarePlan.find({ clientId: buildingASelfCarePlan })
 	} catch (error) {
@@ -269,7 +269,7 @@ export const getBuildingASelfCarePlan = async (req, res) => {
 
 export const createBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body
-	var result;
+	let result;
 	try {
 		result = await BuildingASelfCarePlan.create({ buildingASelfCarePlan })
 	} catch (error) {
@@ -280,7 +280,7 @@ export const createBuildingASelfCarePlan = async (req, res) => {
 
 export const deleteBuildingASelfCarePlan = async (req, res) => {
 	const buildingASelfCarePlan = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await BuildingASelfCarePlan.delete({ id: buildingASelfCarePlan })
 	} catch (error) {
@@ -292,7 +292,7 @@ import { AnxietyThoughtRecordJournal } from '../models/journals/anxietyThoughtRe
 
 export const getAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await AnxietyThoughtRecordJournal.find({ id: anxietyThoughtRecordJournal })
 	} catch (error) {
@@ -303,7 +303,7 @@ export const getAnxietyThoughtReccordJournal = async (req, res) => {
 
 export const createAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body
-	var result;
+	let result;
 	try {
 		result = await anxietyThoughtRecordJournal.create({ anxietyThoughtRecordJournal })
 	} catch (error) {
@@ -315,7 +315,7 @@ export const createAnxietyThoughtReccordJournal = async (req, res) => {
 
 export const deleteAnxietyThoughtReccordJournal = async (req, res) => {
 	const anxietyThoughtRecordJournal = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await anxietyThoughtRecordJournal.deleteOne({ id: anxietyThoughtRecordJournal })
 	} catch (error) {
@@ -331,7 +331,7 @@ import { CalmingtheMind } from '../models/journals/sleepJournal/calmingtheMind.m
 
 export const getCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await CalmingtheMind.find({ clientId: calmingtheMind })
 	} catch (error) {
@@ -342,7 +342,7 @@ export const getCalmingtheMind = async (req, res) => {
 
 export const createCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body
-	var result;
+	let result;
 	try {
 		result = await CalmingtheMind.create({ calmingtheMind })
 	} catch (error) {
@@ -354,7 +354,7 @@ export const createCalmingtheMind = async (req, res) => {
 
 export const deleteCalmingtheMind = async (req, res) => {
 	const calmingtheMind = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await CalmingtheMind.deleteOne({ id: calmingtheMind })
 	} catch (error) {
@@ -367,7 +367,7 @@ import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model
 
 export const getDreamJournal = async (req, res) => {
 	const dreamJournal = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await DreamJournal.find({ clientId: dreamJournal })
 	} catch (error) {
@@ -377,7 +377,7 @@ export const getDreamJournal = async (req, res) => {
 }
 export const createDreamJournal = async (req, res) => {
 	const dreamJournal = req.body
-	var result;
+	let result;
 	try {
 		result = await DreamJournal.create(dreamJournal)
 	} catch (error) {
@@ -387,7 +387,7 @@ export const createDreamJournal = async (req, res) => {
 }
 export const deleteDreamJournal = async (req, res) => {
 	const dreamJournal = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await DreamJournal.deleteOne({ id: dreamJournal })
 	} catch (error) {
@@ -401,7 +401,7 @@ import { FindingpeacefulSpace } from '../models/journals/sleepJournal/findingape
 
 export const getFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body.clientId;
-	var result;
+	let result;
 	try {
 		result = await FindingpeacefulSpace.find({ clientId: findingapeacefulSpace })
 	} catch (error) {
@@ -412,7 +412,7 @@ export const getFindingPeaceFulSpace = async (req, res) => {
 
 export const createFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body;
-	var result;
+	let result;
 	try {
 		result = await FindingpeacefulSpace.create(findingapeacefulSpace)
 	} catch (error) {
@@ -423,7 +423,7 @@ export const createFindingPeaceFulSpace = async (req, res) => {
 
 export const deleteFindingPeaceFulSpace = async (req, res) => {
 	const findingapeacefulSpace = req.body.journalId;
-	var result;
+	let result;
 	try {
 		result = await FindingpeacefulSpace.deleteOne({ id: findingapeacefulSpace })
 	} catch (error) {
@@ -436,7 +436,7 @@ import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookin
 
 export const getLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await LookingforwardtoTomorrow.find({ clientId: lookingforwardtoTomorrow })
 	} catch (error) {
@@ -448,7 +448,7 @@ export const getLookingForwardToTomorrow = async (req, res) => {
 
 export const createLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body
-	var result;
+	let result;
 	try {
 		result = await LookingforwardtoTomorrow.create(lookingforwardtoTomorrow)
 	} catch (error) {
@@ -460,7 +460,7 @@ export const createLookingForwardToTomorrow = async (req, res) => {
 
 export const deleteLookingForwardToTomorrow = async (req, res) => {
 	const lookingforwardtoTomorrow = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await LookingforwardtoTomorrow.deleteOne({ id: lookingforwardtoTomorrow })
 	} catch (error) {
@@ -474,7 +474,7 @@ import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthe
 
 export const getPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await PlanningTheDayAhead.find({ clientId: planningthedayAhead })
 	} catch (error) {
@@ -486,7 +486,7 @@ export const getPlanningDayAhead = async (req, res) => {
 
 export const createPlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body
-	var result;
+	let result;
 	try {
 		result = await PlanningTheDayAhead.create(planningthedayAhead)
 	} catch (error) {
@@ -498,7 +498,7 @@ export const createPlanningDayAhead = async (req, res) => {
 
 export const deletePlanningDayAhead = async (req, res) => {
 	const planningthedayAhead = req.body.journalId
-	var result;
+	let result;
 	try {
 		result = await PlanningTheDayAhead.deleteOne({ journalId: planningthedayAhead })
 	} catch (error) {

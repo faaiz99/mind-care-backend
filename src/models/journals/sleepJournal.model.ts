@@ -1,7 +1,5 @@
 // Discarded And Note Required Anymore
-
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema, model, Types } from 'mongoose'
 
 const sleepJournalSchema = new Schema({
   clientId: {
@@ -18,5 +16,5 @@ const sleepJournalSchema = new Schema({
   }
 });
 
-export const SleepJournalModel = mongoose.model("sleepJournal", sleepJournalSchema);
+export const SleepJournalModel = model("sleepJournal", sleepJournalSchema);
 

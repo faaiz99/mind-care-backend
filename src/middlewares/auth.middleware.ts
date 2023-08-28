@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
 const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
 
-export const authenticateToken: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
@@ -13,7 +13,7 @@ export const authenticateToken: RequestHandler = (req: Request, res: Response, n
   });
 }
 
-export const revalidateToken: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+export const revalidateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
   const refreshToken = authHeader && authHeader.split(" ")[1];
   if (refreshToken == null) return res.sendStatus(401);
@@ -25,7 +25,7 @@ export const revalidateToken: RequestHandler = (req: Request, res: Response, nex
   });
 }
 
-export const issueTokens = (userBody): {status:number, accessToken:string, refreshToken:string} => {
+export const issueTokens = (userBody: unknown): { status: number, accessToken: string, refreshToken: string } => {
   // used for both therapist and client
   const token = jwt.sign(
     {

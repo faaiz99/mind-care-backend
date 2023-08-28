@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model } from 'mongoose'
+
 
 const relationshipSchema = new Schema({
   questions: {
@@ -16,5 +16,4 @@ const relationshipSchema = new Schema({
   },
 });
 
-const relationshipModel = mongoose.model("relationship", relationshipSchema);
-module.exports = relationshipModel;
+export const relationshipModel = model("relationship", relationshipSchema);

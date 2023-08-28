@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const therapistRemarksSchema = new Schema({
@@ -10,11 +10,11 @@ const therapistRemarksSchema = new Schema({
   },
   therapist: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: therapist,
+    ref: "therapist",
   },
   client: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: client,
+    ref: "client",
   },
 });
 
