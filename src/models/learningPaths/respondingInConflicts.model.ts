@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const respondingInConflictsSchema = new Schema({
   questions: {
@@ -16,8 +16,8 @@ const respondingInConflictsSchema = new Schema({
   },
 });
 
-const respondingInConflictsModel = mongoose.model(
+export const respondingInConflictsModel = model(
   "respondingInConflicts",
   respondingInConflictsSchema
 );
-module.exports = respondingInConflictsModel;
+

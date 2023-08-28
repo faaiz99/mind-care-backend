@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const assertivenessSchema = new Schema({
   questions: {
@@ -16,5 +16,4 @@ const assertivenessSchema = new Schema({
   },
 });
 
-const assertivenessModel = mongoose.model("assertiveness", assertivenessSchema);
-module.exports = anxietyAndWorryModel;
+export const assertivenessModel = model("assertiveness", assertivenessSchema);

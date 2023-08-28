@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const developingHealthyCopingMechanismSchema = new Schema({
   questions: {
@@ -16,8 +16,7 @@ const developingHealthyCopingMechanismSchema = new Schema({
   },
 });
 
-const developingHealthyCopingMechanismModel = mongoose.model(
+export const developingHealthyCopingMechanism = model(
   "developingHealthyCopingMechanism",
   developingHealthyCopingMechanismSchema
 );
-module.exports = developingHealthyCopingMechanismModel;

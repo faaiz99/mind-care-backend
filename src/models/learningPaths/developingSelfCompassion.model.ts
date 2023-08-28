@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const developingSelfCompassionSchema = new Schema({
   questions: {
@@ -16,8 +15,8 @@ const developingSelfCompassionSchema = new Schema({
   },
 });
 
-const developingSelfCompassionModel = mongoose.model(
+export const developingSelfCompassion = model(
   "developingSelfCompassion",
   developingSelfCompassionSchema
 );
-module.exports = developingSelfCompassionModel;
+

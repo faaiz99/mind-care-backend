@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const copingWithGriefSchema = new Schema({
   questions: {
@@ -16,8 +15,8 @@ const copingWithGriefSchema = new Schema({
   },
 });
 
-const copingWithGriefModel = mongoose.model(
+export const copingWithGriefModel = model(
   "copingWithGrief",
   copingWithGriefSchema
 );
-module.exports = copingWithGriefModel;
+

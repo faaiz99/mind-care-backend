@@ -71,7 +71,7 @@ export const login = async (req: Request, res: Response) => {
 			email: req.body.email,
 			password: req.body.password,
 		})
-
+		// delete client?.password
 		if (client == null || client == undefined)
 			return res.json({ status: 401, message: "Incorrect password" })
 	}
@@ -88,7 +88,7 @@ export const login = async (req: Request, res: Response) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-export const signup: RequestHandler = async (req, res) => {
+export const signup: RequestHandler = async (req: Request, res: Response) => {
 
 	// check existance by email
 	const exists = await Client.exists({
@@ -102,12 +102,13 @@ export const signup: RequestHandler = async (req, res) => {
 	let result;
 	try {
 		result = await Client.create(req.body);
+		if (result != null || result != undefined)
+		res.json({ status: 200, message: "Client Account created", result });
 	} catch (error) {
 		console.log('Client account could not be created', error)
 		res.json({ status: 409, message:"Client Account could not be created" , result});
 	}
-	if (result != null || result != undefined)
-		res.json({ status: 200, message: "Client Account created", result });
+
 }
 export const renewTokens: RequestHandler = (req: Request, res: Response) => {
 	const client = req.body.user // req.user.user

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+import {Schema, model, Types} from 'mongoose'
+
 
 const therapistRemarksSchema = new Schema({
   createdAt: {
@@ -9,16 +9,16 @@ const therapistRemarksSchema = new Schema({
     type: String,
   },
   therapist: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: "therapist",
   },
   client: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: "client",
   },
 });
 
-const therapistRemarks = mongoose.model(
+const therapistRemarks = model(
   "therapistRemarks",
   therapistRemarksSchema
 );

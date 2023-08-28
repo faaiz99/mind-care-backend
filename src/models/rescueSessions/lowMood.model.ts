@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const lowMoodSchema = new Schema({
   questions: {
@@ -16,5 +16,4 @@ const lowMoodSchema = new Schema({
   },
 });
 
-const lowMoodModel = mongoose.model("lowMood", lowMoodSchema);
-module.exports = lowMoodModel;
+export const lowMoodModel = model("lowMood", lowMoodSchema);

@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model} from 'mongoose'
 const acceptingWhatCantBeChangedSchema = new Schema({
   questions: {
     type: String,
@@ -16,8 +14,7 @@ const acceptingWhatCantBeChangedSchema = new Schema({
   },
 });
 
-const acceptingWhatCantBeChangedModel = mongoose.model(
+export const acceptingWhatCantBeChanged = model(
   "acceptingWhatCantBeChanged",
   acceptingWhatCantBeChangedSchema
 );
-module.exports = acceptingWhatCantBeChangedModel;

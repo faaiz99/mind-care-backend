@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const managingBabyBluesAndPostpartumsDepressionSchema = new Schema({
   questions: {
@@ -16,8 +15,7 @@ const managingBabyBluesAndPostpartumsDepressionSchema = new Schema({
   },
 });
 
-const managingBabyBluesAndPostpartumsDepressionModel = mongoose.model(
+export const managingBabyBluesAndPostpartumsDepressionModel = model(
   "managingBabyBluesAndPostpartumsDepression",
   managingBabyBluesAndPostpartumsDepressionSchema
 );
-module.exports = managingBabyBluesAndPostpartumsDepressionModel;

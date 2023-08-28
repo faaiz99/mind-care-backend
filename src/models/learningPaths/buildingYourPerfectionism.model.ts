@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const buildingYourPerfectionismSchema = new Schema({
   questions: {
@@ -16,8 +16,7 @@ const buildingYourPerfectionismSchema = new Schema({
   },
 });
 
-const buildingYourPerfectionismModel = mongoose.model(
+export const buildingYourPerfectionism = model(
   "buildingYourPerfectionism",
   buildingYourPerfectionismSchema
 );
-module.exports = buildingYourPerfectionismModel;

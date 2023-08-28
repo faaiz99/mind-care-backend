@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model} from 'mongoose'
 const startYourJourneySchema = new Schema({
   questions: {
     type: String,
@@ -16,7 +14,7 @@ const startYourJourneySchema = new Schema({
   },
 });
 
-const startYourJourneyModel = mongoose.model(
+export const startYourJourneyModel = model(
   "startYourJourney",
   startYourJourneySchema
 );

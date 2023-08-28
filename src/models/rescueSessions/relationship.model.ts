@@ -1,6 +1,5 @@
 import {Schema, model } from 'mongoose'
 
-
 const relationshipSchema = new Schema({
   questions: {
     type: String,

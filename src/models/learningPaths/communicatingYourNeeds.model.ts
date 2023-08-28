@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const communicatingYourNeedsSchema = new Schema({
   questions: {
@@ -16,8 +15,7 @@ const communicatingYourNeedsSchema = new Schema({
   },
 });
 
-const communicatingYourNeedsModel = mongoose.model(
+export const communicatingYourNeeds = model(
   "communicatingYourNeeds",
   communicatingYourNeedsSchema
 );
-module.exports = communicatingYourNeedsModel;

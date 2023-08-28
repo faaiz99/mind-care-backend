@@ -104,7 +104,7 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
 			password: req.body.password,
 		})
 		// yet to be fixed 
-		//therapist.password = ''
+		//delete therapist?.password
 		if (therapist == null || therapist == undefined)
 			return res.json({ status: 401, message: "Incorrect password" })
 	}

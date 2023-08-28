@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+
+import {Schema, model} from 'mongoose'
 
 const howToGetStartedWithCoachingSchema = new Schema({
   questions: {
@@ -17,8 +16,8 @@ const howToGetStartedWithCoachingSchema = new Schema({
   },
 });
 
-const howToGetStartedWithCoachingModel = mongoose.model(
+export const howToGetStartedWithCoaching = model(
   "howToGetStartedWithCoaching",
   howToGetStartedWithCoachingSchema
 );
-module.exports = howToGetStartedWithCoachingModel;
+

@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const healingAfterABreakupSchema = new Schema({
   questions: {
@@ -16,8 +15,7 @@ const healingAfterABreakupSchema = new Schema({
   },
 });
 
-const healingAfterABreakupModel = mongoose.model(
+export const healingAfterABreakup = model(
   "healingAfterABreakup",
   healingAfterABreakupSchema
 );
-module.exports = healingAfterABreakupModel;

@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const improvingYourRelationshipsWithMoneySchema = new Schema({
   questions: {
@@ -16,8 +16,7 @@ const improvingYourRelationshipsWithMoneySchema = new Schema({
   },
 });
 
-const improvingYourRelationshipsWithMoneyModel = mongoose.model(
+export const improvingYourRelationshipsWithMoney = model(
   "improvingYourRelationshipsWithMoney",
   improvingYourRelationshipsWithMoneySchema
 );
-module.exports = improvingYourRelationshipsWithMoneyModel;

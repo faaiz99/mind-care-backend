@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const envySchema = new Schema({
   questions: {
@@ -16,5 +15,4 @@ const envySchema = new Schema({
   },
 });
 
-const envyModel = mongoose.model("envy", envySchema);
-module.exports = envyModel;
+export const envyModel = model("envy", envySchema);

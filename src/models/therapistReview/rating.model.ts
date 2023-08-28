@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const ratingSchema = new Schema({
   numberOfStars: {
@@ -7,5 +6,4 @@ const ratingSchema = new Schema({
   },
 });
 
-const ratingModel = mongoose.model("rating", ratingSchema);
-module.exports = ratingModel;
+export const ratingModel = model("rating", ratingSchema);

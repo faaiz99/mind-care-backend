@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const feedbackSchema = new Schema({
   clientName: {
@@ -15,5 +15,5 @@ const feedbackSchema = new Schema({
   },
 });
 
-const feedbackModel = mongoose.model("feedback", feedbackSchema);
-module.exports = feedbackModel;
+export const feedbackModel = model("feedback", feedbackSchema);
+

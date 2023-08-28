@@ -15,7 +15,7 @@ export const login: RequestHandler = async (req: Request, res: Response) => {
 	const tokens = issueTokens(admin)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken });
+		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken, admin });
 	}
 	else
 		return res.json({ status: "error", user: false });

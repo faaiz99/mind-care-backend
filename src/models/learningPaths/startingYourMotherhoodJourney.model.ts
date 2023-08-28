@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const startingYourMotherhoodJourneySchema = new Schema({
   questions: {
@@ -16,7 +16,7 @@ const startingYourMotherhoodJourneySchema = new Schema({
   },
 });
 
-const startingYourMotherhoodJourneyModel = mongoose.model(
+export const startingYourMotherhoodJourneyModel = model(
   "startingYourMotherhoodJourney",
   startingYourMotherhoodJourneySchema
 );

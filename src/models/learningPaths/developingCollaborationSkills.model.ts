@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const developingCollaborationSkillsSchema = new Schema({
   questions: {
@@ -16,8 +15,8 @@ const developingCollaborationSkillsSchema = new Schema({
   },
 });
 
-const developingCollaborationSkillsModel = mongoose.model(
+export const developingCollaborationSkills = model(
   "developingCollaborationSkills",
   developingCollaborationSkillsSchema
 );
-module.exports = developingCollaborationSkillsModel;
+

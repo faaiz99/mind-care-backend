@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {Schema, model} from 'mongoose'
 const lettingGoOfPerfectionismSchema = new Schema({
   questions: {
     type: String,
@@ -16,8 +14,7 @@ const lettingGoOfPerfectionismSchema = new Schema({
   },
 });
 
-const lettingGoOfPerfectionismModel = mongoose.model(
+export const lettingGoOfPerfectionism = model(
   "lettingGoOfPerfectionismMoney",
   lettingGoOfPerfectionismSchema
 );
-module.exports = lettingGoOfPerfectionismModel;

@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+
 
 const criticismSchema = new Schema({
   questions: {
@@ -16,5 +16,5 @@ const criticismSchema = new Schema({
   },
 });
 
-const criticismModel = mongoose.model("criticism", criticismSchema);
-module.exports = criticismModel;
+export const criticismModel = model("criticism", criticismSchema);
+

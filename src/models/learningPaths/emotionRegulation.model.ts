@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
 
 const emotionRegulationSchema = new Schema({
   questions: {
@@ -16,8 +15,8 @@ const emotionRegulationSchema = new Schema({
   },
 });
 
-const emotionRegulationModel = mongoose.model(
+export const emotionRegulation = model(
   "emotionRegulation",
   emotionRegulationSchema
 );
-module.exports = emotionRegulationModel;
+
