@@ -1,10 +1,10 @@
 import { Router } from "express";
-const router = Router()
+const router:Router = Router()
 
 // Registration and Authentication Routes //
-import { authRoutes } from "./auth/auth.route.js";
-import { postRoutes } from './communityForum/post.route.js'
-import { commentRoutes } from "./communityForum/comment.route.js";
+import { authRoutes } from "./auth/auth.route.ts";
+import { postRoutes } from './communityForum/post.route.ts'
+import { commentRoutes } from "./communityForum/comment.route.ts";
 
 router.use(authRoutes)
 router.use(postRoutes)

@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(corsPolicy);
 
 // Entry Points for Users //
-// app.use(`${baseUrl}/client`, clientRouter)
+app.use(`${baseUrl}/client`, clientRouter)
 app.use(`${baseUrl}/therapist`, therapistRouter)
 app.use(`${baseUrl}/admin`, adminRouter)
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-const router = Router()
+const router:Router = Router()
 
 import {
 	createPost,
@@ -10,7 +10,7 @@ import {
 	reportPost,
 	upvotePost,
 	downvotePost
-} from '../../../controllers/communityForum/post.controller'
+} from '../../../controllers/communityForum/post.controller.ts'
 
 /**
  * @swagger

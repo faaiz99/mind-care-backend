@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 
-import { Admin } from '../models/admin/admin.model.js'
+import { Admin } from '../models/admin/admin.model.ts'
 
-import { issueTokens } from '../middlewares/auth.middleware.js'
+import { issueTokens } from '../middlewares/auth.middleware.ts'
 
-export const login:RequestHandler = async (req:Request, res:Response) => {
+export const login: RequestHandler = async (req: Request, res: Response) => {
 	const admin = await Admin.findOne({
 		email: req.body.email,
 		password: req.body.password,
@@ -19,7 +20,7 @@ export const login:RequestHandler = async (req:Request, res:Response) => {
 	else
 		return res.json({ status: "error", user: false });
 }
-export const signup:RequestHandler  = async (req:Request, res:Response) => {
+export const signup: RequestHandler = async (req: Request, res: Response) => {
 	console.log(req)
 	try {
 		const admin = await Admin.create(req.body);
@@ -28,7 +29,7 @@ export const signup:RequestHandler  = async (req:Request, res:Response) => {
 		res.json({ status: "error", message: err });
 	}
 }
-export const renewTokens:RequestHandler  = (req:Request, res:Response, next:NextFunction) => {
+export const renewTokens: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
 	const admin = req // req.user
 	const tokens = issueTokens(admin)
 	const { accessToken, refreshToken } = tokens

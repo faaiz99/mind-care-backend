@@ -1,6 +1,6 @@
 // Journal Types & Models //
 
-import { GratitudeJournal } from '../models/journals/gratitudeJournal.model';
+import { GratitudeJournal } from '../models/journals/gratitudeJournal.model.ts';
 
 export const getGratitudeJournal = async (req, res) => {
 	const gratitudeJournal = req.body.clientId;
@@ -33,7 +33,7 @@ export const deleteGratitudeJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Gratitide Journal deleted', result })
 }
 
-import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.model.js';
+import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.model.ts';
 
 export const getProblemSolvingJournal = async (req, res) => {
 	const problemSolvingJournal = req.body.clientId
@@ -68,7 +68,7 @@ export const deleteProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal deleted", result })
 }
 
-import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.js';
+import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.ts';
 
 export const getGoalSettingJournal = async (req, res) => {
 	const goalSettingJournal = red.body.clientId;

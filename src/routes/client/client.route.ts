@@ -1,10 +1,10 @@
 import { Router } from "express";
 const router = Router()
 
-import { authRoutes } from "./auth/auth.route.js";
-import { reminderRoutes } from "./reminder/reminder.route.js";
-import { psychologicalProfileRoutes } from "./psychologicalProfile/psychologicalProfile.route.js";
-import { journalRoutes } from "./journal/journal.route.js";
+import { authRoutes } from "./auth/auth.route.ts";
+import { reminderRoutes } from "./reminder/reminder.route.ts";
+import { psychologicalProfileRoutes } from "./psychologicalProfile/psychologicalProfile.route.ts";
+import { journalRoutes } from "./journal/journal.route.ts";
 
 router.use(authRoutes)
 router.use(journalRoutes)

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import { Post } from '../../models/communityForums/post.model'
-import { Upvote } from '../../models/communityForums/upvote.model'
-import { Downvote } from '../../models/communityForums/downvote.model'
-import { Report } from '../../models/communityForums/report.model'
+import { Post } from '../../models/communityForums/post.model.ts'
+import { Upvote } from '../../models/communityForums/upvote.model.ts'
+import { Downvote } from '../../models/communityForums/downvote.model.ts'
+import { Report } from '../../models/communityForums/report.model.ts'
 import { uuid } from 'uuidv4';
 
 export const createPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
@@ -15,9 +15,9 @@ export const createPost: RequestHandler = async (req: Request, res: Response, ne
 		Body
 		tags
 	*/
-	var post = req.body;
+	const post = req.body;
 	post.postId = uuid()
-	var result;
+	let result;
 
 	try {
 		result = await Post.create(post)
@@ -32,8 +32,8 @@ export const createPost: RequestHandler = async (req: Request, res: Response, ne
 }
 
 export const updatePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	var post = req.body;
-	var result;
+	const post = req.body;
+	let result;
 	try {
 		result = await Post.findOneAndUpdate({ postId: req.params.id, post })
 	} catch (error) {
@@ -47,7 +47,7 @@ export const updatePost: RequestHandler = async (req: Request, res: Response, ne
 }
 
 export const deletePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	var result;
+	let result;
 	try {
 		result = await Post.findOneAndDelete({ postId: req.params.id })
 	} catch (error) {
@@ -62,7 +62,7 @@ export const deletePost: RequestHandler = async (req: Request, res: Response, ne
 }
 
 export const getPosts: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	var result;
+	let result;
 	try {
 		result = await Post.find()
 	} catch (error) {
@@ -77,7 +77,7 @@ export const getPosts: RequestHandler = async (req: Request, res: Response, next
 }
 
 export const getPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	var result;
+	let result;
 	try {
 		result = await Post.findOne({ postId: req.params.id })
 	} catch (error) {
@@ -93,8 +93,8 @@ export const getPost: RequestHandler = async (req: Request, res: Response, next:
 
 export const upvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 
-	var upvote;
-	var result;
+	let upvote;
+	let result;
 
 	try {
 		upvote = await Upvote.create(req.body)
@@ -113,8 +113,8 @@ export const upvotePost: RequestHandler = async (req: Request, res: Response, ne
 }
 
 export const downvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	var downvote
-	var result;
+	let downvote
+	let result;
 	try {
 		downvote = await Downvote.create(req.body)
 		result = await Post.findOneAndUpdate({ postId: req.params.id }, {
@@ -131,8 +131,8 @@ export const downvotePost: RequestHandler = async (req: Request, res: Response, 
 }
 
 export const reportPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	var report;
-	var result;
+	let report;
+	let result;
 	try {
 		report = await Report.create(req.body)
 		result = await Post.findOneAndUpdate({ postId: req.params.id }, {

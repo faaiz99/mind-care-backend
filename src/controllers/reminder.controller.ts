@@ -1,4 +1,4 @@
-import { Reminder } from '../models/reminder/reminder.model.js';
+import { Reminder } from '../models/reminder/reminder.model.ts';
 
 export const getReminders = async (req, res) => {
 	const reminder = req.body.clientId

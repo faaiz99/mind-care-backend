@@ -5,7 +5,7 @@ const router = Router()
 import {
 	getReminders, createReminder,
 	editReminder, deleteReminder
-} from '../../../controllers/reminder.controller'
+} from '../../../controllers/reminder.controller.ts'
 
 router.get('/reminder', getReminders)
 

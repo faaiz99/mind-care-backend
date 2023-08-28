@@ -6,7 +6,7 @@ const router = Router()
 
 import {
 	getAllEntries
-} from '../../../controllers/journal.controller'
+} from '../../../controllers/journal.controller.ts'
 
 import {
 	deleteDreamJournal,
@@ -23,7 +23,7 @@ import {
 	deleteProblemSolvingJournal,
 	deletePlanningDayAhead,
 	deleteLookingForwardToTomorrow
-} from '../../../controllers/journal.controller'
+} from '../../../controllers/journal.controller.ts'
 
 import {
 	createDreamJournal,
@@ -40,7 +40,7 @@ import {
 	createProblemSolvingJournal,
 	createPlanningDayAhead,
 	createLookingForwardToTomorrow
-} from '../../../controllers/journal.controller'
+} from '../../../controllers/journal.controller.ts'
 
 router.get('/all-journals', getAllEntries)
 

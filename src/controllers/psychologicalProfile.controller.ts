@@ -1,6 +1,4 @@
-import  {psychologicalProfile} from '../models/psychologicalProfile/psychologicalProfile.model.js'
-import { Client } from '../models/client/client.model.js'
-
+import  {psychologicalProfile} from '../models/psychologicalProfile/psychologicalProfile.model.ts'
 export const buildPsychologicalProfile = async (req, res,next) => {
 	const filter = { clientId: req.body.clientId }
 	var profile = req.body

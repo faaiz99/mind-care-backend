@@ -1,13 +1,13 @@
 // Instantiate Express Router //
 import { Router } from "express";
-const router = Router()
+const router:Router = Router()
 
 // Middleware for Authentication and Issueing JWT Token // 
 
 import {
   authenticateToken,
   revalidateToken,
-} from "../../../middlewares/auth.middleware";
+} from "../../../middlewares/auth.middleware.ts";
 
 // User Profile Management Module //
 
@@ -15,7 +15,7 @@ import {
   enternewPassword, resetPassword,
   verifyAccount, sendverificationEmail,
   login, signup, renewTokens
-} from "../../../controllers/client.controller";
+} from "../../../controllers/client.controller.ts";
 
 router.post('/password/:token', enternewPassword)
 router.post('/reset-password', resetPassword)

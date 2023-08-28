@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router:Router = Router()
 
-import { authenticateToken, revalidateToken } from "../../../middlewares/auth.middleware.js";
-import { signup, login, renewTokens } from "../../../controllers/admin.controller.js";
+import { authenticateToken, revalidateToken } from "../../../middlewares/auth.middleware.ts";
+import { signup, login, renewTokens } from "../../../controllers/admin.controller.ts";
 
 router.get("/profile", authenticateToken, (req, res) => {
   res.send("About this admin");

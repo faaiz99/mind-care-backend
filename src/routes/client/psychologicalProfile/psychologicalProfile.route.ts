@@ -8,7 +8,7 @@ import {
 	getPsychologicalProfile,
 	setTestScore
 }
-from "../../../controllers/psychologicalProfile.controller";
+from "../../../controllers/psychologicalProfile.controller.ts";
 
 // ClientId required in body// 
 router.post('/psychological-profile', buildPsychologicalProfile)

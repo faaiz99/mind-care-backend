@@ -1,5 +1,5 @@
 import { Router } from "express";
-const router = Router()
+const router:Router = Router()
 
 import {
 	createComment,
@@ -10,7 +10,7 @@ import {
 	upvoteComment,
 	downvoteComment,
 	reportComment
-} from '../../../controllers/communityForum/comment.controller'
+} from '../../../controllers/communityForum/comment.controller.ts'
 
 router.get('/comments', getComments) 
 

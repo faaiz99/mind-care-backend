@@ -1,11 +1,13 @@
-import { Therapist } from '../models/therapist/therapist.model.js'
-import { issueTokens } from '../middlewares/auth.middleware.js'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Request, Response, NextFunction, RequestHandler } from 'express'
+import { Therapist } from '../models/therapist/therapist.model.ts'
+import { issueTokens } from '../middlewares/auth.middleware.ts'
 
-import { emailSender, resetAccountPassword } from '../utils/sendmail.util.js'
+import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
 
 import crypto from 'crypto'
 
-export const changePassword = async (req, res, next) => {
+export const changePassword:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	var email = req.body.email;
 	var password = req.body.password
 	var result;
@@ -22,7 +24,7 @@ export const changePassword = async (req, res, next) => {
 	res.json({ status: 200, message: 'Account Password Changed', result })
 }
 
-export const updateProfile = async (req, res, next) => {
+export const updateProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	//A therapist profile already exists
 	var newProfile = req.body
 	var filter = req.body.email;
@@ -43,7 +45,7 @@ export const updateProfile = async (req, res, next) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-export const enternewPassword = async (req, res, next) => {
+export const enternewPassword:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	var email = req.body.email;
 	var password = req.body.password
 	const therapist = await Therapist.findOneAndUpdate({
@@ -54,7 +56,7 @@ export const enternewPassword = async (req, res, next) => {
 	)
 	res.json({ status: 200, message: 'Account Password Changed' })
 }
-export const resetPassword = async (req, res, next) => {
+export const resetPassword:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	var email = req.body.email;
 	const therapist = await Therapist.findOne({
 		email: email
@@ -66,7 +68,7 @@ export const resetPassword = async (req, res, next) => {
 	resetAccountPassword(email, token, role)
 	next()
 }
-export const verifyAccount = async (req, res, next) => {
+export const verifyAccount:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	const therapist = await Therapist.findOneAndUpdate({
 		email: req.body.email,
 	}, {
@@ -76,14 +78,14 @@ export const verifyAccount = async (req, res, next) => {
 	})
 	res.json({ status: 200, message: 'Account successfully verified' })
 }
-export const sendverificationEmail = async (req, res, next) => {
+export const sendverificationEmail:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	var token = crypto.randomBytes(32).toString("hex")
 	var role = 'therapist'
 	var emailPreview = emailSender(email, token, role)
 	res.json({ status: 200, message: 'Email Verification Sent', emailPreview })
 	//next()
 }
-export const login = async (req, res, next) => {
+export const login:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	// check existance by email
 	var exists = await Therapist.exists({
 		email: req.body.email
@@ -114,7 +116,7 @@ export const login = async (req, res, next) => {
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-export const signup = async (req, res, next) => {
+export const signup:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	const therapist = req.body
 	// check existance by email
 	var exists = await Therapist.exists({
@@ -136,7 +138,7 @@ export const signup = async (req, res, next) => {
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Therapist Account created", result });
 }
-export const renewTokens = (req, res, next) => {
+export const renewTokens:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
 	const therapist = req.user.user
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens

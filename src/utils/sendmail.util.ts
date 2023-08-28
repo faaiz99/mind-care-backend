@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer'
 const { user, pass, API_URL } = process.env
-export const emailSender = async (email, token, role) => {
+export const emailSender = async (email:string, token:string, role:string) => {
 	let testAccount = await nodemailer.createTestAccount();
 	// create reusable transporter object using the default SMTP transport
-	var entryPoint;
+	let entryPoint;
 	if (role == 'therapist')
 		entryPoint = 'therapist'
 	else
@@ -38,7 +38,7 @@ export const emailSender = async (email, token, role) => {
 	const emailPreview = nodemailer.getTestMessageUrl(info)
 	return emailPreview
 }
-export const resetAccountPassword = async (email, token, role) => {
+export const resetAccountPassword = async (email:string, token:string, role:string) => {
 	let testAccount = await nodemailer.createTestAccount();
 	// create reusable transporter object using the default SMTP transport
 	let transporter = nodemailer.createTransport({
@@ -49,7 +49,7 @@ export const resetAccountPassword = async (email, token, role) => {
 			pass: pass
 		},
 	});
-	var entryPoint;
+	let entryPoint;
 	if (role == 'therapist')
 		entryPoint = 'therapist'
 	else
