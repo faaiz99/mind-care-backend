@@ -2,13 +2,10 @@ import mongoose from 'mongoose';
 import { Therapist } from '../src/models/therapist/therapist.model.js'
 import dotenv from 'dotenv'
 dotenv.config()
-const MONGO_URI = 'mongodb://localhost:27017/mind-care'
+const MONGO_URI:string = 'mongodb://localhost:27017/mind-care'
 
 mongoose
-	.connect(MONGO_URI, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(MONGO_URI)
 	.then(() => {
 		console.log("Successfully connected to database");
 	})
@@ -18,7 +15,7 @@ mongoose
 		process.exit(1);
 	});
 
-var therapists = [
+const therapists = [
 	new Therapist({
 		"firstName": "Delphine",
 		"lastName": "Wilkinson-Conn",
@@ -1721,8 +1718,8 @@ var therapists = [
 	})
 ]
 
-var done = 0;
-for (var i = 0; i < therapists.length; i++) {
+let done = 0;
+for (let i = 0; i < therapists.length; i++) {
 	therapists[i].save().then(res => {
 		done++
 		if (done === therapists.length) {
