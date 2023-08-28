@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
 const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
@@ -6,9 +7,9 @@ export const authenticateToken: RequestHandler = async (req: Request, res: Respo
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
-  jwt.verify(token, ACCESS_JWT_SECRET, (err, user) => {
+  jwt.verify(token, ACCESS_JWT_SECRET as string, (err, user) => {
     if (err) return res.send(err);
-    req.user = user;
+    //req.user = user;
     next();
   });
 }
@@ -17,8 +18,9 @@ export const revalidateToken: RequestHandler = async (req: Request, res: Respons
   const authHeader = req.headers["authorization"];
   const refreshToken = authHeader && authHeader.split(" ")[1];
   if (refreshToken == null) return res.sendStatus(401);
-  jwt.verify(refreshToken, REFRESH_JWT_SECRET, (err, user) => {
-    if (err) return res.send(err + ' \n Please Login Again');
+  jwt.verify(refreshToken, REFRESH_JWT_SECRET as string, (err, user) => {
+    if (err)
+      return res.send(err + ' \n Please Login Again');
     req.user = user;
     console.log('refresh token verified')
     next();
@@ -31,7 +33,7 @@ export const issueTokens = (userBody: unknown): { status: number, accessToken: s
     {
       user: userBody,
     },
-    ACCESS_JWT_SECRET,
+    ACCESS_JWT_SECRET as string,
     {
       expiresIn: '1h',
     }
@@ -40,7 +42,7 @@ export const issueTokens = (userBody: unknown): { status: number, accessToken: s
     {
       user: userBody,
     },
-    REFRESH_JWT_SECRET,
+    REFRESH_JWT_SECRET as string,
     {
       expiresIn: '24h',
     }

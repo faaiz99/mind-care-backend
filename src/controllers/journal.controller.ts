@@ -1,8 +1,9 @@
+import { Request, Response,RequestHandler} from 'express'
 // Journal Types & Models //
 
 import { GratitudeJournal } from '../models/journals/gratitudeJournal.model.ts';
 
-export const getGratitudeJournal = async (req, res) => {
+export const getGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
 	const gratitudeJournal = req.body.clientId;
 	let result;
 	try {
@@ -12,7 +13,7 @@ export const getGratitudeJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Gratitide Journal found', result })
 }
-export const createGratitudeJournal = async (req, res) => {
+export const createGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
 	const gratitudeJournal = req.body;
 	let result;
 	try {
@@ -22,7 +23,7 @@ export const createGratitudeJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Gratitide Journal created', result })
 }
-export const deleteGratitudeJournal = async (req, res) => {
+export const deleteGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
 	const gratitudeJournal = req.body.journaIld;
 	let result;
 	try {
@@ -35,7 +36,7 @@ export const deleteGratitudeJournal = async (req, res) => {
 
 import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.model.ts';
 
-export const getProblemSolvingJournal = async (req, res) => {
+export const getProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
 	const problemSolvingJournal = req.body.clientId
 	let result;
 	try {
@@ -46,7 +47,7 @@ export const getProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal found", result })
 }
 
-export const createProblemSolvingJournal = async (req, res) => {
+export const createProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
 	const problemSolvingJournal = req.body
 	let result;
 	try {
@@ -57,7 +58,7 @@ export const createProblemSolvingJournal = async (req, res) => {
 	res.json({ status: 200, message: "Problem Solving Journal created", result })
 }
 
-export const deleteProblemSolvingJournal = async (req, res) => {
+export const deleteProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
 	const problemSolvingJournal = req.body.journalId
 	let result;
 	try {
@@ -70,8 +71,8 @@ export const deleteProblemSolvingJournal = async (req, res) => {
 
 import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.ts';
 
-export const getGoalSettingJournal = async (req, res) => {
-	const goalSettingJournal = red.body.clientId;
+export const getGoalSettingJournal:RequestHandler  = async (req:Request, res:Response) => {
+	const goalSettingJournal = req.body.clientId;
 	let result;
 	try {
 		result = await GoalSettingJournal.find({ clientId: goalSettingJournal })
@@ -82,7 +83,7 @@ export const getGoalSettingJournal = async (req, res) => {
 
 }
 
-export const createGoalSettingJournal = async (req, res) => {
+export const createGoalSettingJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const goalSettingJournal = req.body
 	let result;
 	try {
@@ -94,7 +95,7 @@ export const createGoalSettingJournal = async (req, res) => {
 
 }
 
-export const deleteGoalSettingJournal = async (req, res) => {
+export const deleteGoalSettingJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const goalSettingJournal = req.body.journalId
 	let result;
 	try {
@@ -109,7 +110,7 @@ export const deleteGoalSettingJournal = async (req, res) => {
 
 import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal.model.js';
 
-export const getSelfAffirmationJournal = async (req, res) => {
+export const getSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const selfAffirmationJournal = req.body.clientId
 	let result;
 	try {
@@ -120,7 +121,7 @@ export const getSelfAffirmationJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Self-Affirmation Journal found', result })
 }
 
-export const createSelfAffirmationJournal = async (req, res) => {
+export const createSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const selfAffirmationJournal = req.body
 	let result;
 	try {
@@ -131,11 +132,11 @@ export const createSelfAffirmationJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Self-Affirmation Journal Created', result })
 }
 
-export const deleteSelfAffirmationJournal = async (req, res) => {
+export const deleteSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const selfAffirmationJournal = req.body.journalId
 	let result;
 	try {
-		result = await SelfAffirmationJournal.deleteOne({ id, selfAffirmationJournal })
+		result = await SelfAffirmationJournal.deleteOne({ id: selfAffirmationJournal })
 	} catch (error) {
 		console.log('Self-Affirmation Journal could not be Deleted', error)
 	}
@@ -145,7 +146,7 @@ export const deleteSelfAffirmationJournal = async (req, res) => {
 
 import { ReflectionJournal } from '../models/journals/reflectionJournal.model.js';
 
-export const getReflectionJournal = async (req, res) => {
+export const getReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const reflectionJournal = req.body.clientId
 	let result;
 	try {
@@ -156,7 +157,7 @@ export const getReflectionJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Reflection Journal found', result })
 
 }
-export const createReflectionJournal = async (req, res) => {
+export const createReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const reflectionJournal = req.body;
 	let result;
 	try {
@@ -168,11 +169,11 @@ export const createReflectionJournal = async (req, res) => {
 
 }
 
-export const deleteReflectionJournal = async (req, res) => {
+export const deleteReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const reflectionJournal = req.body.journalId;
 	let result;
 	try {
-		result = await ReflectionJournal.deleteOne({ id, reflectionJournal })
+		result = await ReflectionJournal.deleteOne({ id: reflectionJournal })
 	} catch (error) {
 		console.log('Refection Journal could not be deleted', error)
 	}
@@ -181,7 +182,7 @@ export const deleteReflectionJournal = async (req, res) => {
 }
 import { OpenJournal } from '../models/journals/openJournal.model.js';
 
-export const getOpenJournal = async (req, res) => {
+export const getOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const openJournal = req.body.clientId
 	let result;
 	try {
@@ -193,7 +194,7 @@ export const getOpenJournal = async (req, res) => {
 
 }
 
-export const createOpenJournal = async (req, res) => {
+export const createOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const openJournal = req.body;
 	let result;
 	try {
@@ -204,11 +205,11 @@ export const createOpenJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Open Journal created', result })
 }
 
-export const deleteOpenJournal = async (req, res) => {
+export const deleteOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const openJournal = req.body.journalId;
 	let result;
 	try {
-		result = await OpenJournal.deleteOne({ id, openJournal })
+		result = await OpenJournal.deleteOne({ id:openJournal })
 	} catch (error) {
 		console.log('Open Journal could not be deleted', error)
 	}
@@ -217,7 +218,7 @@ export const deleteOpenJournal = async (req, res) => {
 
 import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model.js';
 
-export const getChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
+export const getChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
 
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.clientId;
 	let result;
@@ -230,7 +231,7 @@ export const getChallengingNegativeThoughtsAboutYourselfJournal = async (req, re
 
 }
 
-export const createChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
+export const createChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body;
 	let result;
 	try {
@@ -242,7 +243,7 @@ export const createChallengingNegativeThoughtsAboutYourselfJournal = async (req,
 
 }
 
-export const deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req, res) => {
+export const deleteChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const challengingNegativeThoughtsAboutYourselfJournal = req.body.journalId;
 	let result;
 	try {
@@ -255,7 +256,7 @@ export const deleteChallengingNegativeThoughtsAboutYourselfJournal = async (req,
 }
 import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.model.js';
 
-export const getBuildingASelfCarePlan = async (req, res) => {
+export const getBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
 	const buildingASelfCarePlan = req.body.clientId
 	let result;
 	try {
@@ -267,7 +268,7 @@ export const getBuildingASelfCarePlan = async (req, res) => {
 
 }
 
-export const createBuildingASelfCarePlan = async (req, res) => {
+export const createBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
 	const buildingASelfCarePlan = req.body
 	let result;
 	try {
@@ -278,19 +279,19 @@ export const createBuildingASelfCarePlan = async (req, res) => {
 	res.json({ status: 200, message: 'Building Self-Care Journal created', result })
 }
 
-export const deleteBuildingASelfCarePlan = async (req, res) => {
+export const deleteBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
 	const buildingASelfCarePlan = req.body.journalId
 	let result;
 	try {
-		result = await BuildingASelfCarePlan.delete({ id: buildingASelfCarePlan })
+		result = await BuildingASelfCarePlan.deleteOne({ id: buildingASelfCarePlan })
 	} catch (error) {
 		console.log('Building Self-Care Journal could not be deleted')
 	}
 	res.json({ status: 200, message: 'Building Self-Care Journal deleted', result })
 }
-import { AnxietyThoughtRecordJournal } from '../models/journals/anxietyThoughtRecordJournal.model.js';
+import { AnxietyThoughtRecordJournal } from '../models/journals/AnxietyThoughtRecordJournal.ts';
 
-export const getAnxietyThoughtReccordJournal = async (req, res) => {
+export const getAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const anxietyThoughtRecordJournal = req.body.clientId
 	let result;
 	try {
@@ -301,7 +302,7 @@ export const getAnxietyThoughtReccordJournal = async (req, res) => {
 	res.json({ status: 200, message: 'Anxiety Thought Reccord Journal found', result })
 }
 
-export const createAnxietyThoughtReccordJournal = async (req, res) => {
+export const createAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const anxietyThoughtRecordJournal = req.body
 	let result;
 	try {
@@ -313,7 +314,7 @@ export const createAnxietyThoughtReccordJournal = async (req, res) => {
 
 }
 
-export const deleteAnxietyThoughtReccordJournal = async (req, res) => {
+export const deleteAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const anxietyThoughtRecordJournal = req.body.journalId
 	let result;
 	try {
@@ -329,7 +330,7 @@ export const deleteAnxietyThoughtReccordJournal = async (req, res) => {
 
 import { CalmingtheMind } from '../models/journals/sleepJournal/calmingtheMind.model.js';
 
-export const getCalmingtheMind = async (req, res) => {
+export const getCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
 	const calmingtheMind = req.body.clientId
 	let result;
 	try {
@@ -340,7 +341,7 @@ export const getCalmingtheMind = async (req, res) => {
 	res.json({ status: 200, message: 'Calming the Mind Journal found', result })
 }
 
-export const createCalmingtheMind = async (req, res) => {
+export const createCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
 	const calmingtheMind = req.body
 	let result;
 	try {
@@ -352,7 +353,7 @@ export const createCalmingtheMind = async (req, res) => {
 
 }
 
-export const deleteCalmingtheMind = async (req, res) => {
+export const deleteCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
 	const calmingtheMind = req.body.journalId
 	let result;
 	try {
@@ -365,7 +366,7 @@ export const deleteCalmingtheMind = async (req, res) => {
 
 import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model.js';
 
-export const getDreamJournal = async (req, res) => {
+export const getDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const dreamJournal = req.body.clientId
 	let result;
 	try {
@@ -375,7 +376,7 @@ export const getDreamJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Dream Journal found', result })
 }
-export const createDreamJournal = async (req, res) => {
+export const createDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const dreamJournal = req.body
 	let result;
 	try {
@@ -385,7 +386,7 @@ export const createDreamJournal = async (req, res) => {
 	}
 	res.json({ status: 200, message: 'Dream Journal created', result })
 }
-export const deleteDreamJournal = async (req, res) => {
+export const deleteDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const dreamJournal = req.body.journalId
 	let result;
 	try {
@@ -399,7 +400,7 @@ export const deleteDreamJournal = async (req, res) => {
 
 import { FindingpeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.js';
 
-export const getFindingPeaceFulSpace = async (req, res) => {
+export const getFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
 	const findingapeacefulSpace = req.body.clientId;
 	let result;
 	try {
@@ -410,7 +411,7 @@ export const getFindingPeaceFulSpace = async (req, res) => {
 	res.json({ status: 200, message: 'Finding Peaceful Space Journal found', result })
 }
 
-export const createFindingPeaceFulSpace = async (req, res) => {
+export const createFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
 	const findingapeacefulSpace = req.body;
 	let result;
 	try {
@@ -421,7 +422,7 @@ export const createFindingPeaceFulSpace = async (req, res) => {
 	res.json({ status: 200, message: 'Finding Peaceful Space Journal found', result })
 }
 
-export const deleteFindingPeaceFulSpace = async (req, res) => {
+export const deleteFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
 	const findingapeacefulSpace = req.body.journalId;
 	let result;
 	try {
@@ -434,7 +435,7 @@ export const deleteFindingPeaceFulSpace = async (req, res) => {
 
 import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.js';
 
-export const getLookingForwardToTomorrow = async (req, res) => {
+export const getLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
 	const lookingforwardtoTomorrow = req.body.clientId
 	let result;
 	try {
@@ -446,7 +447,7 @@ export const getLookingForwardToTomorrow = async (req, res) => {
 
 }
 
-export const createLookingForwardToTomorrow = async (req, res) => {
+export const createLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
 	const lookingforwardtoTomorrow = req.body
 	let result;
 	try {
@@ -458,7 +459,7 @@ export const createLookingForwardToTomorrow = async (req, res) => {
 
 }
 
-export const deleteLookingForwardToTomorrow = async (req, res) => {
+export const deleteLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
 	const lookingforwardtoTomorrow = req.body.journalId
 	let result;
 	try {
@@ -472,7 +473,7 @@ export const deleteLookingForwardToTomorrow = async (req, res) => {
 }
 import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.js';
 
-export const getPlanningDayAhead = async (req, res) => {
+export const getPlanningDayAhead:RequestHandler  = async (req:Request, res:Response) => {
 	const planningthedayAhead = req.body.clientId
 	let result;
 	try {
@@ -484,7 +485,7 @@ export const getPlanningDayAhead = async (req, res) => {
 
 }
 
-export const createPlanningDayAhead = async (req, res) => {
+export const createPlanningDayAhead:RequestHandler  = async (req:Request, res:Response) => {
 	const planningthedayAhead = req.body
 	let result;
 	try {
@@ -496,7 +497,7 @@ export const createPlanningDayAhead = async (req, res) => {
 
 }
 
-export const deletePlanningDayAhead = async (req, res) => {
+export const deletePlanningDayAhead:RequestHandler = async (req:Request, res:Response) => {
 	const planningthedayAhead = req.body.journalId
 	let result;
 	try {
@@ -510,8 +511,8 @@ export const deletePlanningDayAhead = async (req, res) => {
 
 // Get all Journals // 
 
-export const getAllEntries = (req, res) => {
-
+export const getAllEntries:RequestHandler = (req:Request, res:Response) => {
+``
 }
 
 

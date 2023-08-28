@@ -1,9 +1,10 @@
+import { Request, Response,RequestHandler, NextFunction } from 'express'
 import  {psychologicalProfile} from '../models/psychologicalProfile/psychologicalProfile.model.ts'
-export const buildPsychologicalProfile = async (req, res,next) => {
+export const buildPsychologicalProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	const filter = { clientId: req.body.clientId }
-	var profile = req.body
-	let options = { upsert: true, new: true, setDefaultsOnInsert: true };
-	var result;
+	const profile = req.body
+	const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+	let result;
 	try {
 		result = await psychologicalProfile.findOneAndUpdate(filter, profile, options)
 	} catch (error) {
@@ -13,11 +14,11 @@ export const buildPsychologicalProfile = async (req, res,next) => {
 	res.json({ status: 200, message: 'Psychological Profile Build', result })
 
 }
-export const setTestScore = async (req, res,next) => {
+export const setTestScore:RequestHandler= async (req:Request, res:Response, next:NextFunction) => {
 	const filter = { clientId: req.body.clientId }
-	var profile = req.body
-	let options = { upsert: true, new: true, setDefaultsOnInsert: true };
-	var result;
+	const profile = req.body
+	const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+	let result;
 	try {
 		result = await psychologicalProfile.findOneAndUpdate(filter, profile, options)
 	} catch (error) {
@@ -28,9 +29,9 @@ export const setTestScore = async (req, res,next) => {
 
 }
 
-export const getPsychologicalProfile = async (req, res,next) => {
+export const getPsychologicalProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
 	const filter = { clientId: req.body.clientId }
-	var result;
+	let result;
 	try {
 		result = await psychologicalProfile.findOne(filter)
 	} catch (error) {

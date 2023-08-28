@@ -1,8 +1,9 @@
+import { Request, Response,RequestHandler } from 'express'
 import { Reminder } from '../models/reminder/reminder.model.ts';
 
-export const getReminders = async (req, res) => {
+export const getReminders:RequestHandler = async (req:Request, res:Response) => {
 	const reminder = req.body.clientId
-	var result;
+	let result;
 	try {
 		result = await Reminder.find({ clientId: reminder })
 	} catch (error) {
@@ -11,9 +12,9 @@ export const getReminders = async (req, res) => {
 	res.json({ status: 200, message: 'List of all Reminders', result })
 
 }
-export const createReminder = async (req, res) => {
+export const createReminder:RequestHandler = async (req:Request, res:Response) => {
 	const reminder = req.body
-	var result
+	let result
 	try {
 		result = await Reminder.create(reminder)
 	}
@@ -23,9 +24,9 @@ export const createReminder = async (req, res) => {
 	res.json({ status: 200, message: 'Reminder created', result })
 }
 
-export const editReminder = async (req, res) => {
+export const editReminder:RequestHandler = async (req:Request, res:Response) => {
 	const reminder = req.body.clientId
-	var result
+	let result
 	try {
 		result = await Reminder.findOneAndUpdate({ clientId: reminder })
 	} catch (e) {
@@ -34,9 +35,9 @@ export const editReminder = async (req, res) => {
 	res.json({ status: 200, message: 'Reminder modified', result })
 }
 
-export const deleteReminder = async (req, res) => {
+export const deleteReminder:RequestHandler = async (req:Request, res:Response) => {
 	const reminder = req.body.clientId
-	var result
+	let result
 	try {
 		result = await Reminder.findOneAndDelete({ clientId: reminder })
 	} catch (e) {

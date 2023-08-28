@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import { Therapist } from '../models/therapist/therapist.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
@@ -136,7 +137,9 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 		res.json({ status: 200, message: "Therapist Account created", result });
 }
 export const renewTokens: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	console.log(req);
 	const therapist = req.user.user
+	console.log(req)
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {

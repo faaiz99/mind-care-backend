@@ -17,14 +17,14 @@ dotenv.config()
 // Database Connection //
 connect()
 
-const { PORT }= process.env;
-const baseUrl:string = '/api/v1'
-const app:Application = express();
+const { PORT } = process.env;
+const baseUrl: string = '/api/v1'
+const app: Application = express();
 const swaggerSpec = swaggerJSDoc(options);
 
 // API Documentation Setup //
-app.use(`${baseUrl}/api-docs`, swaggerUi.serve);
-app.get(`${baseUrl}/api-docs`, swaggerUi.setup(swaggerSpec));
+app.use(`${baseUrl}/docs`, swaggerUi.serve);
+app.get(`${baseUrl}/docs`, swaggerUi.setup(swaggerSpec));
 
 // Router //
 app.use(express.json());

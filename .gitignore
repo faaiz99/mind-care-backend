@@ -2077,3 +2077,6 @@ node_modules/semver/internal/re.js
 node_modules/semver/ranges/intersects.js
 node_modules/semver/ranges/subset.js
 node_modules/.package-lock.json
+*.ps1
+node_modules/.bin/mime.ps1
+node_modules/.bin/nodemon.ps1
