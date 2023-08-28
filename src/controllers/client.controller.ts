@@ -104,7 +104,7 @@ export const signup: RequestHandler = async (req, res) => {
 		result = await Client.create(req.body);
 	} catch (error) {
 		console.log('Client account could not be created', error)
-		// res.json({ status: 200, message:"Therapist Account created" , result});
+		res.json({ status: 409, message:"Client Account could not be created" , result});
 	}
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Client Account created", result });
