@@ -1,87 +1,97 @@
-import { Client } from '../models/client/client.model'
-
-import { issueTokens } from '../middlewares/auth.middleware'
-import { emailSender, resetAccountPassword } from '../utils/sendmail.util'
-
+import { Request, Response, NextFunction, RequestHandler } from 'express'
+import { Client } from '../models/client/client.model.ts'
+import { issueTokens } from '../middlewares/auth.middleware.ts'
+import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
 import crypto from 'crypto'
 
-export const enternewPassword = async (req, res) => {
+export const enternewPassword: RequestHandler = async (req: Request, res: Response) => {
 
-	// Can also be used to change password from profile
-	var email = req.body.email;
-	var password = req.body.password
-	const client = await Client.findOneAndUpdate({
-		email: email
-	}, {
-		password: password
+	try {
+		// Can also be used to change password from profile
+		const email = req.body.email;
+		const password = req.body.password
+		await Client.findOneAndUpdate({
+			email: email
+		}, {
+			password: password
+		}
+		)
+		res.json({ status: 200, message: 'Account Password Changed' })
+	} catch (error) {
+		res.json({ status: 500, message: 'Account Password Could not be Changed' })
 	}
-	)
-	res.json({ status: 200, message: 'Account Password Changed' })
 }
-export const resetPassword = async (req, res, next) => {
-	var email = req.body.email;
+export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	const email = req.body.email;
 	const client = await Client.findOne({
 		email: email
 	})
 	if (client == null || client == undefined)
 		return res.json({ status: 404, message: "Account does not exist" })
-	var token = crypto.randomBytes(32).toString("hex")
-	var role = 'client'
+	const token = crypto.randomBytes(32).toString("hex")
+	const role = 'client'
 	resetAccountPassword(email, token, role)
 	next()
 }
-export const verifyAccount = async (req, res) => {
-	const client = await Client.findOneAndUpdate({
-		email: req.body.email,
-	}, {
-		verifiedAccount: true
-	}, {
-		new: true
-	})
-	res.json({ status: 200, message: 'Account successfully verified' })
+export const verifyAccount: RequestHandler = async (req: Request, res: Response) => {
+	try {
+		await Client.findOneAndUpdate({
+			email: req.body.email,
+		}, {
+			verifiedAccount: true
+		}, {
+			new: true
+		})
+		res.json({ status: 200, message: 'Account successfully verified' })
+	} catch (error) {
+		res.json({ status: 500, message: 'Account could not be verified' })
+	}
 }
-export const sendverificationEmail = async (req, res, next) => {
-	var token = crypto.randomBytes(32).toString("hex")
-	var role = 'client'
+export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	const token = crypto.randomBytes(32).toString("hex")
+	const role = 'client'
+	const email = req.body.email
 	emailSender(email, token, role)
 	next()
 }
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
 	// check existance by email
-	var exists = await Client.exists({
+	const exists = await Client.exists({
 		email: req.body.email
 	})
-
 	// email exists
 	//console.log('Email exists? ', exists)
 	if (exists == null || exists == undefined) {
 		return res.json({ status: 404, message: "Account does not exists" })
 	}
-	var client;
+	let client;
 	if (exists) {
 		// get therapist details if password is correct
 		client = await Client.findOne({
 			email: req.body.email,
 			password: req.body.password,
 		})
+
 		if (client == null || client == undefined)
 			return res.json({ status: 401, message: "Incorrect password" })
 	}
 	// setting password to undefined for security purposes
-	client.password = undefined
+
 	const tokens = issueTokens(client)
 	const { accessToken, refreshToken } = tokens
-	if (tokens != null || tokens != undefined) {
+	if (tokens != null || tokens != undefined && client !== null) {
+		// pending
+		//client.password = ''
 		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, client });
 	}
 	// Wont execute
 	else
 		return res.json({ status: 500, message: 'Server Error' });
 }
-export const signup = async (req, res) => {
-	const client = req.body
+export const signup: RequestHandler = async (req, res) => {
+
 	// check existance by email
-	var exists = await Client.exists({
+	const exists = await Client.exists({
 		email: req.body.email
 	})
 	// email exists
@@ -89,7 +99,7 @@ export const signup = async (req, res) => {
 	if (exists != null || exists != undefined) {
 		return res.json({ status: 409, message: "Email already exists!" })
 	}
-	var result;
+	let result;
 	try {
 		result = await Client.create(req.body);
 	} catch (error) {
@@ -99,8 +109,8 @@ export const signup = async (req, res) => {
 	if (result != null || result != undefined)
 		res.json({ status: 200, message: "Client Account created", result });
 }
-export const renewTokens = (req, res, next) => {
-	const client = req.user.user
+export const renewTokens: RequestHandler = (req: Request, res: Response) => {
+	const client = req.body.user // req.user.user
 	const tokens = issueTokens(client)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {

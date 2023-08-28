@@ -80,6 +80,7 @@ export const verifyAccount: RequestHandler = async (req: Request, res: Response,
 export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const token = crypto.randomBytes(32).toString("hex")
 	const role = 'therapist'
+	const email = req.body.email
 	const emailPreview = emailSender(email, token, role)
 	res.json({ status: 200, message: 'Email Verification Sent', emailPreview })
 	//next()
@@ -102,7 +103,8 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
 			email: req.body.email,
 			password: req.body.password,
 		})
-		therapist.password = ''
+		// yet to be fixed 
+		//therapist.password = ''
 		if (therapist == null || therapist == undefined)
 			return res.json({ status: 401, message: "Incorrect password" })
 	}
@@ -137,9 +139,7 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 		res.json({ status: 200, message: "Therapist Account created", result });
 }
 export const renewTokens: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	console.log(req);
-	const therapist = req.user.user
-	console.log(req)
+	const therapist = req.body.user
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {

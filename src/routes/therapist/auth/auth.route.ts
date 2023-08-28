@@ -75,7 +75,7 @@ router.post('/reset-password', resetPassword)
 
 router.patch("/update-profile", updateProfile);
 
-router.get('/verify/:token', authenticateToken, verifyAccount)
+router.post('/verify/:token', authenticateToken, verifyAccount)
 
 router.post('/send-verification-email', sendverificationEmail)
 
@@ -83,7 +83,7 @@ router.get("/profile", (req, res) => {
   res.send("About this Therapist");
 });
 
-router.get('/refresh-token', revalidateToken, renewTokens)
+router.post('/refresh-token', revalidateToken, renewTokens)
 
 
 export { router as authRoutes }

@@ -19,10 +19,10 @@ import {
 
 router.post('/password/:token', enternewPassword)
 router.post('/reset-password', resetPassword)
-router.get('/verify/:token', authenticateToken, verifyAccount)
+router.post('/verify/:token', authenticateToken, verifyAccount)
 router.post('/send-verification-email', sendverificationEmail)
 router.post('/signup', signup)
-router.get('/refresh-token', revalidateToken, renewTokens)
+router.post('/refresh-token', revalidateToken, renewTokens)
 router.post('/login', login)
 router.get("/profile", (req, res) => {
   res.send("About this Client");

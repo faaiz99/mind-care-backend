@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+import {model, Schema} from 'mongoose'
 const notificationSchema = new Schema({
   notificationBody: {
     type: String,
@@ -14,5 +12,4 @@ const notificationSchema = new Schema({
   sentMedia: {},
 });
 
-const notificationModel = mongoose.model("notification", notificationSchema);
-module.exports = notificationModel;
+export const notificationModel = model("notification", notificationSchema);

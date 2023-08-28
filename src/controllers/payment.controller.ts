@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Stripe from 'stripe';
 import dotenv from 'dotenv'
 const SECRET_KEY : string | undefined = dotenv?.config()?.parsed?.SECRET_KEY ?? ''
