@@ -21,7 +21,6 @@ export const login: RequestHandler = async (req: Request, res: Response) => {
 		return res.json({ status: "error", user: false });
 }
 export const signup: RequestHandler = async (req: Request, res: Response) => {
-	console.log(req)
 	try {
 		const admin = await Admin.create(req.body);
 		res.json({ status: 200, message: "admin Account created" });
@@ -30,7 +29,7 @@ export const signup: RequestHandler = async (req: Request, res: Response) => {
 	}
 }
 export const renewTokens: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
-	const admin = req // req.user
+	const admin = req.body.user 
 	const tokens = issueTokens(admin)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {

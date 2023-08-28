@@ -5,23 +5,26 @@ const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
 
 export const authenticateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = authHeader;
   if (token == null) return res.sendStatus(401);
-  jwt.verify(token, ACCESS_JWT_SECRET as string, (err, user) => {
+  jwt.verify(token as string, ACCESS_JWT_SECRET as string, (err, user) => {
     if (err) return res.send(err);
-    //req.user = user;
+    req.body.user = user;
     next();
   });
 }
 
 export const revalidateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
-  const refreshToken = authHeader && authHeader.split(" ")[1];
-  if (refreshToken == null) return res.sendStatus(401);
-  jwt.verify(refreshToken, REFRESH_JWT_SECRET as string, (err, user) => {
+  if (authHeader === null || authHeader === undefined)
+    return res.json({ status: 401, message: 'Authorization Header Absent', data: authHeader })
+  const refreshToken = authHeader
+  if (refreshToken == null || refreshToken == undefined) 
+    return res.sendStatus(401);
+  jwt.verify(refreshToken as string, REFRESH_JWT_SECRET as string, (err, user) => {
     if (err)
       return res.send(err + ' \n Please Login Again');
-    req.user = user;
+    req.body.user = user
     console.log('refresh token verified')
     next();
   });
