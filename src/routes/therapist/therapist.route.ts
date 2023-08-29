@@ -5,13 +5,12 @@ const router:Router = Router()
 import { authRoutes } from "./auth/auth.route.ts";
 import { postRoutes } from './communityForum/post.route.ts'
 import { commentRoutes } from "./communityForum/comment.route.ts";
-import { paymentRoutes } from "./payment.route.ts";
 
 
 router.use(authRoutes)
 router.use(postRoutes)
 router.use(commentRoutes)
-router.use(paymentRoutes)
+
 
 router.get("/", (req, res) => {
   res.send("Therapist home page");

@@ -143,8 +143,8 @@ export const renewTokens: RequestHandler = async (req: Request, res: Response, n
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken });
+		return res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken });
 	}
 	else
-		return res.json({ status: "error", user: false });
+		return res.status(400).json({ status: "failed", user: false });
 }
