@@ -6,10 +6,7 @@ import fs from 'fs'
 const MONGO_URI = 'mongodb://localhost:27017/mind-care'
 
 mongoose
-	.connect(MONGO_URI, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(MONGO_URI)
 	.then(() => {
 		console.log("Successfully connected to database");
 	})
@@ -24,18 +21,18 @@ const generatePosts = (num) => {
 	const post = [];
 	const tag = ['help', 'anxiety', 'depression', 'advice']
 	for (let i = 0; i < num; i++) {
-		let postId = faker.database.mongodbObjectId()
-		let therapistId = faker.database.mongodbObjectId()
-		let pictureLink = faker.image.urlLoremFlickr()
-		let title = faker.lorem.lines({ min: 1, max: 2 })
-		let body = faker.lorem.lines({ min: 2, max: 10 })
-		let tags = [
+		const postId = faker.database.mongodbObjectId()
+		const therapistId = faker.database.mongodbObjectId()
+		const pictureLink = faker.image.urlLoremFlickr()
+		const title = faker.lorem.lines({ min: 1, max: 2 })
+		const body = faker.lorem.lines({ min: 2, max: 10 })
+		const tags:Array<string> = [
 			faker.helpers.arrayElement(tag),
 			faker.helpers.arrayElement(tag),
 			faker.helpers.arrayElement(tag),
 		]
 
-		let comments = [{
+		const comments = [{
 			commentId: faker.database.mongodbObjectId(),
 			postId: postId,
 			therapistId: therapistId,
@@ -112,7 +109,7 @@ const generatePosts = (num) => {
 			}]
 		}
 		]
-		let upvotes = [{
+		const upvotes = [{
 			upvoteId: faker.database.mongodbObjectId(),
 			therapistId: faker.database.mongodbObjectId(),
 			postId:postId,
@@ -142,7 +139,7 @@ const generatePosts = (num) => {
 			postId:postId,
 			commentId: faker.database.mongodbObjectId()
 		}]
-		let downvotes = [{
+		const downvotes = [{
 			downvoteId: faker.database.mongodbObjectId(),
 			therapistId: faker.database.mongodbObjectId(),
 			postId:postId,

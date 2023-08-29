@@ -7,21 +7,21 @@ const generateTherapists = (num) => {
 	const therapist = [];
 	const array = ['Therapist', 'Counsellor', 'Psychologist']
 	for (let i = 0; i < num; i++) {
-		let firstName = faker.person.firstName();
-		let lastName = faker.person.lastName()
-		let email = faker.internet.email({firstName:firstName, lastName:lastName});
-		let gender = faker.person.sex()
-		let password = faker.internet.password()
-		let picture = faker.internet.avatar()
-		let dateofBirth = faker.date.birthdate()
-		let createdAt = faker.date.past();
-		let dateOfAvailability = faker.date.future()
-		let timeOfAvailability = faker.date.future()
-		let sessionCharges = faker.commerce.price({ min: 1500, max: 5000 })
-		let experience = faker.number.int({ min: 1, max: 15 })
-		let specialization = array[Math.floor(Math.random() * array.length)];
-		let verifiedAccount = faker.datatype.boolean(0.5)
-		let downloadURL = faker.internet.url()
+		const firstName = faker.person.firstName();
+		const lastName = faker.person.lastName()
+		const email = faker.internet.email({firstName:firstName, lastName:lastName});
+		const gender = faker.person.sex()
+		const password = faker.internet.password()
+		const picture = faker.internet.avatar()
+		const dateofBirth = faker.date.birthdate()
+		const createdAt = faker.date.past();
+		const dateOfAvailability = faker.date.future()
+		const timeOfAvailability = faker.date.future()
+		const sessionCharges = faker.commerce.price({ min: 1500, max: 5000 })
+		const experience = faker.number.int({ min: 1, max: 15 })
+		const specialization = array[Math.floor(Math.random() * array.length)];
+		const verifiedAccount = faker.datatype.boolean(0.5)
+		const downloadURL = faker.internet.url()
 
 		therapist.push({
 			firstName,
@@ -44,7 +44,7 @@ const generateTherapists = (num) => {
 	return therapist;
 };
 
-var therapist = generateTherapists(100);
+const therapist = generateTherapists(100);
 //therapist = JSON.stringify(therapist, null, '\t')
 
 //console.log(typeof therapist)

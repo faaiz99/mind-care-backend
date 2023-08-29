@@ -3,13 +3,10 @@ import { Client } from '../src/models/client/client.model.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const MONGO_URI = 'mongodb://localhost:27017/mind-care'
+const MONGO_URI:string = 'mongodb://localhost:27017/mind-care'
 
 mongoose
-	.connect(MONGO_URI, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(MONGO_URI)
 	.then(() => {
 		console.log("Successfully connected to database");
 	})
@@ -18,7 +15,7 @@ mongoose
 		console.error(error);
 		process.exit(1);
 	});
-var clients =
+const clients =
 	[
 		new Client({
 			"firstName": "Santos",
@@ -1121,8 +1118,8 @@ var clients =
 			"verifiedAccount": true
 		})
 	]
-var done = 0;
-for (var i = 0; i < clients.length; i++) {
+let done = 0;
+for (let i = 0; i < clients.length; i++) {
 	clients[i].save().then(res => {
 		done++
 		if (done === clients.length) {
