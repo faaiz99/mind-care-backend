@@ -42,7 +42,7 @@ export const updateProfile: RequestHandler = async (req: Request, res: Response,
 	}
 	// Wont execute 99%
 	else
-		return res.status(500).json({ status: 'failed'message: 'Server Error' });
+		return res.status(500).json({ status: 'failed', message: 'Server Error' });
 }
 export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const email = req.body.email;
@@ -115,7 +115,7 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
 	}
 	// Wont execute
 	else
-		return res.status(500).json({ status: 'failed'message: 'Server Error' });
+		return res.status(500).json({ status: 'failed', message: 'Server Error' });
 }
 export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	// check existance by email
