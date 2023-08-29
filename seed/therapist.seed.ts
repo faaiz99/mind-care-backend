@@ -1,11 +1,15 @@
-import mongoose from 'mongoose';
-import { Therapist } from '../src/models/therapist/therapist.model.js'
+import mongoose, { ConnectOptions } from 'mongoose';
 import dotenv from 'dotenv'
+import {Therapist} from '../src/models/therapist/therapist.model.ts'
 dotenv.config()
-const MONGO_URI:string = 'mongodb://localhost:27017/mind-care'
+const MONGO_URI: string = 'mongodb://127.0.0.1:27017'
 
 mongoose
-	.connect(MONGO_URI)
+	.connect(MONGO_URI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		
+	} as ConnectOptions)
 	.then(() => {
 		console.log("Successfully connected to database");
 	})
@@ -1720,7 +1724,7 @@ const therapists = [
 
 let done = 0;
 for (let i = 0; i < therapists.length; i++) {
-	therapists[i].save().then(res => {
+	therapists[i].save().then(() => {
 		done++
 		if (done === therapists.length) {
 			exit()
@@ -1733,3 +1737,4 @@ for (let i = 0; i < therapists.length; i++) {
 const exit = async () => {
 	mongoose.disconnect()
 }
+

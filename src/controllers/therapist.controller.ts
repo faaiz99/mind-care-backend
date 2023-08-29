@@ -163,7 +163,7 @@ export const getTherapists: RequestHandler = async (req: Request, res: Response,
 
 export const getTherapistById: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await Therapist.find({ id: req.body.therapistId })
+		const data = await Therapist.find({ _id: req.params.id })
 		res.status(200).json({ status: 'success', message: "Therapists Found", data: data })
 	} catch (error) {
 		console.log(error)

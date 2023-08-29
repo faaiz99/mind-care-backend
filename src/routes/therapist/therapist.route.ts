@@ -13,9 +13,7 @@ router.use(commentRoutes)
 
 
 
-router.get("/", (req, res) => {
-  res.send("Therapist home page");
-});
+
 
 
 
