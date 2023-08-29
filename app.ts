@@ -11,6 +11,7 @@ import { adminRouter } from './src/routes/admin/admin.route.js'
 import { clientRouter } from './src/routes/client/client.route.js'
 import { options } from './src/utils/swagger.util.js'
 import { corsPolicy } from "./src/utils/cors.util.js";
+import compression from 'compression'
 
 dotenv.config()
 
@@ -21,6 +22,8 @@ const { PORT } = process.env;
 const baseUrl: string = '/api/v1'
 const app: Application = express();
 const swaggerSpec = swaggerJSDoc(options);
+
+app.use(compression)
 
 // API Documentation Setup //
 app.use(`${baseUrl}/docs`, swaggerUi.serve);
