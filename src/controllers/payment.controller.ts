@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+
+
+
 import { RequestHandler, Request, Response } from 'express';
 import { stripe, API_URL } from '../config/stripe.config.ts';
 
@@ -10,7 +13,7 @@ export const createPaymentIntent: RequestHandler = async (req: Request, res: Res
     client id is required 
   */
 
-  const { sessionCharges, therapistId, clientId } = req.body
+  const { sessionCharges} = req.body
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {

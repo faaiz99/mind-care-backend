@@ -3,11 +3,12 @@ import {Therapist} from '../src/models/therapist/therapist.model.js'
 import { faker } from '@faker-js/faker';
 import { fs } from 'fs';
 
+interface therapist
 const generateTherapists = (num) => {
 	const therapist = [];
 	const array = ['Therapist', 'Counsellor', 'Psychologist']
 	for (let i = 0; i < num; i++) {
-		const firstName = faker.person.firstName();
+		const firstName:string = faker.person.firstName();
 		const lastName = faker.person.lastName()
 		const email = faker.internet.email({firstName:firstName, lastName:lastName});
 		const gender = faker.person.sex()
