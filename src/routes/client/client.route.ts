@@ -16,6 +16,7 @@ router.use(reminderRoutes)
 router.use(psychologicalProfileRoutes)
 router.use(paymentRoutes)
 
+
 router.get("/", (req, res) => {
   res.send("Client home page");
 });

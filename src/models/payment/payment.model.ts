@@ -1,27 +1,30 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 const paymentSchema = new Schema({
-  paymentCard: [
-    {
-      cardNumber: {
-        type: String,
-        required: true,
-      },
-      cvc: {
-        type: String,
-        required: true,
-      },
-      expiryDate: {
-        type: Date,
-        required: true,
-      },
-      cardHolderName: {
-        type: String,
-        required: true,
-      },
+  client: {
+    type: Types.ObjectId,
+    ref: 'client',
+    required: true
+  },
+  payments: [{
+    sessionCharges: {
+      type: String,
+      required: true
     },
-  ],
+    currency: {
+      type: String,
+      required: true
+    },
+    paymentDate: {
+      type: Date,
+      required: true,
+    },
+    therapistId: {
+      type: Types.ObjectId,
+      ref: 'therapist',
+      required: true
+    }
+  }]
 });
 
 export const paymentModel = model("payment", paymentSchema);
-
