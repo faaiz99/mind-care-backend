@@ -9,7 +9,7 @@
     "build": "npx tsc",
     "test": "jest",
     "start": "node app.ts",
-    "start:dev": "nodemon app.ts --watch",
+    "dev": "nodemon app.ts --watch",
     "lint": "npx eslint ."
   },
   "author": "Faaiz Aslam",

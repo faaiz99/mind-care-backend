@@ -11,7 +11,7 @@ export const getGratitudeJournal:RequestHandler = async (req:Request, res:Respon
 	} catch (error) {
 		console.log('Gratitude Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Gratitide Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Gratitide Journal found', result })
 }
 export const createGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
 	const gratitudeJournal = req.body;
@@ -21,7 +21,7 @@ export const createGratitudeJournal:RequestHandler = async (req:Request, res:Res
 	} catch (error) {
 		console.log('Gratitude Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Gratitide Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Gratitide Journal created', result })
 }
 export const deleteGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
 	const gratitudeJournal = req.body.journaIld;
@@ -31,7 +31,7 @@ export const deleteGratitudeJournal:RequestHandler = async (req:Request, res:Res
 	} catch (error) {
 		console.log('Gratitude Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Gratitide Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Gratitide Journal deleted', result })
 }
 
 import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.model.ts';
@@ -44,7 +44,7 @@ export const getProblemSolvingJournal:RequestHandler = async (req:Request, res:R
 	} catch (error) {
 		console.log('Problem Solving Journal could not be found', error)
 	}
-	res.json({ status: 200, message: "Problem Solving Journal found", result })
+	res.status(200).json({ status: 'success', message: "Problem Solving Journal found", result })
 }
 
 export const createProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
@@ -55,7 +55,7 @@ export const createProblemSolvingJournal:RequestHandler = async (req:Request, re
 	} catch (error) {
 		console.log('Problem Solving Journal could not be created', error)
 	}
-	res.json({ status: 200, message: "Problem Solving Journal created", result })
+	res.status(200).json({ status: 'success', message: "Problem Solving Journal created", result })
 }
 
 export const deleteProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
@@ -66,7 +66,7 @@ export const deleteProblemSolvingJournal:RequestHandler = async (req:Request, re
 	} catch (error) {
 		console.log('Problem Solving Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: "Problem Solving Journal deleted", result })
+	res.status(200).json({ status: 'success', message: "Problem Solving Journal deleted", result })
 }
 
 import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.ts';
@@ -79,7 +79,7 @@ export const getGoalSettingJournal:RequestHandler  = async (req:Request, res:Res
 	} catch (error) {
 		console.log('Goal Setting Journal could not be found', error)
 	}
-	res.json({ status: 200, message: "Goal Setting Journal found", result })
+	res.status(200).json({ status: 'success', message: "Goal Setting Journal found", result })
 
 }
 
@@ -91,7 +91,7 @@ export const createGoalSettingJournal:RequestHandler  = async (req:Request, res:
 	} catch (error) {
 		console.log('Goal Setting Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Goal Setting Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Goal Setting Journal created', result })
 
 }
 
@@ -103,7 +103,7 @@ export const deleteGoalSettingJournal:RequestHandler  = async (req:Request, res:
 	} catch (error) {
 		console.log('Goal Setting Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Goal Setting Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Goal Setting Journal deleted', result })
 
 
 }
@@ -118,7 +118,7 @@ export const getSelfAffirmationJournal:RequestHandler  = async (req:Request, res
 	} catch (error) {
 		console.log('Self-Affirmation Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Self-Affirmation Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal found', result })
 }
 
 export const createSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
@@ -129,7 +129,7 @@ export const createSelfAffirmationJournal:RequestHandler  = async (req:Request, 
 	} catch (error) {
 		console.log('Self-Affirmation Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Self-Affirmation Journal Created', result })
+	res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal Created', result })
 }
 
 export const deleteSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
@@ -140,7 +140,7 @@ export const deleteSelfAffirmationJournal:RequestHandler  = async (req:Request, 
 	} catch (error) {
 		console.log('Self-Affirmation Journal could not be Deleted', error)
 	}
-	res.json({ status: 200, message: 'Self-Affirmation Journal Created', result })
+	res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal Created', result })
 
 }
 
@@ -154,7 +154,7 @@ export const getReflectionJournal:RequestHandler  = async (req:Request, res:Resp
 	} catch (error) {
 		console.log('Reflection Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Reflection Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Reflection Journal found', result })
 
 }
 export const createReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
@@ -165,7 +165,7 @@ export const createReflectionJournal:RequestHandler  = async (req:Request, res:R
 	} catch (error) {
 		console.log('Reflection Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Reflection Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Reflection Journal created', result })
 
 }
 
@@ -177,7 +177,7 @@ export const deleteReflectionJournal:RequestHandler  = async (req:Request, res:R
 	} catch (error) {
 		console.log('Refection Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Relfection Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Relfection Journal deleted', result })
 
 }
 import { OpenJournal } from '../models/journals/openJournal.model.js';
@@ -190,7 +190,7 @@ export const getOpenJournal:RequestHandler  = async (req:Request, res:Response) 
 	} catch (error) {
 		console.log('Open Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Open Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Open Journal found', result })
 
 }
 
@@ -202,7 +202,7 @@ export const createOpenJournal:RequestHandler  = async (req:Request, res:Respons
 	} catch (error) {
 		console.log('Open Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Open Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Open Journal created', result })
 }
 
 export const deleteOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
@@ -213,7 +213,7 @@ export const deleteOpenJournal:RequestHandler  = async (req:Request, res:Respons
 	} catch (error) {
 		console.log('Open Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Open Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Open Journal deleted', result })
 }
 
 import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model.js';
@@ -227,7 +227,7 @@ export const getChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  
 	} catch (error) {
 		console.log('Challenge Negative Thoughts Journal could not be found', error)
 	}
-	res.json({ status: 200, message: "Challenge Negative Thoughts Journal found", result })
+	res.status(200).json({ status: 'success', message: "Challenge Negative Thoughts Journal found", result })
 
 }
 
@@ -239,7 +239,7 @@ export const createChallengingNegativeThoughtsAboutYourselfJournal:RequestHandle
 	} catch (error) {
 		console.log('Challenge Negative Thoughts Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Challenge Negative Thoughts Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal created', result })
 
 }
 
@@ -251,7 +251,7 @@ export const deleteChallengingNegativeThoughtsAboutYourselfJournal:RequestHandle
 	} catch (error) {
 		console.log('Challenge Negative Thoughts Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Challenge Negative Thoughts Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal deleted', result })
 
 }
 import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.model.js';
@@ -264,7 +264,7 @@ export const getBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:
 	} catch (error) {
 		console.log('Building Self-Care Journal could not be found')
 	}
-	res.json({ status: 200, message: 'Building Self-Care Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Building Self-Care Journal found', result })
 
 }
 
@@ -276,7 +276,7 @@ export const createBuildingASelfCarePlan:RequestHandler  = async (req:Request, r
 	} catch (error) {
 		console.log('Building Self-Care Journal could not be created')
 	}
-	res.json({ status: 200, message: 'Building Self-Care Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Building Self-Care Journal created', result })
 }
 
 export const deleteBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
@@ -287,7 +287,7 @@ export const deleteBuildingASelfCarePlan:RequestHandler  = async (req:Request, r
 	} catch (error) {
 		console.log('Building Self-Care Journal could not be deleted')
 	}
-	res.json({ status: 200, message: 'Building Self-Care Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Building Self-Care Journal deleted', result })
 }
 import { AnxietyThoughtRecordJournal } from '../models/journals/AnxietyThoughtRecordJournal.ts';
 
@@ -299,7 +299,7 @@ export const getAnxietyThoughtReccordJournal:RequestHandler  = async (req:Reques
 	} catch (error) {
 		console.log('Anxiety Thought Reccord Journal could not be found')
 	}
-	res.json({ status: 200, message: 'Anxiety Thought Reccord Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal found', result })
 }
 
 export const createAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
@@ -310,7 +310,7 @@ export const createAnxietyThoughtReccordJournal:RequestHandler  = async (req:Req
 	} catch (error) {
 		console.log('Anxiety Thought Reccord Journal could not be created')
 	}
-	res.json({ status: 200, message: 'Anxiety Thought Reccord Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal created', result })
 
 }
 
@@ -322,7 +322,7 @@ export const deleteAnxietyThoughtReccordJournal:RequestHandler  = async (req:Req
 	} catch (error) {
 		console.log('Anxiety Thought Reccord Journal could not be deleted')
 	}
-	res.json({ status: 200, message: 'Anxiety Thought Reccord Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal deleted', result })
 
 }
 // Sleep Journal has own types & Models //
@@ -338,7 +338,7 @@ export const getCalmingtheMind:RequestHandler  = async (req:Request, res:Respons
 	} catch (error) {
 		console.log('Calming the Mind Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Calming the Mind Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal found', result })
 }
 
 export const createCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
@@ -349,7 +349,7 @@ export const createCalmingtheMind:RequestHandler  = async (req:Request, res:Resp
 	} catch (error) {
 		console.log('Calming the Mind Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Calming the Mind Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal created', result })
 
 }
 
@@ -361,7 +361,7 @@ export const deleteCalmingtheMind:RequestHandler  = async (req:Request, res:Resp
 	} catch (error) {
 		console.log('Calming the Mind Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Calming the Mind Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal deleted', result })
 }
 
 import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model.js';
@@ -374,7 +374,7 @@ export const getDreamJournal:RequestHandler  = async (req:Request, res:Response)
 	} catch (error) {
 		console.log('Dream Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Dream Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Dream Journal found', result })
 }
 export const createDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const dreamJournal = req.body
@@ -384,7 +384,7 @@ export const createDreamJournal:RequestHandler  = async (req:Request, res:Respon
 	} catch (error) {
 		console.log('Dream Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Dream Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Dream Journal created', result })
 }
 export const deleteDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const dreamJournal = req.body.journalId
@@ -394,7 +394,7 @@ export const deleteDreamJournal:RequestHandler  = async (req:Request, res:Respon
 	} catch (error) {
 		console.log('Dream Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Dream Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Dream Journal deleted', result })
 
 }
 
@@ -408,7 +408,7 @@ export const getFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:R
 	} catch (error) {
 		console.log('Finding Peaceful Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Finding Peaceful Space Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal found', result })
 }
 
 export const createFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
@@ -419,7 +419,7 @@ export const createFindingPeaceFulSpace:RequestHandler  = async (req:Request, re
 	} catch (error) {
 		console.log('Finding Peaceful Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Finding Peaceful Space Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal found', result })
 }
 
 export const deleteFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
@@ -430,7 +430,7 @@ export const deleteFindingPeaceFulSpace:RequestHandler  = async (req:Request, re
 	} catch (error) {
 		console.log('Finding Peaceful Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Finding Peaceful Space Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal deleted', result })
 }
 
 import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.js';
@@ -443,7 +443,7 @@ export const getLookingForwardToTomorrow:RequestHandler  = async (req:Request, r
 	} catch (error) {
 		console.log('Looking Forward to Tomorrow Journal could not be found', error)
 	}
-	res.json({ status: 200, message: 'Looking Forward to Tomorrow Journal found', result })
+	res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal found', result })
 
 }
 
@@ -455,7 +455,7 @@ export const createLookingForwardToTomorrow:RequestHandler  = async (req:Request
 	} catch (error) {
 		console.log('Looking Forward to Tomorrow Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Looking Forward to Tomorrow Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal created', result })
 
 }
 
@@ -467,7 +467,7 @@ export const deleteLookingForwardToTomorrow:RequestHandler  = async (req:Request
 	} catch (error) {
 		console.log('Looking Forward to Tomorrow Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Looking Forward to Tomorrow Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal deleted', result })
 
 
 }
@@ -481,7 +481,7 @@ export const getPlanningDayAhead:RequestHandler  = async (req:Request, res:Respo
 	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be found')
 	}
-	res.json({ status: 200, message: "Planning the Day Ahead Journal found", result })
+	res.status(200).json({ status: 'success', message: "Planning the Day Ahead Journal found", result })
 
 }
 
@@ -493,7 +493,7 @@ export const createPlanningDayAhead:RequestHandler  = async (req:Request, res:Re
 	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be created', error)
 	}
-	res.json({ status: 200, message: 'Planning the day Ahead Journal created', result })
+	res.status(200).json({ status: 'success', message: 'Planning the day Ahead Journal created', result })
 
 }
 
@@ -505,7 +505,7 @@ export const deletePlanningDayAhead:RequestHandler = async (req:Request, res:Res
 	} catch (error) {
 		console.log('Planning the day Ahead Journal could not be deleted', error)
 	}
-	res.json({ status: 200, message: 'Planning the day Ahead Journal deleted', result })
+	res.status(200).json({ status: 'success', message: 'Planning the day Ahead Journal deleted', result })
 
 }
 

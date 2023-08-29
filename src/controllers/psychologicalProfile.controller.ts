@@ -11,7 +11,7 @@ export const buildPsychologicalProfile:RequestHandler = async (req:Request, res:
 		console.log('Psychological Profile Built error', error)
 		next(error)
 	}
-	res.json({ status: 200, message: 'Psychological Profile Build', result })
+	res.status(200).json({ status: 'success', message: 'Psychological Profile Build', result })
 
 }
 export const setTestScore:RequestHandler= async (req:Request, res:Response, next:NextFunction) => {
@@ -25,7 +25,7 @@ export const setTestScore:RequestHandler= async (req:Request, res:Response, next
 		console.log('Cannot update psychological test score', error)
 		next(error)
 	}
-	res.json({ status: 200, message: 'Psychological Test Scores upadated', result })
+	res.status(200).json({ status: 'success', message: 'Psychological Test Scores upadated', result })
 
 }
 
@@ -38,6 +38,6 @@ export const getPsychologicalProfile:RequestHandler = async (req:Request, res:Re
 		console.log('Cannot find psychological profile', error)
 		next(error)
 	}
-	res.json({ status: 200, message: 'Psychological Profile found', result })
+	res.status(200).json({ status: 'success', message: 'Psychological Profile found', result })
 
 }

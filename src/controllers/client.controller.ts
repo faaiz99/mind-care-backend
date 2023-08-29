@@ -16,9 +16,9 @@ export const enternewPassword: RequestHandler = async (req: Request, res: Respon
 			password: password
 		}
 		)
-		res.json({ status: 200, message: 'Account Password Changed' })
+		res.status(200).json({ status: 'success', message: 'Account Password Changed' })
 	} catch (error) {
-		res.json({ status: 500, message: 'Account Password Could not be Changed' })
+		res.status(409).json({ status: 'failed', message: 'Account Password Could not be Changed' })
 	}
 }
 export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
@@ -42,9 +42,9 @@ export const verifyAccount: RequestHandler = async (req: Request, res: Response)
 		}, {
 			new: true
 		})
-		res.json({ status: 200, message: 'Account successfully verified' })
+		res.status(200).json({ status: 'success', message: 'Account successfully verified' })
 	} catch (error) {
-		res.json({ status: 500, message: 'Account could not be verified' })
+		res.status(500).json({ status: 'failed', message: 'Account could not be verified' })
 	}
 }
 export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
@@ -62,7 +62,7 @@ export const login = async (req: Request, res: Response) => {
 	// email exists
 	//console.log('Email exists? ', exists)
 	if (exists == null || exists == undefined) {
-		return res.json({ status: 404, message: "Account does not exists" })
+		return res.status(404).json({ status: 'failed', message: "Account does not exists" })
 	}
 	let client;
 	if (exists) {
@@ -73,7 +73,7 @@ export const login = async (req: Request, res: Response) => {
 		})
 		// delete client?.password
 		if (client == null || client == undefined)
-			return res.json({ status: 401, message: "Incorrect password" })
+			return res.status(401).json({ status: 'failed', message: "Incorrect password" })
 	}
 	// setting password to undefined for security purposes
 
@@ -82,11 +82,11 @@ export const login = async (req: Request, res: Response) => {
 	if (tokens != null || tokens != undefined && client !== null) {
 		// pending
 		//client.password = ''
-		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, client });
+		return res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, client });
 	}
 	// Wont execute
 	else
-		return res.json({ status: 500, message: 'Server Error' });
+		return res.status(500).json({ status: 'failed', message: 'Server Error' });
 }
 export const signup: RequestHandler = async (req: Request, res: Response) => {
 
@@ -97,16 +97,16 @@ export const signup: RequestHandler = async (req: Request, res: Response) => {
 	// email exists
 	//console.log('Email exists? ', exists)
 	if (exists != null || exists != undefined) {
-		return res.json({ status: 409, message: "Email already exists!" })
+		res.status(409).json({ status: 'success', message: "Email already exists!" })
 	}
 	let result;
 	try {
 		result = await Client.create(req.body);
 		if (result != null || result != undefined)
-		res.json({ status: 200, message: "Client Account created", result });
+		res.status(200).json({ status: 'success', message: "Client Account created", result });
 	} catch (error) {
 		console.log('Client account could not be created', error)
-		res.json({ status: 409, message:"Client Account could not be created" , result});
+		res.status(409).json({ status: 'failed', message:"Client Account could not be created" , result});
 	}
 
 }

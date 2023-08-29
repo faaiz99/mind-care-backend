@@ -7,9 +7,9 @@ import { Post } from '../../models/communityForums/post.model.ts'
 import { uuid } from 'uuidv4';
 
 export const createComment:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	var comment = req.body;
+	const comment = req.body;
 	comment.commentId = uuid()
-	var result
+	let result
 	try {
 		result = await Comment.create(Post)
 	} catch (error) {
@@ -17,16 +17,16 @@ export const createComment:RequestHandler = async (req:Request, res:Response, ne
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Comment created', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment created', data: result })
 	}
 	next()
 
 }
 
 export const replyComment:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
-	var comment = req.body
+	let comment = req.body
 	comment.commentId = uuid()
-	var result;
+	let result;
 	try {
 		comment = await Comment.create(req.body)
 		result = await Post.findOneAndUpdate({ commentId: req.params.id }, {
@@ -37,15 +37,15 @@ export const replyComment:RequestHandler = async (req:Request, res:Response, nex
 		next(error)
 	}
 	if (result != null || result != undefined || comment != null || comment != undefined) {
-		res.json({ status: 200, message: 'Comment Replied', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment Replied', data: result })
 	}
 	next()
 
 }
 
 export const updateComment:RequestHandler  = async (req:Request, res:Response, next:NextFunction) => {
-	var comment = req.body;
-	var result;
+	const comment = req.body;
+	let result;
 	try {
 		result = await comment.findOneAndUpdate({ commentId: req.params.id, comment })
 	} catch (error) {
@@ -53,16 +53,16 @@ export const updateComment:RequestHandler  = async (req:Request, res:Response, n
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Comment updated', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment updated', data: result })
 	}
 	next()
 }
 
 export const deleteComment:RequestHandler  = async (req:Request, res:Response, next:NextFunction) => {
 	// Delete Comment or Not ?/
-	var comment = req.body;
+	const comment = req.body;
 	comment.body = 'Comment Deleted'
-	var result;
+	let result;
 	try {
 		result = await comment.findOneAndUpdate({ commentId: req.params.id, comment })
 	} catch (error) {
@@ -70,13 +70,13 @@ export const deleteComment:RequestHandler  = async (req:Request, res:Response, n
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Comment updated', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment updated', data: result })
 	}
 	next()
 }
 
 export const getComments:RequestHandler  = async (req:Request, res:Response, next:NextFunction) => {
-	var result;
+	let result;
 	try {
 		result = await Comment.find()
 	} catch (error) {
@@ -84,15 +84,15 @@ export const getComments:RequestHandler  = async (req:Request, res:Response, nex
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Comments retrieved', data: result })
+		res.status(200).json({ status: 'success', message: 'Comments retrieved', data: result })
 	}
 	next()
 
 }
 
 export const upvoteComment:RequestHandler  = async (req:Request, res:Response, next:NextFunction) => {
-	var upvote;
-	var result;
+	let upvote;
+	let result;
 
 	try {
 		upvote = await Upvote.create(req.body)
@@ -104,14 +104,14 @@ export const upvoteComment:RequestHandler  = async (req:Request, res:Response, n
 		next(error)
 	}
 	if (result != null || result != undefined || upvote != null || upvote != undefined) {
-		res.json({ status: 200, message: 'Comment upvoted', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment upvoted', data: result })
 	}
 	next()
 }
 
 export const downvoteComment:RequestHandler  = async (req:Request, res:Response, next:NextFunction) => {
-	var downvote
-	var result;
+	let downvote
+	let result;
 	try {
 		downvote = await Downvote.create(req.body)
 		result = await Comment.findOneAndUpdate({ commentId: req.params.id }, {
@@ -122,14 +122,14 @@ export const downvoteComment:RequestHandler  = async (req:Request, res:Response,
 		next(error)
 	}
 	if (result != null || result != undefined || downvote != null || downvote != undefined) {
-		res.json({ status: 200, message: 'Comment downvoted', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment downvoted', data: result })
 	}
 	next()
 }
 
 export const reportComment:RequestHandler  = async (req:Request, res:Response, next:NextFunction) => {
-	var report;
-	var result;
+	let report;
+	let result;
 	
 	try {
 		report = await Report.create(req.body)
@@ -141,7 +141,7 @@ export const reportComment:RequestHandler  = async (req:Request, res:Response, n
 		next(error)
 	}
 	if (result != null || result != undefined || report != null || report != undefined) {
-		res.json({ status: 200, message: 'Comment reported', data: result })
+		res.status(200).json({ status: 'success', message: 'Comment reported', data: result })
 	}
 	next()
 }

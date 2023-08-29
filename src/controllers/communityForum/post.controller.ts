@@ -26,7 +26,7 @@ export const createPost: RequestHandler = async (req: Request, res: Response, ne
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Post created', data: result })
+		res.status(200).json({ status: 'success', message: 'Post created', data: result })
 	}
 	next()
 }
@@ -41,7 +41,7 @@ export const updatePost: RequestHandler = async (req: Request, res: Response, ne
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Post updated', data: result })
+		res.status(200).json({ status: 'success', message: 'Post updated', data: result })
 	}
 	next()
 }
@@ -55,7 +55,7 @@ export const deletePost: RequestHandler = async (req: Request, res: Response, ne
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Post deleted', data: result })
+		res.status(200).json({ status: 'success', message: 'Post deleted', data: result })
 	}
 	next()
 
@@ -70,7 +70,7 @@ export const getPosts: RequestHandler = async (req: Request, res: Response, next
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Post retrieved', data: result })
+		res.status(200).json({ status: 'success', message: 'Post retrieved', data: result })
 	}
 	next()
 
@@ -85,7 +85,7 @@ export const getPost: RequestHandler = async (req: Request, res: Response, next:
 		next(error)
 	}
 	if (result != null || result != undefined) {
-		res.json({ status: 200, message: 'Post found', data: result })
+		res.status(200).json({ status: 'success', message: 'Post found', data: result })
 	}
 	next()
 
@@ -106,7 +106,7 @@ export const upvotePost: RequestHandler = async (req: Request, res: Response, ne
 		next(error)
 	}
 	if (result != null || result != undefined || upvote != null || upvote != undefined) {
-		res.json({ status: 200, message: 'Post upvoted', data: result })
+		res.status(200).json({ status: 'success', message: 'Post upvoted', data: result })
 	}
 	next()
 
@@ -125,7 +125,7 @@ export const downvotePost: RequestHandler = async (req: Request, res: Response, 
 		next(error)
 	}
 	if (result != null || result != undefined || downvote != null || downvote != undefined) {
-		res.json({ status: 200, message: 'Post downvoted', data: result })
+		res.status(200).json({ status: 'success', message: 'Post downvoted', data: result })
 	}
 	next()
 }
@@ -143,7 +143,7 @@ export const reportPost: RequestHandler = async (req: Request, res: Response, ne
 		next(error)
 	}
 	if (result != null || result != undefined || report != null || report != undefined) {
-		res.json({ status: 200, message: 'Post reported', data: result })
+		res.status(200).json({ status: 'success', message: 'Post reported', data: result })
 	}
 	next()
 

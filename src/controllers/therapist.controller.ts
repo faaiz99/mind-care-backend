@@ -21,7 +21,7 @@ export const changePassword: RequestHandler = async (req: Request, res: Response
 		console.log('Therapist Account Password could not be changed', error)
 		next(error)
 	}
-	res.json({ status: 200, message: 'Account Password Changed', result })
+	res.status(200).json({ status: 'success', message: 'Account Password Changed', result })
 }
 export const updateProfile: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	//A therapist profile already exists
@@ -35,14 +35,14 @@ export const updateProfile: RequestHandler = async (req: Request, res: Response,
 	} catch (error) {
 		console.log('Therapist Profile could not be updated', error)
 		next(error)
-		//res.json({ status: 500, message: 'Therapist Profile could not be updated', error })
+		//res.status(500).json({ status: 'failed'message: 'Therapist Profile could not be updated', error })
 	}
 	if (result != null || result != undefined) {
-		return res.json({ status: 200, message: "Therapist Profile updated", result });
+		return res.status(200).json({ status: 'success', message: "Therapist Profile updated", result });
 	}
 	// Wont execute 99%
 	else
-		return res.json({ status: 500, message: 'Server Error' });
+		return res.status(500).json({ status: 'failed'message: 'Server Error' });
 }
 export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const email = req.body.email;
@@ -53,7 +53,7 @@ export const enternewPassword: RequestHandler = async (req: Request, res: Respon
 		password: password
 	}
 	)
-	res.json({ status: 200, message: 'Account Password Changed' })
+	res.status(200).json({ status: 'success', message: 'Account Password Changed' })
 }
 export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const email = req.body.email;
@@ -75,14 +75,14 @@ export const verifyAccount: RequestHandler = async (req: Request, res: Response,
 	}, {
 		new: true
 	})
-	res.json({ status: 200, message: 'Account successfully verified' })
+	res.status(200).json({ status: 'success', message: 'Account successfully verified' })
 }
 export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const token = crypto.randomBytes(32).toString("hex")
 	const role = 'therapist'
 	const email = req.body.email
 	const emailPreview = emailSender(email, token, role)
-	res.json({ status: 200, message: 'Email Verification Sent', emailPreview })
+	res.status(200).json({ status: 'success', message: 'Email Verification Sent', emailPreview })
 	//next()
 }
 export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
@@ -111,11 +111,11 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
 	const tokens = issueTokens(therapist)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-		return res.json({ status: 200, accessToken: accessToken, refreshToken: refreshToken, therapist });
+		return res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, therapist });
 	}
 	// Wont execute
 	else
-		return res.json({ status: 500, message: 'Server Error' });
+		return res.status(500).json({ status: 'failed'message: 'Server Error' });
 }
 export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	// check existance by email
@@ -125,18 +125,18 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 	// email exists
 	//console.log('Email exists? ', exists)
 	if (exists != null || exists != undefined) {
-		return res.json({ status: 409, message: "Email already exists!" })
+		return res.status(409).json({ status: 'success', message: "Email already exists!" })
 	}
 	let result;
 	try {
 		result = await Therapist.create(req.body);
 	} catch (error) {
 		console.log('Therapist Account could not be created', error)
-		// res.json({ status: 200, message:"Therapist Account created" , result});
+		// res.status(200).json({ status: 'success', message:"Therapist Account created" , result});
 		next(error)
 	}
 	if (result != null || result != undefined)
-		res.json({ status: 200, message: "Therapist Account created", result });
+		res.status(200).json({ status: 'success', message: "Therapist Account created", result });
 }
 export const renewTokens: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	const therapist = req.body.user

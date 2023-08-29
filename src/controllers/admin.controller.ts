@@ -15,15 +15,15 @@ export const login: RequestHandler = async (req: Request, res: Response) => {
 	const tokens = issueTokens(admin)
 	const { accessToken, refreshToken } = tokens
 	if (tokens != null || tokens != undefined) {
-		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken, admin });
+		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, admin });
 	}
 	else
-		return res.json({ status: "error", user: false });
+		res.status(400).json({ status: "error", user: false });
 }
 export const signup: RequestHandler = async (req: Request, res: Response) => {
 	try {
 		const admin = await Admin.create(req.body);
-		res.json({ status: 200, message: "admin Account created" });
+		res.status(200).json({ status: 'success', message: "admin Account created" });
 	} catch (err) {
 		res.json({ status: "error", message: err });
 	}
