@@ -108,7 +108,7 @@ export const deleteGoalSettingJournal:RequestHandler  = async (req:Request, res:
 
 }
 
-import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal.model.js';
+import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal.model.ts';
 
 export const getSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const selfAffirmationJournal = req.body.clientId
@@ -144,7 +144,7 @@ export const deleteSelfAffirmationJournal:RequestHandler  = async (req:Request, 
 
 }
 
-import { ReflectionJournal } from '../models/journals/reflectionJournal.model.js';
+import { ReflectionJournal } from '../models/journals/reflectionJournal.model.ts';
 
 export const getReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const reflectionJournal = req.body.clientId
@@ -180,7 +180,7 @@ export const deleteReflectionJournal:RequestHandler  = async (req:Request, res:R
 	res.status(200).json({ status: 'success', message: 'Relfection Journal deleted', result })
 
 }
-import { OpenJournal } from '../models/journals/openJournal.model.js';
+import { OpenJournal } from '../models/journals/openJournal.model.ts';
 
 export const getOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const openJournal = req.body.clientId
@@ -216,7 +216,7 @@ export const deleteOpenJournal:RequestHandler  = async (req:Request, res:Respons
 	res.status(200).json({ status: 'success', message: 'Open Journal deleted', result })
 }
 
-import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model.js';
+import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model.ts';
 
 export const getChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
 
@@ -254,7 +254,7 @@ export const deleteChallengingNegativeThoughtsAboutYourselfJournal:RequestHandle
 	res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal deleted', result })
 
 }
-import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.model.js';
+import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.model.ts';
 
 export const getBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
 	const buildingASelfCarePlan = req.body.clientId
@@ -328,7 +328,7 @@ export const deleteAnxietyThoughtReccordJournal:RequestHandler  = async (req:Req
 // Sleep Journal has own types & Models //
 
 
-import { CalmingtheMind } from '../models/journals/sleepJournal/calmingtheMind.model.js';
+import { CalmingtheMind } from '../models/journals/sleepJournal/calmingtheMind.model.ts';
 
 export const getCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
 	const calmingtheMind = req.body.clientId
@@ -364,7 +364,7 @@ export const deleteCalmingtheMind:RequestHandler  = async (req:Request, res:Resp
 	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal deleted', result })
 }
 
-import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model.js';
+import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model.ts';
 
 export const getDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
 	const dreamJournal = req.body.clientId
@@ -398,7 +398,7 @@ export const deleteDreamJournal:RequestHandler  = async (req:Request, res:Respon
 
 }
 
-import { FindingpeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.js';
+import { FindingpeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.ts';
 
 export const getFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
 	const findingapeacefulSpace = req.body.clientId;
@@ -433,7 +433,7 @@ export const deleteFindingPeaceFulSpace:RequestHandler  = async (req:Request, re
 	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal deleted', result })
 }
 
-import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.js';
+import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.ts';
 
 export const getLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
 	const lookingforwardtoTomorrow = req.body.clientId
@@ -471,7 +471,7 @@ export const deleteLookingForwardToTomorrow:RequestHandler  = async (req:Request
 
 
 }
-import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.js';
+import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.ts';
 
 export const getPlanningDayAhead:RequestHandler  = async (req:Request, res:Response) => {
 	const planningthedayAhead = req.body.clientId
@@ -511,8 +511,9 @@ export const deletePlanningDayAhead:RequestHandler = async (req:Request, res:Res
 
 // Get all Journals // 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getAllEntries:RequestHandler = (req:Request, res:Response) => {
-``
+
 }
 
 

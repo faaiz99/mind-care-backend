@@ -5,12 +5,12 @@ import { Application } from 'express'
 import bodyParser from "body-parser"
 import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from "swagger-jsdoc";
-import { connect } from './src/config/db.config.js'
-import { therapistRouter } from "./src/routes/therapist/therapist.route.js"
-import { adminRouter } from './src/routes/admin/admin.route.js'
-import { clientRouter } from './src/routes/client/client.route.js'
-import { options } from './src/utils/swagger.util.js'
-import { corsPolicy } from "./src/utils/cors.util.js";
+import { connect } from './src/config/db.config.ts'
+import { therapistRouter } from "./src/routes/therapist/therapist.route.ts"
+import { adminRouter } from './src/routes/admin/admin.route.ts'
+import { clientRouter } from './src/routes/client/client.route.ts'
+import { options } from './src/utils/swagger.util.ts'
+import { corsPolicy } from "./src/utils/cors.util.ts";
 // import compression from 'compression'
 
 dotenv.config()
@@ -43,14 +43,15 @@ app.use(`${baseUrl}/therapist`, therapistRouter)
 app.use(`${baseUrl}/admin`, adminRouter)
 
 // Main Endpoint //
-app.get(`${baseUrl}`, (req, res) => {
+app.get(`${baseUrl}`, (req, res):void => {
 	res.send('Mind Care API')
 })
 
-app.listen(PORT, () => {
+export const listner = app.listen(PORT, () => {
 	console.log(`Mind Care Backend on port ${PORT}`)
 })
 
 
 
 
+export default  app
