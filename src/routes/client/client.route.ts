@@ -19,8 +19,5 @@ router.use(paymentRoutes)
 router.use(therapistRoutes)
 
 
-router.get("/", (req, res) => {
-  res.send("Client home page");
-});
 
 export { router as clientRouter }

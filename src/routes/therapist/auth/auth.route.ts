@@ -84,6 +84,8 @@ router.get("/profile", (req, res) => {
 });
 
 router.post('/refresh-token', revalidateToken, renewTokens)
-
+router.get("/", (req, res) => {
+  res.send("Therapist");
+});
 
 export { router as authRoutes }

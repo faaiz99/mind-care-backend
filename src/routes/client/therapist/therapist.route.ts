@@ -7,4 +7,5 @@ router.get("/therapists", getTherapists);
 router.get("/therapists/:id", getTherapistById)
 
 
+
 export { router as therapistRoutes}

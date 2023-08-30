@@ -23,12 +23,29 @@ afterAll(async () => {
     listner.close()
 })
 
-describe('Mind Care API', () => {
-    test('Entry Point API', async () => {
+describe('Mind Care Backend', () => {
+    test('GET /api/v1', async () => {
         const response = await request(baseUrl).get('/')
         expect(response.statusCode).toBe(200)
         expect(response.text).toEqual('Mind Care API')
     })
+    test('GET /api/v1/client', async () => {
+        const response = await request(baseUrl).get('/client')
+        expect(response.statusCode).toBe(200)
+        expect(response.text).toEqual('Client')
+    })
+    test('GET /api/v1/therapist', async () => {
+        const response = await request(baseUrl).get('/therapist')
+        expect(response.statusCode).toBe(200)
+        expect(response.text).toEqual('Therapist')
+    })
+    test('GET /api/v1/admin', async () => {
+        const response = await request(baseUrl).get('/admin')
+        expect(response.statusCode).toBe(401)
+        expect(response.text).toEqual('Unauthorized')
+    })
+    
+    
 })
 
 

@@ -14,7 +14,4 @@ router.use(commentRoutes)
 
 
 
-
-
-
 export { router as therapistRouter }

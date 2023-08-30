@@ -27,5 +27,8 @@ router.post('/login', login)
 router.get("/profile", (req, res) => {
   res.send("About this Client");
 });
+router.get("/", (req, res) => {
+  res.send("Client");
+});
 
 export { router as authRoutes }
