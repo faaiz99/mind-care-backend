@@ -81,7 +81,7 @@ This project is licensed under the [License Name] License - see the [LICENSE](LI
 
 ## Contact Information
 
-For questions or support, please contact Faaiz Aslam at [your email address].
+For questions or support, please contact Faaiz Aslam at faaizaslam75@live.com
 
 ---
 
