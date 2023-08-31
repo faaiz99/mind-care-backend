@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 
-import { renewTokenService, loginService, signupService, aboutAdmin } from '../services/admin.service.ts'
+import { renewTokensService, loginService, signupService, aboutAdmin } from '../services/admin.service.ts'
 
 
 export const index: RequestHandler = async (req:Request, res:Response)=>{
@@ -27,7 +27,7 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 }
 export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { accessToken, refreshToken, data } = await renewTokenService(req.body.user)
+		const { accessToken, refreshToken, data } = await renewTokensService(req.body.user)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
 	} catch (error) {
 		next(error)

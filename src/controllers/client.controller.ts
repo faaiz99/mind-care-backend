@@ -1,122 +1,81 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import { Client } from '../models/client/client.model.ts'
-import { issueTokens } from '../middlewares/auth.middleware.ts'
-import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
-import crypto from 'crypto'
+import { Token } from '../types/tokens.js'
+import { renewTokensService, enternewPasswordService, resetPasswordService, verifyAccountService, loginService, sendverificationEmailService, signupService } from '../services/client.service.ts'
 
-export const enternewPassword: RequestHandler = async (req: Request, res: Response) => {
-
+export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Can also be used to change password from profile
-		const email = req.body.email;
-		const password = req.body.password
-		await Client.findOneAndUpdate({
-			email: email
-		}, {
-			password: password
-		}
-		)
-		res.status(200).json({ status: 'success', message: 'Account Password Changed' })
+		const data = await enternewPasswordService(req.body.email, req.body.password)
+		res.status(200).json({ status: 'success', message: 'Account Password Changed', data })
 	} catch (error) {
 		res.status(409).json({ status: 'failed', message: 'Account Password Could not be Changed' })
+		next(error)
 	}
 }
 export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	const email = req.body.email;
-	const client = await Client.findOne({
-		email: email
-	})
-	if (client == null || client == undefined)
-		return res.json({ status: 404, message: "Account does not exist" })
-	const token = crypto.randomBytes(32).toString("hex")
-	const role = 'client'
-	resetAccountPassword(email, token, role)
+	try {
+		const data = await resetPasswordService(req.body.email)
+		res.status(200).json({ status: 'success', message: 'Account Password Updated', data })
+	} catch (error) {
+		res.status(404).json({ status: 'failure', message: "Account does not exist" })
+		next(error)
+	}
 	next()
 }
-export const verifyAccount: RequestHandler = async (req: Request, res: Response) => {
+export const verifyAccount: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		await Client.findOneAndUpdate({
-			email: req.body.email,
-		}, {
-			verifiedAccount: true
-		}, {
-			new: true
-		})
-		res.status(200).json({ status: 'success', message: 'Account successfully verified' })
+		const data = await verifyAccountService(req.body.email)
+		res.status(200).json({ status: 'success', message: 'Account successfully verified', data })
+
 	} catch (error) {
 		res.status(500).json({ status: 'failed', message: 'Account could not be verified' })
+		next(error)
 	}
+
 }
 export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	const token = crypto.randomBytes(32).toString("hex")
-	const role = 'client'
-	const email = req.body.email
-	emailSender(email, token, role)
+	sendverificationEmailService(req.body.email)
 	next()
 }
-export const login = async (req: Request, res: Response) => {
-	// check existance by email
-	const exists = await Client.exists({
-		email: req.body.email
-	})
-	// email exists
-	//console.log('Email exists? ', exists)
-	if (exists == null || exists == undefined) {
-		return res.status(404).json({ status: 'failed', message: "Account does not exists" })
-	}
-	let client;
-	if (exists) {
-		// get therapist details if password is correct
-		client = await Client.findOne({
-			email: req.body.email,
-			password: req.body.password,
-		})
-		// delete client?.password
-		if (client == null || client == undefined)
-			return res.status(401).json({ status: 'failed', message: "Incorrect password" })
-	}
-	// setting password to undefined for security purposes
+export const login = async (req: Request, res: Response, next: NextFunction) => {
 
-	const tokens = issueTokens(client)
-	const { accessToken, refreshToken } = tokens
-	if (tokens != null || tokens != undefined && client !== null) {
-		// pending
-		//client.password = ''
-		return res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, client });
-	}
-	// Wont execute
-	else
-		return res.status(500).json({ status: 'failed', message: 'Server Error' });
-}
-export const signup: RequestHandler = async (req: Request, res: Response) => {
-
-	// check existance by email
-	const exists = await Client.exists({
-		email: req.body.email
-	})
-	// email exists
-	//console.log('Email exists? ', exists)
-	if (exists != null || exists != undefined) {
-		res.status(409).json({ status: 'success', message: "Email already exists!" })
-	}
-	let result;
 	try {
-		result = await Client.create(req.body);
-		if (result != null || result != undefined)
-		res.status(200).json({ status: 'success', message: "Client Account created", result });
-	} catch (error) {
-		console.log('Client account could not be created', error)
-		res.status(409).json({ status: 'failed', message:"Client Account could not be created" , result});
-	}
+		const { accessToken, refreshToken, data }: Token = await loginService(req.body.email, req.body.password)
+		return res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, data });
 
-}
-export const renewTokens: RequestHandler = (req: Request, res: Response) => {
-	const client = req.body.user // req.user.user
-	const tokens = issueTokens(client)
-	const { accessToken, refreshToken } = tokens
-	if (tokens != null || tokens != undefined) {
-		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken });
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error: any) {
+		if (error.message === 'Incorrect Password')
+			res.status(401).json({ status: 'failed', message: "Incorrect password" })
+		else if (error.message === 'Account does not exists')
+			res.status(404).json({ status: 'failed', message: "Account does not exists" })
+		else
+			next(error)
+
 	}
-	else
-		return res.json({ status: "error", user: false });
+}
+export const signup: RequestHandler = async (req: Request, res: Response, next:NextFunction) => {
+
+	try {
+		const data = await signupService(req.body)
+		res.status(200).json({ status: 'success', message: "Client Account created", data });
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error: any) {
+
+		if (error.message === 'email already in database')
+			res.status(409).json({ status: 'success', message: "Email already exists!" })
+		else if (error.message === 'account could not be created')
+			res.status(409).json({ status: 'failed', message: "Client Account could not be created" });
+		else 
+			next(error)
+
+	}
+}
+export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const { accessToken, refreshToken, data } = await renewTokensService(req.body.user)
+		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
+	} catch (error) {
+		next(error)
+		res.status(409).json({ status: "fail" });
+	}
 }

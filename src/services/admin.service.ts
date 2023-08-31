@@ -27,7 +27,7 @@ export const signupService = async (admin: unknown) => {
 
 }
 
-export const renewTokenService = async (admin: unknown):Promise<Token>  => {
+export const renewTokensService = async (admin: unknown):Promise<Token>  => {
 
     return issueTokens(admin)
 
