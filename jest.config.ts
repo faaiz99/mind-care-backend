@@ -4,5 +4,7 @@ module.exports = {
   testEnvironment: 'node',
   moduleDirectories: ["node_modules", "src"],
  // globalSetup:"./src/config/setup.config.ts",
-  setupFilesAfterEnv: ["./src/config/setup.config.ts"]
+  setupFilesAfterEnv: ["./src/config/setup.config.ts"],
+  collectCoverage: true,
+  coverageReporters: ["json", "html"],
 };

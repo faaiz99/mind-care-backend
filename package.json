@@ -7,7 +7,7 @@
   "main": "dist/app.ts",
   "scripts": {
     "build": "npx tsc",
-    "test": "jest --runInBand",
+    "test": "jest --runInBand  --coverage --watchAll ",
     "start": "node app.ts",
     "dev": "nodemon app.ts --watch",
     "lint": "npx eslint ."
