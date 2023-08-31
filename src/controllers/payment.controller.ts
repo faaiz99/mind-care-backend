@@ -33,7 +33,7 @@ export const createPaymentIntent: RequestHandler = async (req: Request, res: Res
   },
   );
 
-  res.status(302).json({ message: 'Payment Intent Created', url: session.url })
+  res.status(200).json({ message: 'Payment Intent Created', url: session.url })
 }
 
 
