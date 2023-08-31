@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Token } from '../types/tokens.js'
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
 const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
@@ -14,23 +14,20 @@ export const authenticateToken: RequestHandler = async (req: Request, res: Respo
   });
 }
 
-export const revalidateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const revalidateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const authHeader = req.headers["authorization"];
   if (authHeader === null || authHeader === undefined)
-    return res.json({ status: 401, message: 'Authorization Header Absent', data: authHeader })
-  const refreshToken = authHeader
-  if (refreshToken == null || refreshToken == undefined) 
-    return res.sendStatus(401);
-  jwt.verify(refreshToken as string, REFRESH_JWT_SECRET as string, (err, user) => {
+    res.json({ status: 401, message: 'Authorization Header Absent', data: authHeader })
+  jwt.verify(authHeader as string, REFRESH_JWT_SECRET as string, (err, user) => {
     if (err)
-      return res.send(err + ' \n Please Login Again');
+      res.status(200).json({message:'Please Login Again'})
     req.body.user = user
     console.log('refresh token verified')
     next();
   });
 }
 
-export const issueTokens = (userBody: unknown): { status: number, accessToken: string, refreshToken: string } => {
+export const issueTokens = (userBody: unknown): Token => {
   // used for both therapist and client
   const token = jwt.sign(
     {
@@ -50,5 +47,5 @@ export const issueTokens = (userBody: unknown): { status: number, accessToken: s
       expiresIn: '24h',
     }
   );
-  return { status: 200, accessToken: token, refreshToken: refreshToken };
+  return { accessToken: token, refreshToken: refreshToken, data: userBody };
 }

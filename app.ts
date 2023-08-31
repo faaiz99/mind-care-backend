@@ -47,11 +47,9 @@ app.get(`${baseUrl}`, (req, res):void => {
 	res.send('Mind Care API')
 })
 
-export const listner = app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
 	console.log(`Mind Care Backend on port ${PORT}`)
 })
-
-
 
 
 export default  app

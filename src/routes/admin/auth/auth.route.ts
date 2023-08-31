@@ -1,17 +1,13 @@
 import { Router } from "express";
-const router:Router = Router()
+const router: Router = Router()
 
 import { authenticateToken, revalidateToken } from "../../../middlewares/auth.middleware.ts";
-import { signup, login, renewTokens } from "../../../controllers/admin.controller.ts";
+import { signup, login, renewToken, about, index } from "../../../controllers/admin.controller.ts";
 
-router.get("/profile", authenticateToken, (req, res) => {
-  res.send("About this admin");
-});
 router.post('/signup', signup)
-router.post('/refresh-token', revalidateToken, renewTokens)
+router.post('/refresh-token', revalidateToken, renewToken)
 router.post('/login', login)
-router.get("/", authenticateToken, (req, res) => {
-  res.send("Admin home page");
-});
+router.get("/about/:id", about);
+router.get("/", authenticateToken, index);
 
 export { router as authRoutes }

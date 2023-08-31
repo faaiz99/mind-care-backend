@@ -13,3 +13,13 @@
 8. Guided Journaling
 9. Sleep and Fitness Tracker
 10. Automated Profile Marketing
+
+
+
+
+Route -> [Middleware -> Controller -> Service -> Model] -> MongoDB
+
+Since we did not code route and mongoDB 
+we assume they have good test cases
+and are thoroughly tested. Only the 
+square bracket parts is to be tested

@@ -1,40 +1,48 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Request, Response, NextFunction, RequestHandler } from 'express'
+import { Request, Response, RequestHandler, NextFunction } from 'express'
 
-import { Admin } from '../models/admin/admin.model.ts'
+import { renewTokenService, loginService, signupService, aboutAdmin } from '../services/admin.service.ts'
 
-import { issueTokens } from '../middlewares/auth.middleware.ts'
 
-export const login: RequestHandler = async (req: Request, res: Response) => {
-	const admin = await Admin.findOne({
-		email: req.body.email,
-		password: req.body.password,
-	})
-	if (admin == null || admin == undefined)
-		return res.json({ status: 404, message: "Account does not exist" })
-	const tokens = issueTokens(admin)
-	const { accessToken, refreshToken } = tokens
-	if (tokens != null || tokens != undefined) {
-		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, admin });
-	}
-	else
-		res.status(400).json({ status: "error", user: false });
+export const index: RequestHandler = async (req:Request, res:Response)=>{
+	res.status(200).json({status:"success", message:"Admin Home"})
 }
-export const signup: RequestHandler = async (req: Request, res: Response) => {
+
+export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const admin = await Admin.create(req.body);
-		res.status(200).json({ status: 'success', message: "admin Account created" });
-	} catch (err) {
-		res.json({ status: "error", message: err });
+		const { accessToken, refreshToken, data } = await loginService(req.body.email, req.body.password)
+		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
+	} catch (error) {
+		next(error)
+		res.status(409).json({ status: "fail" });
 	}
 }
-export const renewTokens: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
-	const admin = req.body.user 
-	const tokens = issueTokens(admin)
-	const { accessToken, refreshToken } = tokens
-	if (tokens != null || tokens != undefined) {
-		return res.json({ status: "OK", accessToken: accessToken, refreshToken: refreshToken });
+export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const data= await signupService(req.body)
+		res.status(200).json({ status: 'success', message: "Admin Account created", data });
+	} catch (error) {
+		next(error)
+		res.status(409).json({ status: "error", message: error });
 	}
-	else
-		return res.json({ status: "error", user: false });
+}
+export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const { accessToken, refreshToken, data } = await renewTokenService(req.body.user)
+		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
+	} catch (error) {
+		next(error)
+		res.status(409).json({ status: "fail" });
+	}
+}
+
+export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const data = await aboutAdmin(req.params.id)
+		res.status(200).json({ status: 'success', message: "Admin Account found", data });
+
+	} catch (error) {
+		next(error)
+		res.status(409).json({ status: "fail", message: 'Admin Account not found' });
+
+	}
 }

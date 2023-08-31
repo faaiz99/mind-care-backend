@@ -1,0 +1,42 @@
+
+import { Admin } from '../models/admin/admin.model.ts'
+import { issueTokens } from '../middlewares/auth.middleware.ts'
+import { Token } from '../types/tokens.js'
+
+
+
+export const loginService = async (email: string, password: string):Promise<Token> => {
+    const admin = await Admin.findOne({
+        email: email,
+        password: password,
+    })
+    if (admin == null || admin == undefined)
+        throw new Error('Account does not exist')
+
+    return issueTokens(admin)
+
+}
+
+export const signupService = async (admin: unknown) => {
+
+    const response = await Admin.create(admin);
+    if (response == null || response == undefined)
+        throw new Error('Account could not be created')
+
+    return response
+
+}
+
+export const renewTokenService = async (admin: unknown):Promise<Token>  => {
+
+    return issueTokens(admin)
+
+}
+
+export const aboutAdmin = async (id: string) => {
+    const response = await Admin.findOne({ _id: id })
+    if (response == null || response == undefined)
+        throw new Error('Account could not be found')
+    return response
+}
+
