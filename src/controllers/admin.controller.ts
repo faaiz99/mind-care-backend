@@ -1,6 +1,5 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
-
-import { renewTokensService, loginService, signupService, aboutAdminService } from '../services/admin.service.ts'
+import * as adminService from '../services/admin.service.ts'
 
 
 export const index: RequestHandler = async (req:Request, res:Response)=>{
@@ -9,7 +8,7 @@ export const index: RequestHandler = async (req:Request, res:Response)=>{
 
 export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { accessToken, refreshToken, data } = await loginService(req.body.email, req.body.password)
+		const { accessToken, refreshToken, data } = await adminService.login(req.body.email, req.body.password)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
 	} catch (error) {
 		res.status(409).json({ status: "fail" });
@@ -18,7 +17,7 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
 }
 export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data= await signupService(req.body)
+		const data= await adminService.signup(req.body)
 		res.status(200).json({ status: 'success', message: "Admin Account created", data });
 	} catch (error) {
 		res.status(409).json({ status: "error", message: error });
@@ -27,7 +26,7 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 }
 export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { accessToken, refreshToken, data } = await renewTokensService(req.body.user)
+		const { accessToken, refreshToken, data } = await adminService.renewTokens(req.body.user)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
 	} catch (error) {
 		res.status(409).json({ status: "fail" });
@@ -37,7 +36,7 @@ export const renewToken: RequestHandler = async (req: Request, res: Response, ne
 
 export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await aboutAdminService(req.params.id)
+		const data = await adminService.aboutAdmin(req.params.id)
 		res.status(200).json({ status: 'success', message: "Admin Account found", data });
 
 	} catch (error) {

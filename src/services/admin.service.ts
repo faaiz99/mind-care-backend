@@ -5,7 +5,7 @@ import { Token } from '../types/tokens.js'
 
 
 
-export const loginService = async (email: string, password: string):Promise<Token> => {
+export const login= async (email: string, password: string):Promise<Token> => {
     const admin = await Admin.findOne({
         email: email,
         password: password,
@@ -17,7 +17,7 @@ export const loginService = async (email: string, password: string):Promise<Toke
 
 }
 
-export const signupService = async (admin: unknown) => {
+export const signup = async (admin: unknown) => {
 
     const response = await Admin.create(admin);
     if (response == null || response == undefined)
@@ -27,13 +27,13 @@ export const signupService = async (admin: unknown) => {
 
 }
 
-export const renewTokensService = async (admin: unknown):Promise<Token>  => {
+export const renewTokens = async (admin: unknown):Promise<Token>  => {
 
     return issueTokens(admin)
 
 }
 
-export const aboutAdminService = async (id: string) => {
+export const aboutAdmin = async (id: string) => {
     const response = await Admin.findOne({ _id: id })
     if (response == null || response == undefined)
         throw new Error('Account could not be found')

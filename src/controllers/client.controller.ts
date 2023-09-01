@@ -1,11 +1,11 @@
 
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import { Token } from '../types/tokens.js'
-import { renewTokensService, enternewPasswordService, resetPasswordService, verifyAccountService, loginService, sendverificationEmailService, signupService } from '../services/client.service.ts'
+import * as clientService from '../services/client.service.ts'
 
 export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await enternewPasswordService(req.body.email, req.body.password)
+		const data = await clientService.enternewPassword(req.body.email, req.body.password)
 		res.status(200).json({ status: 'success', message: 'Account Password Changed', data })
 	} catch (error) {
 		res.status(409).json({ status: 'failed', message: 'Account Password Could not be Changed' })
@@ -14,7 +14,7 @@ export const enternewPassword: RequestHandler = async (req: Request, res: Respon
 }
 export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await resetPasswordService(req.body.email)
+		const data = await clientService.resetPassword(req.body.email)
 		res.status(200).json({ status: 'success', message: 'Account Password Updated', data })
 	} catch (error) {
 		res.status(404).json({ status: 'failure', message: "Account does not exist" })
@@ -24,7 +24,7 @@ export const resetPassword: RequestHandler = async (req: Request, res: Response,
 }
 export const verifyAccount: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await verifyAccountService(req.body.email)
+		const data = await clientService.verifyAccount(req.body.email)
 		res.status(200).json({ status: 'success', message: 'Account successfully verified', data })
 
 	} catch (error) {
@@ -34,13 +34,13 @@ export const verifyAccount: RequestHandler = async (req: Request, res: Response,
 
 }
 export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-	sendverificationEmailService(req.body.email)
+	clientService.sendverificationEmail(req.body.email)
 	next()
 }
 export const login = async (req: Request, res: Response, next: NextFunction) => {
 
 	try {
-		const { accessToken, refreshToken, data }: Token = await loginService(req.body.email, req.body.password)
+		const { accessToken, refreshToken, data }: Token = await clientService.login(req.body.email, req.body.password)
 		res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, data });
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -54,10 +54,10 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 	}
 }
-export const signup: RequestHandler = async (req: Request, res: Response, next:NextFunction) => {
+export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 
 	try {
-		const data = await signupService(req.body)
+		const data = await clientService.signup(req.body)
 		res.status(200).json({ status: 'success', message: "Client Account created", data });
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} catch (error: any) {
@@ -66,14 +66,14 @@ export const signup: RequestHandler = async (req: Request, res: Response, next:N
 			res.status(409).json({ status: 'success', message: "Email already exists!" })
 		else if (error.message === 'account could not be created')
 			res.status(409).json({ status: 'failed', message: "Client Account could not be created" });
-		else 
+		else
 			next(error)
 
 	}
 }
 export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { accessToken, refreshToken, data } = await renewTokensService(req.body.user)
+		const { accessToken, refreshToken, data } = await clientService.renewTokens(req.body.user)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
 	} catch (error) {
 		res.status(409).json({ status: "fail" });
