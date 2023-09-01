@@ -33,7 +33,7 @@ export const renewTokensService = async (admin: unknown):Promise<Token>  => {
 
 }
 
-export const aboutAdmin = async (id: string) => {
+export const aboutAdminService = async (id: string) => {
     const response = await Admin.findOne({ _id: id })
     if (response == null || response == undefined)
         throw new Error('Account could not be found')

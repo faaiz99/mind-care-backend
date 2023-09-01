@@ -1,3 +1,4 @@
+
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import { Token } from '../types/tokens.js'
 import { renewTokensService, enternewPasswordService, resetPasswordService, verifyAccountService, loginService, sendverificationEmailService, signupService } from '../services/client.service.ts'
@@ -40,7 +41,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 	try {
 		const { accessToken, refreshToken, data }: Token = await loginService(req.body.email, req.body.password)
-		return res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, data });
+		res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, data });
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} catch (error: any) {
@@ -75,7 +76,7 @@ export const renewToken: RequestHandler = async (req: Request, res: Response, ne
 		const { accessToken, refreshToken, data } = await renewTokensService(req.body.user)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
 	} catch (error) {
-		next(error)
 		res.status(409).json({ status: "fail" });
+		next(error)
 	}
 }
