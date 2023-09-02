@@ -99,3 +99,12 @@ export const renewTokens = async (client: unknown): Promise<Token> => {
     return issueTokens(client)
 
 }
+
+
+export const aboutClient = async (id: string) => {
+    const response = await Client.findOne({ _id: id })
+    if (response == null || response == undefined)
+        throw new Error('Account could not be found')
+    return response
+}
+

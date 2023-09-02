@@ -14,6 +14,7 @@ import {
   changePassword,
   enternewPassword,
   renewTokens,
+  about
 
 } from "../../../controllers/therapist.controller.ts";
 
@@ -79,9 +80,7 @@ router.post('/verify/:token', authenticateToken, verifyAccount)
 
 router.post('/send-verification-email', sendverificationEmail)
 
-router.get("/profile", (req, res) => {
-  res.send("About this Therapist");
-});
+router.get("/about/:id", about);
 
 router.post('/refresh-token', revalidateToken, renewTokens)
 router.get("/", (req, res) => {

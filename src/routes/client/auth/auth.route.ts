@@ -14,7 +14,7 @@ import {
 import {
   enternewPassword, resetPassword,
   verifyAccount, sendverificationEmail,
-  login, signup, renewToken
+  login, signup, renewToken, about
 } from "../../../controllers/client.controller.ts";
 
 router.post('/password/:token', enternewPassword)
@@ -24,9 +24,7 @@ router.post('/send-verification-email', sendverificationEmail)
 router.post('/signup', signup)
 router.post('/refresh-token', revalidateToken, renewToken)
 router.post('/login', login)
-router.get("/profile", (req, res) => {
-  res.send("About this Client");
-});
+router.get("/about/:id",about);
 router.get("/", (req, res) => {
   res.send("Client");
 });

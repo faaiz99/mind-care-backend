@@ -118,5 +118,12 @@ export const getTherapistById = async (id:string) => {
 }
 
 
+export const aboutTherapist = async (id: string) => {
+    const response = await Therapist.findOne({ _id: id })
+    if (response == null || response == undefined)
+        throw new Error('Account could not be found')
+    return response
+}
+
 
 

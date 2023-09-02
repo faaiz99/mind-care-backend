@@ -114,3 +114,14 @@ export const getTherapistById: RequestHandler = async (req: Request, res: Respon
 		next(error)
 	}
 }
+
+export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const data = await therapistService.aboutTherapist(req.params.id)
+		res.status(200).json({ status: 'success', message: "Client Account found", data });
+
+	} catch (error) {
+		res.status(409).json({ status: "fail", message: 'Client Account not found' });
+		next(error)
+	}
+}
