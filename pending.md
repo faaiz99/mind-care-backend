@@ -61,7 +61,6 @@
 
     /** CLIENT */
 
-
     POST /signup
     POST /login
     POST /verify/:token
@@ -88,30 +87,85 @@
 
     /** ADMIN */
 
-    // admin panel routes pending //
+    // admin panel routes in admin support //
     POST /signup
     POST /refresh-token
     POST /login
     GET /about/:id
     GET / 
 
-6 /** Guided Journaling */
+6.  /** Guided Journaling */
 
-7 /** Routine Builder and Daily Tasks */
+    // clientId -> cid
+    // journalId -> id
 
-8 /** Rescue Session */
+    GET /journals/:cid
+    GET /journalName/:id/:cid [PENDING]
+    POST /journalName/:cid
+    DELETE /journalName/:id
 
-9 /** Teletherapy */
 
-10 /** Video Diagnosis */
+7. /** Routine Builder and Daily Tasks */
 
-11 /** Content Reccomendation */
+    // clientId -> cid
+    // journalId -> id
 
-12 /** Automated Therapist Profile Marketing */
+    GET  /reminders/:cid
+    GET  /reminders/:id/:cid
+    POST /reminders/:cid
+    DELETE /reminder/:id
+    PATCH /reminder/:id
 
-13 /** Admin Panel and Support */
 
-14 /** AI Based Fitness and Sleep Tracker */
+8. /** Rescue Session */
+
+9. /** Teletherapy */
+
+10. /** Video Diagnosis */
+
+11. /** Content Reccomendation */
+
+    GET /suggest-rescue-sessions
+    GET /suggest-learning-paths
+    GET /suggest-guided-journals
+    GET /forum-posts
+    GET /feature-therapists
+
+    // Community Forum Routes Pending //
+
+
+12. /** Automated Therapist Profile Marketing */
+
+13. /** Admin Panel and Support */
+
+    GET /reported-posts
+    GET /reported-comments
+    GET /reported-accounts
+
+    POST /reported-post/:id
+    POST /reported-comment/:id
+    POST /reported-accounts/:id
+
+    DELETE /remove-posts/:id
+    DELETE /remove-comment/:id
+    DELETE /remove-account/:id
+
+    POST /reported-post/:id
+
+    PATCH /ban-user/:id
+
+    GET /account-appeals
+
+    POST /issue-warning/:id
+
+    GET /message
+
+    POST /message/:cid [chat id]
+
+    GET /forum-posts
+    GET /platform-signups
+
+14. /** AI Based Fitness and Sleep Tracker */
 
 
 
@@ -121,3 +175,9 @@ Since we did not code route and mongoDB
 we assume they have good test cases
 and are thoroughly tested. Only the 
 square bracket parts is to be tested
+
+
+
+https://www.npmjs.com/package/express-mongo-sanitize
+https://www.npmjs.com/package/express-rate-limit
+https://www.npmjs.com/package/express-validator

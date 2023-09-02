@@ -84,7 +84,7 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 			res.status(409).json({ status: 'success', message: "Email already exists!" })
 		else if (error.message === 'account could not be created')
 			res.status(409).json({ status: 'failed', message: "Client Account could not be created" });
-		else 
+		else
 			next(error)
 
 	}

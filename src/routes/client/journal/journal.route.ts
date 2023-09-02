@@ -42,7 +42,7 @@ import {
 	createLookingForwardToTomorrow
 } from '../../../controllers/journal.controller.ts'
 
-router.get('/all-journals', getAllEntries)
+router.get('/journals', getAllEntries)
 
 router.post('/anxiety-journal', createAnxietyThoughtReccordJournal)
 router.delete('/anxiety-journal', deleteAnxietyThoughtReccordJournal)
