@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as therapistService from '../services/therapist.service.ts'
-import { Token } from '../types/tokens.js'
+import { Token } from '../Types/tokens.js'
 
 export const changePassword: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 

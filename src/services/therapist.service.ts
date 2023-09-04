@@ -47,7 +47,7 @@ export const verifyAccount = async (email:string) => {
         new: true
     })
 
-    if (response == undefined || response == null)
+    if (!response)
         throw new Error('Account could not be verified')
     return response
 }
@@ -63,7 +63,7 @@ export const login = async (email: string, password: string) => {
         })
         // email exists
         //console.log('Email exists? ', exists)
-        if (exists == null || exists == undefined) {
+        if (!exists) {
             throw new Error('Account does not exists')
         }
     
@@ -88,7 +88,7 @@ export const signup = async (therapist:any) => {
     })
     // email exists
     //console.log('Email exists? ', exists)
-    if (exists != null || exists != undefined) {
+    if (!exists) {
         throw new Error('email already in database')
     }
 
@@ -102,13 +102,10 @@ export const signup = async (therapist:any) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const renewTokens = async (therapist:unknown) => {
     return issueTokens(therapist)
-
 }
-
-
 export const aboutTherapist = async (id: string) => {
     const response = await Therapist.findOne({ _id: id })
-    if (response == null || response == undefined)
+    if (!response)
         throw new Error('Account could not be found')
     return response
 }

@@ -3,11 +3,15 @@ import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
 
 
-export const updateAppointment = async ()=>{
-    const response = await Appointment.findByIdAndUpdate()
-    if(!response)
-        throw new Error('Appointment could not be updated')
-    return response
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const updateAppointment = async (appointment:any)=>{
+  const filter = appointment.id;
+  const response = await Therapist.findOneAndUpdate(filter, appointment, {
+      returnOriginal: false
+  })
+  if (!response)
+      throw new Error('Appointment could not be updated')
+  return response
 }
 
 export const deleteAppointment = async (id:string)=>{
@@ -18,8 +22,8 @@ export const deleteAppointment = async (id:string)=>{
 
 }
 
-export const createAppointment = async ()=>{
-    const response = await Appointment.create()
+export const createAppointment = async (appointment:unknown)=>{
+    const response = await Appointment.create(appointment)
     if(!response)
         throw new Error('Appointment could not be created')
     return response
