@@ -98,22 +98,7 @@ export const renewTokens: RequestHandler = async (req: Request, res: Response, n
 		next(error)
 	}
 }
-export const getTherapists: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	try {
-		const data = await therapistService.getTherapists()
-		res.status(200).json({ status: 'success', message: "Therapists Found", data: data })
-	} catch (error) {
-		next(error)
-	}
-}
-export const getTherapistById: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	try {
-		const data = therapistService.getTherapistById(req.params.id)
-		res.status(200).json({ status: 'success', message: "Therapists Found", data: data })
-	} catch (error) {
-		next(error)
-	}
-}
+
 
 export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {

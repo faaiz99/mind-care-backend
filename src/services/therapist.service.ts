@@ -104,18 +104,6 @@ export const renewTokens = async (therapist:unknown) => {
     return issueTokens(therapist)
 
 }
-export const getTherapists = async () => {
-    const response = await Therapist.find({})
-    if(!response)
-        throw new Error('Therapists not found')
-    return response
-}
-export const getTherapistById = async (id:string) => {
-    const response =  await Therapist.find({ _id:id })
-    if(!response)
-        throw new Error('Therapist not found')
-    return response
-}
 
 
 export const aboutTherapist = async (id: string) => {

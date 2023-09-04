@@ -1,11 +1,20 @@
-import { createAppointment } from "../../../controllers/appointment.controller.ts";
-import { Router } from "express";
+import { createAppointment, getAppointment,getAppointments, deleteAppointment, updateAppointment, getTherapistById, getTherapists } from "../../../controllers/appointment.controller.ts";
 
+import { Router } from "express";
 
 const router:Router = Router()
 
+router.get('/appointments', getAppointments)
+router.post('/appointments',createAppointment)
+router.patch('appointments/:id', updateAppointment)
+router.get('/appointments/:id', getAppointment)
+router.delete('/appointments/:id', deleteAppointment)
 
-router.get('/appointment', createAppointment)
+router.get("/therapists", getTherapists);
+router.get("/therapists/:id", getTherapistById)
+
+// router.get("/clients")
+// router.get("/clients/:id")
 
 
 export {router as appointmentRoutes}
