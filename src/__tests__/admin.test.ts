@@ -14,7 +14,7 @@ describe('Mind Care Admin', () => {
         })
     })
     describe('Admin Login', () => {
-        it.only('POST /api/v1/admin/login - return 200', async () => {
+        it('POST /api/v1/admin/login - return 200', async () => {
             const userInput = {
                 "email": "admin@mindcare.com",
                 "password": "123"

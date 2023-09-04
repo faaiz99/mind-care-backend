@@ -42,6 +42,5 @@ export const about: RequestHandler = async (req: Request, res: Response, next: N
 	} catch (error) {
 		res.status(409).json({ status: "fail", message: 'Admin Account not found' });
 		next(error)
-
 	}
 }

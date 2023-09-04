@@ -1,6 +1,5 @@
 import {Schema, model} from 'mongoose'
 
-
 const appointmentSchema = new Schema({
   therapistName: {
     type: String,
@@ -25,4 +24,4 @@ const appointmentSchema = new Schema({
   },
 });
 
-export const appointmentModel = model("chat", appointmentSchema);
+export const Appointment = model("chat", appointmentSchema);
