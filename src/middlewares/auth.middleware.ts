@@ -1,4 +1,4 @@
-import { Token } from '../types/tokens.js'
+import { Token } from '../Types/Tokens.js'
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
 const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env

@@ -44,7 +44,7 @@ export const deleteAppointment: RequestHandler = async (req: Request, res: Respo
 
 export const updateAppointment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await appointmentService.updateAppointment(req.body, req.body.id)
+		const data = await appointmentService.updateAppointment(req.body)
 		res.status(200).json({ status: 'success', message: 'Appointment updated', data })
 	} catch (error) {
 		next(error)

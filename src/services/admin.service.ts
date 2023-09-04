@@ -1,7 +1,7 @@
 
 import { Admin } from '../models/admin/admin.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
-import { Token } from '../types/tokens.js'
+import { Token } from '../Types/Tokens.js'
 
 
 

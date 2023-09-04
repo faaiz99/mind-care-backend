@@ -1,7 +1,7 @@
 import { Client } from '../models/client/client.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
 import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
-import { Token } from '../types/tokens.js'
+import { Token } from '../Types/Tokens.js'
 import crypto from 'crypto'
 
 export const enternewPassword = async (email: string, password: string) => {

@@ -1,6 +1,6 @@
 
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import { Token } from '../types/tokens.js'
+import { Token } from '../Types/Tokens.js'
 import * as clientService from '../services/client.service.ts'
 
 export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {

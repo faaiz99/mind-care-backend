@@ -1,4 +1,3 @@
-import e from "express";
 import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
 
