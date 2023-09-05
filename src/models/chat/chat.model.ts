@@ -32,5 +32,5 @@ const chatSchema = new Schema({
   },
 });
 
-export const chatModel = model("chat", chatSchema);
+export const Chat = model("chat", chatSchema);
 

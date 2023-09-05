@@ -11,7 +11,11 @@ import { adminRouter } from './src/routes/admin/admin.route.ts'
 import { clientRouter } from './src/routes/client/client.route.ts'
 import { options } from './src/utils/swagger.util.ts'
 import { corsPolicy } from "./src/utils/cors.util.ts";
-import { Server} from 'socket.io'
+import { Server } from 'socket.io'
+import { socketOptionsCors } from './src/config/socket.config.ts'
+
+import { createServer } from "http";
+
 
 
 
@@ -23,6 +27,7 @@ dotenv.config()
 connect()
 
 const { PORT } = process.env;
+const { CHAT } = process.env
 const baseUrl: string = '/api/v1'
 const app: Application = express();
 const swaggerSpec = swaggerJSDoc(options);
@@ -47,7 +52,7 @@ app.use(`${baseUrl}/therapist`, therapistRouter)
 app.use(`${baseUrl}/admin`, adminRouter)
 
 // Main Endpoint //
-app.get(`${baseUrl}`, (req, res):void => {
+app.get(`${baseUrl}`, (req, res): void => {
 	res.send('Mind Care API')
 })
 
@@ -57,14 +62,26 @@ export const server = app.listen(PORT, () => {
 	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
 })
 
-const io = new Server(server)
-io.on('connection', function (socket) {
-	socket.emit('greeting-from-server', {
-		greeting: 'Hello Client'
-	});
-	socket.on('greeting-from-client', function (message) {
-		console.log(message);
-	});
-  });
+const httpServer = createServer(app);
+const io = new Server(httpServer, socketOptionsCors);
 
-export default  app
+io.on("connection", (socket) => {
+	// previous chat
+	console.log("We are live and connected");
+	console.log(socket.id);
+	socket.emit('message', 'Hello World')
+	socket.on('disconnect', () => {
+		console.log('user disconnected')
+	})
+	socket.on('chatmessage', msg => {
+		//const message = new Mesg()
+		console.log('here')
+		io.emit('message', msg)
+	})
+});
+
+httpServer.listen(CHAT, () => {
+	console.log(`Chat on port ${CHAT}`);
+});
+
+export default app

@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 
 const MONGO_URI: string | undefined = dotenv?.config()?.parsed?.MONGO_URI ?? ''
-console.log('DB URI: ', MONGO_URI)
+//console.log('DB URI: ', MONGO_URI)
 export const connect = async () => {
   // Connecting to the database
   try {
-    console.log(MONGO_URI)
+    //console.log(MONGO_URI)
     await mongoose.connect(MONGO_URI)
 
   } catch (error) {

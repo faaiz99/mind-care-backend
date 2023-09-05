@@ -120,6 +120,11 @@
 
 9. /** Teletherapy */
 
+    /send-message
+    /get-user-chats
+    /find-chats
+    
+
 10. /** Video Diagnosis */
 
 11. /** Content Reccomendation */
