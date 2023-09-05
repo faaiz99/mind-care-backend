@@ -3,6 +3,6 @@ import { createPaymentIntent } from "../../../controllers/payment.controller.ts"
 
 const router: Router = Router()
 
-router.post("/create-payment-intent", createPaymentIntent);
+router.post("/payment", createPaymentIntent);
 
 export { router as paymentRoutes }

@@ -10,7 +10,7 @@ export const login= async (email: string, password: string):Promise<Token> => {
         email: email,
         password: password,
     })
-    if (admin == null || admin == undefined)
+    if (!admin)
         throw new Error('Account does not exist')
 
     return issueTokens(admin)
@@ -20,7 +20,7 @@ export const login= async (email: string, password: string):Promise<Token> => {
 export const signup = async (admin: unknown) => {
 
     const response = await Admin.create(admin);
-    if (response == null || response == undefined)
+    if (!response)
         throw new Error('Account could not be created')
 
     return response
@@ -35,7 +35,7 @@ export const renewTokens = async (admin: unknown):Promise<Token>  => {
 
 export const aboutAdmin = async (id: string) => {
     const response = await Admin.findOne({ _id: id })
-    if (response == null || response == undefined)
+    if (!response)
         throw new Error('Account could not be found')
     return response
 }

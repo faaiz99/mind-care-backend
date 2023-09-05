@@ -7,7 +7,7 @@ import crypto from 'crypto'
 export const enternewPassword = async (email: string, password: string) => {
     // Can also be used to change password from profile
     const response = await Client.findOneAndUpdate({ email: email }, { password: password })
-    if (response == null || response == undefined)
+    if (!response)
         throw new Error('Account not found')
     return response
 
@@ -17,7 +17,7 @@ export const resetPassword = async (email: string) => {
     const client = await Client.findOne({
         email: email
     })
-    if (client == null || client == undefined)
+    if (!client)
         throw new Error('Account not found')
     const token = crypto.randomBytes(32).toString("hex")
     const role = 'client'
@@ -35,7 +35,7 @@ export const verifyAccount = async (email: string) => {
         new: true
     })
 
-    if (response == undefined || response == null)
+    if (!response)
         throw new Error('Account could not be verified')
     return response
 }
@@ -55,7 +55,7 @@ export const login = async (email: string, password: string): Promise<Token> => 
     })
     // email exists
     //console.log('Email exists? ', exists)
-    if (exists == null || exists == undefined) {
+    if (!exists) {
         throw new Error('Account does not exists')
     }
 

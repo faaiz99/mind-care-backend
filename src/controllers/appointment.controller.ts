@@ -12,9 +12,20 @@ export const createAppointment: RequestHandler = async (req: Request, res: Respo
 
 }
 
-export const getAppointments: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const getAppointmentsClient: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await appointmentService.getAppointments()
+		const data = await appointmentService.getAppointmentsTherapist(req.params.therapistId)
+		res.status(200).json({ status: 'success', message: 'Appointments found', data })
+	} catch (error) {
+		res.status(409).json({ status: 'failure', message: 'Appointments could not be found' })
+		next(error)
+	}
+
+}
+
+export const getAppointmentsTherapist: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const data = await appointmentService.getAppointmentsClient(req.params.clientId)
 		res.status(200).json({ status: 'success', message: 'Appointments found', data })
 	} catch (error) {
 		res.status(409).json({ status: 'failure', message: 'Appointments could not be found' })

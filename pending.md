@@ -5,15 +5,14 @@
 /** Features Web/Mobile */
 1. /** Teleappointments */ 
     
-    GET  /appointments
+    GET  /appointments-client
+    GET /appointments-therapist
     POST /appointments
     PATCH /appointments
     GET  /appointments/:id
     DELETE /appointment/:id
     GET /therapists
     GET /therapists/:id
-    GET /clients
-    GET /clients/:id
 
 2. /** Payments */
 

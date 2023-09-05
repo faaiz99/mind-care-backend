@@ -1,11 +1,13 @@
-import {Schema, model} from 'mongoose'
+import {Schema, model, Types} from 'mongoose'
 
 const appointmentSchema = new Schema({
-  therapistName: {
-    type: String,
+  therapistId: {
+    type: Types.ObjectId,
+    ref:'therapist'
   },
-  clientNmae: {
-    type: String,
+  clientId: {
+    type: Types.ObjectId,
+    ref:'client'
   },
   appointmentDate: {
     type: Date,
@@ -24,4 +26,4 @@ const appointmentSchema = new Schema({
   },
 });
 
-export const Appointment = model("chat", appointmentSchema);
+export const Appointment = model("appointment", appointmentSchema);

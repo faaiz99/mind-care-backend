@@ -1,7 +1,6 @@
 import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const updateAppointment = async (appointment:any)=>{
   const filter = appointment.id;
@@ -28,8 +27,15 @@ export const createAppointment = async (appointment:unknown)=>{
     return response
 }
 
-export const getAppointments = async ()=>{
-    const response = Appointment.find({})
+export const getAppointmentsTherapist = async (id:string)=>{
+    const response = Appointment.find({therapistId:id})
+    if(!response)
+        throw new Error('Appointments not found')
+    return response
+}
+
+export const getAppointmentsClient  = async (id:string)=>{
+   const response = Appointment.find({clientId:id})
     if(!response)
         throw new Error('Appointments not found')
     return response

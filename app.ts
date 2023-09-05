@@ -11,6 +11,10 @@ import { adminRouter } from './src/routes/admin/admin.route.ts'
 import { clientRouter } from './src/routes/client/client.route.ts'
 import { options } from './src/utils/swagger.util.ts'
 import { corsPolicy } from "./src/utils/cors.util.ts";
+import { Server} from 'socket.io'
+
+
+
 // import compression from 'compression'
 
 dotenv.config()
@@ -47,9 +51,20 @@ app.get(`${baseUrl}`, (req, res):void => {
 	res.send('Mind Care API')
 })
 
+
+
 export const server = app.listen(PORT, () => {
-	console.log(`Mind Care Backend on port ${PORT}`)
+	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
 })
 
+const io = new Server(server)
+io.on('connection', function (socket) {
+	socket.emit('greeting-from-server', {
+		greeting: 'Hello Client'
+	});
+	socket.on('greeting-from-client', function (message) {
+		console.log(message);
+	});
+  });
 
 export default  app
