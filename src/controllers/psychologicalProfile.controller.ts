@@ -1,6 +1,6 @@
 import { Request, Response,RequestHandler, NextFunction } from 'express'
 import  {psychologicalProfile} from '../models/psychologicalProfile/psychologicalProfile.model.ts'
-export const buildPsychologicalProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
+export const buildPsychologicalProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction):Promise<void> => {
 	const filter = { clientId: req.body.clientId }
 	const profile = req.body
 	const options = { upsert: true, new: true, setDefaultsOnInsert: true };
@@ -14,7 +14,7 @@ export const buildPsychologicalProfile:RequestHandler = async (req:Request, res:
 	res.status(200).json({ status: 'success', message: 'Psychological Profile Build', result })
 
 }
-export const setTestScore:RequestHandler= async (req:Request, res:Response, next:NextFunction) => {
+export const setTestScore:RequestHandler= async (req:Request, res:Response, next:NextFunction):Promise<void> => {
 	const filter = { clientId: req.body.clientId }
 	const profile = req.body
 	const options = { upsert: true, new: true, setDefaultsOnInsert: true };
@@ -29,7 +29,7 @@ export const setTestScore:RequestHandler= async (req:Request, res:Response, next
 
 }
 
-export const getPsychologicalProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
+export const getPsychologicalProfile:RequestHandler = async (req:Request, res:Response, next:NextFunction):Promise<void> => {
 	const filter = { clientId: req.body.clientId }
 	let result;
 	try {

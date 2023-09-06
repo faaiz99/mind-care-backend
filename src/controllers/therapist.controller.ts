@@ -100,7 +100,7 @@ export const renewTokens: RequestHandler = async (req: Request, res: Response, n
 }
 
 
-export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	try {
 		const data = await therapistService.aboutTherapist(req.params.id)
 		res.status(200).json({ status: 'success', message: "Client Account found", data });

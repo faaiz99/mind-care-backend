@@ -1,4 +1,4 @@
-import {Schema, model, Types } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 const psychologicalProfileSchema = new Schema({
   clientId: {
@@ -52,7 +52,7 @@ const psychologicalProfileSchema = new Schema({
     type: Boolean,
     required: false,
   },
- 
+
 });
 
 export const psychologicalProfile = model("psychologicalProfile", psychologicalProfileSchema);

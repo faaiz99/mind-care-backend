@@ -3,7 +3,7 @@ import { Request, Response, NextFunction, RequestHandler } from 'express'
 import { Token } from '../Types/Tokens.js'
 import * as clientService from '../services/client.service.ts'
 
-export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	try {
 		const data = await clientService.enternewPassword(req.body.email, req.body.password)
 		res.status(200).json({ status: 'success', message: 'Account Password Changed', data })
@@ -12,7 +12,7 @@ export const enternewPassword: RequestHandler = async (req: Request, res: Respon
 		next(error)
 	}
 }
-export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const resetPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction) :Promise<void>=> {
 	try {
 		const data = await clientService.resetPassword(req.body.email)
 		res.status(200).json({ status: 'success', message: 'Account Password Updated', data })
@@ -22,7 +22,7 @@ export const resetPassword: RequestHandler = async (req: Request, res: Response,
 	}
 	next()
 }
-export const verifyAccount: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const verifyAccount: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	try {
 		const data = await clientService.verifyAccount(req.body.email)
 		res.status(200).json({ status: 'success', message: 'Account successfully verified', data })
@@ -33,11 +33,11 @@ export const verifyAccount: RequestHandler = async (req: Request, res: Response,
 	}
 
 }
-export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	clientService.sendverificationEmail(req.body.email)
 	next()
 }
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 
 	try {
 		const { accessToken, refreshToken, data }: Token = await clientService.login(req.body.email, req.body.password)
@@ -54,7 +54,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 	}
 }
-export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const signup: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 
 	try {
 		const data = await clientService.signup(req.body)
@@ -71,7 +71,7 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 
 	}
 }
-export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const renewToken: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	try {
 		const { accessToken, refreshToken, data } = await clientService.renewTokens(req.body.user)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
@@ -81,7 +81,7 @@ export const renewToken: RequestHandler = async (req: Request, res: Response, ne
 	}
 }
 
-export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const about: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	try {
 		const data = await clientService.aboutClient(req.params.id)
 		res.status(200).json({ status: 'success', message: "Client Account found", data });

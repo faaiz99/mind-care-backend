@@ -176,7 +176,7 @@
     GET /forum-posts
     GET /platform-signups
 
-14. /** AI Based Fitness and Sleep Tracker */
+14. /** Fitness and Sleep Tracker */
 
 
 

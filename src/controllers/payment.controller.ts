@@ -19,7 +19,7 @@ export const getPaymentsClient:RequestHandler = async (req:Request, res:Response
   }
 }
 
-export const getPaymentsTherapist:RequestHandler = async (req:Request, res:Response, next:NextFunction)=>{
+export const getPaymentsTherapist:RequestHandler = async (req:Request, res:Response, next:NextFunction):Promise<void>=>{
   try {
     const data = await paymentService.getPaymentsTherapist(req.params.id)
     res.status(200).json({status:'success', message:'Therapist Payments Found', data})
@@ -28,7 +28,7 @@ export const getPaymentsTherapist:RequestHandler = async (req:Request, res:Respo
   }
 }
 
-export const getPayment:RequestHandler = async (req:Request, res:Response, next:NextFunction)=>{
+export const getPayment:RequestHandler = async (req:Request, res:Response, next:NextFunction):Promise<void>=>{
   try {
     const data = await paymentService.getPayment(req.params.id)
     res.status(200).json({status:'success', message:'Payment Found', data})
@@ -37,7 +37,7 @@ export const getPayment:RequestHandler = async (req:Request, res:Response, next:
   }
 }
 
-export const deletePayment:RequestHandler = async (req:Request, res:Response, next:NextFunction)=>{
+export const deletePayment:RequestHandler = async (req:Request, res:Response, next:NextFunction):Promise<void>=>{
   try {
     const data = await paymentService.deletePayment(req.params.id)
     res.status(200).json({status:'success', message:'Payment Deleted', data})
@@ -46,7 +46,7 @@ export const deletePayment:RequestHandler = async (req:Request, res:Response, ne
   }
 }
 
-export const updatePayment:RequestHandler = async (req:Request, res:Response, next:NextFunction)=>{
+export const updatePayment:RequestHandler = async (req:Request, res:Response, next:NextFunction):Promise<void>=>{
   try {
     const data = await paymentService.updatePayment(req.body)
     res.status(200).json({status:'success', message:'Payments Updated', data})
