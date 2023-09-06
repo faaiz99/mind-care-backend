@@ -1,7 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as teletherapyService from '../services/teletherapy.service.ts'
 
-
 export const sendMessage: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const data = await teletherapyService.createChat()

@@ -16,11 +16,18 @@
 
 2. /** Payments */
 
-    GET /payments
-    GET /payments/:id
-    POST /payments ->  /create-payment-intent
-    DELETE /payments/:id
-    PATCH /payments/:id
+    /**Client */
+
+    POST /payment ->  /create-payment-intent
+    PATCH /payment
+    GET /client-payments
+    GET /client-payments/:id
+    DELETE /payment/:id
+
+    /** Therpist */
+
+    GET /payments-therapist/:id
+    GET /payments-therapist
 
 3. /** Psychological Profile */ 
 

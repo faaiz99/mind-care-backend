@@ -1,10 +1,10 @@
 
 import dotenv from 'dotenv'
 import express from "express"
-import { Application } from 'express'
 import bodyParser from "body-parser"
 import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from "swagger-jsdoc";
+import { Application } from 'express'
 import { connect } from './src/config/db.config.ts'
 import { therapistRouter } from "./src/routes/therapist/therapist.route.ts"
 import { adminRouter } from './src/routes/admin/admin.route.ts'
@@ -13,11 +13,7 @@ import { options } from './src/utils/swagger.util.ts'
 import { corsPolicy } from "./src/utils/cors.util.ts";
 import { Server } from 'socket.io'
 import { socketOptionsCors } from './src/config/socket.config.ts'
-
 import { createServer } from "http";
-
-
-
 
 // import compression from 'compression'
 
@@ -57,10 +53,13 @@ app.get(`${baseUrl}`, (req, res): void => {
 })
 
 
+// Export Server for Unit Tests
 
 export const server = app.listen(PORT, () => {
 	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
 })
+
+// Socket IO Setup 
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, socketOptionsCors);

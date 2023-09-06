@@ -1,7 +1,7 @@
 import { Schema, model, Types } from 'mongoose'
 
 const paymentSchema = new Schema({
-  client: {
+  clientId: {
     type: Types.ObjectId,
     ref: 'client',
     required: true
@@ -27,4 +27,4 @@ const paymentSchema = new Schema({
   }]
 });
 
-export const paymentModel = model("payment", paymentSchema);
+export const Payment = model("payment", paymentSchema);
