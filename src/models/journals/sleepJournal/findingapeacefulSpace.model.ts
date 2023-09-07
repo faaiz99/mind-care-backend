@@ -16,4 +16,4 @@ const findingpeacefulSpaceSchema = new Schema({
 	}
 });
 
-export const FindingpeacefulSpace = model("findingpeacefulSpace", findingpeacefulSpaceSchema);
+export const FindingPeacefulSpace = model("findingpeacefulSpace", findingpeacefulSpaceSchema);

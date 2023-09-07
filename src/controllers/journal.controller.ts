@@ -1,519 +1,356 @@
-import { Request, Response,RequestHandler} from 'express'
-// Journal Types & Models //
+import { Request, Response, RequestHandler, NextFunction } from 'express'
 
-import { GratitudeJournal } from '../models/journals/gratitudeJournal.model.ts';
+import * as journalService from '../services/journal.service.ts'
 
-export const getGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
-	const gratitudeJournal = req.body.clientId;
-	let result;
+export const getGratitudeJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await GratitudeJournal.find({ clientId: gratitudeJournal })
+		const data = await journalService.getGratitudeJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Gratitide Journal found', data })
 	} catch (error) {
-		console.log('Gratitude Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Gratitide Journal found', result })
 }
-export const createGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
-	const gratitudeJournal = req.body;
-	let result;
+export const createGratitudeJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await GratitudeJournal.create(gratitudeJournal)
+		const data = await journalService.createGratitudeJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Gratitide Journal created', data })
 	} catch (error) {
-		console.log('Gratitude Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Gratitide Journal created', result })
 }
-export const deleteGratitudeJournal:RequestHandler = async (req:Request, res:Response) => {
-	const gratitudeJournal = req.body.journaIld;
-	let result;
+export const deleteGratitudeJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await GratitudeJournal.deleteOne({ id: gratitudeJournal })
+		const data = await journalService.deleteGratitudeJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Gratitide Journal deleted', data })
 	} catch (error) {
-		console.log('Gratitude Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Gratitide Journal deleted', result })
 }
-
-import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal.model.ts';
-
-export const getProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
-	const problemSolvingJournal = req.body.clientId
-	let result;
+export const getProblemSolvingJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ProblemSolvingJournal.find({ clientId: problemSolvingJournal })
+		const data = await journalService.getProblemSolvingJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Problem Solving Journal found', data })
 	} catch (error) {
-		console.log('Problem Solving Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: "Problem Solving Journal found", result })
 }
-
-export const createProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
-	const problemSolvingJournal = req.body
-	let result;
+export const createProblemSolvingJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ProblemSolvingJournal.create(problemSolvingJournal)
+		const data = await journalService.createProblemSolvingJournal(req.body)
+		res.status(200).json({ status: 'success', message: "Problem Solving Journal created", data })
 	} catch (error) {
-		console.log('Problem Solving Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: "Problem Solving Journal created", result })
 }
-
-export const deleteProblemSolvingJournal:RequestHandler = async (req:Request, res:Response) => {
-	const problemSolvingJournal = req.body.journalId
-	let result;
+export const deleteProblemSolvingJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ProblemSolvingJournal.deleteOne({ journalId: problemSolvingJournal })
+		const data = await journalService.deleteProblemSolvingJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: "Problem Solving Journal deleted", data })
 	} catch (error) {
-		console.log('Problem Solving Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: "Problem Solving Journal deleted", result })
 }
-
-import { GoalSettingJournal } from '../models/journals/goalSettingJournal.model.ts';
-
-export const getGoalSettingJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const goalSettingJournal = req.body.clientId;
-	let result;
+export const getGoalSettingJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await GoalSettingJournal.find({ clientId: goalSettingJournal })
+		const data = await journalService.getGoalSettingJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Goal Setting Journal found', data })
 	} catch (error) {
-		console.log('Goal Setting Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: "Goal Setting Journal found", result })
-
 }
-
-export const createGoalSettingJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const goalSettingJournal = req.body
-	let result;
+export const createGoalSettingJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await GoalSettingJournal.create(goalSettingJournal)
+		const data = await journalService.createGoalSettingJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Goal Setting Journal created', data })
 	} catch (error) {
-		console.log('Goal Setting Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Goal Setting Journal created', result })
-
 }
-
-export const deleteGoalSettingJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const goalSettingJournal = req.body.journalId
-	let result;
+export const deleteGoalSettingJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await GoalSettingJournal.deleteOne({ journaIld: goalSettingJournal })
+		const data = await journalService.deleteGoalSettingJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Goal Setting Journal deleted', data })
 	} catch (error) {
-		console.log('Goal Setting Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Goal Setting Journal deleted', result })
-
-
 }
-
-import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal.model.ts';
-
-export const getSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const selfAffirmationJournal = req.body.clientId
-	let result;
+export const getSelfAffirmationJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await SelfAffirmationJournal.find({ clientId: selfAffirmationJournal })
+		const data = await journalService.getSelfAffirmationJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Self Affirmation Journal found', data })
 	} catch (error) {
-		console.log('Self-Affirmation Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal found', result })
 }
-
-export const createSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const selfAffirmationJournal = req.body
-	let result;
+export const createSelfAffirmationJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await SelfAffirmationJournal.create(selfAffirmationJournal)
+		const data = await journalService.createSelfAffirmationJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal Created', data })
 	} catch (error) {
-		console.log('Self-Affirmation Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal Created', result })
 }
-
-export const deleteSelfAffirmationJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const selfAffirmationJournal = req.body.journalId
-	let result;
+export const deleteSelfAffirmationJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await SelfAffirmationJournal.deleteOne({ id: selfAffirmationJournal })
+		const data = await journalService.deleteSelfAffirmationJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal Created', data })
 	} catch (error) {
-		console.log('Self-Affirmation Journal could not be Deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Self-Affirmation Journal Created', result })
+}
+export const getReflectionJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await journalService.getReflectionJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Reflection Journal found', data })
+	} catch (error) {
+		next(error)
+	}
 
 }
-
-import { ReflectionJournal } from '../models/journals/reflectionJournal.model.ts';
-
-export const getReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const reflectionJournal = req.body.clientId
-	let result;
+export const createReflectionJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ReflectionJournal.find({ clientId: reflectionJournal })
+		const data = await journalService.createReflectionJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Reflection Journal created', data })
+
 	} catch (error) {
-		console.log('Reflection Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Reflection Journal found', result })
+}
+export const deleteReflectionJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await journalService.deleteReflectionJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Relfection Journal deleted', data })
+	} catch (error) {
+		next(error)
+	}
+}
+export const getOpenJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await journalService.getOpenJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Open Journal Journal found', data })
+	} catch (error) {
+		next(error)
+	}
+}
+export const createOpenJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await journalService.createOpenJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Open Journal created', data })
+	} catch (error) {
+		next(error)
+	}
+}
+export const deleteOpenJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await journalService.deleteOpenJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Open Journal deleted', data })
+	} catch (error) {
+		next(error)
+	}
+}
+export const getChallengingNegativeThoughtsAboutYourselfJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await journalService.getChallengingNegativeThoughtsAboutYourselfJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Challenging Negative Thoughts About Yourself  Journal found', data })
+	} catch (error) {
+		next(error)
+	}
 
 }
-export const createReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const reflectionJournal = req.body;
-	let result;
+export const createChallengingNegativeThoughtsAboutYourselfJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ReflectionJournal.create(reflectionJournal)
+		const data = await journalService.createChallengingNegativeThoughtsAboutYourselfJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal created', data })
 	} catch (error) {
-		console.log('Reflection Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Reflection Journal created', result })
-
 }
-
-export const deleteReflectionJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const reflectionJournal = req.body.journalId;
-	let result;
+export const deleteChallengingNegativeThoughtsAboutYourselfJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ReflectionJournal.deleteOne({ id: reflectionJournal })
+		const data = await journalService.deleteChallengingNegativeThoughtsAboutYourselfJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal deleted', data })
 	} catch (error) {
-		console.log('Refection Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Relfection Journal deleted', result })
-
 }
-import { OpenJournal } from '../models/journals/openJournal.model.ts';
-
-export const getOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const openJournal = req.body.clientId
-	let result;
+export const getBuildingASelfCarePlan: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await OpenJournal.find({ clientId: openJournal })
+		const data = await journalService.getBuildingASelfCarePlan(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Building Self-Care Journal found', data })
 	} catch (error) {
-		console.log('Open Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Open Journal found', result })
-
 }
-
-export const createOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const openJournal = req.body;
-	let result;
+export const createBuildingASelfCarePlan: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await OpenJournal.create(openJournal)
+		const data = await journalService.createBuildingASelfCarePlan(req.body)
+		res.status(200).json({ status: 'success', message: 'Building Self-Care Journal created', data })
 	} catch (error) {
-		console.log('Open Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Open Journal created', result })
 }
-
-export const deleteOpenJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const openJournal = req.body.journalId;
-	let result;
+export const deleteBuildingASelfCarePlan: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await OpenJournal.deleteOne({ id:openJournal })
+		const data = await journalService.deleteBuildingASelfCarePlan(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Building Self-Care Journal deleted', data })
 	} catch (error) {
-		console.log('Open Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Open Journal deleted', result })
 }
-
-import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourselfJournal.model.ts';
-
-export const getChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
-
-	const challengingNegativeThoughtsAboutYourselfJournal = req.body.clientId;
-	let result;
+export const getAnxietyThoughtReccordJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ChallengingNegativeThoughtsAboutYourselfJournal.find({ clientId: challengingNegativeThoughtsAboutYourselfJournal })
+		const data = await journalService.getAnxietyThoughtReccordJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal found', data })
 	} catch (error) {
-		console.log('Challenge Negative Thoughts Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: "Challenge Negative Thoughts Journal found", result })
-
 }
-
-export const createChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const challengingNegativeThoughtsAboutYourselfJournal = req.body;
-	let result;
+export const createAnxietyThoughtReccordJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ChallengingNegativeThoughtsAboutYourselfJournal.create(challengingNegativeThoughtsAboutYourselfJournal)
+		const data = await journalService.createAnxietyThoughtReccordJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal created', data })
 	} catch (error) {
-		console.log('Challenge Negative Thoughts Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal created', result })
-
 }
-
-export const deleteChallengingNegativeThoughtsAboutYourselfJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const challengingNegativeThoughtsAboutYourselfJournal = req.body.journalId;
-	let result;
+export const deleteAnxietyThoughtReccordJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await ChallengingNegativeThoughtsAboutYourselfJournal.deleteOne({ journalId: challengingNegativeThoughtsAboutYourselfJournal })
+		const data = await journalService.deleteAnxietyThoughtReccordJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal deleted', data })
 	} catch (error) {
-		console.log('Challenge Negative Thoughts Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Challenge Negative Thoughts Journal deleted', result })
-
-}
-import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan.model.ts';
-
-export const getBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
-	const buildingASelfCarePlan = req.body.clientId
-	let result;
-	try {
-		result = await BuildingASelfCarePlan.find({ clientId: buildingASelfCarePlan })
-	} catch (error) {
-		console.log('Building Self-Care Journal could not be found')
-	}
-	res.status(200).json({ status: 'success', message: 'Building Self-Care Journal found', result })
-
-}
-
-export const createBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
-	const buildingASelfCarePlan = req.body
-	let result;
-	try {
-		result = await BuildingASelfCarePlan.create({ buildingASelfCarePlan })
-	} catch (error) {
-		console.log('Building Self-Care Journal could not be created')
-	}
-	res.status(200).json({ status: 'success', message: 'Building Self-Care Journal created', result })
-}
-
-export const deleteBuildingASelfCarePlan:RequestHandler  = async (req:Request, res:Response) => {
-	const buildingASelfCarePlan = req.body.journalId
-	let result;
-	try {
-		result = await BuildingASelfCarePlan.deleteOne({ id: buildingASelfCarePlan })
-	} catch (error) {
-		console.log('Building Self-Care Journal could not be deleted')
-	}
-	res.status(200).json({ status: 'success', message: 'Building Self-Care Journal deleted', result })
-}
-import { AnxietyThoughtRecordJournal } from '../models/journals/AnxietyThoughtRecordJournal.ts';
-
-export const getAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const anxietyThoughtRecordJournal = req.body.clientId
-	let result;
-	try {
-		result = await AnxietyThoughtRecordJournal.find({ id: anxietyThoughtRecordJournal })
-	} catch (error) {
-		console.log('Anxiety Thought Reccord Journal could not be found')
-	}
-	res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal found', result })
-}
-
-export const createAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const anxietyThoughtRecordJournal = req.body
-	let result;
-	try {
-		result = await anxietyThoughtRecordJournal.create({ anxietyThoughtRecordJournal })
-	} catch (error) {
-		console.log('Anxiety Thought Reccord Journal could not be created')
-	}
-	res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal created', result })
-
-}
-
-export const deleteAnxietyThoughtReccordJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const anxietyThoughtRecordJournal = req.body.journalId
-	let result;
-	try {
-		result = await anxietyThoughtRecordJournal.deleteOne({ id: anxietyThoughtRecordJournal })
-	} catch (error) {
-		console.log('Anxiety Thought Reccord Journal could not be deleted')
-	}
-	res.status(200).json({ status: 'success', message: 'Anxiety Thought Reccord Journal deleted', result })
-
 }
 // Sleep Journal has own types & Models //
 
-
-import { CalmingtheMind } from '../models/journals/sleepJournal/calmingtheMind.model.ts';
-
-export const getCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
-	const calmingtheMind = req.body.clientId
-	let result;
+export const getCalmingtheMind: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await CalmingtheMind.find({ clientId: calmingtheMind })
+		const data = await journalService.getCalmingtheMind(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Calming The Mind Journal found', data })
 	} catch (error) {
-		console.log('Calming the Mind Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal found', result })
 }
-
-export const createCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
-	const calmingtheMind = req.body
-	let result;
+export const createCalmingtheMind: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await CalmingtheMind.create({ calmingtheMind })
+		const data = await journalService.createCalmingtheMind(req.body)
+		res.status(200).json({ status: 'success', message: 'Calming the Mind Journal created', data })
 	} catch (error) {
-		console.log('Calming the Mind Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal created', result })
-
 }
-
-export const deleteCalmingtheMind:RequestHandler  = async (req:Request, res:Response) => {
-	const calmingtheMind = req.body.journalId
-	let result;
+export const deleteCalmingtheMind: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await CalmingtheMind.deleteOne({ id: calmingtheMind })
+		const data = await journalService.deleteCalmingTheMind(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Calming the Mind Journal deleted', data })
 	} catch (error) {
-		console.log('Calming the Mind Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Calming the Mind Journal deleted', result })
 }
-
-import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model.ts';
-
-export const getDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const dreamJournal = req.body.clientId
-	let result;
+export const getDreamJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await DreamJournal.find({ clientId: dreamJournal })
+		const data = await journalService.getDreamJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Dream Journal Journal found', data })
 	} catch (error) {
-		console.log('Dream Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Dream Journal found', result })
 }
-export const createDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const dreamJournal = req.body
-	let result;
+export const createDreamJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await DreamJournal.create(dreamJournal)
+		const data = await journalService.createDreamJournal(req.body)
+		res.status(200).json({ status: 'success', message: 'Dream Journal created', data })
 	} catch (error) {
-		console.log('Dream Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Dream Journal created', result })
 }
-export const deleteDreamJournal:RequestHandler  = async (req:Request, res:Response) => {
-	const dreamJournal = req.body.journalId
-	let result;
+export const deleteDreamJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await DreamJournal.deleteOne({ id: dreamJournal })
+		const data = await journalService.deleteDreamJournal(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Dream Journal deleted', data })
 	} catch (error) {
-		console.log('Dream Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Dream Journal deleted', result })
-
 }
-
-import { FindingpeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.ts';
-
-export const getFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
-	const findingapeacefulSpace = req.body.clientId;
-	let result;
+export const getFindingPeaceFulSpace: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await FindingpeacefulSpace.find({ clientId: findingapeacefulSpace })
+		const data = await journalService.getFindingPeaceFulSpace(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Finding Peace Space Journal found', data })
 	} catch (error) {
-		console.log('Finding Peaceful Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal found', result })
 }
-
-export const createFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
-	const findingapeacefulSpace = req.body;
-	let result;
+export const createFindingPeaceFulSpace: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await FindingpeacefulSpace.create(findingapeacefulSpace)
+		const data = await journalService.createFindingPeaceFulSpace(req.body)
+		res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal found', data })
 	} catch (error) {
-		console.log('Finding Peaceful Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal found', result })
 }
-
-export const deleteFindingPeaceFulSpace:RequestHandler  = async (req:Request, res:Response) => {
-	const findingapeacefulSpace = req.body.journalId;
-	let result;
+export const deleteFindingPeaceFulSpace: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await FindingpeacefulSpace.deleteOne({ id: findingapeacefulSpace })
+		const data = await journalService.deleteFindingPeaceFulSpace(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal deleted', data })
 	} catch (error) {
-		console.log('Finding Peaceful Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Finding Peaceful Space Journal deleted', result })
 }
-
-import { LookingforwardtoTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.ts';
-
-export const getLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
-	const lookingforwardtoTomorrow = req.body.clientId
-	let result;
+export const getLookingForwardToTomorrow: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await LookingforwardtoTomorrow.find({ clientId: lookingforwardtoTomorrow })
+		const data = await journalService.getLookingForwardToTomorrow(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Looking Forward To Tomorrow Journal found', data })
 	} catch (error) {
-		console.log('Looking Forward to Tomorrow Journal could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal found', result })
 
 }
-
-export const createLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
-	const lookingforwardtoTomorrow = req.body
-	let result;
+export const createLookingForwardToTomorrow: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await LookingforwardtoTomorrow.create(lookingforwardtoTomorrow)
+		const data = await journalService.createLookingForwardToTomorrow(req.body)
+		res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal created', data })
 	} catch (error) {
-		console.log('Looking Forward to Tomorrow Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal created', result })
-
 }
-
-export const deleteLookingForwardToTomorrow:RequestHandler  = async (req:Request, res:Response) => {
-	const lookingforwardtoTomorrow = req.body.journalId
-	let result;
+export const deleteLookingForwardToTomorrow: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await LookingforwardtoTomorrow.deleteOne({ id: lookingforwardtoTomorrow })
+		const data = await journalService.deleteLookingForwardToTomorrow(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal deleted', data })
 	} catch (error) {
-		console.log('Looking Forward to Tomorrow Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Looking Forward to Tomorrow Journal deleted', result })
-
-
 }
-import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.ts';
-
-export const getPlanningDayAhead:RequestHandler  = async (req:Request, res:Response) => {
-	const planningthedayAhead = req.body.clientId
-	let result;
+export const getPlanningDayAhead: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await PlanningTheDayAhead.find({ clientId: planningthedayAhead })
+		const data = await journalService.getPlanningDayAhead(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Planning The Day Ahead Journal found', data })
 	} catch (error) {
-		console.log('Planning the day Ahead Journal could not be found')
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: "Planning the Day Ahead Journal found", result })
-
 }
-
-export const createPlanningDayAhead:RequestHandler  = async (req:Request, res:Response) => {
-	const planningthedayAhead = req.body
-	let result;
+export const createPlanningDayAhead: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await PlanningTheDayAhead.create(planningthedayAhead)
+		const data = await journalService.createPlanningDayAhead(req.body)
+		res.status(200).json({ status: 'success', message: 'Planning the day Ahead Journal created', data })
 	} catch (error) {
-		console.log('Planning the day Ahead Journal could not be created', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Planning the day Ahead Journal created', result })
-
 }
-
-export const deletePlanningDayAhead:RequestHandler = async (req:Request, res:Response) => {
-	const planningthedayAhead = req.body.journalId
-	let result;
+export const deletePlanningDayAhead: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await PlanningTheDayAhead.deleteOne({ journalId: planningthedayAhead })
+		const data = await journalService.deletePlanningDayAhead(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Planning the day Ahead Journal deleted', data })
 	} catch (error) {
-		console.log('Planning the day Ahead Journal could not be deleted', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Planning the day Ahead Journal deleted', result })
-
 }
-
 // Get all Journals // 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const getAllEntries:RequestHandler = (req:Request, res:Response) => {
-
-}
+// import { Client } from '../models/client/client.model.ts'
+// export const getAllEntries: RequestHandler = (req: Request, res: Response, next: NextFunction):Promise<void>  => {
+// 	const id = req.params.id
+// 	await Client.find({})
+// }
 
 

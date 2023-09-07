@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import { Post } from '../../models/communityForums/post.model.ts'
-import { Upvote } from '../../models/communityForums/upvote.model.ts'
-import { Downvote } from '../../models/communityForums/downvote.model.ts'
-import { Report } from '../../models/communityForums/report.model.ts'
+import { Post } from '../models/communityForums/post.model.ts'
+import { Upvote } from '../models/communityForums/upvote.model.ts'
+import { Downvote } from '../models/communityForums/downvote.model.ts'
+import { Report } from '../models/communityForums/report.model.ts'
 import { uuid } from 'uuidv4';
 
-export const createPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const createPost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
 	/*
 		postId -> generate at creation
@@ -31,7 +31,7 @@ export const createPost: RequestHandler = async (req: Request, res: Response, ne
 	next()
 }
 
-export const updatePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const updatePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	const post = req.body;
 	let result;
 	try {
@@ -46,7 +46,7 @@ export const updatePost: RequestHandler = async (req: Request, res: Response, ne
 	next()
 }
 
-export const deletePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const deletePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	let result;
 	try {
 		result = await Post.findOneAndDelete({ postId: req.params.id })
@@ -61,7 +61,7 @@ export const deletePost: RequestHandler = async (req: Request, res: Response, ne
 
 }
 
-export const getPosts: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const getPosts: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	let result;
 	try {
 		result = await Post.find()
@@ -76,7 +76,7 @@ export const getPosts: RequestHandler = async (req: Request, res: Response, next
 
 }
 
-export const getPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const getPost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	let result;
 	try {
 		result = await Post.findOne({ postId: req.params.id })
@@ -91,7 +91,7 @@ export const getPost: RequestHandler = async (req: Request, res: Response, next:
 
 }
 
-export const upvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const upvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
 	let upvote;
 	let result;
@@ -112,7 +112,7 @@ export const upvotePost: RequestHandler = async (req: Request, res: Response, ne
 
 }
 
-export const downvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const downvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	let downvote
 	let result;
 	try {
@@ -130,7 +130,7 @@ export const downvotePost: RequestHandler = async (req: Request, res: Response, 
 	next()
 }
 
-export const reportPost: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const reportPost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	let report;
 	let result;
 	try {

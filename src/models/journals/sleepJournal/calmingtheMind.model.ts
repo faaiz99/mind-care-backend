@@ -16,4 +16,4 @@ const calmingtheMindSchema = new Schema({
 	}
 });
 
-export const CalmingtheMind = model("calmingtheMind", calmingtheMindSchema);
+export const CalmingTheMind = model("calmingtheMind", calmingtheMindSchema);
