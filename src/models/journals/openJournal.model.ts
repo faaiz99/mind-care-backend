@@ -12,4 +12,4 @@ const openJournalSchema = new Schema({
 	}
 });
 
-export const OpenJournal = model("openJournal", openJournalSchema);
+export const OpenJournal = model("OpenJournal", openJournalSchema);

@@ -38,7 +38,7 @@ const clientSchema = new Schema({
     type: Date,
     required: false
   },
-  openJournalId: [
+  openJournals: [
     {
       type: Types.ObjectId, 
       ref: 'OpenJournal',

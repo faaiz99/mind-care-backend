@@ -19,7 +19,10 @@ import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthe
 import { Client } from '../models/client/client.model.ts';
 
 export const getJournals = async (id:string)=>{
-	const response = await Client.findOne({_id:id}).populate('openJournalId')
+	const response = await Client.findOne({_id:id}).populate({
+		path:'openJournals',
+		model:'OpenJournal'
+	})
 	if(!response)
 		throw new Error('No Journal Entries Found')
 	return response 

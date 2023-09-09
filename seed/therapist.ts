@@ -1,7 +1,7 @@
 
 import { Therapist } from '../src/models/therapist/therapist.model.js'
 import { faker } from '@faker-js/faker';
-import fs from 'fs';
+import * as fs from 'fs';
 
 
 const generateTherapists = (num: number) => {
