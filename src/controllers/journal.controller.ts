@@ -345,12 +345,13 @@ export const deletePlanningDayAhead: RequestHandler = async (req: Request, res: 
 	}
 }
 // Get all Journals // 
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// import { Client } from '../models/client/client.model.ts'
-// export const getAllEntries: RequestHandler = (req: Request, res: Response, next: NextFunction):Promise<void>  => {
-// 	const id = req.params.id
-// 	await Client.find({})
-// }
+export const getJournals: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void>  => {
+	try {
+		const data = await journalService.getJournals(req.params.id)
+		res.status(200).json({status:'success', message:'Journals Found', data})
+	} catch (error) {
+		next(error)
+	}
+}
 
 

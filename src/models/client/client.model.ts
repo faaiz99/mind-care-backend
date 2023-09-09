@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const clientSchema = new Schema({
   firstName: {
@@ -36,8 +36,14 @@ const clientSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    required:false
+    required: false
   },
+  openJournalId: [
+    {
+      type: Types.ObjectId, 
+      ref: 'OpenJournal',
+    }
+  ],
 });
 
 export const Client = model("client", clientSchema);

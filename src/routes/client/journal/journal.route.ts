@@ -5,7 +5,7 @@ const router = Router()
 // Journals can only be fetched, created or deleted //
 
 import {
-	getAllEntries
+	getJournals
 } from '../../../controllers/journal.controller.ts'
 
 import {
@@ -42,7 +42,7 @@ import {
 	createLookingForwardToTomorrow
 } from '../../../controllers/journal.controller.ts'
 
-router.get('/journals', getAllEntries)
+router.get('/journals/:id', getJournals)
 
 router.post('/anxiety-journal', createAnxietyThoughtReccordJournal)
 router.delete('/anxiety-journal', deleteAnxietyThoughtReccordJournal)

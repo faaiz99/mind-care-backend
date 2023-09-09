@@ -33,7 +33,7 @@ describe('Mind Care Admin', () => {
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            const loginServiceMock = jest.spyOn(adminService, 'loginService').mockReturnValueOnce(userPayload)
+            const loginServiceMock = jest.spyOn(adminService, 'login').mockReturnValueOnce(userPayload)
             const { body, statusCode } = await request(baseUrl).post('/login').send(userInput)
             expect(statusCode).toBe(200)
             expect(body).toEqual(userPayload)

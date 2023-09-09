@@ -16,7 +16,14 @@ import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model
 import { FindingPeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.ts';
 import { LookingForwardToTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.ts';
 import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.ts';
+import { Client } from '../models/client/client.model.ts';
 
+export const getJournals = async (id:string)=>{
+	const response = await Client.findOne({_id:id}).populate('openJournalId')
+	if(!response)
+		throw new Error('No Journal Entries Found')
+	return response 
+}
 
 export const getGratitudeJournal = async (id: string) => {
 	const response = await GratitudeJournal.find({ clientId: id })
