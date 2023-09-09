@@ -20,7 +20,7 @@ export const createPayment = async (sessionCharges: number) => {
 		cancel_url: `${API_URL}/client?canceled=true`,
 	},
 	);
-	return session.url
+	return session
 }
 
 export const getPaymentsClient = async (id: string) => {
@@ -61,4 +61,14 @@ export const updatePayment = async (payment: any) => {
 	if (!response)
 		throw new Error('Payment could not be updated')
 	return response
+}
+
+export const confirmPayment = async (id: string) => {
+	
+	const response = await stripe.checkout.sessions.retrieve(id)
+	if(!response)
+		throw new Error('Payment Could not be Verified')
+
+	return response.payment_status
+
 }
