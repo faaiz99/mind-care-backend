@@ -1,10 +1,6 @@
 import { Schema, model, Types } from 'mongoose'
 
 const postSchema = new Schema({
-  postId: {
-    type: String,
-    required: true
-  },
   clientId: {
     type: Types.ObjectId,
     ref: 'client',
