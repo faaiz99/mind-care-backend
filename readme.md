@@ -78,7 +78,7 @@ Contributions to the Mind Care Backend are welcome! To contribute, follow these 
 
 ## License
 
-This project is licensed under the [License Name] License - see the [LICENSE](LICENSE) file for details.
+This project is property of COMSATS University Islamabad 
 
 ## Contact Information
 
