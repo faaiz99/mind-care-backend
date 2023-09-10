@@ -23,7 +23,8 @@
     GET /client-payments
     GET /client-payments/:id
     DELETE /payments/:id
-    GET /payments-confirm/:id 
+    GET /payments-confirm/:id
+    POST /payments-save 
 
     /** Therpist */
 

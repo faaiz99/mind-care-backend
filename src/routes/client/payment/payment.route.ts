@@ -5,7 +5,8 @@ import {
 	getPayment, 
 	getPaymentsClient, 
 	updatePayment, 
-	confirmPayment 
+	confirmPayment,
+	savePayment
 } from "../../../controllers/payment.controller.ts";
 
 const router: Router = Router()
@@ -13,9 +14,9 @@ const router: Router = Router()
 router.post("/payments", createPaymentIntent);
 router.patch("/payments", updatePayment)
 router.delete("/payments/:id", deletePayment)
-router.get("/payments-clients-e", getPaymentsClient)
+router.get("/payments-clients", getPaymentsClient)
 router.get("/payments-clients/:id", getPayment)
 router.get("/payments-confirm/:id", confirmPayment)
-
+router.post("/payments-save", savePayment)
 
 export { router as paymentRoutes }

@@ -64,3 +64,12 @@ export const confirmPayment:RequestHandler =  async (req: Request, res: Response
     next(error)
   }
 }
+
+export const savePayment:RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const data = await paymentService.savePayment(req.body)
+    res.status(200).json({status:'success', message:'Payment Saved', data})
+  } catch (error) {
+    next(error)
+  }
+}

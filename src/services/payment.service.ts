@@ -72,3 +72,11 @@ export const confirmPayment = async (id: string) => {
 	return response.payment_status
 
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const savePayment = async (payment:any)=>{
+	const response = await Payment.create(payment)
+	if(!response)
+		throw new Error('Payment Could not be Saved')
+	return response
+}
