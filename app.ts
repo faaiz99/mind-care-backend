@@ -23,7 +23,6 @@ dotenv.config()
 connect()
 
 const { PORT } = process.env;
-const { CHAT } = process.env
 const baseUrl: string = '/api/v1'
 const app: Application = express();
 const swaggerSpec = swaggerJSDoc(options);
@@ -55,9 +54,9 @@ app.get(`${baseUrl}`, (req, res): void => {
 
 // Export Server for Unit Tests
 
-export const server = app.listen(PORT, () => {
-	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
-})
+// export const server = app.listen(PORT, () => {
+// 	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
+// })
 
 // Socket IO Setup 
 
@@ -79,8 +78,12 @@ io.on("connection", (socket) => {
 	})
 });
 
-httpServer.listen(CHAT, () => {
-	console.log(`Chat on port ${CHAT}`);
+// httpServer.listen(CHAT, () => {
+// 	console.log(`Chat on port ${CHAT}`);
+// });
+
+export const server = httpServer.listen(PORT, () => {
+	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
 });
 
 export default app
