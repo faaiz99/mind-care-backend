@@ -6,25 +6,28 @@ const paymentSchema = new Schema({
     ref: 'client',
     required: true
   },
-  payments: [{
-    sessionCharges: {
-      type: String,
-      required: true
-    },
-    currency: {
-      type: String,
-      required: true
-    },
-    paymentDate: {
-      type: Date,
-      required: true,
-    },
-    therapistId: {
-      type: Types.ObjectId,
-      ref: 'therapist',
-      required: true
-    }
-  }]
+  sessionCharges: {
+    type: String,
+    required: true
+  },
+  currency: {
+    type: String,
+    required: true
+  },
+  paymentDate: {
+    type: Date,
+    required: true,
+  },
+  therapistId: {
+    type: Types.ObjectId,
+    ref: 'therapist',
+    required: true
+  },
+  appointmentId: {
+    type: Types.ObjectId,
+    ref: 'appointment',
+    required: true
+  }
 });
 
 export const Payment = model("payment", paymentSchema);

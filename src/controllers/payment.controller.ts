@@ -59,7 +59,7 @@ export const confirmPayment:RequestHandler =  async (req: Request, res: Response
   try {
     // id checkout ID
     const data = await paymentService.confirmPayment(req.params.id)
-    res.status(200).json({status:'success', message:'payment successfull', data})
+    res.status(200).json({status:'success', message:'Payment Session Found', data})
   } catch (error) {
     next(error)
   }
