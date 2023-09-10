@@ -38,7 +38,7 @@ export const getPaymentsTherapist = async (id: string) => {
 }
 
 export const getPayment = async (id: string) => {
-	const response = await Payment.findOne({ _id: id })
+	const response = await Payment.findOne({ clientId: id })
 	if (!response)
 		throw new Error('Payment could no be found')
 	return response
