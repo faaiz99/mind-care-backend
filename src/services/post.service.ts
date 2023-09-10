@@ -3,11 +3,9 @@ import { Post } from '../models/communityForums/post.model.ts'
 import { Upvote } from '../models/communityForums/upvote.model.ts'
 import { Downvote } from '../models/communityForums/downvote.model.ts'
 import { Report } from '../models/communityForums/report.model.ts'
-import { uuid } from 'uuidv4';
 
 
 export const createPost = async (post: any) => {
-	post.postId = uuid()
 	const response = await Post.create(post)
 	if (!response)
 		throw new Error('Post Could not be Created')

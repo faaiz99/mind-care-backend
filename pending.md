@@ -18,11 +18,12 @@
 
     /**Client */
 
-    POST /payment ->  /create-payment-intent
-    PATCH /payment
+    POST /payments ->  /create-payment-intent
+    PATCH /payments
     GET /client-payments
     GET /client-payments/:id
-    DELETE /payment/:id
+    DELETE /payments/:id
+    GET /payments-confirm/:id 
 
     /** Therpist */
 
