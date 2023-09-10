@@ -56,6 +56,7 @@ Before running the Mind Care Backend, make sure to set up the following environm
 - `MONGO_URI_ONLINE`: Online MongoDB connection URI.
 - `PORT`: Port on which the server will run.
 - `API_PORT`: Port for API endpoints.
+- `CHAT`: Port for SOCKET IO
 - `ACCESS_JWT_SECRET`: Secret key for access JWT tokens.
 - `REFRESH_JWT_SECRET`: Secret key for refresh JWT tokens.
 - `NODE_ENV`: Node environment (e.g., 'development', 'production').
@@ -77,7 +78,7 @@ Contributions to the Mind Care Backend are welcome! To contribute, follow these 
 
 ## License
 
-This project is licensed under the [License Name] License - see the [LICENSE](LICENSE) file for details.
+This project is property of COMSATS University Islamabad 
 
 ## Contact Information
 
