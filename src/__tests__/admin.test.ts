@@ -6,11 +6,44 @@ import * as adminService from '../services/admin.service.ts'
 const baseUrl = 'http://localhost:8080/api/v1/admin'
 
 describe('Mind Care Admin', () => {
-    describe('Admin Home Page', () => {
+    describe('Admin Home', () => {
         it('GET /api/v1/admin', async () => {
             const response = await request(baseUrl).get('/')
             expect(response.statusCode).toBe(401)
             expect(response.text).toEqual('Unauthorized')
+        })
+    })
+    describe("Admin Signup", () => {
+        it("POST /api/v1/admin/signup - return 200", async () => {
+            const userInput = {
+                firstName: "admin",
+                lastName: "admin",
+                email: "admin@mindcare.com",
+                gender: "male",
+                role: "admin",
+                password: "123"
+            }
+            const userPayload = {
+                status: "success",
+                message: "Admin Account created",
+                data: {
+                    firstName: "admin",
+                    lastName: "admin",
+                    email: "admin@mindcare.com",
+                    gender: "male",
+                    role: "admin",
+                    password: "123",
+                    _id: "64feab67d9424b8ece56a551",
+                    __v: 0
+                }
+            }
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            const signupServiceMock = jest.spyOn(adminService, 'signup').mockReturnValueOnce(userPayload)
+            const { body, statusCode } = await request(baseUrl).post('/signup').send(userInput)
+            expect(statusCode).toBe(200)
+            expect(body.data).toEqual(userPayload)
+            expect(signupServiceMock).toHaveBeenCalledWith(userInput)
         })
     })
     describe('Admin Login', () => {
@@ -49,37 +82,63 @@ describe('Mind Care Admin', () => {
             expect(body.status).toEqual('fail')
         })
     })
-    describe("Admin Signup", () => {
-        it("POST /api/v1/admin/signup", async () => {
-            const userInput = {
-                firstName: "admin",
-                lastName: "admin",
-                email: "admin@mindcare.com",
-                gender: "male",
-                role: "admin",
-                password: "123"
+    describe('Admin About', () => {
+        it('GET /api/v1/admin/about/:id -return 200', async () => {
+            const query = {
+                id: '64feab67d9424b8ece56a551'
             }
-            const userPayload = {
+            const payload = {
                 status: "success",
-                message: "Admin Account created",
+                message: "Admin Account found",
                 data: {
+                    _id: "64feab67d9424b8ece56a551",
+                    firstName: "admin",
+                    lastName: "admin",
+                    email: "admin@mindcare.com",
+                    gender: "male",
+                    role: "admin",
+                    password: "123",
+                    __v: 0
+                }
+            }
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            const aboutSerivceMock = jest.spyOn(adminService, 'aboutAdmin').mockReturnValueOnce(payload)
+            const { body, statusCode } = await request(baseUrl).get(`/about/${query.id}`)
+            expect(statusCode).toBe(200)
+            expect(body.data).toEqual(payload)
+            expect(aboutSerivceMock).toHaveBeenCalled()
+        })
+    })
+    describe('Admin Refresh Token', () => {
+        it('POST /api/v1/admin/refresh-token -return 200', async () => {
+            const userInput = {
+                status: "success",
+                accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmVhYjY3ZDk0MjRiOGVjZTU2YTU1MSIsImZpcnN0TmFtZSI6ImFkbWluIiwibGFzdE5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWluZGNhcmUuY29tIiwiZ2VuZGVyIjoibWFsZSIsInJvbGUiOiJhZG1pbiIsInBhc3N3b3JkIjoiMTIzIiwiX192IjowfSwiaWF0IjoxNjk0NDUxNTM3LCJleHAiOjE2OTQ0NTUxMzd9.y8YjsRe_RW1bePWtQE0dP_AUVzJM8Tk50uoL-jZMBYU',
+                refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmVhYjY3ZDk0MjRiOGVjZTU2YTU1MSIsImZpcnN0TmFtZSI6ImFkbWluIiwibGFzdE5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWluZGNhcmUuY29tIiwiZ2VuZGVyIjoibWFsZSIsInJvbGUiOiJhZG1pbiIsInBhc3N3b3JkIjoiMTIzIiwiX192IjowfSwiaWF0IjoxNjk0NDUxNTM3LCJleHAiOjE2OTQ1Mzc5Mzd9.uBnNeBC08y7cZm1M8Bdrwtzh0gq-1-G0vHGWmrYX81g',
+                data: {
+                  _id: "64feab67d9424b8ece56a551",
                   firstName: "admin",
                   lastName: "admin",
                   email: "admin@mindcare.com",
                   gender: "male",
                   role: "admin",
                   password: "123",
-                  _id: "64feab67d9424b8ece56a551",
                   __v: 0
                 }
               }
+
+            const userPayload = {
+
+            }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            const signupServiceMock = jest.spyOn(adminService, 'signup').mockReturnValueOnce(userPayload)
-            const { body, statusCode } = await request(baseUrl).post('/signup').send(userInput)
+            const refreshTokenServiceMock = jest.spyOn(adminService, 'renewTokens').mockReturnValueOnce(userPayload)
+            const { body, statusCode } = await request(baseUrl).post('refresh-token').send(userInput)
             expect(statusCode).toBe(200)
-            expect(body.data).toEqual(userPayload)
-            expect(signupServiceMock).toHaveBeenCalledWith(userInput)
+            expect(body).toEqual(userPayload)
+            expect(refreshTokenServiceMock).toHaveBeenCalledWith(userInput)
         })
     })
+
 })
