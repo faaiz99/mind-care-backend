@@ -22,9 +22,7 @@ export const signup = async (admin: unknown) => {
     const response = await Admin.create(admin);
     if (!response)
         throw new Error('Account could not be created')
-
     return response
-
 }
 
 export const renewTokens = async (admin: unknown):Promise<Token>  => {

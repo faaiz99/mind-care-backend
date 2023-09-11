@@ -49,4 +49,37 @@ describe('Mind Care Admin', () => {
             expect(body.status).toEqual('fail')
         })
     })
+    describe("Admin Signup", () => {
+        it("POST /api/v1/admin/signup", async () => {
+            const userInput = {
+                firstName: "admin",
+                lastName: "admin",
+                email: "admin@mindcare.com",
+                gender: "male",
+                role: "admin",
+                password: "123"
+            }
+            const userPayload = {
+                status: "success",
+                message: "Admin Account created",
+                data: {
+                  firstName: "admin",
+                  lastName: "admin",
+                  email: "admin@mindcare.com",
+                  gender: "male",
+                  role: "admin",
+                  password: "123",
+                  _id: "64feab67d9424b8ece56a551",
+                  __v: 0
+                }
+              }
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            const signupServiceMock = jest.spyOn(adminService, 'signup').mockReturnValueOnce(userPayload)
+            const { body, statusCode } = await request(baseUrl).post('/signup').send(userInput)
+            expect(statusCode).toBe(200)
+            expect(body.data).toEqual(userPayload)
+            expect(signupServiceMock).toHaveBeenCalledWith(userInput)
+        })
+    })
 })

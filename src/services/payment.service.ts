@@ -24,7 +24,10 @@ export const createPayment = async (sessionCharges: number) => {
 }
 
 export const getPaymentsClient = async (id: string) => {
-	const response = await Payment.find({ clientId: id })
+	const response = await Payment.find({ clientId: id }).populate({
+		path:'therapistId',
+		model:'therapist'
+	})
 	if (!response)
 		throw new Error('Client Payments could not be found')
 	return response
@@ -38,7 +41,10 @@ export const getPaymentsTherapist = async (id: string) => {
 }
 
 export const getPayment = async (id: string) => {
-	const response = await Payment.findOne({ clientId: id })
+	const response = await Payment.findOne({ clientId: id }).populate({
+		path:'therapistId',
+		model:'therapist'
+	})
 	if (!response)
 		throw new Error('Payment could no be found')
 	return response

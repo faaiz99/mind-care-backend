@@ -36,10 +36,13 @@ export const getPosts = async () => {
 	 * however, this is basic implementation
 	 * of the getPosts because feed is populated by all posts
 	 */
-	const response = await Post.find()
+	const response = await Post.find().populate({
+		path:'therapistId',
+		model:'therapist'
+	})
 	if (!response)
 		throw new Error('Posts Could not be Found')
-	return response
+	return response
 
 }
 
