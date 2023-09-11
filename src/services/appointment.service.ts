@@ -40,6 +40,10 @@ export const getAppointmentsClient = async (id: string) => {
         path:'clientId',
         model:'client'
     })
+    .populate({
+        path:'therapistId',
+        model:'therapist'
+    })
     if (!response)
         throw new Error('Appointments not found')
     return response
