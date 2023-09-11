@@ -20,7 +20,7 @@
 
     POST /payments ->  /create-payment-intent
     PATCH /payments
-    GET /client-payments
+    GET /client-payments/
     GET /client-payments/:id
     DELETE /payments/:id
     GET /payments-confirm/:id
@@ -38,6 +38,7 @@
     GET /psychological-profile/:id
     PATCH /psychological-profile/:id
     DELETE /psychological-profile/:id
+    
 
     // Inventory Tests with Answers
 
@@ -180,6 +181,7 @@
 
 14. /** Fitness and Sleep Tracker */
 
+    
 
 
 Route -> [Middleware -> Controller -> Service -> Model] -> MongoDB

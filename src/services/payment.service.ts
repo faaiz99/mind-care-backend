@@ -41,7 +41,7 @@ export const getPaymentsTherapist = async (id: string) => {
 }
 
 export const getPayment = async (id: string) => {
-	const response = await Payment.findOne({ clientId: id }).populate({
+	const response = await Payment.find({ clientId: id }).populate({
 		path:'therapistId',
 		model:'therapist'
 	})
