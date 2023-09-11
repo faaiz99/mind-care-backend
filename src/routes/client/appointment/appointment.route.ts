@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const router:Router = Router()
 
-router.get('/appointments-client', getAppointmentsClient)
+router.get('/appointments-client/:id', getAppointmentsClient)
 router.get('/appointments-therapist', getAppointmentsTherapist)
 router.post('/appointments',createAppointment)
 router.patch('appointments/:id', updateAppointment)

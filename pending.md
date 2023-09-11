@@ -5,7 +5,7 @@
 /** Features Web/Mobile */
 1. /** Teleappointments */ 
     
-    GET  /appointments-client
+    GET  /appointments-client/:id
     GET /appointments-therapist
     POST /appointments
     PATCH /appointments

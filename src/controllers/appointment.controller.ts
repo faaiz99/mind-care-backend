@@ -14,7 +14,7 @@ export const createAppointment: RequestHandler = async (req: Request, res: Respo
 
 export const getAppointmentsClient: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await appointmentService.getAppointmentsTherapist(req.params.therapistId)
+		const data = await appointmentService.getAppointmentsClient(req.params.id)
 		res.status(200).json({ status: 'success', message: 'Appointments found', data })
 	} catch (error) {
 		res.status(409).json({ status: 'failure', message: 'Appointments could not be found' })
@@ -25,7 +25,7 @@ export const getAppointmentsClient: RequestHandler = async (req: Request, res: R
 
 export const getAppointmentsTherapist: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await appointmentService.getAppointmentsClient(req.params.clientId)
+		const data = await appointmentService.getAppointmentsTherapist(req.params.id)
 		res.status(200).json({ status: 'success', message: 'Appointments found', data })
 	} catch (error) {
 		res.status(409).json({ status: 'failure', message: 'Appointments could not be found' })
