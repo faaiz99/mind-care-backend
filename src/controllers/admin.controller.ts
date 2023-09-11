@@ -10,8 +10,11 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
 	try {
 		const { accessToken, refreshToken, data } = await adminService.login(req.body.email, req.body.password)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
-	} catch (error) {
-		res.status(409).json({ status: "fail" });
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error:any) {
+		if( error.message == 'Account does not exist')
+		res.status(409).json({ status: "fail", message:'Account does not exist'});
+		else
 		next(error)
 	}
 }
@@ -20,7 +23,6 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 		const data= await adminService.signup(req.body)
 		res.status(200).json({ status: 'success', message: "Admin Account created", data });
 	} catch (error) {
-		res.status(409).json({ status: "error", message: error });
 		next(error)
 	}
 }
@@ -29,7 +31,6 @@ export const renewToken: RequestHandler = async (req: Request, res: Response, ne
 		const { accessToken, refreshToken, data } = await adminService.renewTokens(req.body.user)
 		res.status(200).json({ status: "success", accessToken: accessToken, refreshToken: refreshToken, data });
 	} catch (error) {
-		res.status(409).json({ status: "fail" });
 		next(error)
 	}
 }
@@ -40,7 +41,6 @@ export const about: RequestHandler = async (req: Request, res: Response, next: N
 		res.status(200).json({ status: 'success', message: "Admin Account found", data });
 
 	} catch (error) {
-		res.status(409).json({ status: "fail", message: 'Admin Account not found' });
 		next(error)
 	}
 }

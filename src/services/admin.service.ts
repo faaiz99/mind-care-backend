@@ -10,9 +10,9 @@ export const login= async (email: string, password: string):Promise<Token> => {
         email: email,
         password: password,
     })
-    if (!admin)
+    if (!admin){
         throw new Error('Account does not exist')
-
+    }
     return issueTokens(admin)
 
 }
@@ -26,9 +26,7 @@ export const signup = async (admin: unknown) => {
 }
 
 export const renewTokens = async (admin: unknown):Promise<Token>  => {
-
     return issueTokens(admin)
-
 }
 
 export const aboutAdmin = async (id: string) => {

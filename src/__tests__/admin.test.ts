@@ -112,52 +112,38 @@ describe('Mind Care Admin', () => {
     })
     describe('Admin Refresh Token', () => {
         it('POST /api/v1/admin/refresh-token -return 200', async () => {
-            const userInput = {
-                status: "success",
-                accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmVhYjY3ZDk0MjRiOGVjZTU2YTU1MSIsImZpcnN0TmFtZSI6ImFkbWluIiwibGFzdE5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWluZGNhcmUuY29tIiwiZ2VuZGVyIjoibWFsZSIsInJvbGUiOiJhZG1pbiIsInBhc3N3b3JkIjoiMTIzIiwiX192IjowfSwiaWF0IjoxNjk0NDUxNTM3LCJleHAiOjE2OTQ0NTUxMzd9.y8YjsRe_RW1bePWtQE0dP_AUVzJM8Tk50uoL-jZMBYU',
-                refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmVhYjY3ZDk0MjRiOGVjZTU2YTU1MSIsImZpcnN0TmFtZSI6ImFkbWluIiwibGFzdE5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWluZGNhcmUuY29tIiwiZ2VuZGVyIjoibWFsZSIsInJvbGUiOiJhZG1pbiIsInBhc3N3b3JkIjoiMTIzIiwiX192IjowfSwiaWF0IjoxNjk0NDUxNTM3LCJleHAiOjE2OTQ1Mzc5Mzd9.uBnNeBC08y7cZm1M8Bdrwtzh0gq-1-G0vHGWmrYX81g',
-                data: {
-                  _id: "64feab67d9424b8ece56a551",
-                  firstName: "admin",
-                  lastName: "admin",
-                  email: "admin@mindcare.com",
-                  gender: "male",
-                  role: "admin",
-                  password: "123",
-                  __v: 0
-                }
-              }
-              /**
-               * Auth header contains refresh-token
-               */
+            /**
+             * Auth header contains refresh-token
+             * Needs to have a valid token
+             */
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const header = { authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmVhYjY3ZDk0MjRiOGVjZTU2YTU1MSIsImZpcnN0TmFtZSI6ImFkbWluIiwibGFzdE5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWluZGNhcmUuY29tIiwiZ2VuZGVyIjoibWFsZSIsInJvbGUiOiJhZG1pbiIsInBhc3N3b3JkIjoiMTIzIiwiX192IjowfSwiaWF0IjoxNjk0NDUxNTM3LCJleHAiOjE2OTQ0NTUxMzd9.y8YjsRe_RW1bePWtQE0dP_AUVzJM8Tk50uoL-jZMBYU'}
+            const header = { "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiX2lkIjoiNjRmZWFiNjdkOTQyNGI4ZWNlNTZhNTUxIiwiZmlyc3ROYW1lIjoiYWRtaW4iLCJsYXN0TmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtaW5kY2FyZS5jb20iLCJnZW5kZXIiOiJtYWxlIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiIxMjMiLCJfX3YiOjB9LCJpYXQiOjE2OTQ0NTcwMjQsImV4cCI6MTY5NDQ2MDYyNH0sImlhdCI6MTY5NDQ1Nzc1MiwiZXhwIjoxNjk0NDYxMzUyfQ.qwIS9PXDH0zEcWkc71DdGGYQnGIxzPgwyWNJXG7PmT4" }
             const userPayload = {
-                "status": "success",
-                "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiX2lkIjoiNjRmZWFiNjdkOTQyNGI4ZWNlNTZhNTUxIiwiZmlyc3ROYW1lIjoiYWRtaW4iLCJsYXN0TmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtaW5kY2FyZS5jb20iLCJnZW5kZXIiOiJtYWxlIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiIxMjMiLCJfX3YiOjB9LCJpYXQiOjE2OTQ0NTE1MzcsImV4cCI6MTY5NDQ1NTEzN30sImlhdCI6MTY5NDQ1MjU1MywiZXhwIjoxNjk0NDU2MTUzfQ.3WLpOTfd-NxUQ9gky2rDezS-aewIlHJ7BW6NlOmQ4aI",
-                "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiX2lkIjoiNjRmZWFiNjdkOTQyNGI4ZWNlNTZhNTUxIiwiZmlyc3ROYW1lIjoiYWRtaW4iLCJsYXN0TmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtaW5kY2FyZS5jb20iLCJnZW5kZXIiOiJtYWxlIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiIxMjMiLCJfX3YiOjB9LCJpYXQiOjE2OTQ0NTE1MzcsImV4cCI6MTY5NDQ1NTEzN30sImlhdCI6MTY5NDQ1MjU1MywiZXhwIjoxNjk0NTM4OTUzfQ.LQ-MH3jSHS2nhkif79EgiLcEBXcOpH6V9BXKmegpYcA",
-                "data": {
-                  "user": {
-                    "_id": "64feab67d9424b8ece56a551",
-                    "firstName": "admin",
-                    "lastName": "admin",
-                    "email": "admin@mindcare.com",
-                    "gender": "male",
-                    "role": "admin",
-                    "password": "123",
-                    "__v": 0
-                  },
-                  "iat": 1694451537,
-                  "exp": 1694455137
+                status: "success",
+                accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiX2lkIjoiNjRmZWFiNjdkOTQyNGI4ZWNlNTZhNTUxIiwiZmlyc3ROYW1lIjoiYWRtaW4iLCJsYXN0TmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtaW5kY2FyZS5jb20iLCJnZW5kZXIiOiJtYWxlIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiIxMjMiLCJfX3YiOjB9LCJpYXQiOjE2OTQ0NTcwMjQsImV4cCI6MTY5NDQ2MDYyNH0sImlhdCI6MTY5NDQ1Nzc1MiwiZXhwIjoxNjk0NDYxMzUyfQ.qwIS9PXDH0zEcWkc71DdGGYQnGIxzPgwyWNJXG7PmT4",
+                refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiX2lkIjoiNjRmZWFiNjdkOTQyNGI4ZWNlNTZhNTUxIiwiZmlyc3ROYW1lIjoiYWRtaW4iLCJsYXN0TmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtaW5kY2FyZS5jb20iLCJnZW5kZXIiOiJtYWxlIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiIxMjMiLCJfX3YiOjB9LCJpYXQiOjE2OTQ0NTcwMjQsImV4cCI6MTY5NDQ2MDYyNH0sImlhdCI6MTY5NDQ1Nzc1MiwiZXhwIjoxNjk0NTQ0MTUyfQ.Ts7KxEcfxhvZvSXBVlyynmDdY6ksDOkNwovp0HQaJA8",
+                data: {
+                    _id: "64feab67d9424b8ece56a551",
+                    firstName: "admin",
+                    lastName: "admin",
+                    email: "admin@mindcare.com",
+                    gender: "male",
+                    role: "admin",
+                    password: "123",
+                    __v: 0,
+                    iat: 1694457024,
+                    exp: 1694460624
                 }
-              }
+            }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             const refreshTokenServiceMock = jest.spyOn(adminService, 'renewTokens').mockReturnValueOnce(userPayload)
-            const { body, statusCode } = await request(baseUrl).post('refresh-token').send(userInput)
+            const { body, statusCode } = await request(baseUrl)
+                .post('/refresh-token')
+                .set(header).send()
             expect(statusCode).toBe(200)
             expect(body).toEqual(userPayload)
-            expect(refreshTokenServiceMock).toHaveBeenCalledWith(userInput)
+            expect(refreshTokenServiceMock).toHaveBeenCalled()
         })
     })
 })

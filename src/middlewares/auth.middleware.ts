@@ -16,13 +16,12 @@ export const authenticateToken: RequestHandler = async (req: Request, res: Respo
 
 export const revalidateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const authHeader = req.headers["authorization"];
-  if (authHeader === null || authHeader === undefined)
-    res.json({ status: 401, message: 'Authorization Header Absent', data: authHeader })
+  if (!authHeader)
+    res.status(401).json({ status: 'failure', message: 'Authorization Header Absent', data: authHeader })
   jwt.verify(authHeader as string, REFRESH_JWT_SECRET as string, (err, user) => {
     if (err)
-      res.status(200).json({message:'Please Login Again'})
-    req.body.user = user
-    console.log('refresh token verified')
+      res.status(409).json({ status: 'failure', message: 'Please Login Again' })
+    req.body = user 
     next();
   });
 }
