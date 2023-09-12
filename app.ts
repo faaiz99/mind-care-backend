@@ -51,37 +51,29 @@ app.get(`${baseUrl}`, (req, res): void => {
 	res.send('Mind Care API')
 })
 
-
-// Export Server for Unit Tests
-
-// export const server = app.listen(PORT, () => {
-// 	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
-// })
-
 // Socket IO Setup 
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, socketOptionsCors);
 
 io.on("connection", (socket) => {
-	// previous chat
-	console.log("We are live and connected");
-	console.log(socket.id);
-	socket.emit('message', 'Hello World')
-	socket.on('disconnect', () => {
-		console.log('user disconnected')
-	})
-	socket.on('chatmessage', msg => {
-		//const message = new Mesg()
-		console.log('here')
-		io.emit('message', msg)
-	})
-});
+	socket.emit("me", socket.id)
 
-// httpServer.listen(CHAT, () => {
-// 	console.log(`Chat on port ${CHAT}`);
-// });
+	socket.on("disconnect", () => {
+		socket.broadcast.emit("callEnded")
+	})
 
+	socket.on("callUser", (data) => {
+		io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
+	})
+
+	socket.on("answerCall", (data) => {
+		io.to(data.to).emit("callAccepted", data.signal)
+	})
+})
+
+
+// Export Server for Unit Tests
 export const server = httpServer.listen(PORT, () => {
 	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
 });
