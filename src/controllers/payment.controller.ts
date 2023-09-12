@@ -48,7 +48,7 @@ export const deletePayment: RequestHandler = async (req: Request, res: Response,
 
 export const updatePayment: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const data = await paymentService.updatePayment(req.body)
+    const data = await paymentService.updatePayment(req.body, req.params.id)
     res.status(200).json({ status: 'success', message: 'Payments Updated', data })
   } catch (error) {
     next(error)

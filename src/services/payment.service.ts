@@ -59,9 +59,8 @@ export const deletePayment = async (id: string) => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const updatePayment = async (payment: any) => {
-	const filter = payment.id
-	const response = await Payment.findOneAndUpdate(filter, payment, {
+export const updatePayment = async (payment: any, id:string) => {
+	const response = await Payment.findOneAndUpdate({_id:id}, payment, {
 		returnOriginal: false
 	})
 	if (!response)

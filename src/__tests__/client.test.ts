@@ -1,11 +1,22 @@
 import request from 'supertest'
 import { describe, expect, it} from '@jest/globals';
+import { httpServer } from '../../app.ts';
+import { disconnect, connect } from '../config/db.config.ts';
 
-const baseUrl = 'http://localhost:8080/api/v1'
+beforeAll(async () => {
+    await connect()
+});
+
+
+afterAll(async()=>{
+   await disconnect()
+    httpServer.close()
+})
+
 
 describe('Mind Care Client', () => {
-    it('GET /api/v1/client', async () => {
-        const response = await request(baseUrl).get('/client')
+    it('GET /api/v1/client -return 200 OK', async () => {
+        const response = await request(httpServer).get('/api/v1/client')
         expect(response.statusCode).toBe(200)
         expect(response.text).toEqual('Client')
     })
