@@ -65,6 +65,24 @@ export const upvotePost: RequestHandler = async (req: Request, res: Response, ne
 	}
 }
 
+export const removeUpvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await postService.removeUpvotePost(req.params.uid, req.params.pid)
+		res.status(200).json({status:'success', message:'Upvote Removed', data})
+	} catch (error) {
+		next(error)
+	}
+}
+
+export const removeDownvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await postService.removeDownvotePost(req.params.uid, req.params.pid)
+		res.status(200).json({status:'success', message:'Downvote Removed', data})
+	} catch (error) {
+		next(error)
+	}
+}
+
 export const downvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
 		const data = await postService.downvotePost(req.body, req.params.id)

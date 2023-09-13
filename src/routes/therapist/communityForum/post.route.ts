@@ -9,7 +9,9 @@ import {
 	deletePost,
 	reportPost,
 	upvotePost,
-	downvotePost
+	downvotePost, 
+	removeDownvotePost,
+	removeUpvotePost
 } from '../../../controllers/post.controller.ts'
 
 /**
@@ -57,6 +59,10 @@ router.post('/report-post/:id', reportPost)
 router.post('/upvote-post/:id', upvotePost)
 
 router.post('/downvote-post/:id', downvotePost)
+
+router.delete('/upvote-post/:pid/:uid', removeUpvotePost)
+
+router.delete('/downvote-post/:pid/:uid', removeDownvotePost)
 
 
 export { router as postRoutes }

@@ -37,12 +37,12 @@ export const getPosts = async () => {
 	 * of the getPosts because feed is populated by all posts
 	 */
 	const response = await Post.find().populate({
-		path:'therapistId',
-		model:'therapist'
+		path: 'therapistId',
+		model: 'therapist'
 	})
 	if (!response)
 		throw new Error('Posts Could not be Found')
-	return response
+	return response
 
 }
 
@@ -78,12 +78,43 @@ export const downvotePost = async (post: any, id: string) => {
 
 }
 
+export const removeUpvotePost = async (uid: string, pid: string) => {
+	const response = await Post.findOneAndUpdate(
+		{ _id: pid },
+		{
+			$pull: {
+				upvotes: uid
+			}
+		},
+		{ new: true }
+	)
+	if (!response)
+		throw new Error('Upvote Could not be Removed')
+	return response
+
+}
+
+export const removeDownvotePost = async (uid: string, pid: string) => {
+	const response = await Post.findOneAndUpdate(
+		{ _id: pid },
+		{
+			$pull: {
+				downvotes: uid
+			}
+		},
+		{ new: true }
+	)
+	if (!response)
+		throw new Error('Downvote Could not be Removed')
+	return response
+}
+
 export const reportPost = async (post: any, id: string) => {
 	const report = await Report.create(post)
 	const response = await Post.findOneAndUpdate({ _id: id }, {
 		$push: { postReport: report }
 	})
-	if(!response)
+	if (!response)
 		throw new Error('Post could not be Reported')
 	return response
 
