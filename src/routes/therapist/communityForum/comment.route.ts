@@ -22,10 +22,10 @@ router.patch('/comments/:id', updateComment)
 
 router.delete('/comments/:id', deleteComment)
 
-router.post('report-comments/:id', reportComment)
+router.post('/report-comments/:id', reportComment)
 
-router.post('upvote-comments/:id', upvoteComment)
+router.post('/upvote-comments/:id', upvoteComment)
 
-router.post('downvote-comments/:id', downvoteComment)
+router.post('/downvote-comments/:id', downvoteComment)
 
 export { router as commentRoutes }

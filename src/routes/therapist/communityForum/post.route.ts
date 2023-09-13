@@ -52,11 +52,11 @@ router.patch('/posts/:id', updatePost)
 
 router.delete('/posts/:id', deletePost)
 
-router.post('report-post/:id', reportPost)
+router.post('/report-post/:id', reportPost)
 
-router.post('upvote-post/:id', upvotePost)
+router.post('/upvote-post/:id', upvotePost)
 
-router.post('downvote-post/:id', downvotePost)
+router.post('/downvote-post/:id', downvotePost)
 
 
 export { router as postRoutes }
