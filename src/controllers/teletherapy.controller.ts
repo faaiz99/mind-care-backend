@@ -19,7 +19,7 @@ export const getUserChat: RequestHandler = async (req: Request, res: Response, n
 	}
 }
 
-export const findCurrentChat: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
+export const getCurrentChat: RequestHandler = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 	try {
 		const data = await teletherapyService.getCurrentChat()
 		res.status(200).json({ status: 'success', message: 'message sent successfully', data })

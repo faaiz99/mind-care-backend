@@ -1,5 +1,6 @@
 import { stripe, API_URL } from '../config/stripe.config.ts';
 import { Payment } from '../models/payment/payment.model.ts';
+import { IPayment } from '../Types/IPayment.js';
 
 export const createPayment = async (sessionCharges: number) => {
 	const session = await stripe.checkout.sessions.create({
@@ -58,8 +59,7 @@ export const deletePayment = async (id: string) => {
 
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const updatePayment = async (payment: any, id:string) => {
+export const updatePayment = async (payment: IPayment, id:string) => {
 	const response = await Payment.findOneAndUpdate({_id:id}, payment, {
 		returnOriginal: false
 	})
@@ -78,8 +78,7 @@ export const confirmPayment = async (id: string) => {
 
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const savePayment = async (payment:any)=>{
+export const savePayment = async (payment:IPayment)=>{
 	const response = await Payment.create(payment)
 	if(!response)
 		throw new Error('Payment Could not be Saved')

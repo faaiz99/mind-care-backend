@@ -7,12 +7,14 @@ import {
 	editReminder, deleteReminder
 } from '../../../controllers/reminder.controller.ts'
 
-router.get('/reminder', getReminders)
+router.get('/reminders', getReminders)
 
-router.post('/reminder', createReminder)
+router.get('/reminders/:id', getReminders)
 
-router.patch('/reminder', editReminder)
+router.post('/reminders/:id', createReminder)
 
-router.delete('/reminder', deleteReminder)
+router.patch('/reminders/:id', editReminder)
+
+router.delete('/reminders/:id', deleteReminder)
 
 export {router as reminderRoutes}

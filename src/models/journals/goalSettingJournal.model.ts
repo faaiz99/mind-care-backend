@@ -17,7 +17,7 @@ const goalSettingJournalSchema = new Schema({
 })
 
 export const GoalSettingJournal = model(
-	"GoalSettingJournal",
+	"goalSettingJournal",
 	goalSettingJournalSchema
 );
 

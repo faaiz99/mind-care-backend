@@ -1,8 +1,9 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model, Model } from 'mongoose'
+import { IPayment } from '../../Types/IPayment.ts';
 
-const paymentSchema = new Schema({
+const paymentSchema = new Schema<IPayment>({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'client',
     required: true
   },
@@ -19,15 +20,15 @@ const paymentSchema = new Schema({
     required: true,
   },
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'therapist',
     required: true
   },
   appointmentId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'appointment',
     required: true
   }
 });
 
-export const Payment = model("payment", paymentSchema);
+export const Payment: Model<IPayment> = model<IPayment>("payment", paymentSchema);

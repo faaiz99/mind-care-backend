@@ -15,6 +15,6 @@ const selfAffirmationJournalSchema = new Schema({
 });
 
 export const SelfAffirmationJournal = model(
-  "SelfAffirmationJournal",
+  "selfAffirmationJournal",
   selfAffirmationJournalSchema
 );

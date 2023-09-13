@@ -16,16 +16,39 @@ import { DreamJournal } from '../models/journals/sleepJournal/dreamJournal.model
 import { FindingPeacefulSpace } from '../models/journals/sleepJournal/findingapeacefulSpace.model.ts';
 import { LookingForwardToTomorrow } from '../models/journals/sleepJournal/lookingforwardtoTomorrow.model.ts';
 import { PlanningTheDayAhead } from '../models/journals/sleepJournal/planningthedayAhead.model.ts';
-import { Client } from '../models/client/client.model.ts';
 
-export const getJournals = async (id:string)=>{
-	const response = await Client.findOne({_id:id}).populate({
-		path:'openJournals',
-		model:'OpenJournal'
-	})
-	if(!response)
+import mongoose from 'mongoose';
+
+export const getJournals = async (id: string) => {
+	const journals = [
+		'gratitudeJournal',
+		'problemSolvingJournal',
+		'goalSettingJournal',
+		'selfAffirmationJournal',
+		'openJournal',
+		'challengingNegativeThoughtsAboutYourselfJournal',
+		'buildingASelfCarePlan',
+		'anxietyThoughtRecordJournal',
+		'reflectionJournal',
+		'calmingTheMind',
+		'dreamJournal',
+		'findingPeacefulSpace',
+		'lookingForwardToTomorrow',
+		'planningTheDayAhead'
+	];
+
+	const promises = journals.map(async (journalName) => {
+		const journalResponses = await mongoose.model(journalName).find({ clientId: id }).populate({
+			path: 'clientId',
+			model: 'client',
+		});
+		return journalResponses;
+	});
+
+	const response = await Promise.allSettled(promises);
+	if (!response)
 		throw new Error('No Journal Entries Found')
-	return response 
+	return response
 }
 
 export const getGratitudeJournal = async (id: string) => {
@@ -42,9 +65,9 @@ export const createGratitudeJournal = async (gratitudeJournal: any) => {
 	return response
 }
 
-export const deleteGratitudeJournal = async(id:string)=>{
-	const response = await GratitudeJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteGratitudeJournal = async (id: string) => {
+	const response = await GratitudeJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Gratitude Journal Could no be Deleted')
 	return response
 }
@@ -63,9 +86,9 @@ export const createProblemSolvingJournal = async (problemSolvingJournal: any) =>
 	return response
 }
 
-export const deleteProblemSolvingJournal = async(id:string)=>{
-	const response = await ProblemSolvingJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteProblemSolvingJournal = async (id: string) => {
+	const response = await ProblemSolvingJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Problem Solving Journal Could no be Deleted')
 	return response
 }
@@ -84,9 +107,9 @@ export const createGoalSettingJournal = async (goalSettingJournal: any) => {
 	return response
 }
 
-export const deleteGoalSettingJournal = async(id:string)=>{
-	const response = await GoalSettingJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteGoalSettingJournal = async (id: string) => {
+	const response = await GoalSettingJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Goal Setting Journal Could no be Deleted')
 	return response
 }
@@ -106,9 +129,9 @@ export const createSelfAffirmationJournal = async (selfAffirmationJournal: any) 
 	return response
 }
 
-export const deleteSelfAffirmationJournal = async(id:string)=>{
-	const response = await SelfAffirmationJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteSelfAffirmationJournal = async (id: string) => {
+	const response = await SelfAffirmationJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Self Affirmation Journal Could no be Deleted')
 	return response
 }
@@ -127,9 +150,9 @@ export const createOpenJournal = async (openJournal: any) => {
 		throw new Error('Open Journal Could not be Created')
 	return response
 }
-export const deleteOpenJournal = async(id:string)=>{
-	const response = await OpenJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteOpenJournal = async (id: string) => {
+	const response = await OpenJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Open Journal Journal Could no be Deleted')
 	return response
 }
@@ -149,9 +172,9 @@ export const createChallengingNegativeThoughtsAboutYourselfJournal = async (chal
 	return response
 }
 
-export const deleteChallengingNegativeThoughtsAboutYourselfJournal = async(id:string)=>{
-	const response = await ChallengingNegativeThoughtsAboutYourselfJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteChallengingNegativeThoughtsAboutYourselfJournal = async (id: string) => {
+	const response = await ChallengingNegativeThoughtsAboutYourselfJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Challenging Negative Thoughts About Yourself Journal Could no be Deleted')
 	return response
 }
@@ -171,9 +194,9 @@ export const createBuildingASelfCarePlan = async (buildingASelfCarePlan: any) =>
 	return response
 }
 
-export const deleteBuildingASelfCarePlan = async(id:string)=>{
-	const response = await BuildingASelfCarePlan.deleteOne({_id:id})
-	if(!response)
+export const deleteBuildingASelfCarePlan = async (id: string) => {
+	const response = await BuildingASelfCarePlan.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Building A Self Care Plan Journal Could no be Deleted')
 	return response
 }
@@ -193,9 +216,9 @@ export const createAnxietyThoughtReccordJournal = async (anxietyThoughtRecordJou
 	return response
 }
 
-export const deleteAnxietyThoughtReccordJournal = async(id:string)=>{
-	const response = await AnxietyThoughtRecordJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteAnxietyThoughtReccordJournal = async (id: string) => {
+	const response = await AnxietyThoughtRecordJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Anxiety Thought Reccord Journal Could no be Deleted')
 	return response
 }
@@ -215,9 +238,9 @@ export const createReflectionJournal = async (reflectionJournal: any) => {
 	return response
 }
 
-export const deleteReflectionJournal = async(id:string)=>{
-	const response = await ReflectionJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteReflectionJournal = async (id: string) => {
+	const response = await ReflectionJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Reflection Journal Could no be Deleted')
 	return response
 }
@@ -237,9 +260,9 @@ export const createCalmingtheMind = async (calmingTheMind: any) => {
 	return response
 }
 
-export const deleteCalmingTheMind = async(id:string)=>{
-	const response = await CalmingTheMind.deleteOne({_id:id})
-	if(!response)
+export const deleteCalmingTheMind = async (id: string) => {
+	const response = await CalmingTheMind.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Calming Journal Could no be Deleted')
 	return response
 }
@@ -257,9 +280,9 @@ export const createDreamJournal = async (dreamJournal: any) => {
 		throw new Error('Dream Journal Could not be Created')
 }
 
-export const deleteDreamJournal = async(id:string)=>{
-	const response = await DreamJournal.deleteOne({_id:id})
-	if(!response)
+export const deleteDreamJournal = async (id: string) => {
+	const response = await DreamJournal.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Dream Journal Could no be Deleted')
 	return response
 }
@@ -279,9 +302,9 @@ export const createFindingPeaceFulSpace = async (findingpeacefulSpace: any) => {
 	return response
 }
 
-export const deleteFindingPeaceFulSpace = async(id:string)=>{
-	const response = await FindingPeacefulSpace.deleteOne({_id:id})
-	if(!response)
+export const deleteFindingPeaceFulSpace = async (id: string) => {
+	const response = await FindingPeacefulSpace.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Finding Peaceful Space Journal Could no be Deleted')
 	return response
 }
@@ -294,16 +317,16 @@ export const getLookingForwardToTomorrow = async (id: string) => {
 	return response
 }
 
-export const createLookingForwardToTomorrow = async (lookingForwardToTomorrow:any)=>{
+export const createLookingForwardToTomorrow = async (lookingForwardToTomorrow: any) => {
 	const response = await LookingForwardToTomorrow.create(lookingForwardToTomorrow)
-	if(!response)
+	if (!response)
 		throw new Error('Looking Forward To Tomorrow Journal Could not be Created')
 	return response
 }
 
-export const deleteLookingForwardToTomorrow = async(id:string)=>{
-	const response = await LookingForwardToTomorrow.deleteOne({_id:id})
-	if(!response)
+export const deleteLookingForwardToTomorrow = async (id: string) => {
+	const response = await LookingForwardToTomorrow.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Looking Forward To Tomorrow Journal Could no be Deleted')
 	return response
 }
@@ -316,16 +339,16 @@ export const getPlanningDayAhead = async (id: string) => {
 	return response
 }
 
-export const createPlanningDayAhead = async (planningTheDayAhead:any)=>{
+export const createPlanningDayAhead = async (planningTheDayAhead: any) => {
 	const response = await PlanningTheDayAhead.create(planningTheDayAhead)
-	if(!response)
+	if (!response)
 		throw new Error('Planning The Day Ahead Journal Could not be Created')
 	return response
 }
 
-export const deletePlanningDayAhead = async(id:string)=>{
-	const response = await PlanningTheDayAhead.deleteOne({_id:id})
-	if(!response)
+export const deletePlanningDayAhead = async (id: string) => {
+	const response = await PlanningTheDayAhead.deleteOne({ _id: id })
+	if (!response)
 		throw new Error('Planning The Day Ahead Journal Could no be Deleted')
 	return response
 }

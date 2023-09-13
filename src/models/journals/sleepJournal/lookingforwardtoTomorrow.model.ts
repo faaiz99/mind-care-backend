@@ -16,4 +16,4 @@ const lookingforwardtoTomorrowSchema = new Schema({
 	}
 });
 
-export const LookingForwardToTomorrow = model("lookingforwardtoTomorrow", lookingforwardtoTomorrowSchema);
+export const LookingForwardToTomorrow = model("lookingForwardToTomorrow", lookingforwardtoTomorrowSchema);

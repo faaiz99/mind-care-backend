@@ -16,7 +16,7 @@ const gratitudeJournalSchema = new Schema({
 });
 
 export const GratitudeJournal = model(
-  "GratitudeJournal",
+  "gratitudeJournal",
   gratitudeJournalSchema
 );
 

@@ -16,4 +16,4 @@ const planningthedayAheadSchema = new Schema({
 	}
 });
 
-export const PlanningTheDayAhead = model("planningthedayAhead", planningthedayAheadSchema);
+export const PlanningTheDayAhead = model("planningTheDayAhead", planningthedayAheadSchema);

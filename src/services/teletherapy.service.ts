@@ -1,4 +1,4 @@
-import { Chat } from '../models/chat/chat.model.ts'
+import { Chat } from '../models/theletherapy/teletherapy.model.ts'
 import { Server } from 'socket.io'
 import { socketOptionsCors } from '../config/socket.config.ts'
 import { httpServer } from '../../app.ts';
@@ -21,16 +21,32 @@ io.on("connection", (socket) => {
 	})
 })
 
-export const createChat = async ()=>{
+export const createChat = async (cid:string, tid:string)=>{
 
-	const response = await Chat.create()
+	// cid -> clientId 
+	// tid -> TherapistId
+	const oldChat = await Chat.exists({
+		therapistId:tid,
+		clientId:cid
+	})
+	if(oldChat){
+		return oldChat
+	}
+
+	const newChat = await Chat.create({
+		clientId:cid,
+		therapistId:tid
+	})
+
+	const response = newChat.save()
+
 	if(!response)
 		throw new Error('Chat could not be send')
 	return response
 
 }
 
-export const getUserChat = async ()=>{
+export const getUserChat = async (id:string)=>{
 	const response = await Chat.find({})
 	if(!response)
 		throw new Error('Chats could not be fetched')

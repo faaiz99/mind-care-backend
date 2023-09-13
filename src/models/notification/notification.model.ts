@@ -9,7 +9,6 @@ const notificationSchema = new Schema({
   notificationTime: {
     type: String,
   },
-  sentMedia: {},
 });
 
 export const notificationModel = model("notification", notificationSchema);

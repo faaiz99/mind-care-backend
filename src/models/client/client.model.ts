@@ -38,12 +38,6 @@ const clientSchema = new Schema({
     type: Date,
     required: false
   },
-  openJournals: [
-    {
-      type: Types.ObjectId, 
-      ref: 'OpenJournal',
-    }
-  ],
 });
 
 export const Client = model("client", clientSchema);

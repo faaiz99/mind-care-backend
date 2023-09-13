@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model} from 'mongoose'
 
 const openJournalSchema = new Schema({
 	questions: [{
@@ -12,4 +12,4 @@ const openJournalSchema = new Schema({
 	}
 });
 
-export const OpenJournal = model("OpenJournal", openJournalSchema);
+export const OpenJournal = model("openJournal", openJournalSchema);
