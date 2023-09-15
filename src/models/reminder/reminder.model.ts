@@ -1,8 +1,9 @@
-import { Schema, model , Types} from 'mongoose'
+import { Schema, model , Model} from 'mongoose'
+import { IReminder } from '../../Types/IReminder.js';
 
-const reminderSchema = new Schema({
+const reminderSchema = new Schema<IReminder>({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'client'
   },
   type: {
@@ -19,6 +20,6 @@ const reminderSchema = new Schema({
   }
 });
 
-export const Reminder = model("reminder", reminderSchema);
+export const Reminder:Model<IReminder> = model<IReminder>("reminder", reminderSchema);
 
 

@@ -4,16 +4,17 @@ const router = Router()
 
 import {
 	getReminders, createReminder,
-	editReminder, deleteReminder
+	updateReminder, deleteReminder
 } from '../../../controllers/reminder.controller.ts'
 
-router.get('/reminders', getReminders)
+
+// router.get('/reminders-/:id', getReminders)
 
 router.get('/reminders/:id', getReminders)
 
 router.post('/reminders/:id', createReminder)
 
-router.patch('/reminders/:id', editReminder)
+router.patch('/reminders/:id', updateReminder)
 
 router.delete('/reminders/:id', deleteReminder)
 

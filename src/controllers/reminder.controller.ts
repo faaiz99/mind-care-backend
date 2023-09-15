@@ -1,47 +1,39 @@
-import { Request, Response,RequestHandler } from 'express'
-import { Reminder } from '../models/reminder/reminder.model.ts';
+import { Request, Response, RequestHandler, NextFunction } from 'express'
+import * as reminderService from '../services/reminder.service.ts'
 
-export const getReminders:RequestHandler = async (req:Request, res:Response):Promise<void> => {
-	const reminder = req.body.clientId
-	let result;
+export const getReminders: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await Reminder.find({ clientId: reminder })
+		const data = await reminderService.getReminders(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Reminders Found', data })
 	} catch (error) {
-		console.log('Reminders could not be found', error)
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'List of all Reminders', result })
-
 }
-export const createReminder:RequestHandler = async (req:Request, res:Response):Promise<void> => {
-	const reminder = req.body
-	let result
+
+export const createReminder: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await Reminder.create(reminder)
+		const data = await reminderService.createReminder(req.body)
+		res.status(200).json({ status: 'success', message: 'Reminder Created', data })
 	}
 	catch (error) {
-		console.log('Reminder could not be created')
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Reminder created', result })
 }
 
-export const editReminder:RequestHandler = async (req:Request, res:Response):Promise<void> => {
-	const reminder = req.body.clientId
-	let result
+export const updateReminder: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await Reminder.findOneAndUpdate({ clientId: reminder })
-	} catch (e) {
-		console.log('Reminder could not be modified')
+		const data = await reminderService.updateReminder(req.body, req.params.id)
+		res.status(200).json({ status: 'success', message: 'Reminder modified', data })
+	} catch (error) {
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Reminder modified', result })
 }
 
-export const deleteReminder:RequestHandler = async (req:Request, res:Response):Promise<void> => {
-	const reminder = req.body.clientId
-	let result
+export const deleteReminder: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		result = await Reminder.findOneAndDelete({ clientId: reminder })
-	} catch (e) {
-		console.log('Reminder could not be deleted')
+		const data = await reminderService.deleteReminder(req.params.id)
+		res.status(200).json({ status: 'success', message: 'Reminder Deleted', data })
+	} catch (error) {
+		next(error)
 	}
-	res.status(200).json({ status: 'success', message: 'Reminder deleted', result })
 }

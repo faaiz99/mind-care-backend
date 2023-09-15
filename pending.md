@@ -2,6 +2,7 @@
 1. Unit Tests [WIP]
 2. Refactor Code into Services [COMPLETED]
 
+
 /** Features Web/Mobile */
 1. /** Teleappointments */ 
     
@@ -109,7 +110,8 @@
     // journalId -> id
 
     GET /journals/:cid
-    GET /journalName/:id/:cid [PENDING]
+    // <! there is no need of 
+    GET /journalName/:id 
     POST /journalName/:cid
     DELETE /journalName/:id
 
