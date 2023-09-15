@@ -88,13 +88,12 @@ export const signup = async (therapist:any) => {
     })
     // email exists
     //console.log('Email exists? ', exists)
-    if (!exists) {
-        throw new Error('email already in database')
+    if (exists) {
+        throw new Error('Email already in database')
     }
-
     const response = await Therapist.create(therapist);
     if(!response)
-        throw new Error('account could not be created')
+        throw new Error('Account could not be created')
 
     return response
 

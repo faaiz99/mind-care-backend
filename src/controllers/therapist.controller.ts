@@ -76,14 +76,13 @@ export const signup: RequestHandler = async (req: Request, res: Response, next: 
 
 	try {
 		const data = await therapistService.signup(req.body)
-		res.status(200).json({ status: 'success', message: "Client Account created", data });
+		res.status(200).json({ status: 'success', message: "Therapist Account created", data });
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} catch (error: any) {
-
-		if (error.message === 'email already in database')
+		if (error.message === 'Email already in database')
 			res.status(409).json({ status: 'success', message: "Email already exists!" })
 		else if (error.message === 'account could not be created')
-			res.status(409).json({ status: 'failed', message: "Client Account could not be created" });
+			res.status(409).json({ status: 'failed', message: "Therapist Account could not be created" });
 		else
 			next(error)
 
