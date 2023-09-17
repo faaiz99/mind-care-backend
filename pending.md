@@ -6,14 +6,18 @@
 /** Features Web/Mobile */
 1. /** Teleappointments */ 
     
+
+    /**Client */
     GET  /appointments-client/:id
-    GET /appointments-therapist
     POST /appointments
     PATCH /appointments
     GET  /appointments/:id
     DELETE /appointment/:id
     GET /therapists
     GET /therapists/:id
+
+    /**Therapist */
+    GET /appointments-therapist/:id
 
 2. /** Payments */
 

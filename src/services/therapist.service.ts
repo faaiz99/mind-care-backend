@@ -2,6 +2,7 @@ import crypto from 'crypto'
 import { Therapist } from '../models/therapist/therapist.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
 import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
+import { ITherapist } from '../types/ITherapist.ts'
 
 export const changePassword = async (email: string, password: string) => {
     const client = await Therapist.findOneAndUpdate({ email: email }, { password: password })
@@ -9,11 +10,9 @@ export const changePassword = async (email: string, password: string) => {
         throw new Error('Account password cannot be changed')
     return client
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const updateProfile = async (therapist: any) => {
+export const updateProfile = async (therapist: ITherapist) => {
     //A therapist profile already exists
-    const filter = therapist.email;
-    const response = await Therapist.findOneAndUpdate(filter, therapist, {
+    const response = await Therapist.findOneAndUpdate({ email: therapist.email }, therapist, {
         returnOriginal: false
     })
     if (!response)
@@ -38,7 +37,7 @@ export const resetPassword = async (email: string) => {
     resetAccountPassword(email, token, role)
     return response
 }
-export const verifyAccount = async (email:string) => {
+export const verifyAccount = async (email: string) => {
     const response = await Therapist.findOneAndUpdate({
         email: email,
     }, {
@@ -51,37 +50,36 @@ export const verifyAccount = async (email:string) => {
         throw new Error('Account could not be verified')
     return response
 }
-export const sendverificationEmail = async (email:string) => {
+export const sendverificationEmail = async (email: string) => {
     const role = 'therapist' // static
     const token = crypto.randomBytes(32).toString("hex")
     emailSender(email, token, role)
 }
 export const login = async (email: string, password: string) => {
-        // check existance by email
-        const exists = await Therapist.exists({
-            email: email
-        })
-        // email exists
-        //console.log('Email exists? ', exists)
-        if (!exists) {
-            throw new Error('Account does not exists')
-        }
-    
-        // get therapist details if password is correct
-        const client = await Therapist.findOne({
-            email: email,
-            password: password,
-        })
-        // delete client?.password
-        // setting password to undefined for security purposes
-        if (!client)
-            throw new Error('Incorrect Password')
-    
-        return issueTokens(client)
+    // check existance by email
+    const exists = await Therapist.exists({
+        email: email
+    })
+    // email exists
+    //console.log('Email exists? ', exists)
+    if (!exists) {
+        throw new Error('Account does not exists')
+    }
+
+    // get therapist details if password is correct
+    const client = await Therapist.findOne({
+        email: email,
+        password: password,
+    })
+    // delete client?.password
+    // setting password to undefined for security purposes
+    if (!client)
+        throw new Error('Incorrect Password')
+
+    return issueTokens(client)
 
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const signup = async (therapist:any) => {
+export const signup = async (therapist: ITherapist) => {
     // check existance by email
     const exists = await Therapist.exists({
         email: therapist.email
@@ -92,14 +90,13 @@ export const signup = async (therapist:any) => {
         throw new Error('Email already in database')
     }
     const response = await Therapist.create(therapist);
-    if(!response)
+    if (!response)
         throw new Error('Account could not be created')
 
     return response
 
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const renewTokens = async (therapist:unknown) => {
+export const renewTokens = async (therapist: ITherapist) => {
     return issueTokens(therapist)
 }
 export const aboutTherapist = async (id: string) => {

@@ -118,7 +118,7 @@ export const removeDownvotePost = async (did: string, pid: string) => {
 		},
 		{ new: true }
 	)
-	const removeDownvote = await Upvote.findOneAndDelete({_id:did})
+	const removeDownvote = await Downvote.findOneAndDelete({_id:did})
 	if (!response && !removeDownvote)
 		throw new Error('Downvote Could not be Removed')
 	return response
