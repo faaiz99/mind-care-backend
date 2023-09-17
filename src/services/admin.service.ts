@@ -1,11 +1,10 @@
 
 import { Admin } from '../models/admin/admin.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
-import { Token } from '../Types/Tokens.js'
+import { IToken } from '../types/ITokens.ts'
+import { IAdmin } from '../types/IAdmin.ts'
 
-
-
-export const login= async (email: string, password: string):Promise<Token> => {
+export const login= async (email: string, password: string):Promise<IToken> => {
     const admin = await Admin.findOne({
         email: email,
         password: password,
@@ -17,7 +16,7 @@ export const login= async (email: string, password: string):Promise<Token> => {
 
 }
 
-export const signup = async (admin: unknown) => {
+export const signup = async (admin: IAdmin) => {
 
     const response = await Admin.create(admin);
     if (!response)
@@ -25,7 +24,7 @@ export const signup = async (admin: unknown) => {
     return response
 }
 
-export const renewTokens = async (admin: unknown):Promise<Token>  => {
+export const renewTokens = async (admin: IAdmin):Promise<IToken>  => {
     return issueTokens(admin)
 }
 

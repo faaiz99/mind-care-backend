@@ -1,4 +1,4 @@
-import { Token } from '../Types/Tokens.js'
+import { IToken } from '../types/ITokens.js'
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
 const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
@@ -26,7 +26,7 @@ export const revalidateToken: RequestHandler = async (req: Request, res: Respons
   });
 }
 
-export const issueTokens = (userBody: unknown): Token => {
+export const issueTokens = (userBody: unknown): IToken => {
   // used for both therapist and client
   const token = jwt.sign(
     {

@@ -1,8 +1,8 @@
 import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
+import { IAppointment } from "../types/IAppointment.ts";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const updateAppointment = async (appointment: any) => {
+export const updateAppointment = async (appointment: IAppointment) => {
     const filter = appointment.id;
     const response = await Therapist.findOneAndUpdate(filter, appointment, {
         returnOriginal: false
@@ -20,7 +20,7 @@ export const deleteAppointment = async (id: string) => {
 
 }
 
-export const createAppointment = async (appointment: unknown) => {
+export const createAppointment = async (appointment: IAppointment) => {
     const response = await Appointment.create(appointment)
     if (!response)
         throw new Error('Appointment could not be created')

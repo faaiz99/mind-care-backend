@@ -1,6 +1,6 @@
-import {Schema, model} from 'mongoose'
-
-const adminSchema = new Schema({
+import {Schema, model, Model} from 'mongoose'
+import { IAdmin } from '../../types/IAdmin.ts';
+const adminSchema = new Schema<IAdmin>({
 	firstName: {
 		type: String,
 		required: true,
@@ -36,10 +36,10 @@ const adminSchema = new Schema({
 		type: String,
 		required: false
 	},
-	dateofBirth: {
+	dateOfBirth: {
 		type: Date,
-		required: false
-	}
+		required: false,
+	},
 });
 
-export const Admin = model('admin', adminSchema)
+export const Admin:Model<IAdmin> = model<IAdmin>('admin', adminSchema)

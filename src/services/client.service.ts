@@ -1,7 +1,8 @@
 import { Client } from '../models/client/client.model.ts'
 import { issueTokens } from '../middlewares/auth.middleware.ts'
 import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
-import { Token } from '../Types/Tokens.js'
+import { IToken } from '../types/ITokens.ts'
+import { IClient } from '../types/IClient.ts'
 import crypto from 'crypto'
 
 export const enternewPassword = async (email: string, password: string) => {
@@ -10,7 +11,6 @@ export const enternewPassword = async (email: string, password: string) => {
     if (!response)
         throw new Error('Account not found')
     return response
-
 }
 
 export const resetPassword = async (email: string) => {
@@ -40,15 +40,13 @@ export const verifyAccount = async (email: string) => {
     return response
 }
 
-
-export const sendverificationEmail= async (email: string): Promise<void> => {
+export const sendverificationEmail = async (email: string): Promise<void> => {
     const role = 'client' // static
     const token = crypto.randomBytes(32).toString("hex")
     emailSender(email, token, role)
 }
 
-
-export const login = async (email: string, password: string): Promise<Token> => {
+export const login = async (email: string, password: string): Promise<IToken> => {
     // check existance by email
     const exists = await Client.exists({
         email: email
@@ -73,9 +71,7 @@ export const login = async (email: string, password: string): Promise<Token> => 
 
 }
 
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const signup= async (client:any) => {
+export const signup = async (client: IClient) => {
     // check existance by email
     const exists = await Client.exists({
         email: client.email
@@ -87,19 +83,15 @@ export const signup= async (client:any) => {
     }
 
     const response = await Client.create(client);
-    if(!response)
+    if (!response)
         throw new Error('account could not be created')
 
     return response
 }
 
-
-export const renewTokens = async (client: unknown): Promise<Token> => {
-
+export const renewTokens = async (client: IClient): Promise<IToken> => {
     return issueTokens(client)
-
 }
-
 
 export const aboutClient = async (id: string) => {
     const response = await Client.findOne({ _id: id })

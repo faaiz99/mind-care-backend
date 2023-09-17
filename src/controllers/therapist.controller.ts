@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as therapistService from '../services/therapist.service.ts'
-import { Token } from '../Types/Tokens.js'
+import { IToken } from '../types/ITokens.js'
 
 export const changePassword: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
@@ -59,7 +59,7 @@ export const sendverificationEmail: RequestHandler = async (req: Request, res: R
 }
 export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const { accessToken, refreshToken, data }: Token = await therapistService.login(req.body.email, req.body.password)
+		const { accessToken, refreshToken, data }: IToken = await therapistService.login(req.body.email, req.body.password)
 		res.status(200).json({ status: 'success', accessToken: accessToken, refreshToken: refreshToken, data });
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,5 @@
 import { Reminder } from '../models/reminder/reminder.model.ts';
-import { IReminder } from '../Types/IReminder.js';
+import { IReminder } from '../types/IReminder.js';
 
 export const getReminders = async (id: string) => {
 	const response = await Reminder.find({ clientId: id }).populate({

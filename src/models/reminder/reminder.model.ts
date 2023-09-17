@@ -1,5 +1,5 @@
 import { Schema, model , Model} from 'mongoose'
-import { IReminder } from '../../Types/IReminder.js';
+import { IReminder } from '../../types/IReminder.js';
 
 const reminderSchema = new Schema<IReminder>({
   clientId: {

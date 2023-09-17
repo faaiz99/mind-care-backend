@@ -1,6 +1,6 @@
-import { Schema, model, Types } from "mongoose";
-
-const clientSchema = new Schema({
+import { Schema, model, Model } from "mongoose";
+import { IClient } from "../../types/IClient.ts";
+const clientSchema = new Schema<IClient>({
   firstName: {
     type: String,
     required: true,
@@ -30,7 +30,7 @@ const clientSchema = new Schema({
     type: String,
     required: false,
   },
-  dateofBirth: {
+  dateOfBirth: {
     type: Date,
     required: false,
   },
@@ -40,7 +40,7 @@ const clientSchema = new Schema({
   },
 });
 
-export const Client = model("client", clientSchema);
+export const Client:Model<IClient> = model<IClient>("client", clientSchema);
 
 
 //const hash = await bcrypt.hash(password, Number(bcryptSalt));

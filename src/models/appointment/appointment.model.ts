@@ -1,6 +1,7 @@
-import {Schema, model, Types} from 'mongoose'
+import {Schema, model, Types, Model} from 'mongoose'
+import { IAppointment } from '../../types/IAppointment.js';
 
-const appointmentSchema = new Schema({
+const appointmentSchema = new Schema<IAppointment>({
   therapistId: {
     type: Types.ObjectId,
     ref:'therapist'
@@ -26,4 +27,4 @@ const appointmentSchema = new Schema({
   },
 });
 
-export const Appointment = model("appointment", appointmentSchema);
+export const Appointment:Model<IAppointment> = model<IAppointment>("appointment", appointmentSchema);

@@ -1,6 +1,6 @@
 import { stripe, API_URL } from '../config/stripe.config.ts';
 import { Payment } from '../models/payment/payment.model.ts';
-import { IPayment } from '../Types/IPayment.js';
+import { IPayment } from '../types/IPayment.ts';
 
 export const createPayment = async (sessionCharges: number) => {
 	const session = await stripe.checkout.sessions.create({
