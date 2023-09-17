@@ -101,23 +101,25 @@ export const removeUpvotePost = async (uid: string, pid: string) => {
 		},
 		{ new: true }
 	)
-	if (!response)
+	const removeUpvote = await Upvote.findOneAndDelete({_id:uid})
+	if (!response && !removeUpvote)
 		throw new Error('Upvote Could not be Removed')
 	return response
 
 }
 
-export const removeDownvotePost = async (uid: string, pid: string) => {
+export const removeDownvotePost = async (did: string, pid: string) => {
 	const response = await Post.findOneAndUpdate(
 		{ _id: pid },
 		{
 			$pull: {
-				downvotes: uid
+				downvotes: did
 			}
 		},
 		{ new: true }
 	)
-	if (!response)
+	const removeDownvote = await Upvote.findOneAndDelete({_id:did})
+	if (!response && !removeDownvote)
 		throw new Error('Downvote Could not be Removed')
 	return response
 }

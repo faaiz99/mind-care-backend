@@ -62,7 +62,7 @@ router.post('/downvote-post/:id', downvotePost)
 
 router.delete('/upvote-post/:pid/:uid', removeUpvotePost)
 
-router.delete('/downvote-post/:pid/:uid', removeDownvotePost)
+router.delete('/downvote-post/:pid/:did', removeDownvotePost)
 
 
 export { router as postRoutes }
