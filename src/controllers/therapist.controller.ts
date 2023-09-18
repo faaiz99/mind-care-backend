@@ -21,9 +21,9 @@ export const updateProfile: RequestHandler = async (req: Request, res: Response,
 		next(error)
 	}
 }
-export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const enterNewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await therapistService.enternewPassword(req.body.email, req.body.password)
+		const data = await therapistService.enterNewPassword(req.body.email, req.body.password)
 		res.status(200).json({ status: 'success', message: 'Account Password Changed', data })
 	} catch (error) {
 		res.status(409).json({ status: 'failure', message: 'Account Password could not be Changed' })
@@ -53,8 +53,8 @@ export const verifyAccount: RequestHandler = async (req: Request, res: Response,
 	}
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const sendverificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	therapistService.sendverificationEmail(req.body.email)
+export const sendVerificationEmail: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	therapistService.sendVerificationEmail(req.body.email)
 	next()
 }
 export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

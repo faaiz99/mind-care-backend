@@ -8,11 +8,11 @@ import {
   signup,
   login,
   verifyAccount,
-  sendverificationEmail,
+  sendVerificationEmail,
   resetPassword,
   updateProfile,
   changePassword,
-  enternewPassword,
+  enterNewPassword,
   renewTokens,
   about
 
@@ -25,7 +25,7 @@ router.post('/login', login)
 
 router.post('/change-password', changePassword)
 
-router.post('/password/:token', enternewPassword)
+router.post('/password/:token', enterNewPassword)
 
 router.post('/reset-password', resetPassword)
 
@@ -33,7 +33,7 @@ router.patch("/update-profile", updateProfile);
 
 router.post('/verify/:token', authenticateToken, verifyAccount)
 
-router.post('/send-verification-email', sendverificationEmail)
+router.post('/send-verification-email', sendVerificationEmail)
 
 router.get("/about/:id", about);
 

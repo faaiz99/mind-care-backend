@@ -19,7 +19,7 @@ export const updateProfile = async (therapist: ITherapist) => {
         throw new Error('Therapist Profile could not be updated')
     return response
 }
-export const enternewPassword = async (email: string, password: string) => {
+export const enterNewPassword = async (email: string, password: string) => {
     const response = await Therapist.findOneAndUpdate({ email: email }, { password: password })
     if (!response)
         throw new Error('Account Password could not be Changed')
@@ -50,7 +50,7 @@ export const verifyAccount = async (email: string) => {
         throw new Error('Account could not be verified')
     return response
 }
-export const sendverificationEmail = async (email: string) => {
+export const sendVerificationEmail = async (email: string) => {
     const role = 'therapist' // static
     const token = crypto.randomBytes(32).toString("hex")
     emailSender(email, token, role)
