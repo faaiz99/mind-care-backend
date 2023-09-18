@@ -67,7 +67,7 @@ export const upvotePost: RequestHandler = async (req: Request, res: Response, ne
 
 export const removeUpvotePost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await postService.removeUpvotePost(req.params.uid, req.params.pid)
+		const data = await postService.removeUpvotePost(req.params.did, req.params.pid)
 		res.status(200).json({status:'success', message:'Upvote Removed', data})
 	} catch (error) {
 		next(error)
