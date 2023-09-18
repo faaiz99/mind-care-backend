@@ -48,7 +48,11 @@ const commentSchema = new Schema({
   commentReport: [{
     type: Types.ObjectId,
     ref: 'report'
-  }]
+  }],
+  createdAt:{
+    type: Date,
+    default:Date.now()
+  },
 });
 
 export const Comment = model("comment", commentSchema);

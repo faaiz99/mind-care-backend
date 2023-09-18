@@ -45,7 +45,11 @@ const postSchema = new Schema({
   postReport: [{
     type: Types.ObjectId,
     ref: 'report'
-  }]
+  }],
+  createdAt:{
+    type: Date,
+    default:Date.now()
+  },
 });
 
 export const Post = model("post", postSchema);
