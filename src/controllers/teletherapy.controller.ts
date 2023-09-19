@@ -1,8 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as teletherapyService from '../services/teletherapy.service.ts'
 
-
-
 export const getClientChats: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	// id -> Clientid
 	try {
@@ -77,15 +75,6 @@ export const createChat: RequestHandler = async (req: Request, res: Response, ne
 	}
 }
 
-export const getUserChats: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	// id is anything in chat model
-	try {
-		const data = await teletherapyService.getUserChats(req.params.id)
-		res.status(200).json({ status: 'success', message: 'User Chats Found', data })
-	} catch (error) {
-		next(error)
-	}
-}
 
 export const getCurrentChat: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	// Fetch the current Chat for both the users
