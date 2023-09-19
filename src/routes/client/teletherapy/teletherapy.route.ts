@@ -1,18 +1,19 @@
 import { Router } from "express";
 const router:Router = Router()
+
 import { 
 	createChat,
 	// getUserChats,
 	getCurrentChat,
 	createMessage,
 	getMessages,
-	getTherapistChats
+	getClientChats,
  } from "../../../controllers/teletherapy.controller.ts";
 
 
  // CHAT API
 router.post('/create-chat', createChat)
-router.get('/get-therapist-chat/:id', getTherapistChats) // pass any id -> client/therapist
+router.get('/get-client-chat/:id', getClientChats) // clientid
 router.get('/get-current-chat/:cid/:tid', getCurrentChat)
 
 

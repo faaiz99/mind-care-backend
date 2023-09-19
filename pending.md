@@ -1,6 +1,5 @@
 /** Coding */
 1. Unit Tests [WIP]
-2. Refactor Code into Services [COMPLETED]
 
 
 /** Features Web/Mobile */
@@ -23,7 +22,7 @@
 
     /**Client */
 
-    POST /payments ->  /create-payment-intent
+    POST /payments
     PATCH /payments
     GET /client-payments/
     GET /client-payments/:id
@@ -114,7 +113,6 @@
     // journalId -> id
 
     GET /journals/:cid
-    // <! there is no need of 
     GET /journalName/:id 
     POST /journalName/:cid
     DELETE /journalName/:id
@@ -191,13 +189,6 @@
 
 
 Route -> [Middleware -> Controller -> Service -> Model] -> MongoDB
-
-Since we did not code route and mongoDB 
-we assume they have good test cases
-and are thoroughly tested. Only the 
-square bracket parts is to be tested
-
-
 
 https://www.npmjs.com/package/express-mongo-sanitize
 https://www.npmjs.com/package/express-rate-limit
