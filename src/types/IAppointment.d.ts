@@ -1,7 +1,11 @@
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
+export interface ITherapistReview extends Document {
+	rating:number,
+	review:string
+}
 
-interface IAppointment extends Document {
+export interface IAppointment extends Document {
 	therapistId: Schema.Types.ObjectId;
 	clientId: Schema.Types.ObjectId;
 	appointmentDate: Date;
@@ -9,4 +13,6 @@ interface IAppointment extends Document {
 	appointmentCharges: string;
 	problemDescription: string;
 	status: string;
+	feedback?:string;
+	therapistReview?:ITherapistReview
   }

@@ -1,10 +1,39 @@
 import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
-import { IAppointment } from "../types/IAppointment.ts";
+import { IAppointment, ITherapistReview } from "../types/IAppointment.ts";
 
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addSessionNotes = async (sessionNotes:any, id:string) =>{
+    const filter = {_id:id}
+    const response = await Appointment.findOneAndUpdate(filter, sessionNotes, {
+        returnOriginal:false
+    })
+    if(!response)
+        throw new Error ('Session Notes Could not be Added')
+    return response
+}
+
+export const addTherapistReview = async (therapistReview: ITherapistReview, id: string) => {
+    const filter = { _id: id }
+    const response = await Appointment.findOneAndUpdate(filter, therapistReview, {
+        returnOriginal: false
+    })
+    if (!response)
+        throw new Error('Therapist Review Could not be Added')
+    return response
+}
+
+export const getTherapistReview = async(id:string) =>{
+    const response = await Appointment.find({therapistId:id})
+    if(!response)
+        throw new Error ('Therapist Review Could not be Found')
+    return response
+}
 
 export const updateAppointmentStatus = async (appointment: IAppointment) => {
-    const filter = {_id:appointment.id}
+    const filter = { _id: appointment.id }
     const response = await Therapist.findOneAndUpdate(filter, appointment, {
         returnOriginal: false
     })
@@ -47,14 +76,14 @@ export const getAppointmentsTherapist = async (id: string) => {
 
 export const getAppointmentsClient = async (id: string) => {
     const response = await Appointment.find({ clientId: id })
-    .populate({
-        path:'clientId',
-        model:'client'
-    })
-    .populate({
-        path:'therapistId',
-        model:'therapist'
-    })
+        .populate({
+            path: 'clientId',
+            model: 'client'
+        })
+        .populate({
+            path: 'therapistId',
+            model: 'therapist'
+        })
     if (!response)
         throw new Error('Appointments not found')
     return response

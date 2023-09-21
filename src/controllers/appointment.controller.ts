@@ -1,10 +1,38 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as appointmentService from '../services/appointment.service.ts'
 
-export const updateAppointmentStatus: RequestHandler = async (req:Request, res:Response, next:NextFunction): Promise<void> =>{
+export const addSessionNotes:RequestHandler = async (req:Request, res:Response, next:NextFunction): Promise<void> =>{
+	try {
+		const data = await appointmentService.addSessionNotes(req.body,req.params.id)
+		res.status(200).json({status:'success', message:'Session Notes Added', data})
+	} catch (error) {
+		next(error)
+	}
+}
+
+export const addTherapistReview: RequestHandler = async (req:Request, res:Response, next:NextFunction): Promise<void> =>{
+	try {
+		const data = await appointmentService.addTherapistReview(req.body, req.params.id)
+		res.status(200).json({status:'success', message:'Therapist Review Added', data})
+	} catch (error) {
+		next(error)
+	}
+}
+
+export const getTherapistReview: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	try {
+		const data = await appointmentService.getTherapistReview(req.params.id)
+		res.status(200).json({status:'success', message:'Therapist Reviews Found', data })
+	} catch (error) {
+		next(error)
+	}
+}
+
+
+export const updateAppointmentStatus: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
 		const data = await appointmentService.updateAppointmentStatus(req.body)
-		res.status(200).json({status:'success', manage:'Appintment Status Updated', data})
+		res.status(200).json({ status: 'success', message: 'Appintment Status Updated', data })
 	} catch (error) {
 		next(error)
 	}

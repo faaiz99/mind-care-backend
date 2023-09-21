@@ -59,8 +59,9 @@ export const psychologicalProfile = model("psychologicalProfile", psychologicalP
 
 
 /**
- * Therapist Feedback 
+ * Therapist Feedback  DONE
  * Anxiety/Depression Result Array of Questions and Answers
  * Daily Logs/ Daily Checkins
- * Appointments 
+ * Appointments  DONE
+ * Therapist Reviews DONE
  */

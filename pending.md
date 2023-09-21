@@ -17,6 +17,10 @@
 
     /**Therapist */
     GET /appointments-therapist/:id
+    PATCH /appointments-therapist/:id 
+    PATCH /therapist-review/:id
+    GET /therapist-review/:id
+    PATCH /session-notes/:id
 
 2. /** Payments */
 
