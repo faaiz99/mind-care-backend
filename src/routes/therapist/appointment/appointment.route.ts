@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { getAppointmentsTherapist } from "../../../controllers/appointment.controller.ts";
+import { getAppointmentsTherapist, updateAppointmentStatus } from "../../../controllers/appointment.controller.ts";
 
 const router:Router = Router()
 
 router.get('/appointments-therapist/:id', getAppointmentsTherapist)
+// Accept Reject Pending
+router.patch('/appointments-therapist/:id', updateAppointmentStatus)
 
 export { router as appointmentRoutes}

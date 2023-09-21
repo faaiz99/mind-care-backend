@@ -1,6 +1,15 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as appointmentService from '../services/appointment.service.ts'
 
+export const updateAppointmentStatus: RequestHandler = async (req:Request, res:Response, next:NextFunction): Promise<void> =>{
+	try {
+		const data = await appointmentService.updateAppointmentStatus(req.body)
+		res.status(200).json({status:'success', manage:'Appintment Status Updated', data})
+	} catch (error) {
+		next(error)
+	}
+}
+
 export const createAppointment: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
 		const data = await appointmentService.createAppointment(req.body)

@@ -2,6 +2,17 @@ import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
 import { IAppointment } from "../types/IAppointment.ts";
 
+
+export const updateAppointmentStatus = async (appointment: IAppointment) => {
+    const filter = {_id:appointment.id}
+    const response = await Therapist.findOneAndUpdate(filter, appointment, {
+        returnOriginal: false
+    })
+    if (!response)
+        throw new Error('Appointment could not be updated')
+    return response
+}
+
 export const updateAppointment = async (appointment: IAppointment) => {
     const filter = appointment.id;
     const response = await Therapist.findOneAndUpdate(filter, appointment, {

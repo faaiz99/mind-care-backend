@@ -56,3 +56,11 @@ const psychologicalProfileSchema = new Schema({
 });
 
 export const psychologicalProfile = model("psychologicalProfile", psychologicalProfileSchema);
+
+
+/**
+ * Therapist Feedback 
+ * Anxiety/Depression Result Array of Questions and Answers
+ * Daily Logs/ Daily Checkins
+ * Appointments 
+ */
