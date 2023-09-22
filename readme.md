@@ -26,6 +26,8 @@ The Mind Care Backend is built to support the functionality of the Mind Care app
 - API endpoints for managing user data
 - Integration with Stripe for payment processing
 - Integration with NodeMailer for email notifications
+- Socket IO for realtime chat
+- webRTC for calling
 
 ## Getting Started
 
