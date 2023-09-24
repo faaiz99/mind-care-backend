@@ -1,7 +1,7 @@
 # Mind Care Backend
 ![mc](https://github.com/faaiz99/mind-care-backend/assets/44613754/73c34131-d2d8-406f-ad17-2483fccce6b8)
 
-Welcome to the **Mind Care Backend** repository! This project, developed by Faaiz Aslam, serves as the backend for the Mind Care application.
+Welcome to the **Mind Care**! This project, developed by Faaiz Aslam, serves as the backend for the Mind Care application.
 
 ## Table of Contents
 
