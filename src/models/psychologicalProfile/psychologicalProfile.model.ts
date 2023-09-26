@@ -1,8 +1,8 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 const psychologicalProfileSchema = new Schema({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'client'
   },
   checkinDate: {
@@ -51,8 +51,7 @@ const psychologicalProfileSchema = new Schema({
   anxietyTestEnabled: {
     type: Boolean,
     required: false,
-  },
-
+  }
 });
 
 export const psychologicalProfile = model("psychologicalProfile", psychologicalProfileSchema);

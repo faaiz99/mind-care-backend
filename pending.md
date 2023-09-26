@@ -47,6 +47,11 @@
     PATCH /psychological-profile/:id
     DELETE /psychological-profile/:id
     
+    POST /anxiety-test/:id
+    GET  /anxiety-test/:id
+    POST /depression-test/:id
+    GET  /depression-test/:id
+    
 
     // Inventory Tests with Answers
 
