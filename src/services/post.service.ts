@@ -60,7 +60,10 @@ export const getPosts = async () => {
 }
 
 export const getPost = async (id: string) => {
-	const response = await Post.findOne({ _id: id })
+	const response = await Post.findOne({ _id: id }).populate({
+		path:'comments',
+		model:'comment'
+	})
 	if (!response)
 		throw new Error('Post Could not be Found')
 	return response
