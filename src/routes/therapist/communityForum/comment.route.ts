@@ -14,7 +14,7 @@ import {
 
 router.get('/comments', getComments)
 
-router.post('/comments', createComment)
+router.post('/comments/:id', createComment)
 
 router.post('reply-to-comment', replyComment)
 

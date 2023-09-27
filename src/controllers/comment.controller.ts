@@ -3,7 +3,7 @@ import * as commentService from '../services/comment.service.ts'
 
 export const createComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.createComment(req.body)
+		const data = await commentService.createComment(req.params.id, req.body)
 		res.status(200).json({ status: 'success', message: 'Comment created', data })
 	} catch (error) {
 		next(error)
