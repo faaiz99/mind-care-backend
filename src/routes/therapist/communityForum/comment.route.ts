@@ -16,7 +16,7 @@ router.get('/comments', getComments)
 
 router.post('/comments/:id', createComment)
 
-router.post('reply-to-comment', replyComment)
+router.post('reply-to-comment/:id', replyComment)
 
 router.patch('/comments/:id', updateComment)
 

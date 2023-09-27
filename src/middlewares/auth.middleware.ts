@@ -34,7 +34,7 @@ export const issueTokens = (userBody: unknown): IToken => {
     },
     ACCESS_JWT_SECRET as string,
     {
-      expiresIn: '1h',
+      expiresIn: '10s',
     }
   );
   const refreshToken = jwt.sign(

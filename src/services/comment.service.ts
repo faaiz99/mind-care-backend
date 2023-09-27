@@ -16,10 +16,11 @@ export const createComment = async (id: string, comment: any) => {
 }
 
 export const replyComment = async (comment: any, id: string) => {
+	const responseDB = await Comment.create(comment)
 	const response = await Post.findOneAndUpdate({ _id: id }, {
-		$push: { comments: comment }
+		$push: { comments: responseDB }
 	})
-	if (!response)
+	if (!response && !responseDB)
 		throw new Error('Reply Could not be Created')
 	return response
 

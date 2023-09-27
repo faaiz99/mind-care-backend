@@ -60,7 +60,7 @@ export const getAnxietyTest: RequestHandler = async (req: Request, res: Response
 export const getDepressionTest: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const data = await psychologicalProfileService.getDepressionTest(req.params.id)
-		res.status(200).json({ status: 'success', message: 'Anxiety test Found', data })
+		res.status(200).json({ status: 'success', message: 'Depression test Found', data })
 	} catch (error) {
 		next(error)
 	}

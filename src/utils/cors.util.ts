@@ -1,8 +1,6 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express'
-
-export const corsPolicy:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
-	res.header('Access-Control-Allow-Headers', 'Content-Type');
-	next();
-}
+export const corsOptions = {
+	origin: 'http://localhost:5173', // Replace with the actual origin(s)
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+	allowedHeaders: ['Content-Type', 'authorization'],
+	credentials: true, // If you need to allow credentials (cookies, headers, etc.)
+};
