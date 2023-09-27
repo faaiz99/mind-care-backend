@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose'
-
-const BeckDepressionSchema = new Schema({
+import { Schema, model, Model } from 'mongoose'
+import { IBeckDepression } from '../../types/IDepression.js';
+const BeckDepressionSchema = new Schema<IBeckDepression>({
 	clientId: {
 		type: Schema.Types.ObjectId,
-		ref: 'client', // Assuming you have a User model
+		ref: 'client', 
 		required: true,
 	},
 	responses: [
@@ -25,4 +25,4 @@ const BeckDepressionSchema = new Schema({
 	}
 });
 
-export const beckDepression = model("beckDepression", BeckDepressionSchema);
+export const beckDepression:Model<IBeckDepression> = model<IBeckDepression>("beckDepression", BeckDepressionSchema);

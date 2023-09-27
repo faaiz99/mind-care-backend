@@ -1,28 +1,23 @@
-import { Schema, model, Types } from 'mongoose'
-
+import { Schema, model } from 'mongoose'
 
 const commentSchema = new Schema({
-  commentId: {
-    type: Types.ObjectId,
-  },
   postId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'post',
     required: true
   },
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'therapist',
     required: false
-
   },
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'client',
     required: false
   },
   parentId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'comment',
     required: false
   },
@@ -31,27 +26,27 @@ const commentSchema = new Schema({
     required: true
   },
   children: [{
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'comment',
     required: false
   }],
   upvotes: [{
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'upvote',
     required: false
   }],
   downvotes: [{
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'downvote',
     required: false
   }],
   commentReport: [{
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'report'
   }],
-  createdAt:{
+  createdAt: {
     type: Date,
-    default:Date.now()
+    default: Date.now()
   },
 });
 

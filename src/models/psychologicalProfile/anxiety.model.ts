@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
-
-const BeckAnxietySchema = new Schema({
+import { Schema, model, Model } from 'mongoose'
+import { IBeckAnxiety } from '../../types/IAnxiety.js';
+const BeckAnxietySchema = new Schema<IBeckAnxiety>({
 	clientId: {
 		type: Schema.Types.ObjectId,
 		ref: 'client', // Assuming you have a User model
@@ -25,4 +25,4 @@ const BeckAnxietySchema = new Schema({
 	}
 });
 
-export const beckAnxiety = model("beckAnxiety", BeckAnxietySchema);
+export const beckAnxiety:Model<IBeckAnxiety> = model<IBeckAnxiety>("beckAnxiety", BeckAnxietySchema);
