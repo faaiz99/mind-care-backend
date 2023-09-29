@@ -28,12 +28,14 @@ const psychologicalProfileSchema = new Schema({
     type: String,
     required: true,
   },
-  depressionScore: {
-    type: String,
+  depressionTest: {
+    type: Schema.Types.ObjectId,
+    ref:'beckAnxiety',
     required: false,
   },
-  anxietyScore: {
-    type: String,
+  anxietyTest: {
+    type: Schema.Types.ObjectId,
+    ref:'backAnxiety',
     required: false,
   },
   depressionTestTime: {

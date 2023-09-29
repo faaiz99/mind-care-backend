@@ -9,6 +9,14 @@ export const buildPsychologicalProfile = async (id: string, psychologicalProfile
 	const filter = { clientId: id }
 	const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 	const response = await psychologicalProfile.findOneAndUpdate(filter, psychologicalProfile, options)
+	.populate({
+		path:'anxietyTest',
+		model:'beckAnxiety'
+	})
+	.populate({
+		path:'depressionTest',
+		model:'backDepression'
+	})
 	if (!response)
 		throw new Error('Psychological Profile Could not be Built')
 	return response
@@ -26,6 +34,14 @@ export const setTestScore = async (id: string, psychologicalProfile: any) => {
 export const getPsychologicalProfile = async (id:string) => {
 	const filter = { clientId: id }
 	const response = await psychologicalProfile.findOne(filter)
+	.populate({
+		path:'AnxietyTest',
+		model:'beckAnxiety'
+	})
+	.populate({
+		path:'DepressionTest',
+		model:'backDepression'
+	})
 	if(!response)
 		throw new Error('Psychological Profile not Found')
 	return response
