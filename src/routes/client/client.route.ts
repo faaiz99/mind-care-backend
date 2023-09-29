@@ -24,6 +24,4 @@ router.use(commentRoutes)
 router.use(teletherapyRoutes)
 
 
-
-
 export { router as clientRouter }
