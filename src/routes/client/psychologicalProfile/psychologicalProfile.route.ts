@@ -6,7 +6,7 @@ const router = Router()
 import {
 	buildPsychologicalProfile,
 	getPsychologicalProfile,
-	setTestScore,
+	//setTestScore,
 	saveAnxietyTest,
 	saveDepressionTest,
 	getAnxietyTest,
@@ -18,7 +18,7 @@ from "../../../controllers/psychologicalProfile.controller.ts";
 // ClientId required in body// 
 router.post('/psychological-profile/:id', buildPsychologicalProfile)
 
-router.post('/psychological-test/:id', setTestScore)
+//router.post('/psychological-test/:id', setTestScore)
 router.post('/anxiety-test/:id',saveAnxietyTest)
 router.post('/depression-test/:id',saveDepressionTest)
 router.get('/psychological-profile/:id', getPsychologicalProfile)
