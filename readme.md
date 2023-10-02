@@ -72,9 +72,9 @@ Before running the Mind Care Backend, make sure to set up the following environm
 Contributions to the Mind Care Backend are welcome! To contribute, follow these steps:
 
 1. Fork this repository.
-2. Create a new branch: `git checkout -b feature/your-feature-name`
-3. Make your changes and commit them: `git commit -m "Add your commit message"`
-4. Push to the branch: `git push origin feature/your-feature-name`
+2. Create a new branch: `git checkout -b feature/-feature-name`
+3. Make your changes and commit them: `git commit -m "commit message"`
+4. Push to the branch: `git push origin feature/-feature-name`
 5. Open a pull request and describe your changes.
 
 ## License
