@@ -17,14 +17,30 @@ export const createComment = async (id: string, comment: any) => {
 
 export const replyComment = async (comment: any, id: string) => {
 	const responseDB = await Comment.create(comment)
-	const response = await Post.findOneAndUpdate({ _id: id }, {
-		$push: { comments: responseDB }
+	const response = await Comment.findOneAndUpdate({ _id: id }, {
+		$push: { replies: responseDB }
+	}, {
+		upsert:true,
+		returnOriginal:false
+	}).populate({
+		model:'comment',
+		path:'replies'
 	})
 	if (!response && !responseDB)
 		throw new Error('Reply Could not be Created')
 	return response
-
 }
+
+// export const replyComment = async (comment: any, id: string) => {
+// 	const responseDB = await Comment.create(comment)
+// 	const response = await Post.findOneAndUpdate({ _id: id }, {
+// 		$push: { comments: responseDB }
+// 	})
+// 	if (!response && !responseDB)
+// 		throw new Error('Reply Could not be Created')
+// 	return response
+
+// }
 
 export const updateComment = async (comment: any, id: string) => {
 	const response = await Comment.findOneAndUpdate({ _id: id }, comment)
@@ -42,8 +58,11 @@ export const deleteComment = async (comment: any, id: string) => {
 
 }
 
-export const getComments = async () => {
-	const response = await Comment.find({})
+export const getComments = async (id:string) => {
+	const response = await Comment.find({postId:id}).populate({
+		model:'comment',
+		path:'replies'
+	})
 	if (!response)
 		throw new Error('Comments Could not be Retrieved')
 	return response

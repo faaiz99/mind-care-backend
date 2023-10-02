@@ -12,11 +12,11 @@ import {
 	reportComment
 } from '../../../controllers/comment.controller.ts'
 
-router.get('/comments', getComments)
+router.get('/comments/:id', getComments)
 
 router.post('/comments/:id', createComment)
 
-router.post('reply-to-comment/:id', replyComment)
+router.post('/reply-to-comment/:id', replyComment)
 
 router.patch('/comments/:id', updateComment)
 

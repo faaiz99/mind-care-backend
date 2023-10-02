@@ -3,7 +3,6 @@ import { Therapist } from '../models/therapist/therapist.model.ts'
 import { IAppointment, ITherapistReview } from "../types/IAppointment.ts";
 
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const addSessionNotes = async (sessionNotes:any, id:string) =>{
     const filter = {_id:id}

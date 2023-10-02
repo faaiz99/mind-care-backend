@@ -40,7 +40,7 @@ export const deleteComment: RequestHandler = async (req: Request, res: Response,
 
 export const getComments: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.getComments()
+		const data = await commentService.getComments(req.params.id)
 		res.status(200).json({ status: 'success', message: 'Comments retrieved', data })
 
 	} catch (error) {

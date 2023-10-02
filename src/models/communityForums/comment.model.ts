@@ -4,7 +4,7 @@ const commentSchema = new Schema({
   postId: {
     type: Schema.Types.ObjectId,
     ref: 'post',
-    required: true
+    required: false
   },
   therapistId: {
     type: Schema.Types.ObjectId,
@@ -25,7 +25,7 @@ const commentSchema = new Schema({
     type: String,
     required: true
   },
-  children: [{
+  replies: [{
     type: Schema.Types.ObjectId,
     ref: 'comment',
     required: false
