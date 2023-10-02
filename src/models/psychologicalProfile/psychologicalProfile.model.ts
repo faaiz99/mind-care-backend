@@ -30,7 +30,7 @@ const psychologicalProfileSchema = new Schema({
   },
   depressionTest: {
     type: Schema.Types.ObjectId,
-    ref:'beckAnxiety',
+    ref:'beckDepression',
     required: false,
   },
   anxietyTest: {
