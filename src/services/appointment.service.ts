@@ -31,9 +31,9 @@ export const getTherapistReview = async(id:string) =>{
     return response
 }
 
-export const updateAppointmentStatus = async (appointment: IAppointment) => {
-    const filter = { _id: appointment.id }
-    const response = await Therapist.findOneAndUpdate(filter, appointment, {
+export const updateAppointmentStatus = async (appointment: IAppointment, id:string) => {
+    const filter = { _id: id }
+    const response = await Appointment.findOneAndUpdate(filter, appointment, {
         returnOriginal: false
     })
     if (!response)
@@ -41,9 +41,9 @@ export const updateAppointmentStatus = async (appointment: IAppointment) => {
     return response
 }
 
-export const updateAppointment = async (appointment: IAppointment) => {
-    const filter = appointment.id;
-    const response = await Therapist.findOneAndUpdate(filter, appointment, {
+export const updateAppointment = async (appointment: IAppointment, id:string) => {
+    const filter = {_id:id};
+    const response = await Appointment.findOneAndUpdate(filter, appointment, {
         returnOriginal: false
     })
     if (!response)

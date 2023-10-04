@@ -31,7 +31,7 @@ export const getTherapistReview: RequestHandler = async (req: Request, res: Resp
 
 export const updateAppointmentStatus: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await appointmentService.updateAppointmentStatus(req.body)
+		const data = await appointmentService.updateAppointmentStatus(req.body, req.params.id)
 		res.status(200).json({ status: 'success', message: 'Appintment Status Updated', data })
 	} catch (error) {
 		next(error)
@@ -92,7 +92,7 @@ export const deleteAppointment: RequestHandler = async (req: Request, res: Respo
 
 export const updateAppointment: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	try {
-		const data = await appointmentService.updateAppointment(req.body)
+		const data = await appointmentService.updateAppointment(req.body, req.params.id)
 		res.status(200).json({ status: 'success', message: 'Appointment updated', data })
 	} catch (error) {
 		next(error)
