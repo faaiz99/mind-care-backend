@@ -5,29 +5,31 @@ const psychologicalProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'client'
   },
-  checkinDate: {
-    type: Date,
-  },
-  emotion: {
-    type: String,
-    required: true,
-  },
-  specificEmotion: {
-    type: String,
-    required: true,
-  },
-  reasonOfEmotion: {
-    type: String,
-    required: true,
-  },
-  elaborationText: {
-    type: String,
-    required: true,
-  },
-  stressTimeline: {
-    type: String,
-    required: true,
-  },
+  profile:[{
+    checkinDate: {
+      type: Date,
+    },
+    emotion: {
+      type: String,
+      required: true,
+    },
+    specificEmotion: {
+      type: String,
+      required: true,
+    },
+    reasonOfEmotion: {
+      type: String,
+      required: true,
+    },
+    elaborationText: {
+      type: String,
+      required: true,
+    },
+    stressTimeline: {
+      type: String,
+      required: true,
+    },
+  }],
   depressionTest: {
     type: Schema.Types.ObjectId,
     ref:'beckDepression',
