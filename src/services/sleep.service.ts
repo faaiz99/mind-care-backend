@@ -2,6 +2,11 @@ import { SleepTracker } from "../models/sleepTracker/model.ts";
 import { ISleepTracker } from "../types/ISleepTracker.js";
 import { ISleepSchedule } from "../types/ISleepTracker.js";
 
+/**
+ * FITNESS PART IS PENDING
+ * SUGGESTION ARE ALSO PENDING
+ */
+
 export const createSleepSchedule = async (sleepTracker: ISleepTracker, id: string) => {
 	const filter = { _id: id }
 	const response = SleepTracker.findOneAndUpdate(filter, {
@@ -36,33 +41,39 @@ export const resetSleepSchedule = async (id: string) => {
 
 
 export const getSleepQuality = async (id: string) => {
-	const sleepData = await SleepTracker.findOne({ clientId: id });
+	try {
+		const sleepData = await SleepTracker.findOne({ clientId: id });
 
-	if (!sleepData) {
-		throw new Error('Sleep data not found.');
+		if (!sleepData) {
+			throw new Error('Sleep data not found.');
+		}
+
+		const sleepQuality = calculateSleepQuality(sleepData.sleepSchedule);
+
+		return sleepQuality;
 	}
-
-	const sleepQuality = calculateSleepQuality(sleepData.sleepSchedule);
-
-	return sleepQuality;
-	//  catch (error) {
-	// 	throw new Error(`Error calculating sleep quality: ${error.message}`);
-	// }
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	catch (error: any) {
+		throw new Error(`Error calculating sleep quality: ${error.message}`);
+	}
 };
 
 export const getSleepEfficiency = async (id: string) => {
-	const sleepData = await SleepTracker.findOne({ clientId: id });
+	try {
+		const sleepData = await SleepTracker.findOne({ clientId: id });
 
-	if (!sleepData) {
-		throw new Error('Sleep data not found.');
+		if (!sleepData) {
+			throw new Error('Sleep data not found.');
+		}
+
+		const sleepEfficiency = calculateSleepEfficiency(sleepData.sleepSchedule);
+
+		return sleepEfficiency;
 	}
-
-	const sleepEfficiency = calculateSleepEfficiency(sleepData.sleepSchedule);
-
-	return sleepEfficiency;
-	//  catch (error) {
-	// 	throw new Error(`Error calculating sleep efficiency: ${error.message}`);
-	// }
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	catch (error:any) {
+		throw new Error(`Error calculating sleep efficiency: ${error.message}`);
+	}
 };
 /**
  * 

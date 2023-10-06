@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+/**
+ * TYPES ARE ALSO PENDING
+ */
+
 import { GratitudeJournal } from '../models/journals/gratitudeJournal/model.ts';
 import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal/model.ts';
 import { GoalSettingJournal } from '../models/journals/goalSettingJournal/model.ts';

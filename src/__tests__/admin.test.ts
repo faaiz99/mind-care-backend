@@ -1,7 +1,7 @@
 
 import request from 'supertest'
 import { describe, expect, it } from '@jest/globals';
-import { httpServer } from '../../app.ts';
+import { httpServer } from '../app.ts';
 import { disconnect, connect } from '../configs/db/config.ts';
 import * as adminService from '../services/admin.service.ts'
 
