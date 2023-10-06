@@ -1,5 +1,5 @@
-import { Appointment } from "../models/appointment/appointment.model.ts";
-import { Therapist } from '../models/therapist/therapist.model.ts'
+import { Appointment } from "../models/appointment/model.ts";
+import { Therapist } from '../models/therapist/model.ts'
 import { IAppointment, ITherapistReview } from "../types/IAppointment.ts";
 
 export const addSessionNotes = async (sessionNotes: string, id: string) => {

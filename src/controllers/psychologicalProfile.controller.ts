@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as psychologicalProfileService from '../services/psychologicaProfile.service.ts'
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 
 export const buildPsychologicalProfile: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

@@ -1,6 +1,6 @@
 
-import { Admin } from '../models/admin/admin.model.ts'
-import { issueTokens } from '../middlewares/auth.middleware.ts'
+import { Admin } from '../models/admin/model.ts'
+import { issueTokens } from '../middlewares/auth/middleware.ts'
 import { IToken } from '../types/ITokens.ts'
 import { IAdmin } from '../types/IAdmin.ts'
 

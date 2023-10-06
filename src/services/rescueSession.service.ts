@@ -1,11 +1,11 @@
-import { Relationship } from "../models/rescueSessions/relationship.model.ts";
-import { Envy } from "../models/rescueSessions/envy.model.ts";
-import { Sleep } from "../models/rescueSessions/sleep.model.ts";
-import { AngerAndFrustration } from "../models/rescueSessions/angerFrustration.model.ts";
-import { Criticism } from "../models/rescueSessions/criticism.model.ts";
-import { LowMood } from "../models/rescueSessions/lowMood.model.ts";
-import { OverComingDistractions } from "../models/rescueSessions/overcomingDistractions.model.ts";
-import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation.model.ts";
+import { Relationship } from "../models/rescueSessions/relationship/model.ts";
+import { Envy } from "../models/rescueSessions/envy/model.ts";
+import { Sleep } from "../models/rescueSessions/sleep/model.ts";
+import { AngerAndFrustration } from "../models/rescueSessions/angerAndFrustration/model.ts";
+import { Criticism } from "../models/rescueSessions/criticism/model.ts";
+import { LowMood } from "../models/rescueSessions/lowMood/model.ts";
+import { OverComingDistractions } from "../models/rescueSessions/overComingDistraction/model.ts";
+import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation/model.ts";
 import { IRescueSession } from "../types/IRescueSession.js";
 
 export const createLowMood = async (lowMood: IRescueSession, id: string) => {

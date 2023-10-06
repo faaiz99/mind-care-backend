@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { psychologicalProfile } from '../models/psychologicalProfile/psychologicalProfile.model.ts'
-import { beckDepression } from '../models/psychologicalProfile/depression.model.ts';
-import { beckAnxiety } from '../models/psychologicalProfile/anxiety.model.ts';
+import { psychologicalProfile } from '../models/psychologicalProfile/model.ts'
+import { beckDepression } from '../models/psychologicalProfile/depression/model.ts';
+import { beckAnxiety } from '../models/psychologicalProfile/anxiety/model.ts';
 import { IBeckAnxiety } from '../types/IAnxiety.js';
 import { IBeckDepression } from '../types/IDepression.js';
+import { IPsychologicalProfile } from '../types/IPsychologicalProfile.js';
 
-
-
-
-export const buildPsychologicalProfile = async (id: string, psychProfile: any) => {
+export const buildPsychologicalProfile = async (id: string, psychProfile: IPsychologicalProfile) => {
 	const filter = { clientId: id }
 	const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 	const response = await psychologicalProfile.findOneAndUpdate(filter, {
@@ -27,7 +24,7 @@ export const buildPsychologicalProfile = async (id: string, psychProfile: any) =
 	return response
 }
 
-export const setTestScore = async (id: string, psychProfile: any) => {
+export const setTestScore = async (id: string, psychProfile: IPsychologicalProfile) => {
 	console.log(psychProfile)
 	const filter = { clientId: id }
 	const options = { upsert: true, new: true, setDefaultsOnInsert: true };

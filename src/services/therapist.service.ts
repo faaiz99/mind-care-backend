@@ -1,6 +1,6 @@
 import crypto from 'crypto'
-import { Therapist } from '../models/therapist/therapist.model.ts'
-import { issueTokens } from '../middlewares/auth.middleware.ts'
+import { Therapist } from '../models/therapist/model.ts'
+import { issueTokens } from '../middlewares/auth/middleware.ts'
 import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
 import { ITherapist } from '../types/ITherapist.ts'
 

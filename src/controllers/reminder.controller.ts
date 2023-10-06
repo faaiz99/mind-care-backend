@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as reminderService from '../services/reminder.service.ts'
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 
 export const getReminders: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

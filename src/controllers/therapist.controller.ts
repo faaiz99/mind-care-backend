@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as therapistService from '../services/therapist.service.ts'
 import { IToken } from '../types/ITokens.js'
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 export const changePassword: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 

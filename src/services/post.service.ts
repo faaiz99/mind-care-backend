@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Post } from '../models/communityForums/post.model.ts'
-import { Upvote } from '../models/communityForums/upvote.model.ts'
-import { Downvote } from '../models/communityForums/downvote.model.ts'
-import { Report } from '../models/communityForums/report.model.ts'
+import { Post } from '../models/communityForums/post/model.ts'
+import { Upvote } from '../models/communityForums/upvote/model.ts'
+import { Downvote } from '../models/communityForums/downvote/model.ts'
+import { Report } from '../models/communityForums/report/model.ts'
 
 
 export const createPost = async (post: any) => {

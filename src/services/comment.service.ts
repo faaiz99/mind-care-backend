@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Comment } from '../models/communityForums/comment.model.ts'
-import { Upvote } from '../models/communityForums/upvote.model.ts'
-import { Downvote } from '../models/communityForums/downvote.model.ts'
-import { Report } from '../models/communityForums/report.model.ts'
-import { Post } from '../models/communityForums/post.model.ts'
+import { Comment } from '../models/communityForums/comment/model.ts'
+import { Upvote } from '../models/communityForums/upvote/model.ts'
+import { Downvote } from '../models/communityForums/downvote/model.ts'
+import { Report } from '../models/communityForums/report/model.ts'
+import { Post } from '../models/communityForums/post/model.ts'
 
 export const createComment = async (id: string, comment: any) => {
 	const responseDB = await Comment.create(comment)

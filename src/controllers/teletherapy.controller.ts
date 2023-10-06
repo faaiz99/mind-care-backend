@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as teletherapyService from '../services/teletherapy.service.ts'
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 export const getClientChats: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	// id -> Clientid
@@ -44,7 +44,7 @@ export const getMessages: RequestHandler = async (req: Request, res: Response, n
 
 
 // import { Server } from 'socket.io'
-// import { socketOptionsCors } from '../config/socket.config.ts'
+// import { socketOptionsCors } from '../configs/socket/config.ts'
 // import { httpServer } from '../../app.ts';
 
 // const io = new Server(httpServer, socketOptionsCors);

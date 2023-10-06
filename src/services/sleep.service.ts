@@ -1,4 +1,4 @@
-import { SleepTracker } from "../models/sleepTracker/sleepTracker.model.ts";
+import { SleepTracker } from "../models/sleepTracker/model.ts";
 import { ISleepTracker } from "../types/ISleepTracker.js";
 import { ISleepSchedule } from "../types/ISleepTracker.js";
 

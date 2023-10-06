@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
 import * as appointmentService from '../services/appointment.service.ts'
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 // Request Handlers for Appointments
 export const createAppointment: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

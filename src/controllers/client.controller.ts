@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
 import { IToken } from '../types/ITokens.js'
 import * as clientService from '../services/client.service.ts';
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 export const enternewPassword: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {

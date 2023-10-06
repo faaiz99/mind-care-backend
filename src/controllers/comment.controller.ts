@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as commentService from '../services/comment.service.ts'
-import { handleError } from '../middlewares/error.middlewar.ts';
+import { handleError } from '../middlewares/error/middleware.ts';
 
 export const createComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {

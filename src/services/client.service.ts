@@ -1,5 +1,5 @@
-import { Client } from '../models/client/client.model.ts'
-import { issueTokens } from '../middlewares/auth.middleware.ts'
+import { Client } from '../models/client/model.ts'
+import { issueTokens } from '../middlewares/auth/middleware.ts'
 import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
 import { IToken } from '../types/ITokens.ts'
 import { IClient } from '../types/IClient.ts'

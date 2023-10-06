@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as rescueSessionService from '../services/rescueSession.service.ts'
-import { handleError } from '../middlewares/error.middlewar.ts'
+import { handleError } from '../middlewares/error/middleware.ts'
 
 export const createLowMood: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
