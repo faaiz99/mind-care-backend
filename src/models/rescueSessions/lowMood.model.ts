@@ -1,19 +1,26 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model, Model } from 'mongoose'
+import { IRescueSession } from '../../types/IRescueSession.js';
 
 
-const lowMoodSchema = new Schema({
-  questions: {
-    type: String,
+const lowMoodSchema = new Schema<IRescueSession>({
+  clientId:{
+    type:Schema.Types.ObjectId,
+    required:true
   },
-  results: {
-    type: String,
+  checkInDate: {
+    type: Date,
+    required: true
   },
-  text: {
-    type: String,
-  },
-  audio: {
-    type: String,
-  },
+  questions: [{
+    type: String,  required:true
+  }],
+  results: [{
+    type: String, required:true
+  }],
+  listened: {
+    type: Boolean,
+    required:true
+  }
 });
 
-export const lowMoodModel = model("lowMood", lowMoodSchema);
+export const LowMood:Model<IRescueSession> = model<IRescueSession>("lowMood", lowMoodSchema);

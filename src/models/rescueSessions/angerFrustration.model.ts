@@ -1,21 +1,29 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model, Model } from 'mongoose'
+import { IRescueSession } from '../../types/IRescueSession.js';
 
-const angerAndFrustrationSchema = new Schema({
-  questions: {
-    type: String,
+const angerAndFrustrationSchema = new Schema<IRescueSession>({
+  clientId:{
+    type:Schema.Types.ObjectId,
+    required:true
   },
-  results: {
-    type: String,
+  checkInDate: {
+    type: Date,
+    required: true
   },
-  text: {
+  questions: [{
     type: String,
-  },
-  audio: {
-    type: String,
-  },
+    required:true
+  }],
+  results: [{
+    type: String, required:true
+  }],
+  listened: {
+    type: Boolean,
+    required:true
+  }
 });
 
-export const angerAndFrustrationModel = model(
+export const AngerAndFrustration:Model<IRescueSession> = model<IRescueSession>(
   "angerAndFrustration",
   angerAndFrustrationSchema
 );
