@@ -2,15 +2,13 @@ import { Appointment } from "../models/appointment/appointment.model.ts";
 import { Therapist } from '../models/therapist/therapist.model.ts'
 import { IAppointment, ITherapistReview } from "../types/IAppointment.ts";
 
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const addSessionNotes = async (sessionNotes:any, id:string) =>{
-    const filter = {_id:id}
-    const response = await Appointment.findOneAndUpdate(filter, sessionNotes, {
-        returnOriginal:false
+export const addSessionNotes = async (sessionNotes: string, id: string) => {
+    const filter = { _id: id }
+    const response = await Appointment.findOneAndUpdate(filter, { feedback: sessionNotes }, {
+        returnOriginal: false
     })
-    if(!response)
-        throw new Error ('Session Notes Could not be Added')
+    if (!response)
+        throw new Error('Session Notes Could not be Added')
     return response
 }
 
@@ -24,14 +22,14 @@ export const addTherapistReview = async (therapistReview: ITherapistReview, id: 
     return response
 }
 
-export const getTherapistReview = async(id:string) =>{
-    const response = await Appointment.find({therapistId:id})
-    if(!response)
-        throw new Error ('Therapist Review Could not be Found')
+export const getTherapistReview = async (id: string) => {
+    const response = await Appointment.find({ therapistId: id })
+    if (!response)
+        throw new Error('Therapist Review Could not be Found')
     return response
 }
 
-export const updateAppointmentStatus = async (appointment: IAppointment, id:string) => {
+export const updateAppointmentStatus = async (appointment: IAppointment, id: string) => {
     const filter = { _id: id }
     const response = await Appointment.findOneAndUpdate(filter, appointment, {
         returnOriginal: false
@@ -41,8 +39,8 @@ export const updateAppointmentStatus = async (appointment: IAppointment, id:stri
     return response
 }
 
-export const updateAppointment = async (appointment: IAppointment, id:string) => {
-    const filter = {_id:id};
+export const updateAppointment = async (appointment: IAppointment, id: string) => {
+    const filter = { _id: id };
     const response = await Appointment.findOneAndUpdate(filter, appointment, {
         returnOriginal: false
     })
@@ -68,8 +66,8 @@ export const createAppointment = async (appointment: IAppointment) => {
 
 export const getAppointmentsTherapist = async (id: string) => {
     const response = await Appointment.find({ therapistId: id }).populate({
-        path:'clientId',
-        model:'client'
+        path: 'clientId',
+        model: 'client'
     })
     if (!response)
         throw new Error('Appointments not found')

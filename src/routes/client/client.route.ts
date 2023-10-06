@@ -10,7 +10,7 @@ import { appointmentRoutes } from "./appointment/appointment.route.ts";
 import { postRoutes } from './communityForum/post.route.ts'
 import { commentRoutes } from "./communityForum/comment.route.ts";
 import { teletherapyRoutes } from "./teletherapy/teletherapy.route.ts";
-
+import { sleepTrackerRoutes } from "./sleepTracker/sleepTracker.route.ts";
 
 
 router.use(authRoutes)
@@ -22,6 +22,6 @@ router.use(appointmentRoutes)
 router.use(postRoutes)
 router.use(commentRoutes)
 router.use(teletherapyRoutes)
-
+router.use(sleepTrackerRoutes)
 
 export { router as clientRouter }

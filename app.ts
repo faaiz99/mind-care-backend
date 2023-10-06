@@ -13,7 +13,7 @@ import { clientRouter } from './src/routes/client/client.route.ts'
 import { options } from './src/utils/swagger.util.ts'
 import { corsOptions } from "./src/utils/cors.util.ts";
 import { createServer } from "http";
-
+//import { errorHandler } from './src/middlewares/error.middlewar.ts';
 // import compression from 'compression'
 
 dotenv.config()
@@ -53,6 +53,8 @@ app.get(`${baseUrl}`, (req, res): void => {
 })
 
 // Socket IO Setup 
+
+// app.use(errorHandler)
 
 export const httpServer = createServer(app);
 

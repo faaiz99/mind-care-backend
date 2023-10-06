@@ -2,7 +2,10 @@ import { Teletherapy } from '../models/theletherapy/teletherapy.model.ts'
 import { Message } from '../models/theletherapy/message.model.ts'
 
 
-// Messages 
+/**
+ * 
+ * ONLY THIS SERVICE IS PENDING REST ARE COMPLETED
+ */
 
 export const getClientChats = async (clientId: string) => {
 	const response = await Teletherapy.find({
