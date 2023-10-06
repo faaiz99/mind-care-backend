@@ -1,77 +1,75 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as commentService from '../services/comment.service.ts'
+import { handleError } from '../middlewares/error.middlewar.ts';
 
 export const createComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.createComment(req.params.id, req.body)
-		res.status(200).json({ status: 'success', message: 'Comment created', data })
+		const data = await commentService.createComment(req.params.id, req.body);
+		res.status(200).json({ status: 'success', message: 'Comment created', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const replyComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.replyComment(req.body, req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comment Replied', data })
-
+		const data = await commentService.replyComment(req.body, req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment Replied', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const updateComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.updateComment(req.body, req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comment updated', data })
+		const data = await commentService.updateComment(req.body, req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment updated', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const deleteComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.deleteComment(req.body, req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comment updated', data })
+		const data = await commentService.deleteComment(req.body, req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment updated', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const getComments: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.getComments(req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comments retrieved', data })
-
+		const data = await commentService.getComments(req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comments retrieved', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const upvoteComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.upvoteComment(req.body, req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comment Upvoted', data })
+		const data = await commentService.upvoteComment(req.body, req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment Upvoted', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const downvoteComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.downvoteComment(req.body, req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comment Downvoted', data })
+		const data = await commentService.downvoteComment(req.body, req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment Downvoted', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
 }
 
 export const reportComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.reportComment(req.body, req.params.id)
-		res.status(200).json({ status: 'success', message: 'Comment reported', data })
+		const data = await commentService.reportComment(req.body, req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment reported', data });
 	} catch (error) {
-		next(error)
+		handleError(error, res, next);
 	}
-	
 }
