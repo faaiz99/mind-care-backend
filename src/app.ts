@@ -52,8 +52,6 @@ app.get(`${baseUrl}`, (req, res): void => {
 	res.send('Mind Care API')
 })
 
-// Socket IO Setup 
-
 app.use(handleError)
 
 export const httpServer = createServer(app);

@@ -3,8 +3,6 @@ const { PORT } = process.env;
 
 import { Server } from 'socket.io'
 import { socketOptionsCors } from './src/configs/socket/config.ts'
-//import { httpServer } from '../../app.ts';
-
 
 const io = new Server(httpServer, socketOptionsCors);
 
@@ -18,6 +16,10 @@ let onlineUsers:Array<IUserDetails> = []
 io.on("connection", (socket) => {
 	//console.log(socket.id)
 	socket.emit("me", socket.id)
+	socket.on("users", onlineUsers=>{
+		console.log('helo')
+		console.log(onlineUsers)
+	})
 
 	socket.on("disconnect", () => {
 		socket.broadcast.emit("callEnded")
@@ -56,7 +58,7 @@ io.on("connection", (socket) => {
 	})
 })
 
-io.listen(8081)
+//io.listen(PORT) since we import httoServer and it contains the express app instance. It also listens to the same port
 
 httpServer.listen(PORT, () => {
 	console.log(`Mind Care Backend on  http://localhost:${PORT}/api/v1`)
