@@ -2,6 +2,7 @@ import { Router } from "express";
 const router: Router = Router();
 
 import {
+    getAllRescueSession,
     getEnvy,
     updateEnvy,
     createEnvy,
@@ -27,6 +28,8 @@ import {
     updateSleep,
     createSleep,
 } from '../../../controllers/rescueSession.controller.ts';
+
+router.get('/rescue-sessions/:id',getAllRescueSession)
 
 router.get('/envy/:id', getEnvy);
 router.patch('/envy/:id', updateEnvy);

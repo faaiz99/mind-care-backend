@@ -26,7 +26,8 @@ export const getAllRescueSessions = async (id: string) => {
         try {
             const sessionResponses = await mongoose.model(sessionType).find({ clientId: id });
             return { type: sessionType, data: sessionResponses };
-        } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error:any) {
             throw new Error(`Error fetching ${sessionType} rescue sessions: ${error.message}`);
         }
     });
