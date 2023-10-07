@@ -2,6 +2,15 @@ import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as rescueSessionService from '../services/rescueSession.service.ts'
 import { handleError } from '../middlewares/error/middleware.ts'
 
+export const getAllRescueSession:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getAllRescueSessions(req.params.id)
+    res.status(200).json({status:"success", message:"All Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
 export const getAngerAndFrustration:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
   try {
     const data = await rescueSessionService.getAngerAndFrustration(req.params.id)

@@ -8,6 +8,55 @@ import { OverComingDistractions } from "../models/rescueSessions/overComingDistr
 import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation/model.ts";
 import { IRescueSession } from "../types/IRescueSession.js";
 
+import mongoose from 'mongoose';
+
+export const getAllRescueSessions = async (id: string) => {
+    const sessionTypes = [
+        'LowMood',
+        'OverComingDistraction',
+        'RegainingMotivation',
+        'Criticism',
+        'Relationship',
+        'Envy',
+        'Sleep',
+        'AngerAndFrustration',
+    ];
+
+    const promises = sessionTypes.map(async (sessionType) => {
+        try {
+            const sessionResponses = await mongoose.model(sessionType).find({ clientId: id });
+            return { type: sessionType, data: sessionResponses };
+        } catch (error) {
+            throw new Error(`Error fetching ${sessionType} rescue sessions: ${error.message}`);
+        }
+    });
+
+    const responses = await Promise.allSettled(promises);
+
+    const resolvedResponses = responses
+        .filter((result) => result.status === 'fulfilled')
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .map((result) => (result as unknown as PromiseFulfilledResult<any[]>).value);
+
+    const rejectedResponses = responses
+        .filter((result) => result.status === 'rejected')
+        .map((result) => (result as PromiseRejectedResult).reason);
+
+    if (rejectedResponses.length > 0) {
+        // Handle and log errors from rejected promises
+        for (const error of rejectedResponses) {
+            console.error(error);
+        }
+    }
+
+    if (resolvedResponses.length === 0) {
+        throw new Error('No Rescue Sessions Found');
+    }
+
+    return resolvedResponses;
+};
+
+
 export const getLowMood = async (id: string) => {
     const response = await LowMood.findOne({ clientId: id });
     if (!response) {
