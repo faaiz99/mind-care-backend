@@ -23,7 +23,7 @@ export const replyComment: RequestHandler = async (req: Request, res: Response, 
 export const updateComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const data = await commentService.updateComment(req.body, req.params.id);
-		res.status(200).json({ status: 'success', message: 'Comment updated', data });
+		res.status(200).json({ status: 'success', message: 'Comment Updated', data });
 	} catch (error) {
 		handleError(error, res, next);
 	}
@@ -31,8 +31,8 @@ export const updateComment: RequestHandler = async (req: Request, res: Response,
 
 export const deleteComment: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const data = await commentService.deleteComment(req.body, req.params.id);
-		res.status(200).json({ status: 'success', message: 'Comment updated', data });
+		const data = await commentService.deleteComment(req.params.id);
+		res.status(200).json({ status: 'success', message: 'Comment Deleted', data });
 	} catch (error) {
 		handleError(error, res, next);
 	}
@@ -41,7 +41,7 @@ export const deleteComment: RequestHandler = async (req: Request, res: Response,
 export const getComments: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const data = await commentService.getComments(req.params.id);
-		res.status(200).json({ status: 'success', message: 'Comments retrieved', data });
+		res.status(200).json({ status: 'success', message: 'Comments Retrieved', data });
 	} catch (error) {
 		handleError(error, res, next);
 	}
