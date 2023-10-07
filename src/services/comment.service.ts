@@ -38,13 +38,16 @@ export const updateComment = async (comment: any, id: string) => {
 	return response
 }
 
-export const deleteComment = async (comment: any, id: string) => {
-	comment.body = 'Comment Deleted'
-	const response = await Comment.findOneAndUpdate({ _id: id }, comment)
-	if (!response)
-		throw new Error('Comment Deleted')
-	return response
+export const deleteComment = async (id: string) => {
+    const response = await Comment.findOneAndUpdate({ _id: id }, {
+        $set: { body: "Comment Deleted" }
+    });
+    
+    if (!response) {
+        throw new Error('Comment Not Found');
+    }
 
+    return response;
 }
 
 export const getComments = async (id:string) => {
