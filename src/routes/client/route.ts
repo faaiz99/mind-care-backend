@@ -11,7 +11,7 @@ import { postRoutes } from './communityForum/post/route.ts'
 import { commentRoutes } from "./communityForum/comment/route.ts";
 import { teletherapyRoutes } from "./teletherapy/route.ts";
 import { sleepTrackerRoutes } from "./sleepTracker/route.ts";
-
+import { rescueSessionRoutes } from "./rescueSession/route.ts";
 
 router.use(authRoutes)
 router.use(journalRoutes)
@@ -23,5 +23,6 @@ router.use(postRoutes)
 router.use(commentRoutes)
 router.use(teletherapyRoutes)
 router.use(sleepTrackerRoutes)
+router.use(rescueSessionRoutes)
 
 export { router as clientRouter }

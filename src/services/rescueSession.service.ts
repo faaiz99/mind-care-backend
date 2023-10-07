@@ -8,6 +8,70 @@ import { OverComingDistractions } from "../models/rescueSessions/overComingDistr
 import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation/model.ts";
 import { IRescueSession } from "../types/IRescueSession.js";
 
+export const getLowMood = async (id: string) => {
+    const response = await LowMood.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Low Mood Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getOverComingDistraction = async (id: string) => {
+    const response = await OverComingDistractions.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('OverComing Distraction Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getRegainingMotivation = async (id: string) => {
+    const response = await RegainingMotivation.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Regaining Motivation Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getCriticism = async (id: string) => {
+    const response = await Criticism.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Criticism Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getRelationship = async (id: string) => {
+    const response = await Relationship.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Relationship Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getEnvy = async (id: string) => {
+    const response = await Envy.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Envy Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getSleep = async (id: string) => {
+    const response = await Sleep.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Sleep Rescue Session Not Found');
+    }
+    return response;
+};
+
+export const getAngerAndFrustration = async (id: string) => {
+    const response = await AngerAndFrustration.findOne({ clientId: id });
+    if (!response) {
+        throw new Error('Anger And Frustration Rescue Session Not Found');
+    }
+    return response;
+};
+
 export const createLowMood = async (lowMood: IRescueSession, id: string) => {
 	const response = await LowMood.create({
 		clientId: id,

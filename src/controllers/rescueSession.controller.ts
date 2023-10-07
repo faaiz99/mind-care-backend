@@ -2,6 +2,78 @@ import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as rescueSessionService from '../services/rescueSession.service.ts'
 import { handleError } from '../middlewares/error/middleware.ts'
 
+export const getAngerAndFrustration:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getAngerAndFrustration(req.params.id)
+    res.status(200).json({status:"success", message:"Anger And Frustration Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getRelationship:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getRelationship(req.params.id)
+    res.status(200).json({status:"success", message:"Relationship Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getRegainingMotivation:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getRegainingMotivation(req.params.id)
+    res.status(200).json({status:"success", message:"Regaining Motivation Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getCriticism:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getCriticism(req.params.id)
+    res.status(200).json({status:"success", message:"Criticism Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getSleep:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getSleep(req.params.id)
+    res.status(200).json({status:"success", message:"Sleep Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getEnvy:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getEnvy(req.params.id)
+    res.status(200).json({status:"success", message:"Envy Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getLowMood:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getLowMood(req.params.id)
+    res.status(200).json({status:"success", message:"Low Mood Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
+export const getOverComingDistraction:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
+  try {
+    const data = await rescueSessionService.getOverComingDistraction(req.params.id)
+    res.status(200).json({status:"success", message:"OverComingDistraction Rescue Session Found", data})
+  } catch (error) {
+      handleError(error, res, next)
+  }
+}
+
 export const createLowMood: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await rescueSessionService.createLowMood(req.body, req.params.id)
@@ -20,7 +92,7 @@ export const updateLowMood: RequestHandler = async (req: Request, res: Response,
   }
 }
 
-export const createOvercomingDistraction: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const createOverComingDistraction: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await rescueSessionService.createOverComingDistraction(req.body, req.params.id);
     res.status(201).json({ status: "success", message: "Overcoming Distraction Rescue Session Created", data });
@@ -29,7 +101,7 @@ export const createOvercomingDistraction: RequestHandler = async (req: Request, 
   }
 }
 
-export const updateOvercomingDistraction: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const updateOverComingDistraction: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await rescueSessionService.updateOverComingDistraction(req.body, req.params.id);
     res.status(200).json({ status: "success", message: "Overcoming Distraction Rescue Session Updated", data });
