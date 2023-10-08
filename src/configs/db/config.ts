@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
 
-const MONGO_URI: string | undefined = dotenv?.config()?.parsed?.MONGO_URI ?? ''
-if(process.env.NODE_ENV === 'production'){
+const MONGO_URI: string  = process.env.MONGODB_URI ?? "NO-DBI-URI"
+if (process.env.NODE_ENV === 'production') {
   console.log('DB URI: ', MONGO_URI)
 }
 export const connect = async () => {
