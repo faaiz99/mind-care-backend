@@ -6,14 +6,14 @@ import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from "swagger-jsdoc";
 import cors from 'cors'
 import { Application } from 'express'
-import { connect } from './configs/db/config.ts'
-import { therapistRouter } from "./routes/therapist/route.ts"
-import { adminRouter } from './routes/admin/route.ts'
-import { clientRouter } from './routes/client/route.ts'
-import { options } from './utils/swagger.util.ts'
-import { corsOptions } from "./utils/cors.util.ts";
+import { connect } from './configs/db/config.js'
+import { therapistRouter } from "./routes/therapist/route.js"
+import { adminRouter } from './routes/admin/route.js'
+import { clientRouter } from './routes/client/route.js'
+import { options } from './utils/swagger.util.js'
+import { corsOptions } from "./utils/cors.util.js";
 import { createServer } from "http";
-import { handleError } from './middlewares/error/middleware.ts';
+import { handleError } from './middlewares/error/middleware.js';
 // import compression from 'compression'
 
 dotenv.config()

@@ -1,4 +1,4 @@
-import { Reminder } from '../models/reminder/model.ts';
+import { Reminder } from '../models/reminder/model.js';
 import { IReminder } from '../types/IReminder.js';
 
 export const getReminders = async (id: string) => {

@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router: Router = Router()
 
-import { authenticateToken, revalidateToken } from "../../../middlewares/auth/middleware.ts";
-import { signup, login, renewToken, about, index } from "../../../controllers/admin.controller.ts";
+import { authenticateToken, revalidateToken } from "../../../middlewares/auth/middleware.js";
+import { signup, login, renewToken, about, index } from "../../../controllers/admin.controller.js";
 
 router.post('/signup', signup)
 router.post('/refresh-token', revalidateToken, renewToken)

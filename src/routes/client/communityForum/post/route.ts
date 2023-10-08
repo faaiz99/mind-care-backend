@@ -10,7 +10,7 @@ import {
 	reportPost,
 	upvotePost,
 	downvotePost
-} from '../../../../controllers/post.controller.ts'
+} from '../../../../controllers/post.controller.js'
 
 /**
  * @swagger

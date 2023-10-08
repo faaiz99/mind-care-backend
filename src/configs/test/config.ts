@@ -1,15 +1,8 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import { disconnect, connect } from '../db/config.ts';
-import { httpServer } from '../../app.ts';
-import {afterAll, beforeAll } from '@jest/globals';
-
-beforeAll(async () => {
-    await connect()
-});
-
+import { httpServer } from '../../app.js';
+import {afterAll } from '@jest/globals';
 
 afterAll(async()=>{
-   await disconnect()
-   await httpServer.close()
+   httpServer.close()
 })

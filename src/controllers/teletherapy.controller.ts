@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
-import * as teletherapyService from '../services/teletherapy.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts'
+import * as teletherapyService from '../services/teletherapy.service.js'
+import { handleError } from '../middlewares/error/middleware.js'
 
 export const getClientChats: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	// id -> Clientid

@@ -2,13 +2,13 @@ import { Router } from "express";
 const router:Router = Router()
 
 // Registration and Authentication Routes //
-import { authRoutes } from "./auth/route.ts";
-import { postRoutes } from './communityForum/post/route.ts'
-import { commentRoutes } from "./communityForum/comment/route.ts";
-import { paymentRoutes } from "./payment/route.ts";
-import { appointmentRoutes } from "./appointment/route.ts";
-import { teletherapyRoutes } from "./teletherapy/route.ts";
-import { psychologicalProfileRoutes } from "./psychologicalProfile/route.ts";
+import { authRoutes } from "./auth/route.js";
+import { postRoutes } from './communityForum/post/route.js'
+import { commentRoutes } from "./communityForum/comment/route.js";
+import { paymentRoutes } from "./payment/route.js";
+import { appointmentRoutes } from "./appointment/route.js";
+import { teletherapyRoutes } from "./teletherapy/route.js";
+import { psychologicalProfileRoutes } from "./psychologicalProfile/route.js";
 
 router.use(authRoutes)
 router.use(postRoutes)

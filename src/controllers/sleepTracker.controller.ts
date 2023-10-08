@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import * as sleepTrackerService from '../services/sleep.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts'
+import * as sleepTrackerService from '../services/sleep.service.js'
+import { handleError } from '../middlewares/error/middleware.js'
 
 export const createSleepSchedule: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {

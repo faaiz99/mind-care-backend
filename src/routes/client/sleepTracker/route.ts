@@ -8,7 +8,7 @@ import {
 	createSleepSchedule,
 	updateSleepSchedule,
 } 
-from "../../../controllers/sleepTracker.controller.ts";
+from "../../../controllers/sleepTracker.controller.js";
 
 router.get('/sleep-quality/:id', getSleepQuality)
 router.get('/sleep-efficiency/:id', getSleepEfficiency)

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import * as rescueSessionService from '../services/rescueSession.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts'
+import * as rescueSessionService from '../services/rescueSession.service.js'
+import { handleError } from '../middlewares/error/middleware.js'
 
 export const getAllRescueSession:RequestHandler = async (req:Request, res:Response, next:NextFunction) =>{
   try {

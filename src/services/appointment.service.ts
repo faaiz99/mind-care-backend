@@ -1,6 +1,6 @@
-import { Appointment } from "../models/appointment/model.ts";
-import { Therapist } from '../models/therapist/model.ts'
-import { IAppointment, ITherapistReview } from "../types/IAppointment.ts";
+import { Appointment } from "../models/appointment/model.js";
+import { Therapist } from '../models/therapist/model.js'
+import { IAppointment, ITherapistReview } from "../types/IAppointment.js";
 
 export const addSessionNotes = async (sessionNotes: string, id: string) => {
     const filter = { _id: id }

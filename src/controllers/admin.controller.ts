@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
-import * as adminService from '../services/admin.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts'
+import * as adminService from '../services/admin.service.js'
+import { handleError } from '../middlewares/error/middleware.js'
 
 
 export const index: RequestHandler = async (req: Request, res: Response) => {

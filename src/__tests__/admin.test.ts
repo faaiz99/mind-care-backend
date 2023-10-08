@@ -1,17 +1,11 @@
 
 import request from 'supertest'
 import { describe, expect, it } from '@jest/globals';
-import { httpServer } from '../app.ts';
-import { disconnect, connect } from '../configs/db/config.ts';
-import * as adminService from '../services/admin.service.ts'
-
-beforeAll(async () => {
-    await connect()
-});
-
+import { httpServer } from '../app.js';
+import * as adminService from '../services/admin.service.js'
+import { afterAll } from '@jest/globals';
 
 afterAll(async()=>{
-   await disconnect()
     httpServer.close()
 })
 

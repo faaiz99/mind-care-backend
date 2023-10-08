@@ -1,6 +1,6 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express';
-import * as paymentService from '../services/payment.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts';
+import * as paymentService from '../services/payment.service.js'
+import { handleError } from '../middlewares/error/middleware.js';
 
 export const createPaymentIntent: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {

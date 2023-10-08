@@ -10,7 +10,7 @@ import {
 	upvoteComment,
 	downvoteComment,
 	reportComment
-} from '../../../../controllers/comment.controller.ts'
+} from '../../../../controllers/comment.controller.js'
 
 router.get('/comments', getComments)
 

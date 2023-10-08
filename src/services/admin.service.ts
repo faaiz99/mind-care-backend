@@ -1,8 +1,8 @@
 
-import { Admin } from '../models/admin/model.ts'
-import { issueTokens } from '../middlewares/auth/middleware.ts'
-import { IToken } from '../types/ITokens.ts'
-import { IAdmin } from '../types/IAdmin.ts'
+import { Admin } from '../models/admin/model.js'
+import { issueTokens } from '../middlewares/auth/middleware.js'
+import { IToken } from '../types/ITokens.js'
+import { IAdmin } from '../types/IAdmin.js'
 
 export const login= async (email: string, password: string):Promise<IToken> => {
     const admin = await Admin.findOne({

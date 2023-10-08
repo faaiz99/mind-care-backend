@@ -7,7 +7,7 @@ const router:Router = Router()
 import {
   authenticateToken,
   revalidateToken,
-} from "../../../middlewares/auth/middleware.ts";
+} from "../../../middlewares/auth/middleware.js";
 
 // User Profile Management Module //
 
@@ -15,7 +15,7 @@ import {
   enternewPassword, resetPassword,
   verifyAccount, sendverificationEmail,
   login, signup, renewToken, about
-} from "../../../controllers/client.controller.ts";
+} from "../../../controllers/client.controller.js";
 
 router.post('/password/:token', enternewPassword)
 router.post('/reset-password', resetPassword)

@@ -1,5 +1,5 @@
-import { Teletherapy } from '../models/teletherapy/model.ts'
-import { Message } from '../models/teletherapy/message/model.ts'
+import { Teletherapy } from '../models/teletherapy/model.js'
+import { Message } from '../models/teletherapy/message/model.js'
 
 /**
  * 

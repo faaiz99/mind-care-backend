@@ -6,7 +6,7 @@ import {
 	createMessage,
 	getMessages,
 	getTherapistChats
- } from "../../../controllers/teletherapy.controller.ts";
+ } from "../../../controllers/teletherapy.controller.js";
 
 /**
  * Chat API

@@ -2,7 +2,7 @@ import { httpServer } from './src/app.js'
 const { PORT } = process.env;
 
 import { Server } from 'socket.io'
-import { socketOptionsCors } from './src/configs/socket/config.ts'
+import { socketOptionsCors } from './src/configs/socket/config.js'
 
 const io = new Server(httpServer, socketOptionsCors);
 

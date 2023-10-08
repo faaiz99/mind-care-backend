@@ -1,4 +1,4 @@
-import { createAppointment, addSessionNotes ,getAppointment,getAppointmentsClient, deleteAppointment, updateAppointment, getTherapistById, getTherapists, addTherapistReview, getTherapistReview } from "../../../controllers/appointment.controller.ts";
+import { createAppointment, addSessionNotes ,getAppointment,getAppointmentsClient, deleteAppointment, updateAppointment, getTherapistById, getTherapists, addTherapistReview, getTherapistReview } from "../../../controllers/appointment.controller.js";
 import { Router } from "express";
 
 const router:Router = Router()

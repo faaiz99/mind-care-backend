@@ -1,6 +1,6 @@
-import { psychologicalProfile } from '../models/psychologicalProfile/model.ts'
-import { beckDepression } from '../models/psychologicalProfile/depression/model.ts';
-import { beckAnxiety } from '../models/psychologicalProfile/anxiety/model.ts';
+import { psychologicalProfile } from '../models/psychologicalProfile/model.js'
+import { beckDepression } from '../models/psychologicalProfile/depression/model.js';
+import { beckAnxiety } from '../models/psychologicalProfile/anxiety/model.js';
 import { IBeckAnxiety } from '../types/IAnxiety.js';
 import { IBeckDepression } from '../types/IDepression.js';
 import { IPsychologicalProfile } from '../types/IPsychologicalProfile.js';

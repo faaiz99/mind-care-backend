@@ -1,8 +1,8 @@
 import crypto from 'crypto'
-import { Therapist } from '../models/therapist/model.ts'
-import { issueTokens } from '../middlewares/auth/middleware.ts'
-import { emailSender, resetAccountPassword } from '../utils/sendmail.util.ts'
-import { ITherapist } from '../types/ITherapist.ts'
+import { Therapist } from '../models/therapist/model.js'
+import { issueTokens } from '../middlewares/auth/middleware.js'
+import { emailSender, resetAccountPassword } from '../utils/sendmail.util.js'
+import { ITherapist } from '../types/ITherapist.js'
 
 export const changePassword = async (email: string, password: string) => {
     const client = await Therapist.findOneAndUpdate({ email: email }, { password: password })

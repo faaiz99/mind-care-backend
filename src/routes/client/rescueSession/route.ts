@@ -27,7 +27,7 @@ import {
     getSleep,
     updateSleep,
     createSleep,
-} from '../../../controllers/rescueSession.controller.ts';
+} from '../../../controllers/rescueSession.controller.js';
 
 router.get('/rescue-sessions/:id',getAllRescueSession)
 

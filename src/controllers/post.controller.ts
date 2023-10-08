@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import * as postService from '../services/post.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts'
+import * as postService from '../services/post.service.js'
+import { handleError } from '../middlewares/error/middleware.js'
 
 
 export const createPost: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

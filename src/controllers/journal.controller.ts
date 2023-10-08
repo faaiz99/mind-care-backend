@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
-import * as journalService from '../services/journal.service.ts'
-import { handleError } from '../middlewares/error/middleware.ts'
+import * as journalService from '../services/journal.service.js'
+import { handleError } from '../middlewares/error/middleware.js'
 
 
 export const getGratitudeJournal: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

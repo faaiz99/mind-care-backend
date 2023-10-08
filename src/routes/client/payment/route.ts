@@ -7,7 +7,7 @@ import {
 	updatePayment, 
 	confirmPayment,
 	savePayment
-} from "../../../controllers/payment.controller.ts";
+} from "../../../controllers/payment.controller.js";
 
 const router: Router = Router()
 

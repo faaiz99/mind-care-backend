@@ -1,11 +1,11 @@
-import { Relationship } from "../models/rescueSessions/relationship/model.ts";
-import { Envy } from "../models/rescueSessions/envy/model.ts";
-import { Sleep } from "../models/rescueSessions/sleep/model.ts";
-import { AngerAndFrustration } from "../models/rescueSessions/angerAndFrustration/model.ts";
-import { Criticism } from "../models/rescueSessions/criticism/model.ts";
-import { LowMood } from "../models/rescueSessions/lowMood/model.ts";
-import { OverComingDistractions } from "../models/rescueSessions/overComingDistraction/model.ts";
-import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation/model.ts";
+import { Relationship } from "../models/rescueSessions/relationship/model.js";
+import { Envy } from "../models/rescueSessions/envy/model.js";
+import { Sleep } from "../models/rescueSessions/sleep/model.js";
+import { AngerAndFrustration } from "../models/rescueSessions/angerAndFrustration/model.js";
+import { Criticism } from "../models/rescueSessions/criticism/model.js";
+import { LowMood } from "../models/rescueSessions/lowMood/model.js";
+import { OverComingDistractions } from "../models/rescueSessions/overComingDistraction/model.js";
+import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation/model.js";
 import { IRescueSession } from "../types/IRescueSession.js";
 
 import mongoose from 'mongoose';

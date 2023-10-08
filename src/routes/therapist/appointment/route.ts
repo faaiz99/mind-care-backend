@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAppointmentsTherapist, updateAppointmentStatus } from "../../../controllers/appointment.controller.ts";
+import { getAppointmentsTherapist, updateAppointmentStatus } from "../../../controllers/appointment.controller.js";
 
 const router:Router = Router()
 

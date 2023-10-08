@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router:Router = Router()
 
-import { authenticateToken } from "../../../middlewares/auth/middleware.ts";
-import { revalidateToken } from "../../../middlewares/auth/middleware.ts";
+import { authenticateToken } from "../../../middlewares/auth/middleware.js";
+import { revalidateToken } from "../../../middlewares/auth/middleware.js";
 
 import {
   signup,
@@ -16,7 +16,7 @@ import {
   renewTokens,
   about
 
-} from "../../../controllers/therapist.controller.ts";
+} from "../../../controllers/therapist.controller.js";
 
 
 router.post('/signup', signup)

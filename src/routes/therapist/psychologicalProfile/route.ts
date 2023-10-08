@@ -9,7 +9,7 @@ import {
 	getPsychologicalProfile
 
 }
-from "../../../controllers/psychologicalProfile.controller.ts";
+from "../../../controllers/psychologicalProfile.controller.js";
 
 router.get('/depression-test/:id', getDepressionTest)
 router.get('/anxiety-test/:id', getAnxietyTest)

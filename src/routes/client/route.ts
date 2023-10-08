@@ -1,17 +1,17 @@
 import { Router } from "express";
 const router:Router = Router()
 
-import { authRoutes } from "./auth/route.ts";
-import { reminderRoutes } from "./reminder/route.ts";
-import { psychologicalProfileRoutes } from "./psychologicalProfile/route.ts";
-import { journalRoutes } from "./journal/route.ts";
-import { paymentRoutes } from "./payment/route.ts";
-import { appointmentRoutes } from "./appointment/route.ts";
-import { postRoutes } from './communityForum/post/route.ts'
-import { commentRoutes } from "./communityForum/comment/route.ts";
-import { teletherapyRoutes } from "./teletherapy/route.ts";
-import { sleepTrackerRoutes } from "./sleepTracker/route.ts";
-import { rescueSessionRoutes } from "./rescueSession/route.ts";
+import { authRoutes } from "./auth/route.js";
+import { reminderRoutes } from "./reminder/route.js";
+import { psychologicalProfileRoutes } from "./psychologicalProfile/route.js";
+import { journalRoutes } from "./journal/route.js";
+import { paymentRoutes } from "./payment/route.js";
+import { appointmentRoutes } from "./appointment/route.js";
+import { postRoutes } from './communityForum/post/route.js'
+import { commentRoutes } from "./communityForum/comment/route.js";
+import { teletherapyRoutes } from "./teletherapy/route.js";
+import { sleepTrackerRoutes } from "./sleepTracker/route.js";
+import { rescueSessionRoutes } from "./rescueSession/route.js";
 
 router.use(authRoutes)
 router.use(journalRoutes)

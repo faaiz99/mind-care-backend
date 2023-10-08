@@ -13,7 +13,7 @@ import {
 	getDepressionTest
 
 }
-from "../../../controllers/psychologicalProfile.controller.ts";
+from "../../../controllers/psychologicalProfile.controller.js";
 
 // ClientId required in body// 
 router.post('/psychological-profile/:id', buildPsychologicalProfile)

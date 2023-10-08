@@ -2081,3 +2081,6 @@ node_modules/.package-lock.json
 node_modules/.bin/mime.ps1
 node_modules/.bin/nodemon.ps1
 test.md
+dist/jest.config.js
+*.js
+*.map

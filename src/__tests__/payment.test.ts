@@ -1,16 +1,13 @@
 import request from 'supertest'
 import { describe, expect, it } from '@jest/globals';
-import * as paymentService from '../services/payment.service.ts'
-import { httpServer } from '../app.ts';
-import { disconnect, connect } from '../configs/db/config.ts';
+import * as paymentService from '../services/payment.service.js'
+import { httpServer } from '../app.js';
+import { afterAll } from '@jest/globals';
 
-beforeAll(async () => {
-	// await connect()
-});
+
 
 
 afterAll(async () => {
-	// await disconnect()
 	httpServer.close()
 })
 

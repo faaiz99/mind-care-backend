@@ -4,22 +4,22 @@
  * TYPES ARE ALSO PENDING
  */
 
-import { GratitudeJournal } from '../models/journals/gratitudeJournal/model.ts';
-import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal/model.ts';
-import { GoalSettingJournal } from '../models/journals/goalSettingJournal/model.ts';
-import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal/model.ts';
-import { OpenJournal } from '../models/journals/openJournal/model.ts';
-import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourself/model.ts'
-import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan/model.ts';
-import { AnxietyThoughtRecordJournal } from '../models/journals/anxietyThoughtRecordJournal/model.ts';
-import { ReflectionJournal } from '../models/journals/reflectionJournal/model.ts';
+import { GratitudeJournal } from '../models/journals/gratitudeJournal/model.js';
+import { ProblemSolvingJournal } from '../models/journals/problemSolvingJournal/model.js';
+import { GoalSettingJournal } from '../models/journals/goalSettingJournal/model.js';
+import { SelfAffirmationJournal } from '../models/journals/selfAffirmationJournal/model.js';
+import { OpenJournal } from '../models/journals/openJournal/model.js';
+import { ChallengingNegativeThoughtsAboutYourselfJournal } from '../models/journals/challengingNegativeThoughtsAboutYourself/model.js'
+import { BuildingASelfCarePlan } from '../models/journals/buildingASelfCarePlan/model.js';
+import { AnxietyThoughtRecordJournal } from '../models/journals/anxietyThoughtRecordJournal/model.js';
+import { ReflectionJournal } from '../models/journals/reflectionJournal/model.js';
 
 // Sleep Journal has own types & Models //
-import { CalmingTheMind } from '../models/journals/calmingTheMind/model.ts';
-import { DreamJournal } from '../models/journals/dreamJournal/model.ts';
-import { FindingPeacefulSpace } from '../models/journals/findingAPeacefulSpace/model.ts';
-import { LookingForwardToTomorrow } from '../models/journals/lookingForwardToTomorrow/model.ts'
-import { PlanningTheDayAhead } from '../models/journals/planningTheDayAhead/model.ts';
+import { CalmingTheMind } from '../models/journals/calmingTheMind/model.js';
+import { DreamJournal } from '../models/journals/dreamJournal/model.js';
+import { FindingPeacefulSpace } from '../models/journals/findingAPeacefulSpace/model.js';
+import { LookingForwardToTomorrow } from '../models/journals/lookingForwardToTomorrow/model.js'
+import { PlanningTheDayAhead } from '../models/journals/planningTheDayAhead/model.js';
 
 import mongoose from 'mongoose';
 
