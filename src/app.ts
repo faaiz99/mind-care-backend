@@ -2,19 +2,20 @@
 import dotenv from 'dotenv'
 import express from "express"
 import bodyParser from "body-parser"
-import swaggerUi from 'swagger-ui-express'
-import swaggerJSDoc from "swagger-jsdoc";
 import cors from 'cors'
 import { Application } from 'express'
 import { connect } from './configs/db/config.js'
 import { therapistRouter } from "./routes/therapist/route.js"
 import { adminRouter } from './routes/admin/route.js'
 import { clientRouter } from './routes/client/route.js'
-import { options } from './utils/swagger.util.js'
 import { corsOptions } from "./utils/cors.util.js";
 import { createServer } from "http";
 import { handleError } from './middlewares/error/middleware.js';
 // import compression from 'compression'
+// import swaggerUi from 'swagger-ui-express'
+// import swaggerJSDoc from "swagger-jsdoc";
+//import { options } from './utils/swagger.util.js'
+
 
 dotenv.config()
 
@@ -23,7 +24,7 @@ connect()
 
 const baseUrl: string = '/api/v1'
 const app: Application = express();
-const swaggerSpec = swaggerJSDoc(options);
+// const swaggerSpec = swaggerJSDoc(options);
 
 // app.use(compression)
 
@@ -32,8 +33,8 @@ const swaggerSpec = swaggerJSDoc(options);
 app.use(cors(corsOptions));
 
 // API Documentation Setup //
-app.use(`${baseUrl}/docs`, swaggerUi.serve);
-app.get(`${baseUrl}/docs`, swaggerUi.setup(swaggerSpec));
+// app.use(`${baseUrl}/docs`, swaggerUi.serve);
+// app.get(`${baseUrl}/docs`, swaggerUi.setup(swaggerSpec));
 
 // Router //
 app.use(express.json());
