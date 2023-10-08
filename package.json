@@ -8,7 +8,7 @@
   "scripts": {
     "build": "npx tsc",
     "test": "jest --detectOpenHandles ",
-    "start": "node app.ts",
+    "start": "node server.ts",
     "dev": "nodemon server.ts --watch",
     "lint": "npx eslint ."
   },
