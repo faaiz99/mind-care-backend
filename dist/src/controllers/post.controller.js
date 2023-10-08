@@ -1,0 +1,99 @@
+import * as postService from '../services/post.service.js';
+import { handleError } from '../middlewares/error/middleware.js';
+export const createPost = async (req, res, next) => {
+    // postId -> generate at creation
+    // clientId | therapist Id(one Must)
+    // pictureLink Optional
+    // Title
+    // Body
+    // tags
+    try {
+        const data = await postService.createPost(req.body);
+        res.status(200).json({ status: 'success', message: 'Post created', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const updatePost = async (req, res, next) => {
+    try {
+        const data = await postService.updatePost(req.body, req.params.id);
+        res.status(200).json({ status: 'success', message: 'Post updated', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const deletePost = async (req, res, next) => {
+    try {
+        const data = await postService.deletePost(req.params.id);
+        res.status(200).json({ status: 'success', message: 'Post deleted', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const getPosts = async (req, res, next) => {
+    try {
+        const data = await postService.getPosts();
+        res.status(200).json({ status: 'success', message: 'Post retrieved', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const getPost = async (req, res, next) => {
+    try {
+        const data = await postService.getPost(req.params.id);
+        res.status(200).json({ status: 'success', message: 'Post found', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const upvotePost = async (req, res, next) => {
+    try {
+        const data = await postService.upvotePost(req.body, req.params.id);
+        res.status(200).json({ status: 'success', message: 'Post upvoted', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const removeUpvotePost = async (req, res, next) => {
+    try {
+        const data = await postService.removeUpvotePost(req.params.did, req.params.pid);
+        res.status(200).json({ status: 'success', message: 'Upvote Removed', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const removeDownvotePost = async (req, res, next) => {
+    try {
+        const data = await postService.removeDownvotePost(req.params.uid, req.params.pid);
+        res.status(200).json({ status: 'success', message: 'Downvote Removed', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const downvotePost = async (req, res, next) => {
+    try {
+        const data = await postService.downvotePost(req.body, req.params.id);
+        res.status(200).json({ status: 'success', message: 'Post downvoted', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+export const reportPost = async (req, res, next) => {
+    try {
+        const data = await postService.reportPost(req.body, req.params.id);
+        res.status(200).json({ status: 'success', message: 'Post reported', data });
+    }
+    catch (error) {
+        handleError(error, res, next);
+    }
+};
+//# sourceMappingURL=post.controller.js.map
