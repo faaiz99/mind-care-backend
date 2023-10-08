@@ -1,7 +1,8 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Model } from 'mongoose'
+import { ITeletherapy } from '../../types/ITeletherapy.js';
 
 
-const teletherapySchema = new Schema(
+const teletherapySchema = new Schema<ITeletherapy>(
   {
     members: [{
       clientId: {
@@ -20,5 +21,5 @@ const teletherapySchema = new Schema(
   }
 );
 
-export const Teletherapy = model("teletherapy", teletherapySchema);
+export const Teletherapy:Model<ITeletherapy> = model<ITeletherapy>("teletherapy", teletherapySchema);
 

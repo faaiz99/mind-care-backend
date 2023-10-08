@@ -1,40 +1,41 @@
 import { Teletherapy } from '../models/teletherapy/model.js'
 import { Message } from '../models/teletherapy/message/model.js'
-
+import { IMessage } from '../types/IChat.js';
+import { IUserDetails } from '../types/IChat.js';
 /**
  * 
  * ONLY THIS SERVICE IS PENDING REST ARE COMPLETED
  */
-
+// FRONT - END CHAT HISTORY LEFT SIDE
 export const getClientChats = async (clientId: string) => {
 	const response = await Teletherapy.find({
 		'members.clientId': clientId
 	});
-	if(!response)
+	if (!response)
 		throw new Error('Client Chats Could not be Found')
 	return response;
 }
-
+// FRONT - END CHAT HISTORY LEFT SIDE
 export const getTherapistChats = async (therapistId: string) => {
 	const response = await Teletherapy.find({
 		'members.therapistId': therapistId
 	});
-	if(!response)
+	if (!response)
 		throw new Error('Therapist Chats Could not be Found')
 
 	return response;
 }
 
-export const createMessage = async (chatId: string, senderId: string, content: string) => {
+export const createMessage = async (chatSession: IMessage[]) => {
 	const response = await Message.create({
-		chatId, senderId, content
+		...chatSession
 	})
-	if(!response)
+	if (!response)
 		throw new Error('Message Could not be Created')
 
 	return response
 }
-
+// FRONT - END OPEN WINDOW
 export const getMessages = async (chatId: string) => {
 	const response = await Message.find({ _id: chatId })
 	if (!response)
@@ -43,25 +44,43 @@ export const getMessages = async (chatId: string) => {
 }
 
 // Teletherapy
-export const createChat = async (cid: string, tid: string) => {
-	const chat = await Teletherapy.findOne({
-		$and: [
-			{ 'members.clientId': cid },
-			{ 'members.therapistId': tid }
-		]
-	});
-	// Return the existing chat if it exists
-	if (chat) {
-		return chat;
+export const createChat = async (onlineUsers: Array<IUserDetails>) => {
+	const clientUser = onlineUsers.find((user) => user.role === 'client');
+	const therapistUser = onlineUsers.find((user) => user.role === 'therapist');
+
+	if (!clientUser || !therapistUser) {
+		// No client or therapist found, cannot create a chat session
+		// Throw Exception here
+		return null;
 	}
 
-	const newChat = await Teletherapy.create({
-		members: [{ clientId: cid, therapistId: tid }]
-	});
+	const existingChat = await Teletherapy.findOne({
+		'members.clientId': clientUser.userId,
+		'members.therapistId': therapistUser.userId,
+	})
+		.populate('members.clientId')
+		.populate('members.therapistId')
 
-	return newChat;
-}
+	if (!existingChat) {
+		const newChat = await Teletherapy.create({
+			members: [{
+				clientId: clientUser.userId,
+				therapistId: therapistUser.userId
+			}
+			],
+		})
+		// Populate the client and therapist fields
+		const populatedChat = await Teletherapy.findOne({ _id: newChat._id })
+			.populate('members.clientId')
+			.populate('members.therapistId')
+			.exec();
+		//console.log(populatedChat)
+		return populatedChat;
+	}
+	return existingChat;
+};
 
+// FRONT-END ACTIVE CHAT 
 export const getCurrentChat = async (cid: string, tid: string) => {
 	const response = await Teletherapy.findOne({
 		$and: [
@@ -69,8 +88,8 @@ export const getCurrentChat = async (cid: string, tid: string) => {
 			{ 'members.therapistId': tid }
 		]
 	});
-	if(!response)
-	throw new Error('Current Chat Could not be Found')
+	if (!response)
+		throw new Error('Current Chat Could not be Found')
 
 	return response;
 }

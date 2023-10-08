@@ -16,6 +16,7 @@
   "author": "Faaiz Aslam",
   "license": "ISC",
   "dependencies": {
+    
     "body-parser": "^1.20.2",
     "content-based-recommender": "^1.5.0",
     "cors": "^2.8.5",
@@ -24,12 +25,13 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.0",
     "nodemailer": "^6.9.5",
+    "nodemon": "^3.0.1",
     "socket.io": "^4.7.2",
-    "stripe": "^13.9.0",
-    "nodemon": "^3.0.1"
+    "stripe": "^13.9.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.1.0",
+    "@types/socket.io": "^3.0.2",
     "@jest/globals": "^29.7.0",
     "@types/body-parser": "^1.19.3",
     "@types/cors": "^2.8.14",

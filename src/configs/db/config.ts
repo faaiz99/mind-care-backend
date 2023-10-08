@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-const MONGO_URI: string  = process.env.MONGO_URI ?? "NO-DBI-URI"
-if (process.env.NODE_ENV === 'production') {
+const MONGO_URI:string|undefined = process.env.MONGO_URI ?? "mongodb://127.0.0.1:27017/mind-care"
+if (process.env.NODE_ENV === 'development') {
   console.log('DB URI: ', MONGO_URI)
 }
 export const connect = async () => {

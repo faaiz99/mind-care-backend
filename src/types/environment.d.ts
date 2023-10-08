@@ -7,7 +7,8 @@
 //         REFRESH_JWT_SECRET : Secret;
 //         user:Secret, 
 //         pass:Secret, 
-//         API_URL:Secret
+//         API_URL:Secret,
+// 		MONGO_URI:string
 //       }
 //     }
 //   }
