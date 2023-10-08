@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 
 const MONGO_URI: string | undefined = dotenv?.config()?.parsed?.MONGO_URI ?? ''
-//console.log('DB URI: ', MONGO_URI)
+if(process.env.NODE_ENV === 'production'){
+  console.log('DB URI: ', MONGO_URI)
+}
 export const connect = async () => {
   // Connecting to the database
   try {
