@@ -2,6 +2,15 @@ import { Request, Response, NextFunction, RequestHandler } from 'express'
 import * as sleepTrackerService from '../services/sleep.service.js'
 import { handleError } from '../middlewares/error/middleware.js'
 
+export const getSleepStats:RequestHandler= async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const data = await sleepTrackerService.getSleepStats(req.params.id)
+		res.status(200).json({ status: "success", message: "Sleep Stats Found", data })
+	} catch (error) {
+		handleError(error, res, next);
+	}
+}
+
 export const createSleepSchedule: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const data = await sleepTrackerService.createSleepSchedule(req.body, req.params.id)

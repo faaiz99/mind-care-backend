@@ -7,6 +7,14 @@ import { ISleepSchedule } from "../types/ISleepTracker.js";
  * SUGGESTION ARE ALSO PENDING
  */
 
+export const getSleepStats = async (id:string) =>{
+	const filter = { clientId: id }
+	const response = SleepTracker.findOne(filter)
+	if(!response)
+		throw new Error('Sleep Stats Could not be Found')
+	return response
+}
+
 export const createSleepSchedule = async (sleepSchedule: ISleepSchedule, id: string) => {
 	const response = SleepTracker.create({
 		clientId: id,
