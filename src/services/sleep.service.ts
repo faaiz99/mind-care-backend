@@ -7,22 +7,20 @@ import { ISleepSchedule } from "../types/ISleepTracker.js";
  * SUGGESTION ARE ALSO PENDING
  */
 
-export const createSleepSchedule = async (sleepTracker: ISleepTracker, id: string) => {
-	const filter = { _id: id }
-	const response = SleepTracker.findOneAndUpdate(filter, {
-		$push: { sleepProfile: sleepTracker }
-	}, {
-		returnOriginal: false
+export const createSleepSchedule = async (sleepSchedule: ISleepSchedule, id: string) => {
+	const response = SleepTracker.create({
+		clientId: id,
+		sleepSchedule:[sleepSchedule]
 	})
 	if (!response)
 		throw new Error('Sleep Schedule Could not be Created')
 	return response
 }
 
-export const updateSleepSchedule = async (sleepTracker: ISleepTracker, id: string) => {
+export const updateSleepSchedule = async (sleepSchedule: ISleepSchedule, id: string) => {
 	const filter = { clientId: id };
 	const response = SleepTracker.findOneAndUpdate(filter, {
-		$push: { sleepProfile: sleepTracker }
+		$push: { sleepSchedule: [sleepSchedule] }
 	}, {
 		returnOriginal: false
 	})
@@ -71,7 +69,7 @@ export const getSleepEfficiency = async (id: string) => {
 		return sleepEfficiency;
 	}
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	catch (error:any) {
+	catch (error: any) {
 		throw new Error(`Error calculating sleep efficiency: ${error.message}`);
 	}
 };

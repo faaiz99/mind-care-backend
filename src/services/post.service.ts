@@ -37,22 +37,28 @@ export const getPosts = async () => {
 	 * of the getPosts because feed is populated by all posts
 	 */
 	const response = await Post.find()
-	.populate({
-		path: 'therapistId',
-		model: 'therapist'
-	})
-	.populate({
-		path:'upvotes',
-		model:'upvote'
-	})
-	.populate({
-		path:'downvotes',
-		model:'downvote'
-	})
-	.populate({
-		path:'postReport',
-		model:'report'
-	})
+		.populate({
+			path: 'therapistId',
+			model: 'therapist'
+		})
+		.populate({
+			path: 'upvotes',
+			model: 'upvote'
+		})
+		.populate({
+			path: 'downvotes',
+			model: 'downvote'
+		})
+		.populate({
+			path: 'postReport',
+			model: 'report'
+		}).populate({
+			path: 'comments',
+			populate: {
+				path: 'replies',
+				model: 'comment'
+			}
+		})
 	if (!response)
 		throw new Error('Posts Could not be Found')
 	return response
@@ -61,8 +67,8 @@ export const getPosts = async () => {
 
 export const getPost = async (id: string) => {
 	const response = await Post.findOne({ _id: id }).populate({
-		path:'comments',
-		model:'comment'
+		path: 'comments',
+		model: 'comment'
 	})
 	if (!response)
 		throw new Error('Post Could not be Found')
@@ -104,7 +110,7 @@ export const removeUpvotePost = async (uid: string, pid: string) => {
 		},
 		{ new: true }
 	)
-	const removeUpvote = await Upvote.findOneAndDelete({_id:uid})
+	const removeUpvote = await Upvote.findOneAndDelete({ _id: uid })
 	if (!response && !removeUpvote)
 		throw new Error('Upvote Could not be Removed')
 	return response
@@ -121,7 +127,7 @@ export const removeDownvotePost = async (did: string, pid: string) => {
 		},
 		{ new: true }
 	)
-	const removeDownvote = await Downvote.findOneAndDelete({_id:did})
+	const removeDownvote = await Downvote.findOneAndDelete({ _id: did })
 	if (!response && !removeDownvote)
 		throw new Error('Downvote Could not be Removed')
 	return response
