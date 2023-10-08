@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGO_URI: string  = process.env.MONGODB_URI ?? "NO-DBI-URI"
+const MONGO_URI: string  = process.env.MONGO_URI ?? "NO-DBI-URI"
 if (process.env.NODE_ENV === 'production') {
   console.log('DB URI: ', MONGO_URI)
 }
