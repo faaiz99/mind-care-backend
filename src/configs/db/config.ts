@@ -1,14 +1,12 @@
 import mongoose from 'mongoose';
-
-const MONGO_URI:string|undefined = process.env.MONGO_URI ?? "mongodb://127.0.0.1:27017/mind-care"
 if (process.env.NODE_ENV === 'development') {
-  console.log('DB URI: ', MONGO_URI)
+  console.log()
 }
-export const connect = async () => {
+export const connect = async (DBString:string | undefined) => {
   // Connecting to the database
   try {
     //console.log(MONGO_URI)
-    await mongoose.connect(MONGO_URI)
+    await mongoose.connect(DBString as string)
 
   } catch (error) {
     console.log("database connection failed. exiting now...");
