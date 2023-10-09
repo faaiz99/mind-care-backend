@@ -5,9 +5,7 @@ import { httpServer } from './src/app.js'
 import { Server } from 'socket.io'
 import { socketOptionsCors } from './src/configs/socket/config.js'
 import { IUserDetails, IMessage, IChatSession } from './src/types/IChat.js';
-import { log } from 'console';
-
-import { createMessage, createChat, getClientChats, getTherapistChats } from './src/services/teletherapy.service.js';
+import { createMessage, createChat } from './src/services/teletherapy.service.js';
 
 const io = new Server(httpServer, socketOptionsCors);
 
@@ -32,9 +30,6 @@ io.on("connection", async (socket) => {
       });
     }
     io.emit("getOnlineUsers", onlineUsers);
-    console.log(onlineUsers)
-    console.log('length', onlineUsers.length)
-  
     // Check if there are at least two online users to create a chat session
     if (onlineUsers.length >= 2) {
       const clientUser = onlineUsers.find((user) => user.role === "client");
@@ -44,15 +39,14 @@ io.on("connection", async (socket) => {
 
         const response = await createChat(onlineUsers)
         // Create a single chat session with the same session ID for both users
-        const sessionId = `${response?._id}`;
-        
+        const sessionId = response?._id.toString()        
         // Check if the chat session already exists
         let chatSession = chatSessions.find((session) => session.sessionId === sessionId);
   
         if (!chatSession) {
           // If the chat session doesn't exist, create it
           chatSession = {
-            sessionId :response?._id,
+            sessionId:response?._id.toString() ,
             messages: [],
           };
           chatSessions.push(chatSession);
@@ -74,20 +68,32 @@ io.on("connection", async (socket) => {
     if (sender) {
       const recipient = onlineUsers.find(
         (user) => user.userId === message.recipientId
+        
       );
+      const response = await createChat(onlineUsers)
+      // Create a single chat session with the same session ID for both users
+      const Id = response?._id.toString()  
+    
   
       if (recipient && recipient.socketId) {
         const newMessage = {
+          sessionId:Id,
           senderId: sender.userId,
           senderRole: sender.role,
-          text: message.text,
-          timestamp: new Date().toISOString(),
+          recipientId:recipient.userId,
+          recipientRole:recipient.role,
+          content:{
+            text: message.text,
+            timestamp: new Date().toISOString(),
+          }
         };
   
         // Send the message only to the recipient
         io.to(recipient.socketId).emit("messageReceived", newMessage);
-  
-        const sessionId = ''
+        //const response = 
+        const response = await createChat(onlineUsers)
+        const sessionId = response?._id.toString()       
+     
         const chatSession = chatSessions.find((session) => session.sessionId === sessionId);
         if (chatSession) {
           chatSession.messages.push(newMessage as IMessage);
@@ -98,7 +104,7 @@ io.on("connection", async (socket) => {
             messages: [newMessage as IMessage],
           });
         }
-        console.log('Chat Session: ', chatSession)
+        createMessage(chatSession as IChatSession)
       }
     }
   });
@@ -120,17 +126,6 @@ io.on("connection", async (socket) => {
       sessionId,
     });
   });
-
-  // Helper function to get the chat history for a user based on their role
-  async function getChatHistoryForUser(userId: string) {
-    const userRole = onlineUsers.find((user) => user.userId === userId)?.role;
-    if (userRole === "client") {
-      return await getClientChats(userId);
-    } else if (userRole === "therapist") {
-      return await getTherapistChats(userId);
-    }
-    return [];
-  }
 })
 
 /**

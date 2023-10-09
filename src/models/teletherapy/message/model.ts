@@ -2,6 +2,10 @@ import { Schema, model, Model } from 'mongoose'
 import { IMessage } from '../../../types/IChat.js';
 
 const messageSchema = new Schema<IMessage>({
+	sessionId:{
+		type:Schema.Types.ObjectId,
+		required:true
+	},
 	therapistId:{
 		type:Schema.Types.ObjectId,
 		ref:'therapist',
@@ -20,14 +24,24 @@ const messageSchema = new Schema<IMessage>({
 		type: String, 
 		required: true 
 	},
-	text: { 
+	recipientId: { 
+		type: String,
+		required: true 
+	},
+	recipientRole: { 
 		type: String, 
 		required: true 
 	},
-	timestamp: { 
-		type: String, 
-		required: true 
-	},
+	content:[{
+		text: { 
+			type: String, 
+			required: true 
+		},
+		timestamp: { 
+			type: String, 
+			required: true 
+		},
+	}]
 }
 );
 

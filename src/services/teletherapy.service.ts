@@ -1,6 +1,6 @@
 import { Teletherapy } from '../models/teletherapy/model.js'
 import { Message } from '../models/teletherapy/message/model.js'
-import { IMessage } from '../types/IChat.js';
+// import { IMessage } from '../types/IChat.js';
 import { IUserDetails } from '../types/IChat.js';
 import { IChatSession } from '../types/IChat.js';
 /**
@@ -8,10 +8,16 @@ import { IChatSession } from '../types/IChat.js';
  * ONLY THIS SERVICE IS PENDING REST ARE COMPLETED
  */
 // FRONT - END CHAT HISTORY LEFT SIDE
-export const getClientChats = async (clientId: string) => {
+export const getClientChats = async (id: string) => {
 	const response = await Teletherapy.find({
-		'members.clientId': clientId
-	});
+		'members.clientId': id
+	}).populate({
+		model:'client',
+		path:'members.clientId'
+	}).populate({
+		model:'therapist',
+		path:'members.therapistId'
+	})
 	if (!response)
 		throw new Error('Client Chats Could not be Found')
 	return response;
@@ -20,24 +26,96 @@ export const getClientChats = async (clientId: string) => {
 export const getTherapistChats = async (therapistId: string) => {
 	const response = await Teletherapy.find({
 		'members.therapistId': therapistId
-	});
+	}).populate({
+		model:'client',
+		path:'members.clientId'
+	}).populate({
+		model:'therapist',
+		path:'members.therapistId'
+	})
 	if (!response)
 		throw new Error('Therapist Chats Could not be Found')
 
 	return response;
 }
 
-export const createMessage = async (chatSession: IChatSession[]) => {
-	console.log('Chat Session in Service',chatSession)
-	const response = await Message.create(chatSession)
-	if (!response)
-		throw new Error('Message Could not be Created')
-	console.log('Response',response)
-	return response
+export const createMessage = async (chatSession: IChatSession) => {
+	const existingChat = await Teletherapy.findOne({
+		_id: chatSession.sessionId
+	})
+	if (!existingChat) {
+		throw new Error('Chat Cannot Be Found')
+	}
+	const therapistMessages = chatSession.messages.filter(message => message.senderRole === 'therapist');
+	if (therapistMessages.length > 0) {
+		try {
+			const { sessionId, senderId, senderRole, recipientId, recipientRole } = therapistMessages[0];
+			const response = await Message.findOneAndUpdate(
+				{ sessionId: sessionId }, // Assuming all messages in chatSession have the same sessionId
+				{
+					$set: {
+						senderId: senderId,
+						senderRole: senderRole,
+						recipientId: recipientId,
+						recipientRole: recipientRole
+					},
+					$push: {
+						content: therapistMessages.map((message) => ({
+							text: message.content.text,
+							timestamp: message.content.timestamp,
+						})),
+					},
+				},
+				{
+					upsert: true,
+					new: true
+				}
+			);
+
+			if (!response) {
+				throw new Error('Message Could not be Created');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	}
+	const clientMessages = chatSession.messages.filter(message => message.senderRole === 'client');
+	if (clientMessages.length > 0) {
+		try {
+			const { sessionId, senderId, senderRole, recipientId, recipientRole } = clientMessages[0];
+			const response = await Message.findOneAndUpdate(
+				{ sessionId: sessionId }, // all messages in chatSession have the same sessionId
+				{
+					$set: {
+						senderId: senderId,
+						senderRole: senderRole,
+						recipientId: recipientId,
+						recipientRole: recipientRole
+					},
+					$push: {
+						content: clientMessages.map((message) => ({
+							text: message.content.text,
+							timestamp: message.content.timestamp,
+						})),
+					},
+				},
+				{
+					upsert: true,
+					new: true
+				}
+			);
+
+			if (!response) {
+				throw new Error('Message Could not be Created');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	}
 }
 // FRONT - END OPEN WINDOW
-export const getMessages = async (chatId: string) => {
-	const response = await Message.find({ _id: chatId })
+export const getMessages = async (id: string) => {
+	const response = await Message.find({ sessionId: id })
 	if (!response)
 		throw new Error('Messages Could not be Found')
 	return response
@@ -87,7 +165,13 @@ export const getCurrentChat = async (cid: string, tid: string) => {
 			{ 'members.clientId': cid },
 			{ 'members.therapistId': tid }
 		]
-	});
+	}).populate({
+		model:'client',
+		path:'members.clientId'
+	}).populate({
+		model:'therapist',
+		path:'members.therapistId'
+	})
 	if (!response)
 		throw new Error('Current Chat Could not be Found')
 
