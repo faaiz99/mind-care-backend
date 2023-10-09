@@ -4,7 +4,7 @@ import { httpServer } from './src/app.js'
 // Socket IO Setup 
 import { Server } from 'socket.io'
 import { socketOptionsCors } from './src/configs/socket/config.js'
-import { IUserDetails, IMessage } from './src/types/IChat.js';
+import { IUserDetails, IMessage, IChatSession } from './src/types/IChat.js';
 import { log } from 'console';
 
 import { createMessage, createChat, getClientChats, getTherapistChats } from './src/services/teletherapy.service.js';
@@ -12,10 +12,7 @@ import { createMessage, createChat, getClientChats, getTherapistChats } from './
 const io = new Server(httpServer, socketOptionsCors);
 
 let onlineUsers: Array<IUserDetails> = [];
-const chatSessions: Array<{
-  sessionId: string;
-  messages: Array<IMessage>
-}> = [];
+const chatSessions: Array<IChatSession> = [];
 
 io.on("connection", async (socket) => {
   socket.on("disconnect", () => {
@@ -23,8 +20,7 @@ io.on("connection", async (socket) => {
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
 
     io.emit("getOnlineUsers", onlineUsers);
-
-
+    //createMessage(chatSessions)
   });
 
   socket.on("addNewUser", async ({ userId, role }) => {
@@ -36,6 +32,7 @@ io.on("connection", async (socket) => {
       });
     }
     io.emit("getOnlineUsers", onlineUsers);
+    console.log(onlineUsers)
     console.log('length', onlineUsers.length)
   
     // Check if there are at least two online users to create a chat session
@@ -44,8 +41,10 @@ io.on("connection", async (socket) => {
       const therapistUser = onlineUsers.find((user) => user.role === "therapist");
   
       if (clientUser && therapistUser) {
+
+        const response = await createChat(onlineUsers)
         // Create a single chat session with the same session ID for both users
-        const sessionId = `${clientUser.userId}-${therapistUser.userId}`;
+        const sessionId = `${response?._id}`;
         
         // Check if the chat session already exists
         let chatSession = chatSessions.find((session) => session.sessionId === sessionId);
@@ -53,7 +52,7 @@ io.on("connection", async (socket) => {
         if (!chatSession) {
           // If the chat session doesn't exist, create it
           chatSession = {
-            sessionId,
+            sessionId :response?._id,
             messages: [],
           };
           chatSessions.push(chatSession);
@@ -62,6 +61,7 @@ io.on("connection", async (socket) => {
         // Send chat history to the newly connected users
         socket.emit("chatHistory", chatSession.messages);
         io.to(therapistUser.socketId).emit("chatHistory", chatSession.messages);
+        
       }
     }
   });

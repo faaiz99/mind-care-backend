@@ -2,6 +2,7 @@ import { Teletherapy } from '../models/teletherapy/model.js'
 import { Message } from '../models/teletherapy/message/model.js'
 import { IMessage } from '../types/IChat.js';
 import { IUserDetails } from '../types/IChat.js';
+import { IChatSession } from '../types/IChat.js';
 /**
  * 
  * ONLY THIS SERVICE IS PENDING REST ARE COMPLETED
@@ -26,13 +27,12 @@ export const getTherapistChats = async (therapistId: string) => {
 	return response;
 }
 
-export const createMessage = async (chatSession: IMessage[]) => {
-	const response = await Message.create({
-		...chatSession
-	})
+export const createMessage = async (chatSession: IChatSession[]) => {
+	console.log('Chat Session in Service',chatSession)
+	const response = await Message.create(chatSession)
 	if (!response)
 		throw new Error('Message Could not be Created')
-
+	console.log('Response',response)
 	return response
 }
 // FRONT - END OPEN WINDOW

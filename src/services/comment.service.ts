@@ -54,6 +54,9 @@ export const getComments = async (id:string) => {
 	const response = await Comment.find({postId:id}).populate({
 		model:'comment',
 		path:'replies'
+	}).populate({
+		path:'therapistId',
+		model:'therapist'
 	})
 	if (!response)
 		throw new Error('Comments Could not be Retrieved')

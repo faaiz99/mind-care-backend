@@ -13,4 +13,7 @@ export interface IMessage extends Document {
 	text: string;
 	timestamp: string;
 }
-
+export interface IChatSession {
+	sessionId:string,
+	messages:Array<IMessage>
+}

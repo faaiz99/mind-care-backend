@@ -5,6 +5,18 @@ import { Downvote } from '../models/communityForums/downvote/model.js'
 import { Report } from '../models/communityForums/report/model.js'
 
 
+export const getTrendingPosts = ()=>{
+	//TBD
+}
+
+export const getMostRecentPosts = ()=>{
+	//TBD
+}
+
+export const getFeaturedPosts = ()=>{
+	//TBD
+}
+
 export const createPost = async (post: any) => {
 	const response = await Post.create(post)
 	if (!response)
@@ -38,6 +50,10 @@ export const getPosts = async () => {
 	 */
 	const response = await Post.find()
 		.populate({
+			path: 'clientId',
+			model: 'client'
+		})
+		.populate({
 			path: 'therapistId',
 			model: 'therapist'
 		})
@@ -54,9 +70,22 @@ export const getPosts = async () => {
 			model: 'report'
 		}).populate({
 			path: 'comments',
+			model: 'comment'
+		}).populate({
+			path: 'comments',
 			populate: {
 				path: 'replies',
-				model: 'comment'
+				model: 'comment', 
+				populate:{
+					path: 'therapistId',
+				model: 'therapist'
+				}
+			}
+		}).populate({
+			path: 'comments',
+			populate: {
+				path: 'therapistId',
+				model: 'therapist'
 			}
 		})
 	if (!response)
