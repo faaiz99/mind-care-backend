@@ -1,16 +1,49 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SleepTracker } from "../models/sleepTracker/model.js";
-import { ISleepTracker } from "../types/ISleepTracker.js";
+// import { ISleepTracker } from "../types/ISleepTracker.js";
 import { ISleepSchedule } from "../types/ISleepTracker.js";
+import { Fitness } from "../models/sleepTracker/fitness/model.js";
 
 /**
  * FITNESS PART IS PENDING
  * SUGGESTION ARE ALSO PENDING
  */
 
-export const getSleepStats = async (id:string) =>{
+// Create a new fitness record
+export const createFitnessRecord = async (fitnessReccord: any, id: string) => {
+	const response = await Fitness.create({
+		clientId: id,
+		...fitnessReccord
+	})
+	if (!response)
+		throw new Error('Fitness Reccord could not be Created')
+	return response;
+};
+
+// Get all fitness records for a specific client
+export const getFitnessRecords = async (id: string) => {
+	const response = await Fitness.find({ clientId: id });
+	if (!response)
+		throw new Error('Failed to get fitness Reccords');
+	return response
+};
+
+// Update a fitness record by ID
+export const updateFitnessRecord = async (fitnessReccord: any, id: string) => {
+
+	const response = await Fitness.findByIdAndUpdate(id, fitnessReccord, {
+		new: true, // Return the updated record
+	});
+	if (!response)
+		throw new Error('Failed to update fitness record by ID');
+	return response
+};
+
+
+export const getSleepStats = async (id: string) => {
 	const filter = { clientId: id }
 	const response = SleepTracker.findOne(filter)
-	if(!response)
+	if (!response)
 		throw new Error('Sleep Stats Could not be Found')
 	return response
 }
@@ -18,7 +51,7 @@ export const getSleepStats = async (id:string) =>{
 export const createSleepSchedule = async (sleepSchedule: ISleepSchedule, id: string) => {
 	const response = SleepTracker.create({
 		clientId: id,
-		sleepSchedule:[sleepSchedule]
+		sleepSchedule: [sleepSchedule]
 	})
 	if (!response)
 		throw new Error('Sleep Schedule Could not be Created')

@@ -1,7 +1,10 @@
 import { IToken } from '../../types/ITokens.js'
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
-const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
+import dotenv from 'dotenv'
+// const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
+const ACCESS_JWT_SECRET = dotenv.config().parsed?.ACCESS_JWT_SECRET
+const REFRESH_JWT_SECRET = dotenv.config().parsed?.REFRESH_JWT_SECRET
 
 export const authenticateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
@@ -28,6 +31,7 @@ export const revalidateToken: RequestHandler = async (req: Request, res: Respons
 
 export const issueTokens = (userBody: unknown): IToken => {
   // used for both therapist and client
+
   const token = jwt.sign(
     {
       user: userBody,

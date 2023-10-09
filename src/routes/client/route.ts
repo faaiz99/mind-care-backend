@@ -12,6 +12,7 @@ import { commentRoutes } from "./communityForum/comment/route.js";
 import { teletherapyRoutes } from "./teletherapy/route.js";
 import { sleepTrackerRoutes } from "./sleepTracker/route.js";
 import { rescueSessionRoutes } from "./rescueSession/route.js";
+import { fitnessRoutes } from "./fitness/route.js";
 
 router.use(authRoutes)
 router.use(journalRoutes)
@@ -24,5 +25,6 @@ router.use(commentRoutes)
 router.use(teletherapyRoutes)
 router.use(sleepTrackerRoutes)
 router.use(rescueSessionRoutes)
+router.use(fitnessRoutes)
 
 export { router as clientRouter }
