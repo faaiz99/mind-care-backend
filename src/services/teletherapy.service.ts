@@ -47,11 +47,12 @@ export const createMessage = async (chatSession: IChatSession) => {
 		throw new Error('Chat Cannot Be Found')
 	}
 	const therapistMessages = chatSession.messages.filter(message => message.senderRole === 'therapist');
+	//console.log('therapist chat', therapistMessages)
 	if (therapistMessages.length > 0) {
 		try {
 			const { sessionId, senderId, senderRole, recipientId, recipientRole } = therapistMessages[0];
 			const response = await Message.findOneAndUpdate(
-				{ sessionId: sessionId }, // Assuming all messages in chatSession have the same sessionId
+				{ sessionId: sessionId, senderId: senderId }, // Assuming all messages in chatSession have the same sessionId
 				{
 					$set: {
 						senderId: senderId,
@@ -75,16 +76,19 @@ export const createMessage = async (chatSession: IChatSession) => {
 			if (!response) {
 				throw new Error('Message Could not be Created');
 			}
+			//return response
 		} catch (error) {
 			console.error('Error:', error);
 		}
 	}
 	const clientMessages = chatSession.messages.filter(message => message.senderRole === 'client');
+	//console.log('client chat', clientMessages)
+
 	if (clientMessages.length > 0) {
 		try {
 			const { sessionId, senderId, senderRole, recipientId, recipientRole } = clientMessages[0];
 			const response = await Message.findOneAndUpdate(
-				{ sessionId: sessionId }, // all messages in chatSession have the same sessionId
+				{  sessionId: sessionId, senderId: senderId }, // all messages in chatSession have the same sessionId
 				{
 					$set: {
 						senderId: senderId,
@@ -104,10 +108,10 @@ export const createMessage = async (chatSession: IChatSession) => {
 					new: true
 				}
 			);
-
 			if (!response) {
 				throw new Error('Message Could not be Created');
 			}
+			//return response
 		} catch (error) {
 			console.error('Error:', error);
 		}
@@ -147,6 +151,7 @@ export const createChat = async (onlineUsers: Array<IUserDetails>) => {
 			}
 			],
 		})
+
 		// Populate the client and therapist fields
 		const populatedChat = await Teletherapy.findOne({ _id: newChat._id })
 			.populate('members.clientId')

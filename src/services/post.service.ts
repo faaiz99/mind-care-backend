@@ -5,15 +5,15 @@ import { Downvote } from '../models/communityForums/downvote/model.js'
 import { Report } from '../models/communityForums/report/model.js'
 
 
-export const getTrendingPosts = ()=>{
+export const getTrendingPosts = () => {
 	//TBD
 }
 
-export const getMostRecentPosts = ()=>{
+export const getMostRecentPosts = () => {
 	//TBD
 }
 
-export const getFeaturedPosts = ()=>{
+export const getFeaturedPosts = () => {
 	//TBD
 }
 
@@ -75,10 +75,10 @@ export const getPosts = async () => {
 			path: 'comments',
 			populate: {
 				path: 'replies',
-				model: 'comment', 
-				populate:{
+				model: 'comment',
+				populate: {
 					path: 'therapistId',
-				model: 'therapist'
+					model: 'therapist'
 				}
 			}
 		}).populate({
@@ -104,24 +104,38 @@ export const getPost = async (id: string) => {
 	return response
 }
 
-export const upvotePost = async (post: any, id: string) => {
-	const upvote = await Upvote.create(post)
-	if (!upvote)
+export const upvotePost = async (upvote: any, id: string) => {
+	const { therapistId, postId } = upvote
+	// When upvote
+	const ExistsInDownVote = await Downvote.findOneAndRemove({
+		postId: postId,
+		therapistId: therapistId,
+	})
+	//throw new Error('Not exists in Downvote')
+	const upvoteInDB = await Upvote.create(upvote)
+	// CREATE A NEW UPVOTE WHEN IT DOES NOT EXISTS
+	if (!upvoteInDB)
 		throw new Error('Upvote Could not be Created')
 	const response = await Post.findOneAndUpdate({ _id: id }, {
-		$push: { upvotes: upvote }
+		$push: { upvotes: upvoteInDB }
 	})
 	if (!response)
 		throw new Error('Post Could not be Upvoted')
 	return response
 }
 
-export const downvotePost = async (post: any, id: string) => {
-	const downvote = await Downvote.create(post)
+export const downvotePost = async (downvote: any, id: string) => {
+	const { therapistId, postId } = downvote
+	// When upvote
+	const ExistsInUpvoteVote = await Upvote.findOneAndRemove({
+		postId: postId,
+		therapistId: therapistId,
+	})
+	const downvoteInDB = await Downvote.create(downvote)
 	if (!downvote)
 		throw new Error('Downvote Could not be Created')
 	const response = await Post.findOneAndUpdate({ _id: id }, {
-		$push: { downvotes: downvote }
+		$push: { downvotes: downvoteInDB }
 	})
 	if (!response)
 		throw new Error('Post Could not be Downvoted')

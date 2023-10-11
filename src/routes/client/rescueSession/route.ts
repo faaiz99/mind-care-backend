@@ -29,7 +29,7 @@ import {
     createSleep,
 } from '../../../controllers/rescueSession.controller.js';
 
-router.get('/rescue-sessions/:id',getAllRescueSession)
+router.get('/rescue-sessions/:id', getAllRescueSession)
 
 router.get('/envy/:id', getEnvy);
 router.patch('/envy/:id', updateEnvy);

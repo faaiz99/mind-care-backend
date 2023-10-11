@@ -49,10 +49,29 @@ export const getJournals = async (id: string) => {
 		return journalResponses;
 	});
 
-	const response = await Promise.allSettled(promises);
-	if (!response)
-		throw new Error('No Journal Entries Found')
-	return response
+	const responses = await Promise.allSettled(promises);
+
+	const resolvedResponses = responses
+		.filter((result) => result.status === 'fulfilled')
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		.map((result) => (result as unknown as PromiseFulfilledResult<any[]>).value);
+
+	const rejectedResponses = responses
+		.filter((result) => result.status === 'rejected')
+		.map((result) => (result as PromiseRejectedResult).reason);
+
+	if (rejectedResponses.length > 0) {
+		// Handle and log errors from rejected promises
+		for (const error of rejectedResponses) {
+			console.error(error);
+		}
+	}
+
+	if (resolvedResponses.length === 0) {
+		throw new Error('No Journal Entries Found');
+	}
+
+	return resolvedResponses;
 }
 
 export const getGratitudeJournal = async (id: string) => {
