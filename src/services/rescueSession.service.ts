@@ -8,27 +8,26 @@ import { OverComingDistractions } from "../models/rescueSessions/overComingDistr
 import { RegainingMotivation } from "../models/rescueSessions/regainingMotivation/model.js";
 import { IRescueSession } from "../types/IRescueSession.js";
 
-import mongoose from 'mongoose';
-
 export const getAllRescueSessions = async (id: string) => {
     const sessionTypes = [
-        'LowMood',
-        'OverComingDistraction',
-        'RegainingMotivation',
-        'Criticism',
-        'Relationship',
-        'Envy',
-        'Sleep',
-        'AngerAndFrustration',
+        LowMood,
+		Criticism,
+		Envy,
+		RegainingMotivation,
+		OverComingDistractions,
+		Relationship,
+		Sleep,
+		AngerAndFrustration
+        // Add other models for session types here
     ];
 
     const promises = sessionTypes.map(async (sessionType) => {
         try {
-            const sessionResponses = await mongoose.model(sessionType).find({ clientId: id });
-            return { type: sessionType, data: sessionResponses };
+            const sessionResponses = await sessionType.find({ clientId: id });
+            return { type: sessionType.modelName, data: sessionResponses };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error:any) {
-            throw new Error(`Error fetching ${sessionType} rescue sessions: ${error.message}`);
+            throw new Error(`Error fetching ${sessionType.modelName} rescue sessions: ${error.message}`);
         }
     });
 
@@ -36,15 +35,13 @@ export const getAllRescueSessions = async (id: string) => {
 
     const resolvedResponses = responses
         .filter((result) => result.status === 'fulfilled')
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .map((result) => (result as unknown as PromiseFulfilledResult<any[]>).value);
+        .map((result) => (result as unknown as PromiseFulfilledResult<never[]>).value);
 
     const rejectedResponses = responses
         .filter((result) => result.status === 'rejected')
         .map((result) => (result as PromiseRejectedResult).reason);
 
     if (rejectedResponses.length > 0) {
-        // Handle and log errors from rejected promises
         for (const error of rejectedResponses) {
             console.error(error);
         }
@@ -56,6 +53,54 @@ export const getAllRescueSessions = async (id: string) => {
 
     return resolvedResponses;
 };
+
+// export const getAllRescueSessions = async (id: string) => {
+//     const sessionTypes = [
+//         'lowMood',
+//         'overComingDistraction',
+//         'regainingMotivation',
+//         'criticism',
+//         'relationship',
+//         'envy',
+//         'sleep',
+//         'angerAndFrustration',
+//     ];
+
+//     const promises = sessionTypes.map(async (sessionType) => {
+//         try {
+//             const sessionResponses = await mongoose.model(sessionType).find({ clientId: id });
+//             return { type: sessionType, data: sessionResponses };
+//         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//         } catch (error:any) {
+//             throw new Error(`Error fetching ${sessionType} rescue sessions: ${error.message}`);
+//         }
+//     });
+// 	console.log('promises', promises)
+
+//     const responses = await Promise.allSettled(promises);
+
+//     const resolvedResponses = responses
+//         .filter((result) => result.status === 'fulfilled')
+//         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//         .map((result) => (result as unknown as PromiseFulfilledResult<any[]>).value);
+
+//     const rejectedResponses = responses
+//         .filter((result) => result.status === 'rejected')
+//         .map((result) => (result as PromiseRejectedResult).reason);
+
+//     if (rejectedResponses.length > 0) {
+//         // Handle and log errors from rejected promises
+//         for (const error of rejectedResponses) {
+//             console.error(error);
+//         }
+//     }
+
+//     if (resolvedResponses.length === 0) {
+//         throw new Error('No Rescue Sessions Found');
+//     }
+
+//     return resolvedResponses;
+// };
 
 
 export const getLowMood = async (id: string) => {

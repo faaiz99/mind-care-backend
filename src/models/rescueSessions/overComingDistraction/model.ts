@@ -23,6 +23,6 @@ const overcomingDistractionsSchema = new Schema<IRescueSession>({
 });
 
 export const OverComingDistractions:Model<IRescueSession> = model<IRescueSession>(
-  "overcomingDistractions",
+  "overComingDistractions",
   overcomingDistractionsSchema
 );
