@@ -84,6 +84,28 @@ export const getPosts = async () => {
 		}).populate({
 			path: 'comments',
 			populate: {
+				path: 'replies',
+				model: 'comment',
+				populate: {
+					path: 'upvotes',
+					model: 'upvote'
+				}
+			}
+		})		
+		.populate({
+			path: 'comments',
+			populate: {
+				path: 'replies',
+				model: 'comment',
+				populate: {
+					path: 'downvotes',
+					model: 'downvote'
+				}
+			}
+		})
+		.populate({
+			path: 'comments',
+			populate: {
 				path: 'therapistId',
 				model: 'therapist'
 			}
