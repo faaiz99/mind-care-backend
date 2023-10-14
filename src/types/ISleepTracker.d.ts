@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose';
+import { Document, Schema } from "mongoose";
 
 // Define an interface for the SleepSchedule document
 export interface ISleepSchedule extends Document {

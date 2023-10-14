@@ -1,52 +1,60 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const commentSchema = new Schema({
   postId: {
     type: Schema.Types.ObjectId,
-    ref: 'post',
-    required: false
+    ref: "post",
+    required: false,
   },
   therapistId: {
     type: Schema.Types.ObjectId,
-    ref: 'therapist',
-    required: false
+    ref: "therapist",
+    required: false,
   },
   clientId: {
     type: Schema.Types.ObjectId,
-    ref: 'client',
-    required: false
+    ref: "client",
+    required: false,
   },
   parentId: {
     type: Schema.Types.ObjectId,
-    ref: 'comment',
-    required: false
+    ref: "comment",
+    required: false,
   },
   body: {
     type: String,
-    required: true
+    required: true,
   },
-  replies: [{
-    type: Schema.Types.ObjectId,
-    ref: 'comment',
-    required: false
-  }],
-  upvotes: [{
-    type: Schema.Types.ObjectId,
-    ref: 'upvote',
-    required: false
-  }],
-  downvotes: [{
-    type: Schema.Types.ObjectId,
-    ref: 'downvote',
-    required: false
-  }],
-  commentReport: [{
-    type: Schema.Types.ObjectId,
-    ref: 'report'
-  }],
+  replies: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "comment",
+      required: false,
+    },
+  ],
+  upvotes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "upvote",
+      required: false,
+    },
+  ],
+  downvotes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "downvote",
+      required: false,
+    },
+  ],
+  commentReport: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "report",
+    },
+  ],
   createdAt: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
   },
 });
 

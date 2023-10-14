@@ -1,14 +1,14 @@
-import {Schema, model, Types, Model} from 'mongoose'
-import { IAppointment } from '../../types/IAppointment.js';
+import { Schema, model, Types, Model } from "mongoose";
+import { IAppointment } from "../../types/IAppointment.js";
 
 const appointmentSchema = new Schema<IAppointment>({
   therapistId: {
     type: Types.ObjectId,
-    ref:'therapist'
+    ref: "therapist",
   },
   clientId: {
     type: Types.ObjectId,
-    ref:'client'
+    ref: "client",
   },
   appointmentDate: {
     type: Date,
@@ -25,22 +25,25 @@ const appointmentSchema = new Schema<IAppointment>({
   status: {
     type: String,
   },
-  feedback:{
-    type:String,
-    required:false
+  feedback: {
+    type: String,
+    required: false,
   },
   therapistReview: {
-    review:{
-      type:String,
-      required:false
+    review: {
+      type: String,
+      required: false,
     },
-    rating:{
-      type:Number,
-      max:5,
-      min:1,
-      required:false
-    }
-  }
+    rating: {
+      type: Number,
+      max: 5,
+      min: 1,
+      required: false,
+    },
+  },
 });
 
-export const Appointment:Model<IAppointment> = model<IAppointment>("appointment", appointmentSchema);
+export const Appointment: Model<IAppointment> = model<IAppointment>(
+  "appointment",
+  appointmentSchema,
+);

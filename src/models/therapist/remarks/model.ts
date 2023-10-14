@@ -1,5 +1,4 @@
-import {Schema, model, Types} from 'mongoose'
-
+import { Schema, model, Types } from "mongoose";
 
 const therapistRemarksSchema = new Schema({
   createdAt: {
@@ -18,8 +17,5 @@ const therapistRemarksSchema = new Schema({
   },
 });
 
-const therapistRemarks = model(
-  "therapistRemarks",
-  therapistRemarksSchema
-);
+const therapistRemarks = model("therapistRemarks", therapistRemarksSchema);
 module.exports = therapistRemarks;

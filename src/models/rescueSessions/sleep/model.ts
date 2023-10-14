@@ -1,28 +1,34 @@
-import { Schema, model, Model } from 'mongoose'
-import { IRescueSession } from '../../../types/IRescueSession.js';
+import { Schema, model, Model } from "mongoose";
+import { IRescueSession } from "../../../types/IRescueSession.js";
 
 const sleepSchema = new Schema<IRescueSession>({
   clientId: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
   },
   checkInDate: {
     type: Date,
-    required: true
+    required: true,
   },
-  questions: [{
-    type: String,  
-    required:true
-  }],
-  results: [{
-    type: String,
-    required:true
-  }],
+  questions: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  results: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   listened: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 });
 
-export const Sleep:Model<IRescueSession> = model<IRescueSession>("sleep", sleepSchema);
-
+export const Sleep: Model<IRescueSession> = model<IRescueSession>(
+  "sleep",
+  sleepSchema,
+);

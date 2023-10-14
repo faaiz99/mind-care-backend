@@ -1,7 +1,6 @@
-import { Schema, model, Model } from 'mongoose'
-import { ITherapist } from '../../types/ITherapist.js';
+import { Schema, model, Model } from "mongoose";
+import { ITherapist } from "../../types/ITherapist.js";
 const therapistSchema = new Schema<ITherapist>({
-
   firstName: {
     type: String,
     required: true,
@@ -70,4 +69,7 @@ const therapistSchema = new Schema<ITherapist>({
   },
 });
 
-export const Therapist:Model<ITherapist> = model<ITherapist>("therapist", therapistSchema);
+export const Therapist: Model<ITherapist> = model<ITherapist>(
+  "therapist",
+  therapistSchema,
+);

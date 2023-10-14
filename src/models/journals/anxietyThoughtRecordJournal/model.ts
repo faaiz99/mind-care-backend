@@ -1,10 +1,9 @@
-import { Schema, model, Types } from 'mongoose'
-
+import { Schema, model, Types } from "mongoose";
 
 const anxietyThoughtRecordJournalSchema = new Schema({
   clientId: {
     type: Types.ObjectId,
-    ref: 'client'
+    ref: "client",
   },
   questions: {
     type: [String],
@@ -13,11 +12,11 @@ const anxietyThoughtRecordJournalSchema = new Schema({
     type: [String],
   },
   createdAt: {
-    type: Date
-  }
+    type: Date,
+  },
 });
 
 export const AnxietyThoughtRecordJournal = model(
   "anxietyThoughtRecordJournal",
-  anxietyThoughtRecordJournalSchema
+  anxietyThoughtRecordJournalSchema,
 );

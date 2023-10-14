@@ -1,6 +1,6 @@
 export const socketOptionsCors = {
-	cors: {
-		origin: "*",
-		methods: ["GET", "POST"],
-	},
-}
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+};

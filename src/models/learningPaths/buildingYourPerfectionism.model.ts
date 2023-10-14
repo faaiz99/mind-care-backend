@@ -1,5 +1,4 @@
-import {Schema, model} from 'mongoose'
-
+import { Schema, model } from "mongoose";
 
 const buildingYourPerfectionismSchema = new Schema({
   questions: {
@@ -18,5 +17,5 @@ const buildingYourPerfectionismSchema = new Schema({
 
 export const buildingYourPerfectionism = model(
   "buildingYourPerfectionism",
-  buildingYourPerfectionismSchema
+  buildingYourPerfectionismSchema,
 );

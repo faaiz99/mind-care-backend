@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 const acceptingWhatCantBeChangedSchema = new Schema({
   questions: {
     type: String,
@@ -16,5 +16,5 @@ const acceptingWhatCantBeChangedSchema = new Schema({
 
 export const acceptingWhatCantBeChanged = model(
   "acceptingWhatCantBeChanged",
-  acceptingWhatCantBeChangedSchema
+  acceptingWhatCantBeChangedSchema,
 );

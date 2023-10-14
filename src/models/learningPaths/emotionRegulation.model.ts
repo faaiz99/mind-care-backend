@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const emotionRegulationSchema = new Schema({
   questions: {
@@ -17,6 +17,5 @@ const emotionRegulationSchema = new Schema({
 
 export const emotionRegulation = model(
   "emotionRegulation",
-  emotionRegulationSchema
+  emotionRegulationSchema,
 );
-

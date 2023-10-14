@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document } from "mongoose";
 
 interface IReminder extends Document {
   clientId: Schema.Types.ObjectId;

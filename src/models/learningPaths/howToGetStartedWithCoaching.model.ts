@@ -1,5 +1,4 @@
-
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const howToGetStartedWithCoachingSchema = new Schema({
   questions: {
@@ -18,6 +17,5 @@ const howToGetStartedWithCoachingSchema = new Schema({
 
 export const howToGetStartedWithCoaching = model(
   "howToGetStartedWithCoaching",
-  howToGetStartedWithCoachingSchema
+  howToGetStartedWithCoachingSchema,
 );
-

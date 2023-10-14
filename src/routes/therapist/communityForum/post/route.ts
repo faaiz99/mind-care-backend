@@ -1,18 +1,18 @@
 import { Router } from "express";
-const router:Router = Router()
+const router: Router = Router();
 
 import {
-	createPost,
-	updatePost,
-	getPosts,
-	getPost,
-	deletePost,
-	reportPost,
-	upvotePost,
-	downvotePost, 
-	removeDownvotePost,
-	removeUpvotePost
-} from '../../../../controllers/post.controller.js'
+  createPost,
+  updatePost,
+  getPosts,
+  getPost,
+  deletePost,
+  reportPost,
+  upvotePost,
+  downvotePost,
+  removeDownvotePost,
+  removeUpvotePost,
+} from "../../../../controllers/post.controller.js";
 
 /**
  * @swagger
@@ -20,7 +20,7 @@ import {
  *   name: Post Controller
  *   description: API to manage posts
  */
- 
+
 /**
  * @swagger
  * /posts:
@@ -44,25 +44,24 @@ import {
  *         description: login
  */
 
-router.get('/posts', getPosts) // Dynamic Feed
+router.get("/posts", getPosts); // Dynamic Feed
 
-router.post('/posts', createPost)
+router.post("/posts", createPost);
 
-router.get('/posts/:id', getPost)
+router.get("/posts/:id", getPost);
 
-router.patch('/posts/:id', updatePost)
+router.patch("/posts/:id", updatePost);
 
-router.delete('/posts/:id', deletePost)
+router.delete("/posts/:id", deletePost);
 
-router.post('/report-post/:id', reportPost)
+router.post("/report-post/:id", reportPost);
 
-router.post('/upvote-post/:id', upvotePost)
+router.post("/upvote-post/:id", upvotePost);
 
-router.post('/downvote-post/:id', downvotePost)
+router.post("/downvote-post/:id", downvotePost);
 
-router.delete('/upvote-post/:pid/:uid', removeUpvotePost)
+router.delete("/upvote-post/:pid/:uid", removeUpvotePost);
 
-router.delete('/downvote-post/:pid/:did', removeDownvotePost)
+router.delete("/downvote-post/:pid/:did", removeDownvotePost);
 
-
-export { router as postRoutes }
+export { router as postRoutes };

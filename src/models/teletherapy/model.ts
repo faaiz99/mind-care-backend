@@ -1,25 +1,27 @@
-import { Schema, model, Model } from 'mongoose'
-import { ITeletherapy } from '../../types/ITeletherapy.js';
-
+import { Schema, model, Model } from "mongoose";
+import { ITeletherapy } from "../../types/ITeletherapy.js";
 
 const teletherapySchema = new Schema<ITeletherapy>(
   {
-    members: [{
-      clientId: {
-        type:Schema.Types.ObjectId,
-        ref: 'client'
+    members: [
+      {
+        clientId: {
+          type: Schema.Types.ObjectId,
+          ref: "client",
+        },
+        therapistId: {
+          type: Schema.Types.ObjectId,
+          ref: "therapist",
+        },
       },
-      therapistId:{
-        type:Schema.Types.ObjectId,
-        ref: 'therapist'
-      }
-    }]
-  }
-  ,
+    ],
+  },
   {
-    timestamps: true
-  }
+    timestamps: true,
+  },
 );
 
-export const Teletherapy:Model<ITeletherapy> = model<ITeletherapy>("teletherapy", teletherapySchema);
-
+export const Teletherapy: Model<ITeletherapy> = model<ITeletherapy>(
+  "teletherapy",
+  teletherapySchema,
+);

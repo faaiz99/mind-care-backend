@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 const lettingGoOfPerfectionismSchema = new Schema({
   questions: {
     type: String,
@@ -16,5 +16,5 @@ const lettingGoOfPerfectionismSchema = new Schema({
 
 export const lettingGoOfPerfectionism = model(
   "lettingGoOfPerfectionismMoney",
-  lettingGoOfPerfectionismSchema
+  lettingGoOfPerfectionismSchema,
 );

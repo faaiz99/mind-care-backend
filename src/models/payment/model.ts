@@ -1,19 +1,19 @@
-import { Schema, model, Model } from 'mongoose'
-import { IPayment } from '../../types/IPayment.js';
+import { Schema, model, Model } from "mongoose";
+import { IPayment } from "../../types/IPayment.js";
 
 const paymentSchema = new Schema<IPayment>({
   clientId: {
     type: Schema.Types.ObjectId,
-    ref: 'client',
-    required: true
+    ref: "client",
+    required: true,
   },
   sessionCharges: {
     type: String,
-    required: true
+    required: true,
   },
   currency: {
     type: String,
-    required: true
+    required: true,
   },
   paymentDate: {
     type: Date,
@@ -21,14 +21,17 @@ const paymentSchema = new Schema<IPayment>({
   },
   therapistId: {
     type: Schema.Types.ObjectId,
-    ref: 'therapist',
-    required: true
+    ref: "therapist",
+    required: true,
   },
   appointmentId: {
     type: Schema.Types.ObjectId,
-    ref: 'appointment',
-    required: true
-  }
+    ref: "appointment",
+    required: true,
+  },
 });
 
-export const Payment: Model<IPayment> = model<IPayment>("payment", paymentSchema);
+export const Payment: Model<IPayment> = model<IPayment>(
+  "payment",
+  paymentSchema,
+);

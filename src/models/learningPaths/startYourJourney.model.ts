@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 const startYourJourneySchema = new Schema({
   questions: {
     type: String,
@@ -16,6 +16,6 @@ const startYourJourneySchema = new Schema({
 
 export const startYourJourneyModel = model(
   "startYourJourney",
-  startYourJourneySchema
+  startYourJourneySchema,
 );
 module.exports = startYourJourneyModel;

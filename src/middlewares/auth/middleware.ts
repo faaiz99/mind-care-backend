@@ -1,12 +1,16 @@
-import { IToken } from '../../types/ITokens.js'
-import { Request, Response, NextFunction, RequestHandler } from 'express'
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
+import { IToken } from "../../types/ITokens.js";
+import { Request, Response, NextFunction, RequestHandler } from "express";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 // const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
-const ACCESS_JWT_SECRET = dotenv.config().parsed?.ACCESS_JWT_SECRET
-const REFRESH_JWT_SECRET = dotenv.config().parsed?.REFRESH_JWT_SECRET
+const ACCESS_JWT_SECRET = dotenv.config().parsed?.ACCESS_JWT_SECRET;
+const REFRESH_JWT_SECRET = dotenv.config().parsed?.REFRESH_JWT_SECRET;
 
-export const authenticateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const authenticateToken: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader;
   if (token == null) return res.sendStatus(401);
@@ -15,19 +19,35 @@ export const authenticateToken: RequestHandler = async (req: Request, res: Respo
     req.body.user = user;
     next();
   });
-}
+};
 
-export const revalidateToken: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const revalidateToken: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   const authHeader = req.headers["authorization"];
   if (!authHeader)
-    res.status(401).json({ status: 'failure', message: 'Authorization Header Absent', data: authHeader })
-  jwt.verify(authHeader as string, REFRESH_JWT_SECRET as string, (err, user) => {
-    if (err)
-      res.status(409).json({ status: 'failure', message: 'Please Login Again' })
-    req.body = user 
-    next();
-  });
-}
+    res
+      .status(401)
+      .json({
+        status: "failure",
+        message: "Authorization Header Absent",
+        data: authHeader,
+      });
+  jwt.verify(
+    authHeader as string,
+    REFRESH_JWT_SECRET as string,
+    (err, user) => {
+      if (err)
+        res
+          .status(409)
+          .json({ status: "failure", message: "Please Login Again" });
+      req.body = user;
+      next();
+    },
+  );
+};
 
 export const issueTokens = (userBody: unknown): IToken => {
   // used for both therapist and client
@@ -38,8 +58,8 @@ export const issueTokens = (userBody: unknown): IToken => {
     },
     ACCESS_JWT_SECRET as string,
     {
-      expiresIn: '10s',
-    }
+      expiresIn: "10s",
+    },
   );
   const refreshToken = jwt.sign(
     {
@@ -47,8 +67,8 @@ export const issueTokens = (userBody: unknown): IToken => {
     },
     REFRESH_JWT_SECRET as string,
     {
-      expiresIn: '24h',
-    }
+      expiresIn: "24h",
+    },
   );
   return { accessToken: token, refreshToken: refreshToken, data: userBody };
-}
+};

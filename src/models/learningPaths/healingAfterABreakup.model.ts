@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const healingAfterABreakupSchema = new Schema({
   questions: {
@@ -17,5 +17,5 @@ const healingAfterABreakupSchema = new Schema({
 
 export const healingAfterABreakup = model(
   "healingAfterABreakup",
-  healingAfterABreakupSchema
+  healingAfterABreakupSchema,
 );

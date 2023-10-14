@@ -1,38 +1,40 @@
 import { Router } from "express";
-const router = Router()
-// Reminder and Daily Tasks Module // 
+const router = Router();
+// Reminder and Daily Tasks Module //
 
 import {
-	getReminders, createReminder,
-	updateReminder, deleteReminder,
-	getBreathingExcersiceByClientId,
-	getFiveSensesExcersiceByClientId,
-	getUnplugUnwindExcerciseByClientId,
-	createBreathingExcersiceByClientId,
-	createFiveSensesExcersiceByClientId,
-	createUnplugUnwindExcerciseByClientId
-} from '../../../controllers/reminder.controller.js'
-
+  getReminders,
+  createReminder,
+  updateReminder,
+  deleteReminder,
+  getBreathingExcersiceByClientId,
+  getFiveSensesExcersiceByClientId,
+  getUnplugUnwindExcerciseByClientId,
+  createBreathingExcersiceByClientId,
+  createFiveSensesExcersiceByClientId,
+  createUnplugUnwindExcerciseByClientId,
+} from "../../../controllers/reminder.controller.js";
 
 // router.get('/reminders-/:id', getReminders)
 
+router.post(
+  "/unplug-unwind-excercise/:id",
+  createUnplugUnwindExcerciseByClientId,
+);
+router.get("/unplug-unwind-excercise/:id", getUnplugUnwindExcerciseByClientId);
 
-router.post('/unplug-unwind-excercise/:id', createUnplugUnwindExcerciseByClientId)
-router.get('/unplug-unwind-excercise/:id', getUnplugUnwindExcerciseByClientId)
+router.post("/breathing-excercise/:id", createBreathingExcersiceByClientId);
+router.get("/breathing-excercise/:id", getBreathingExcersiceByClientId);
 
-router.post('/breathing-excercise/:id', createBreathingExcersiceByClientId)
-router.get('/breathing-excercise/:id', getBreathingExcersiceByClientId)
+router.post("/five-senses-excercise/:id", createFiveSensesExcersiceByClientId);
+router.get("/five-senses-excercise/:id", getFiveSensesExcersiceByClientId);
 
-router.post('/five-senses-excercise/:id',createFiveSensesExcersiceByClientId)
-router.get('/five-senses-excercise/:id', getFiveSensesExcersiceByClientId)
+router.get("/reminders/:id", getReminders);
 
+router.post("/reminders/:id", createReminder);
 
-router.get('/reminders/:id', getReminders)
+router.patch("/reminders/:id", updateReminder);
 
-router.post('/reminders/:id', createReminder)
+router.delete("/reminders/:id", deleteReminder);
 
-router.patch('/reminders/:id', updateReminder)
-
-router.delete('/reminders/:id', deleteReminder)
-
-export {router as reminderRoutes}
+export { router as reminderRoutes };

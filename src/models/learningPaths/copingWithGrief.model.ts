@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const copingWithGriefSchema = new Schema({
   questions: {
@@ -17,6 +17,5 @@ const copingWithGriefSchema = new Schema({
 
 export const copingWithGriefModel = model(
   "copingWithGrief",
-  copingWithGriefSchema
+  copingWithGriefSchema,
 );
-

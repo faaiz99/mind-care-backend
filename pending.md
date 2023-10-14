@@ -1,156 +1,151 @@
-/** Coding */
+/\*_ Coding _/
+
 1. Unit Tests [WIP]
 
+/\*_ Features Web/Mobile _/
 
-/** Features Web/Mobile */
-1. /** Teleappointments */ 
-    
+1. /\*_ Teleappointments _/
 
-    /**Client */
-    GET  /appointments-client/:id
-    POST /appointments
-    PATCH /appointments
-    GET  /appointments/:id
-    DELETE /appointment/:id
-    GET /therapists
-    GET /therapists/:id
+   /\*_Client _/
+   GET /appointments-client/:id
+   POST /appointments
+   PATCH /appointments
+   GET /appointments/:id
+   DELETE /appointment/:id
+   GET /therapists
+   GET /therapists/:id
 
-    /**Therapist */
-    GET /appointments-therapist/:id
-    PATCH /appointments-therapist/:id 
-    PATCH /therapist-review/:id
-    GET /therapist-review/:id
-    PATCH /session-notes/:id
+   /\*_Therapist _/
+   GET /appointments-therapist/:id
+   PATCH /appointments-therapist/:id
+   PATCH /therapist-review/:id
+   GET /therapist-review/:id
+   PATCH /session-notes/:id
 
-2. /** Payments */
+2. /\*_ Payments _/
 
-    /**Client */
+   /\*_Client _/
 
-    POST /payments
-    PATCH /payments
-    GET /client-payments/
-    GET /client-payments/:id
-    DELETE /payments/:id
-    GET /payments-confirm/:id
-    POST /payments-save 
+   POST /payments
+   PATCH /payments
+   GET /client-payments/
+   GET /client-payments/:id
+   DELETE /payments/:id
+   GET /payments-confirm/:id
+   POST /payments-save
 
-    /** Therpist */
+   /\*_ Therpist _/
 
-    GET /payments-therapist/:id
-    GET /payments-therapist
+   GET /payments-therapist/:id
+   GET /payments-therapist
 
-3. /** Psychological Profile */ 
+3. /\*_ Psychological Profile _/
 
-    GET /psychological-profile
-    POST /psychological-profile
-    GET /psychological-profile/:id
-    PATCH /psychological-profile/:id
-    DELETE /psychological-profile/:id
-    
-    POST /anxiety-test/:id
-    GET  /anxiety-test/:id
-    POST /depression-test/:id
-    GET  /depression-test/:id
-    
+   GET /psychological-profile
+   POST /psychological-profile
+   GET /psychological-profile/:id
+   PATCH /psychological-profile/:id
+   DELETE /psychological-profile/:id
 
-    // Inventory Tests with Answers
+   POST /anxiety-test/:id
+   GET /anxiety-test/:id
+   POST /depression-test/:id
+   GET /depression-test/:id
 
-4. /** Community Forum */ 
-    
-    /** POSTS */
-    
-    GET /posts
-    POST /posts
-    GET /posts/:id
-    PATCH /posts/:id
-    DELETE /posts/:id
-    POST /report-ports/:id
-    POST /upvote-post/:id
-    POST /downvote-post/:id 
+   // Inventory Tests with Answers
 
-    /** COMMENTS */
-    
-    GET /comments
-    POST /comments
-    POST /reply-to-comment
-    PATCH /comments/:id
-    DELETE /comments/:id
-    POST /report-comments/:id
-    POST /upvote-comments/:id
-    POST /downvote-comments/:id
+4. /\*_ Community Forum _/
 
-5. /** Profile */  
+   /\*_ POSTS _/
 
-    /** CLIENT */
+   GET /posts
+   POST /posts
+   GET /posts/:id
+   PATCH /posts/:id
+   DELETE /posts/:id
+   POST /report-ports/:id
+   POST /upvote-post/:id
+   POST /downvote-post/:id
 
-    POST /signup
-    POST /login
-    POST /verify/:token
-    POST /send-verification-email
-    POST /refresh-token
-    POST /reset-password
-    POST /password/:token
-    GET /about/:id
-    GET /
+   /\*_ COMMENTS _/
 
-    /** THERAPIST */
+   GET /comments
+   POST /comments
+   POST /reply-to-comment
+   PATCH /comments/:id
+   DELETE /comments/:id
+   POST /report-comments/:id
+   POST /upvote-comments/:id
+   POST /downvote-comments/:id
 
-    POST /signup
-    POST /login
-    POST /verify/:token
-    POST /send-verification-email
-    POST /refresh-token
-    POST /reset-password
-    POST /change-password
-    POST /password/:token
-    GET /about/:id
-    GET /
-    
+5. /\*_ Profile _/
 
-    /** ADMIN */
+   /\*_ CLIENT _/
 
-    // admin panel routes in admin support //
-    POST /signup
-    POST /refresh-token
-    POST /login
-    GET /about/:id
-    GET / 
+   POST /signup
+   POST /login
+   POST /verify/:token
+   POST /send-verification-email
+   POST /refresh-token
+   POST /reset-password
+   POST /password/:token
+   GET /about/:id
+   GET /
 
-6.  /** Guided Journaling */
+   /\*_ THERAPIST _/
 
-    // clientId -> cid
-    // journalId -> id
+   POST /signup
+   POST /login
+   POST /verify/:token
+   POST /send-verification-email
+   POST /refresh-token
+   POST /reset-password
+   POST /change-password
+   POST /password/:token
+   GET /about/:id
+   GET /
 
-    GET /journals/:cid
-    GET /journalName/:id 
-    POST /journalName/:cid
-    DELETE /journalName/:id
+   /\*_ ADMIN _/
 
+   // admin panel routes in admin support //
+   POST /signup
+   POST /refresh-token
+   POST /login
+   GET /about/:id
+   GET /
 
-7. /** Routine Builder and Daily Tasks */
+6. /\*_ Guided Journaling _/
 
-    // clientId -> cid
-    // journalId -> id
+   // clientId -> cid
+   // journalId -> id
 
-    GET  /reminders/:cid
-    GET  /reminders/:id/:cid
-    POST /reminders/:cid
-    DELETE /reminder/:id
-    PATCH /reminder/:id
+   GET /journals/:cid
+   GET /journalName/:id
+   POST /journalName/:cid
+   DELETE /journalName/:id
 
+7. /\*_ Routine Builder and Daily Tasks _/
 
-8. /** Rescue Session */
+   // clientId -> cid
+   // journalId -> id
 
-9. /** Teletherapy */
+   GET /reminders/:cid
+   GET /reminders/:id/:cid
+   POST /reminders/:cid
+   DELETE /reminder/:id
+   PATCH /reminder/:id
 
-    /send-message
-    /get-user-chats
-    /find-chats
-    
+8. /\*_ Rescue Session _/
 
-10. /** Video Diagnosis */
+9. /\*_ Teletherapy _/
 
-11. /** Content Reccomendation */
+   /send-message
+   /get-user-chats
+   /find-chats
+
+10. /\*_ Video Diagnosis _/
+
+11. /\*_ Content Reccomendation _/
 
     GET /suggest-rescue-sessions
     GET /suggest-learning-paths
@@ -160,10 +155,9 @@
 
     // Community Forum Routes Pending //
 
+12. /\*_ Automated Therapist Profile Marketing _/
 
-12. /** Automated Therapist Profile Marketing */
-
-13. /** Admin Panel and Support */
+13. /\*_ Admin Panel and Support _/
 
     GET /reported-posts
     GET /reported-comments
@@ -192,10 +186,7 @@
     GET /forum-posts
     GET /platform-signups
 
-14. /** Fitness and Sleep Tracker */
-
-    
-
+14. /\*_ Fitness and Sleep Tracker _/
 
 Route -> [Middleware -> Controller -> Service -> Model] -> MongoDB
 

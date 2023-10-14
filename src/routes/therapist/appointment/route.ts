@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { getAppointmentsTherapist, updateAppointmentStatus } from "../../../controllers/appointment.controller.js";
+import {
+  getAppointmentsTherapist,
+  updateAppointmentStatus,
+} from "../../../controllers/appointment.controller.js";
 
-const router:Router = Router()
+const router: Router = Router();
 
-router.get('/appointments-therapist/:id', getAppointmentsTherapist)
+router.get("/appointments-therapist/:id", getAppointmentsTherapist);
 // Accept Reject Pending
-router.patch('/appointments-therapist/:id', updateAppointmentStatus)
+router.patch("/appointments-therapist/:id", updateAppointmentStatus);
 
-export { router as appointmentRoutes}
+export { router as appointmentRoutes };

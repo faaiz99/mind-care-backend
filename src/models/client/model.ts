@@ -36,12 +36,11 @@ const clientSchema = new Schema<IClient>({
   },
   createdAt: {
     type: Date,
-    required: false
+    required: false,
   },
 });
 
-export const Client:Model<IClient> = model<IClient>("client", clientSchema);
-
+export const Client: Model<IClient> = model<IClient>("client", clientSchema);
 
 //const hash = await bcrypt.hash(password, Number(bcryptSalt));
 //const isValid = await bcrypt.compare(token, passwordResetToken.token);

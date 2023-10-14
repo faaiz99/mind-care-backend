@@ -1,31 +1,31 @@
 import { Router } from "express";
-const router: Router = Router()
+const router: Router = Router();
 
 import {
-	createComment,
-	updateComment,
-	getComments,
-	replyComment,
-	deleteComment,
-	upvoteComment,
-	downvoteComment,
-	reportComment
-} from '../../../../controllers/comment.controller.js'
+  createComment,
+  updateComment,
+  getComments,
+  replyComment,
+  deleteComment,
+  upvoteComment,
+  downvoteComment,
+  reportComment,
+} from "../../../../controllers/comment.controller.js";
 
-router.get('/comments/:id', getComments)
+router.get("/comments/:id", getComments);
 
-router.post('/comments/:id', createComment)
+router.post("/comments/:id", createComment);
 
-router.post('/reply-to-comment/:id', replyComment)
+router.post("/reply-to-comment/:id", replyComment);
 
-router.patch('/comments/:id', updateComment)
+router.patch("/comments/:id", updateComment);
 
-router.delete('/comments/:id', deleteComment)
+router.delete("/comments/:id", deleteComment);
 
-router.post('/report-comments/:id', reportComment)
+router.post("/report-comments/:id", reportComment);
 
-router.post('/upvote-comments/:id', upvoteComment)
+router.post("/upvote-comments/:id", upvoteComment);
 
-router.post('/downvote-comments/:id', downvoteComment)
+router.post("/downvote-comments/:id", downvoteComment);
 
-export { router as commentRoutes }
+export { router as commentRoutes };

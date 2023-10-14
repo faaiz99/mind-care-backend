@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document } from "mongoose";
 
 export interface IBeckAnxiety extends Document {
   clientId: Schema.Types.ObjectId;
