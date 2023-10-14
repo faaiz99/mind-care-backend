@@ -4,9 +4,8 @@ import { Upvote } from '../models/communityForums/upvote/model.js'
 import { Downvote } from '../models/communityForums/downvote/model.js'
 import { Report } from '../models/communityForums/report/model.js'
 
-
-export const getTrendingPosts = () => {
-	//TBD
+export const getTrendingPosts = async () => {
+	
 }
 
 export const getMostRecentPosts = () => {
@@ -91,7 +90,7 @@ export const getPosts = async () => {
 					model: 'upvote'
 				}
 			}
-		})		
+		})
 		.populate({
 			path: 'comments',
 			populate: {
@@ -129,7 +128,8 @@ export const getPost = async (id: string) => {
 export const upvotePost = async (upvote: any, id: string) => {
 	const { therapistId, postId } = upvote
 	// When upvote
-	const ExistsInDownVote = await Downvote.findOneAndRemove({
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const existsInDownVote = await Downvote.findOneAndRemove({
 		postId: postId,
 		therapistId: therapistId,
 	})
@@ -149,7 +149,8 @@ export const upvotePost = async (upvote: any, id: string) => {
 export const downvotePost = async (downvote: any, id: string) => {
 	const { therapistId, postId } = downvote
 	// When upvote
-	const ExistsInUpvoteVote = await Upvote.findOneAndRemove({
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const existsInUpvoteVote = await Upvote.findOneAndRemove({
 		postId: postId,
 		therapistId: therapistId,
 	})

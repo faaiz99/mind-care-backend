@@ -4,11 +4,28 @@ const router = Router()
 
 import {
 	getReminders, createReminder,
-	updateReminder, deleteReminder
+	updateReminder, deleteReminder,
+	getBreathingExcersiceByClientId,
+	getFiveSensesExcersiceByClientId,
+	getUnplugUnwindExcerciseByClientId,
+	createBreathingExcersiceByClientId,
+	createFiveSensesExcersiceByClientId,
+	createUnplugUnwindExcerciseByClientId
 } from '../../../controllers/reminder.controller.js'
 
 
 // router.get('/reminders-/:id', getReminders)
+
+
+router.post('/unplug-unwind-excercise/:id', createUnplugUnwindExcerciseByClientId)
+router.get('/unplug-unwind-excercise/:id', getUnplugUnwindExcerciseByClientId)
+
+router.post('/breathing-excercise/:id', createBreathingExcersiceByClientId)
+router.get('/breathing-excercise/:id', getBreathingExcersiceByClientId)
+
+router.post('/five-senses-excercise/:id',createFiveSensesExcersiceByClientId)
+router.get('/five-senses-excercise/:id', getFiveSensesExcersiceByClientId)
+
 
 router.get('/reminders/:id', getReminders)
 

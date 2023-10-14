@@ -38,6 +38,7 @@ io.on("connection", async (socket) => {
       if (clientUser && therapistUser) {
 
         const response = await createChat(onlineUsers)
+        console.log('Response get Add User',response)
         // Create a single chat session with the same session ID for both users
         const sessionId = response?._id.toString()        
         // Check if the chat session already exists
@@ -71,6 +72,7 @@ io.on("connection", async (socket) => {
         
       );
       const response = await createChat(onlineUsers)
+      console.log('Response send Message',response)
       // Create a single chat session with the same session ID for both users
       const Id = response?._id.toString()  
     
