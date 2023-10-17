@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Client } from '../src/models/client/client.model.js'
+import { Client } from  "../src/models/client/model"
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -21,7 +21,7 @@ const clients =
 			"firstName": "Santos",
 			"lastName": "Grady",
 			"email": "Santos.Grady@hotmail.com",
-			"dateofBirth": "1964-09-30T12:54:45.210Z",
+			"dateOfBirth": "1964-09-30T12:54:45.210Z",
 			"gender": "female",
 			"password": "nvFj0wjfcwATyxz",
 			"picture": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/770.jpg",

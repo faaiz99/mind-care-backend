@@ -4,6 +4,7 @@ import { beckAnxiety } from "../models/psychologicalProfile/anxiety/model.js";
 import { IBeckAnxiety } from "../types/IAnxiety.js";
 import { IBeckDepression } from "../types/IDepression.js";
 import { IPsychologicalProfile } from "../types/IPsychologicalProfile.js";
+import { options } from "../utils/swagger.util.js";
 
 export const buildPsychologicalProfile = async (
   id: string,
@@ -65,11 +66,12 @@ export const getPsychologicalProfile = async (id: string) => {
 
 export const saveDepressionTest = async (
   id: string,
-  beckDepressionTest: IBeckDepression,
-) => {
-  const response = await beckDepression.create({
+ beckDepressionTest: IBeckDepression) => {
+  const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+  const response = await beckDepression.findOneAndUpdate({clientId:id},{
     ...beckDepressionTest,
-  });
+  }, options
+  );
   if (!response) throw new Error("Depression Test Could not be Saved");
   return response;
 };
@@ -78,9 +80,10 @@ export const saveAnxietyTest = async (
   id: string,
   beckAnxietyTest: IBeckAnxiety,
 ) => {
-  const response = await beckAnxiety.create({
+  const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+  const response = await beckAnxiety.findOneAndUpdate({clientId:id},{
     ...beckAnxietyTest,
-  });
+  }, options);
   if (!response) throw new Error("Anxiety Test Could not be Saved");
   return response;
 };

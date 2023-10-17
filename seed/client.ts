@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker';
 import * as fs from 'fs'
 
-
 interface Client {
 	firstName: string
 	lastName: string
@@ -12,17 +11,10 @@ interface Client {
 	dateofBirth: Date
 	createdAt: Date
 	verifiedAccount: boolean
-	openJournalId: Array<string>
 }
 
 const generateClients = (num: number) => {
-
-	const client: Array<Client> = [];
-	const id: string = faker.database.mongodbObjectId()
-	interface T {
-		id: string
-	}
-	const ids: Array<T> = [{ id: id }]
+	const client: Array<Client> = [];	
 	for (let i = 0; i < num; i++) {
 		const firstName: string = faker.person.firstName();
 		const lastName: string = faker.person.lastName()
@@ -33,12 +25,6 @@ const generateClients = (num: number) => {
 		const dateofBirth: Date = faker.date.birthdate()
 		const createdAt: Date = faker.date.past();
 		const verifiedAccount: boolean = faker.datatype.boolean(0.5)
-		const openJournalId: Array<string> = [
-			faker.helpers.arrayElement(ids as unknown as string[]),
-			faker.helpers.arrayElement(ids as unknown as string[]),
-			faker.helpers.arrayElement(ids as unknown as string[])
-		]
-
 
 		client.push({
 			firstName,
@@ -50,7 +36,6 @@ const generateClients = (num: number) => {
 			picture,
 			createdAt,
 			verifiedAccount,
-			openJournalId
 		});
 	}
 	return client;
