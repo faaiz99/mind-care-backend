@@ -17,7 +17,8 @@ const notificationSchema = new Schema({
     type: String,
   },
   notificationTime: {
-    type: Date.now(),
+    type:Date,
+    default: Date.now(),
   },
   read:{
     type:Boolean,
