@@ -7,10 +7,10 @@ import {
 	markAsReadNotificationById
 } from "../../../controllers/notification.controller.js";
 
-router.get('/:id', getNotificationsClient)
-router.post('/:id', createNotificationClient)
-router.get('/id', markAsReadNotificationById)
-router.delete('/:id', deleteNotificationById)
+router.get('/notification/:id', getNotificationsClient)
+router.post('/notification/:id', createNotificationClient)
+router.patch('/notification/:id', markAsReadNotificationById)
+router.delete('/notification/:id', deleteNotificationById)
 
 
 export { router as notifcationRoutes }

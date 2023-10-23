@@ -15,9 +15,14 @@ export const getNotificationsClient = async (id: string) => {
 }
 
 export const markAsReadNotificationById = async (id: string) => {
-	const response = await Notification.findOneAndUpdate({ _id: id }, {
-		$set: { read: true }
-	})
+	const response = await Notification.findOneAndUpdate(
+		{ _id: id },
+		{
+			$set: { read: true },
+		},
+		{
+			returnOriginal: false,
+		})
 	if (!response)
 		throw new Error(`Notification marked as Read: ${id}`)
 	return response
