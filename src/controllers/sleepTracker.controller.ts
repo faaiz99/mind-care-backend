@@ -10,8 +10,7 @@ export const getSleepStats: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.getSleepStats(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -27,8 +26,7 @@ export const createSleepSchedule: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -44,8 +42,7 @@ export const updateSleepSchedule: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -58,8 +55,7 @@ export const resetSleepSchedule: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.resetSleepSchedule(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -72,8 +68,7 @@ export const getSleepEfficiency: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.getSleepEfficiency(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -86,8 +81,7 @@ export const getSleepQuality: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.getSleepQuality(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

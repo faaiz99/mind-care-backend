@@ -66,11 +66,15 @@ export const getPsychologicalProfile = async (id: string) => {
 
 export const saveDepressionTest = async (
   id: string,
- beckDepressionTest: IBeckDepression) => {
+  beckDepressionTest: IBeckDepression,
+) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-  const response = await beckDepression.findOneAndUpdate({clientId:id},{
-    ...beckDepressionTest,
-  }, options
+  const response = await beckDepression.findOneAndUpdate(
+    { clientId: id },
+    {
+      ...beckDepressionTest,
+    },
+    options,
   );
   if (!response) throw new Error("Depression Test Could not be Saved");
   return response;
@@ -81,9 +85,13 @@ export const saveAnxietyTest = async (
   beckAnxietyTest: IBeckAnxiety,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-  const response = await beckAnxiety.findOneAndUpdate({clientId:id},{
-    ...beckAnxietyTest,
-  }, options);
+  const response = await beckAnxiety.findOneAndUpdate(
+    { clientId: id },
+    {
+      ...beckAnxietyTest,
+    },
+    options,
+  );
   if (!response) throw new Error("Anxiety Test Could not be Saved");
   return response;
 };

@@ -49,7 +49,6 @@ app.get(`${baseUrl}`, (req, res): void => {
   res.send("Mind Care API");
 });
 
-
 app.use(handleError);
 
 export const httpServer = createServer(app);

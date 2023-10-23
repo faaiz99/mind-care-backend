@@ -14,8 +14,7 @@ export const changePassword: RequestHandler = async (
       req.body.email,
       req.body.password,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -27,8 +26,7 @@ export const updateProfile: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await therapistService.updateProfile(req.body);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -43,7 +41,7 @@ export const enterNewPassword: RequestHandler = async (
       req.body.email,
       req.body.password,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -55,8 +53,7 @@ export const resetPassword: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await therapistService.resetPassword(req.body.email);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -68,8 +65,7 @@ export const verifyAccount: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await therapistService.verifyAccount(req.body.email);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -96,8 +92,8 @@ export const login: RequestHandler = async (
     handleResponse(res, 200, {
       accessToken: accessToken,
       refreshToken: refreshToken,
-      data
-    })
+      data,
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.message === "Incorrect Password")
@@ -117,7 +113,7 @@ export const signup: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await therapistService.signup(req.body);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
@@ -126,12 +122,10 @@ export const signup: RequestHandler = async (
         .status(409)
         .json({ status: "success", message: "Email already exists!" });
     else if (error.message === "account could not be created")
-      res
-        .status(409)
-        .json({
-          status: "failed",
-          message: "Therapist Account could not be created",
-        });
+      res.status(409).json({
+        status: "failed",
+        message: "Therapist Account could not be created",
+      });
     else handleError(error, res, next);
   }
 };
@@ -147,8 +141,8 @@ export const renewTokens: RequestHandler = async (
     handleResponse(res, 200, {
       accessToken: accessToken,
       refreshToken: refreshToken,
-      data
-    })
+      data,
+    });
   } catch (error) {
     handleError(error, res, next);
   }
@@ -161,7 +155,7 @@ export const about: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await therapistService.aboutTherapist(req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

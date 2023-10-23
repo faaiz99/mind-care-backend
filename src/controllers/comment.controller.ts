@@ -11,8 +11,7 @@ export const createComment: RequestHandler = async (
   try {
     const data = await commentService.createComment(req.params.id, req.body);
 
-      handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -26,8 +25,7 @@ export const replyComment: RequestHandler = async (
   try {
     const data = await commentService.replyComment(req.body, req.params.id);
 
-      handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -41,8 +39,7 @@ export const updateComment: RequestHandler = async (
   try {
     const data = await commentService.updateComment(req.body, req.params.id);
 
-      handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -55,8 +52,7 @@ export const deleteComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.deleteComment(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -69,8 +65,7 @@ export const getComments: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.getComments(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -83,8 +78,7 @@ export const upvoteComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.upvoteComment(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -97,7 +91,7 @@ export const downvoteComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.downvoteComment(req.body, req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -110,7 +104,7 @@ export const reportComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.reportComment(req.body, req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

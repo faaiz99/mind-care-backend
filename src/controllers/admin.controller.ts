@@ -4,8 +4,8 @@ import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
 
 export const index: RequestHandler = async (req: Request, res: Response) => {
-  const data = { message: "Admin Home" }
-  handleResponse(res, 200, data)
+  const data = { message: "Admin Home" };
+  handleResponse(res, 200, data);
 };
 
 export const login: RequestHandler = async (
@@ -22,7 +22,7 @@ export const login: RequestHandler = async (
       accessToken: accessToken,
       refreshToken: refreshToken,
       data,
-    })
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.message == "Account does not exist")
@@ -40,7 +40,7 @@ export const signup: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.signup(req.body);
-    handleResponse(res, 201, data)
+    handleResponse(res, 201, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -58,8 +58,8 @@ export const renewToken: RequestHandler = async (
     handleResponse(res, 200, {
       accessToken: accessToken,
       refreshToken: refreshToken,
-      data
-    })
+      data,
+    });
   } catch (error) {
     handleError(error, res, next);
   }
@@ -72,7 +72,7 @@ export const about: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.aboutAdmin(req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

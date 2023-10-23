@@ -13,9 +13,8 @@ export const buildPsychologicalProfile: RequestHandler = async (
       req.params.id,
       req.body,
     );
-   
-    handleResponse(res, 200, data)
 
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -31,8 +30,7 @@ export const setTestScore: RequestHandler = async (
       req.params.id,
       req.body,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -47,8 +45,7 @@ export const getPsychologicalProfile: RequestHandler = async (
     const data = await psychologicalProfileService.getPsychologicalProfile(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -64,8 +61,7 @@ export const saveAnxietyTest: RequestHandler = async (
       req.params.id,
       req.body,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -81,8 +77,7 @@ export const saveDepressionTest: RequestHandler = async (
       req.params.id,
       req.body,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -97,8 +92,7 @@ export const getAnxietyTest: RequestHandler = async (
     const data = await psychologicalProfileService.getAnxietyTest(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -113,7 +107,7 @@ export const getDepressionTest: RequestHandler = async (
     const data = await psychologicalProfileService.getDepressionTest(
       req.params.id,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

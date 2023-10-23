@@ -16,8 +16,7 @@ export const createPost: RequestHandler = async (
 
   try {
     const data = await postService.createPost(req.body);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -30,8 +29,7 @@ export const updatePost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.updatePost(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -44,8 +42,7 @@ export const deletePost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.deletePost(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -58,8 +55,7 @@ export const getPosts: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.getPosts();
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -72,8 +68,7 @@ export const getPost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.getPost(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -86,8 +81,7 @@ export const upvotePost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.upvotePost(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -103,8 +97,7 @@ export const removeUpvotePost: RequestHandler = async (
       req.params.did,
       req.params.pid,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -120,8 +113,7 @@ export const removeDownvotePost: RequestHandler = async (
       req.params.uid,
       req.params.pid,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -134,8 +126,7 @@ export const downvotePost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.downvotePost(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -148,8 +139,7 @@ export const reportPost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.reportPost(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

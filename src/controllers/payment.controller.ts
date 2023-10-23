@@ -9,8 +9,7 @@ export const createPaymentIntent: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.createPayment(req.body.sessionCharges);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -23,8 +22,7 @@ export const getPaymentsClient: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.getPaymentsClient(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -37,8 +35,7 @@ export const getPaymentsTherapist: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.getPaymentsTherapist(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -51,8 +48,7 @@ export const getPayment: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.getPayment(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -65,8 +61,7 @@ export const deletePayment: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.deletePayment(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -79,8 +74,7 @@ export const updatePayment: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.updatePayment(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -94,8 +88,7 @@ export const confirmPayment: RequestHandler = async (
   try {
     // id checkout ID
     const data = await paymentService.confirmPayment(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -108,8 +101,7 @@ export const savePayment: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await paymentService.savePayment(req.body);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

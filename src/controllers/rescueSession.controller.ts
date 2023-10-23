@@ -9,8 +9,7 @@ export const getAllRescueSession: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getAllRescueSessions(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -25,8 +24,7 @@ export const getAngerAndFrustration: RequestHandler = async (
     const data = await rescueSessionService.getAngerAndFrustration(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -39,8 +37,7 @@ export const getRelationship: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getRelationship(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -55,8 +52,7 @@ export const getRegainingMotivation: RequestHandler = async (
     const data = await rescueSessionService.getRegainingMotivation(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -69,8 +65,7 @@ export const getCriticism: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getCriticism(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -83,8 +78,7 @@ export const getSleep: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getSleep(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -97,8 +91,7 @@ export const getEnvy: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getEnvy(req.params.id);
-    handleResponse(res, 200, data)
-    ;
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -111,8 +104,7 @@ export const getLowMood: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getLowMood(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -127,8 +119,7 @@ export const getOverComingDistraction: RequestHandler = async (
     const data = await rescueSessionService.getOverComingDistraction(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -144,8 +135,7 @@ export const createLowMood: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -161,8 +151,7 @@ export const updateLowMood: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -178,7 +167,7 @@ export const createOverComingDistraction: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 201, data)
+    handleResponse(res, 201, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -194,8 +183,7 @@ export const updateOverComingDistraction: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -211,7 +199,7 @@ export const createRegainingMotivation: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -227,8 +215,7 @@ export const updateRegainingMotivation: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -244,8 +231,7 @@ export const createCriticism: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -261,8 +247,7 @@ export const updateCriticism: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -278,8 +263,7 @@ export const createRelationship: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -295,8 +279,7 @@ export const updateRelationship: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -309,8 +292,7 @@ export const createEnvy: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.createEnvy(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -323,8 +305,7 @@ export const updateEnvy: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.updateEnvy(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -340,8 +321,7 @@ export const createSleep: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -357,8 +337,7 @@ export const updateSleep: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -374,8 +353,7 @@ export const createAngerAndFrustration: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -391,7 +369,7 @@ export const updateAngerAndFrustration: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

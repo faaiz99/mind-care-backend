@@ -11,10 +11,14 @@ export const createBreathingExcersiceByClientId = async (
   id: string,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-  const response = await BreathingExcercise.findOneAndUpdate({clientId:id},{
-    clientId: id,
-    ...breathingExcercise,
-  },options);
+  const response = await BreathingExcercise.findOneAndUpdate(
+    { clientId: id },
+    {
+      clientId: id,
+      ...breathingExcercise,
+    },
+    options,
+  );
   if (!response) throw new Error("Breathing Excercise Could not be created");
   return response;
 };
@@ -24,10 +28,14 @@ export const createFiveSensesExcersiceByClientId = async (
   id: string,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-  const response = await FiveSensesExcercise.findOneAndUpdate({clientId:id},{
-    clientId: id,
-    ...fiveSensesExcercise,
-  },options);
+  const response = await FiveSensesExcercise.findOneAndUpdate(
+    { clientId: id },
+    {
+      clientId: id,
+      ...fiveSensesExcercise,
+    },
+    options,
+  );
   if (!response) throw new Error("Five Senses Excercise Could not be created");
   return response;
 };
@@ -37,10 +45,14 @@ export const createUnplugUnwindExcerciseByClientId = async (
   id: string,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-  const response = await UnplugUnwindExcercise.findOneAndUpdate({clientId:id},{
-    clientId: id,
-    ...unplugUnwindExcercise,
-  },options);
+  const response = await UnplugUnwindExcercise.findOneAndUpdate(
+    { clientId: id },
+    {
+      clientId: id,
+      ...unplugUnwindExcercise,
+    },
+    options,
+  );
   if (!response)
     throw new Error("Unplug Unwind Excercise Could not be created");
   return response;

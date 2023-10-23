@@ -12,8 +12,7 @@ export const createFitnessRecord: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -26,8 +25,7 @@ export const getFitnessRecords: RequestHandler = async (
 ) => {
   try {
     const data = await fitnessService.getFitnessRecords(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -43,7 +41,7 @@ export const updateFitnessRecord: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

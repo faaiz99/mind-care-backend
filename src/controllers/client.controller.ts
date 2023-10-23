@@ -14,7 +14,7 @@ export const enternewPassword: RequestHandler = async (
       req.body.email,
       req.body.password,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -27,7 +27,7 @@ export const resetPassword: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.resetPassword(req.body.email);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -40,7 +40,7 @@ export const verifyAccount: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.verifyAccount(req.body.email);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -67,7 +67,7 @@ export const login = async (
       accessToken: accessToken,
       refreshToken: refreshToken,
       data,
-    })
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.message === "Incorrect Password") handleError(error, res, next);
@@ -84,7 +84,7 @@ export const signup: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.signup(req.body);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
@@ -110,7 +110,7 @@ export const renewToken: RequestHandler = async (
       accessToken: accessToken,
       refreshToken: refreshToken,
       data,
-    })
+    });
   } catch (error) {
     handleError(error, res, next);
   }
@@ -123,7 +123,7 @@ export const about: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.aboutClient(req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

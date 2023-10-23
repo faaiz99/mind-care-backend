@@ -13,8 +13,7 @@ export const createBreathingExcersiceByClientId: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -30,8 +29,7 @@ export const createFiveSensesExcersiceByClientId: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -47,8 +45,7 @@ export const createUnplugUnwindExcerciseByClientId: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -63,8 +60,7 @@ export const getBreathingExcersiceByClientId: RequestHandler = async (
     const data = await reminderService.getBreathingExcersiceByClientId(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -79,8 +75,7 @@ export const getFiveSensesExcersiceByClientId: RequestHandler = async (
     const data = await reminderService.getFiveSensesExcersiceByClientId(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -95,8 +90,7 @@ export const getUnplugUnwindExcerciseByClientId: RequestHandler = async (
     const data = await reminderService.getUnplugUnwindExcerciseByClientId(
       req.params.id,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -109,8 +103,7 @@ export const getReminders: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await reminderService.getReminders(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -123,8 +116,7 @@ export const createReminder: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await reminderService.createReminder(req.body);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -137,8 +129,7 @@ export const updateReminder: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await reminderService.updateReminder(req.body, req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -151,7 +142,7 @@ export const deleteReminder: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await reminderService.deleteReminder(req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

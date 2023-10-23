@@ -11,8 +11,7 @@ export const getClientChats: RequestHandler = async (
   // id -> Clientid
   try {
     const data = await teletherapyService.getClientChats(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -26,8 +25,7 @@ export const getTherapistChats: RequestHandler = async (
   // id -> therapistid
   try {
     const data = await teletherapyService.getTherapistChats(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -40,8 +38,7 @@ export const getMessages: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await teletherapyService.getMessages(req.params.id);
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -58,8 +55,7 @@ export const getCurrentChat: RequestHandler = async (
       req.params.cid,
       req.params.tid,
     );
-    handleResponse(res, 200, data)
-
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

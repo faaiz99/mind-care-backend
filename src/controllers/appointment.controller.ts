@@ -10,8 +10,8 @@ export const createAppointment: RequestHandler = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const data = await appointmentService.createAppointment(req.body)
-    handleResponse(res, 201, data)
+    const data = await appointmentService.createAppointment(req.body);
+    handleResponse(res, 201, data);
   } catch (error) {
     handleError(error, res, next); // Conflict when appointment cannot be created
   }
@@ -25,7 +25,7 @@ export const getAppointment: RequestHandler = async (
   try {
     const data = await appointmentService.getAppointment(req.params.id);
     if (data) {
-      handleResponse(res, 200, data)
+      handleResponse(res, 200, data);
     } else {
       res
         .status(404)
@@ -46,7 +46,7 @@ export const updateAppointment: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -62,7 +62,7 @@ export const updateAppointmentStatus: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -75,7 +75,7 @@ export const deleteAppointment: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await appointmentService.deleteAppointment(req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -88,7 +88,7 @@ export const getAppointmentsClient: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await appointmentService.getAppointmentsClient(req.params.id);
-    handleResponse(res, 200, data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -103,7 +103,7 @@ export const getAppointmentsTherapist: RequestHandler = async (
     const data = await appointmentService.getAppointmentsTherapist(
       req.params.id,
     );
-    handleResponse(res,200,data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -120,7 +120,7 @@ export const addSessionNotes: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res,200,data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -136,7 +136,7 @@ export const addTherapistReview: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    handleResponse(res,200,data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -149,7 +149,7 @@ export const getTherapistReview: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await appointmentService.getTherapistReview(req.params.id);
-    handleResponse(res,200,data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -162,7 +162,7 @@ export const getTherapists: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await appointmentService.getTherapists();
-    handleResponse(res,200,data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -178,7 +178,7 @@ export const getTherapistById: RequestHandler = async (
     if (!data) {
       res.status(404).json({ status: "fail", message: "Therapist not found" });
     }
-    handleResponse(res,200,data)
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
