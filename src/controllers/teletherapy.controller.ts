@@ -1,6 +1,7 @@
 import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as teletherapyService from "../services/teletherapy.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
+import { handleResponse } from "../middlewares/response/middleware.js";
 
 export const getClientChats: RequestHandler = async (
   req: Request,
@@ -10,9 +11,8 @@ export const getClientChats: RequestHandler = async (
   // id -> Clientid
   try {
     const data = await teletherapyService.getClientChats(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Client Chats Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -26,9 +26,8 @@ export const getTherapistChats: RequestHandler = async (
   // id -> therapistid
   try {
     const data = await teletherapyService.getTherapistChats(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Therapist Chats Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -41,9 +40,8 @@ export const getMessages: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await teletherapyService.getMessages(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Messages Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -60,9 +58,8 @@ export const getCurrentChat: RequestHandler = async (
       req.params.cid,
       req.params.tid,
     );
-    res
-      .status(200)
-      .json({ status: "success", message: "Current Chat Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }

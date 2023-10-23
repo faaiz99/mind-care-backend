@@ -10,7 +10,6 @@ import { clientRouter } from "./routes/client/route.js";
 import { corsOptions } from "./utils/cors.util.js";
 import { createServer } from "http";
 import { handleError } from "./middlewares/error/middleware.js";
-
 // import compression from 'compression'
 // import swaggerUi from 'swagger-ui-express'
 // import swaggerJSDoc from "swagger-jsdoc";
@@ -49,6 +48,7 @@ app.use(`${baseUrl}/admin`, adminRouter);
 app.get(`${baseUrl}`, (req, res): void => {
   res.send("Mind Care API");
 });
+
 
 app.use(handleError);
 

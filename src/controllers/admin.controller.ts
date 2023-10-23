@@ -1,9 +1,11 @@
 import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as adminService from "../services/admin.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
+import { handleResponse } from "../middlewares/response/middleware.js";
 
 export const index: RequestHandler = async (req: Request, res: Response) => {
-  res.status(200).json({ status: "success", message: "Admin Home" });
+  const data = { message: "Admin Home" }
+  handleResponse(res, 200, data)
 };
 
 export const login: RequestHandler = async (
@@ -16,14 +18,11 @@ export const login: RequestHandler = async (
       req.body.email,
       req.body.password,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        data,
-      });
+    handleResponse(res, 200, {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      data,
+    })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.message == "Account does not exist")
@@ -33,6 +32,7 @@ export const login: RequestHandler = async (
     else handleError(error, res, next);
   }
 };
+
 export const signup: RequestHandler = async (
   req: Request,
   res: Response,
@@ -40,13 +40,12 @@ export const signup: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.signup(req.body);
-    res
-      .status(201)
-      .json({ status: "success", message: "Admin Account created", data });
+    handleResponse(res, 201, data)
   } catch (error) {
     handleError(error, res, next);
   }
 };
+
 export const renewToken: RequestHandler = async (
   req: Request,
   res: Response,
@@ -56,14 +55,11 @@ export const renewToken: RequestHandler = async (
     const { accessToken, refreshToken, data } = await adminService.renewTokens(
       req.body.user,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        data,
-      });
+    handleResponse(res, 200, {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      data
+    })
   } catch (error) {
     handleError(error, res, next);
   }
@@ -76,9 +72,7 @@ export const about: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.aboutAdmin(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Admin Account found", data });
+    handleResponse(res, 200, data)
   } catch (error) {
     handleError(error, res, next);
   }

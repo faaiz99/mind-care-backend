@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as fitnessService from "../services/sleep.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
-
+import { handleResponse } from "../middlewares/response/middleware.js";
 export const createFitnessRecord: RequestHandler = async (
   req: Request,
   res: Response,
@@ -12,9 +12,8 @@ export const createFitnessRecord: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({ status: "success", message: "Fitness Reccord Created", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -27,9 +26,8 @@ export const getFitnessRecords: RequestHandler = async (
 ) => {
   try {
     const data = await fitnessService.getFitnessRecords(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Fitness Reccord Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -45,9 +43,7 @@ export const updateFitnessRecord: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({ status: "success", message: "Fitness Reccord Found", data });
+    handleResponse(res, 200, data)
   } catch (error) {
     handleError(error, res, next);
   }

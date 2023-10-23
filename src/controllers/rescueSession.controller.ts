@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as rescueSessionService from "../services/rescueSession.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
-
+import { handleResponse } from "../middlewares/response/middleware.js";
 export const getAllRescueSession: RequestHandler = async (
   req: Request,
   res: Response,
@@ -9,9 +9,8 @@ export const getAllRescueSession: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getAllRescueSessions(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "All Rescue Session Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -26,13 +25,8 @@ export const getAngerAndFrustration: RequestHandler = async (
     const data = await rescueSessionService.getAngerAndFrustration(
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Anger And Frustration Rescue Session Found",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -45,13 +39,8 @@ export const getRelationship: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getRelationship(req.params.id);
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Relationship Rescue Session Found",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -66,13 +55,8 @@ export const getRegainingMotivation: RequestHandler = async (
     const data = await rescueSessionService.getRegainingMotivation(
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Regaining Motivation Rescue Session Found",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -85,13 +69,8 @@ export const getCriticism: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getCriticism(req.params.id);
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Criticism Rescue Session Found",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -104,9 +83,8 @@ export const getSleep: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getSleep(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Sleep Rescue Session Found", data });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -119,9 +97,8 @@ export const getEnvy: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getEnvy(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Envy Rescue Session Found", data });
+    handleResponse(res, 200, data)
+    ;
   } catch (error) {
     handleError(error, res, next);
   }
@@ -134,13 +111,8 @@ export const getLowMood: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getLowMood(req.params.id);
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Low Mood Rescue Session Found",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -155,13 +127,8 @@ export const getOverComingDistraction: RequestHandler = async (
     const data = await rescueSessionService.getOverComingDistraction(
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "OverComingDistraction Rescue Session Found",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -177,13 +144,8 @@ export const createLowMood: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Low Mood Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -199,13 +161,8 @@ export const updateLowMood: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Low Mood Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -221,13 +178,7 @@ export const createOverComingDistraction: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Overcoming Distraction Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 201, data)
   } catch (error) {
     handleError(error, res, next);
   }
@@ -243,13 +194,8 @@ export const updateOverComingDistraction: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Overcoming Distraction Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -265,13 +211,7 @@ export const createRegainingMotivation: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Regaining Motivation Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
   } catch (error) {
     handleError(error, res, next);
   }
@@ -287,13 +227,8 @@ export const updateRegainingMotivation: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Regaining Motivation Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -309,13 +244,8 @@ export const createCriticism: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Criticism Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -331,13 +261,8 @@ export const updateCriticism: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Criticism Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -353,13 +278,8 @@ export const createRelationship: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Relationship Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -375,13 +295,8 @@ export const updateRelationship: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Relationship Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -394,13 +309,8 @@ export const createEnvy: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.createEnvy(req.body, req.params.id);
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Envy Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -413,13 +323,8 @@ export const updateEnvy: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.updateEnvy(req.body, req.params.id);
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Envy Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -435,13 +340,8 @@ export const createSleep: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Sleep Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -457,13 +357,8 @@ export const updateSleep: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Sleep Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -479,13 +374,8 @@ export const createAngerAndFrustration: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(201)
-      .json({
-        status: "success",
-        message: "Anger And Frustration Rescue Session Created",
-        data,
-      });
+    handleResponse(res, 200, data)
+
   } catch (error) {
     handleError(error, res, next);
   }
@@ -501,13 +391,7 @@ export const updateAngerAndFrustration: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Anger And Frustration Rescue Session Updated",
-        data,
-      });
+    handleResponse(res, 200, data)
   } catch (error) {
     handleError(error, res, next);
   }

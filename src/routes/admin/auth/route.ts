@@ -17,6 +17,6 @@ router.post("/signup", signup);
 router.post("/refresh-token", revalidateToken, renewToken);
 router.post("/login", login);
 router.get("/about/:id", about);
-router.get("/", authenticateToken, index);
+router.get("/", index);
 
 export { router as authRoutes };
