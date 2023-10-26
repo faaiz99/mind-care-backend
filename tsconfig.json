@@ -116,7 +116,11 @@
     "server.ts",
     "./*.js",
     "src/**/*.ts",
-    "test/**/*.ts",
-    "jest.config.ts"
+    // "test/**/*.ts",
+    // "jest.config.ts"
+  ],
+  "exclude": [
+    // "test/**/*.ts",
+    // "jest.config.ts"
   ]
 }

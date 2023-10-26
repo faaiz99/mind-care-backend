@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as commentService from "../services/comment.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
+import { handleResponse } from "../middlewares/response/middleware.js";
 
 export const createComment: RequestHandler = async (
   req: Request,
@@ -9,9 +10,8 @@ export const createComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.createComment(req.params.id, req.body);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment created", data });
+
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -24,9 +24,8 @@ export const replyComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.replyComment(req.body, req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment Replied", data });
+
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -39,9 +38,8 @@ export const updateComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.updateComment(req.body, req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment Updated", data });
+
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -54,9 +52,7 @@ export const deleteComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.deleteComment(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment Deleted", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -69,9 +65,7 @@ export const getComments: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.getComments(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comments Retrieved", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -84,9 +78,7 @@ export const upvoteComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.upvoteComment(req.body, req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment Upvoted", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -99,9 +91,7 @@ export const downvoteComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.downvoteComment(req.body, req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment Downvoted", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -114,9 +104,7 @@ export const reportComment: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.reportComment(req.body, req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Comment reported", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

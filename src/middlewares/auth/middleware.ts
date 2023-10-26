@@ -28,13 +28,11 @@ export const revalidateToken: RequestHandler = async (
 ): Promise<void> => {
   const authHeader = req.headers["authorization"];
   if (!authHeader)
-    res
-      .status(401)
-      .json({
-        status: "failure",
-        message: "Authorization Header Absent",
-        data: authHeader,
-      });
+    res.status(401).json({
+      status: "failure",
+      message: "Authorization Header Absent",
+      data: authHeader,
+    });
   jwt.verify(
     authHeader as string,
     REFRESH_JWT_SECRET as string,

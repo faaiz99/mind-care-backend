@@ -2,6 +2,7 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 import { IToken } from "../types/ITokens.js";
 import * as clientService from "../services/client.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
+import { handleResponse } from "../middlewares/response/middleware.js";
 
 export const enternewPassword: RequestHandler = async (
   req: Request,
@@ -13,9 +14,7 @@ export const enternewPassword: RequestHandler = async (
       req.body.email,
       req.body.password,
     );
-    res
-      .status(200)
-      .json({ status: "success", message: "Account Password Changed", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -28,9 +27,7 @@ export const resetPassword: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.resetPassword(req.body.email);
-    res
-      .status(200)
-      .json({ status: "success", message: "Account Password Updated", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -43,13 +40,7 @@ export const verifyAccount: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.verifyAccount(req.body.email);
-    res
-      .status(200)
-      .json({
-        status: "success",
-        message: "Account successfully verified",
-        data,
-      });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -72,14 +63,11 @@ export const login = async (
   try {
     const { accessToken, refreshToken, data }: IToken =
       await clientService.login(req.body.email, req.body.password);
-    res
-      .status(200)
-      .json({
-        status: "success",
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        data,
-      });
+    handleResponse(res, 200, {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      data,
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.message === "Incorrect Password") handleError(error, res, next);
@@ -96,9 +84,8 @@ export const signup: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.signup(req.body);
-    res
-      .status(200)
-      .json({ status: "success", message: "Client Account created", data });
+    handleResponse(res, 200, data);
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.message === "email already in database")
@@ -118,14 +105,12 @@ export const renewToken: RequestHandler = async (
     const { accessToken, refreshToken, data } = await clientService.renewTokens(
       req.body.user,
     );
-    res
-      .status(200)
-      .json({
-        status: "success",
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        data,
-      });
+    handleResponse(res, 200, {
+      status: "success",
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      data,
+    });
   } catch (error) {
     handleError(error, res, next);
   }
@@ -138,9 +123,7 @@ export const about: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await clientService.aboutClient(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Client Account found", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as sleepTrackerService from "../services/sleep.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
+import { handleResponse } from "../middlewares/response/middleware.js";
 
 export const getSleepStats: RequestHandler = async (
   req: Request,
@@ -9,9 +10,7 @@ export const getSleepStats: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.getSleepStats(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Sleep Stats Found", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -27,9 +26,7 @@ export const createSleepSchedule: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({ status: "success", message: "Sleep Schedule Created", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -45,9 +42,7 @@ export const updateSleepSchedule: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    res
-      .status(200)
-      .json({ status: "success", message: "Sleep Schedule Update", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -60,9 +55,7 @@ export const resetSleepSchedule: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.resetSleepSchedule(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Sleep Schedule Rest", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -75,9 +68,7 @@ export const getSleepEfficiency: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.getSleepEfficiency(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Sleep Efficiency", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -90,7 +81,7 @@ export const getSleepQuality: RequestHandler = async (
 ) => {
   try {
     const data = await sleepTrackerService.getSleepQuality(req.params.id);
-    res.status(200).json({ status: "success", message: "Sleep Quality", data });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
