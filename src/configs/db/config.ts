@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === "development") {
 export const connect = async (DBString: string | undefined) => {
   // Connecting to the database
   try {
-    //console.log(MONGO_URI)
+    console.log(DBString)
     await mongoose.connect(DBString as string);
   } catch (error) {
     console.log("database connection failed. exiting now...");
