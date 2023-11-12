@@ -1,7 +1,7 @@
 const { PORT } = process.env;
 import { httpServer } from "./src/app.js";
-import { app } from "./src/app.js";
-import { print } from "./src/utils/displayRoute.util.js";
+// import { app } from "./src/app.js";
+// import { print } from "./src/utils/displayRoute.util.js";
 
 //app._router.stack.forEach(print.bind(null, []))
 
