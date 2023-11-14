@@ -15,13 +15,16 @@ import { handleError } from "./middlewares/error/middleware.js";
 // import swaggerJSDoc from "swagger-jsdoc";
 //import { options } from './utils/swagger.util.js'
 
-dotenv.config();
 
-// Database Connection //
-// console.log(dotenv.config().parsed);
-console.log(process.env)
-connect(dotenv.config().parsed?.MONGO_URI);
 
+if(process.env.NODE_ENV === 'production') {
+  connect(process.env.MONGO_URI)
+}
+else {
+  dotenv.config();
+  // Database Connection //
+  connect(dotenv.config().parsed?.MONGO_URI);
+}
 const baseUrl: string = "/api/v1";
 export const app: Application = express();
 // const swaggerSpec = swaggerJSDoc(options);
