@@ -2,7 +2,7 @@ import * as notificationService from "../services/notification.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
 import { Request, Response, NextFunction, RequestHandler } from "express";
-
+import webpush from "web-push";
 export const createNotificationTherapist: RequestHandler = async (
   req: Request,
   res: Response,
@@ -13,6 +13,12 @@ export const createNotificationTherapist: RequestHandler = async (
       req.body,
       req.params.id,
     );
+
+    console.log(data)
+    
+    const payload = JSON.stringify({title:"Appointment Scheduled", body:"You have a new appointment scheduled for tomorrow at 10:00 AM"}) 
+    const subscription = req.body
+    await webpush.sendNotification(subscription, payload)
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
