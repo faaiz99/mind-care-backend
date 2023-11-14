@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-if (process.env.NODE_ENV === "development") {
-  console.log();
-}
 export const connect = async (DBString: string | undefined) => {
  // Connecting to the database
  try {
