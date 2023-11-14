@@ -18,7 +18,7 @@ import { handleError } from "./middlewares/error/middleware.js";
 dotenv.config();
 
 // Database Connection //
-console.log(dotenv.config().parsed?.MONGO_URI);
+console.log(dotenv.config().parsed);
 connect(dotenv.config().parsed?.MONGO_URI);
 
 const baseUrl: string = "/api/v1";
