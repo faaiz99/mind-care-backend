@@ -2084,3 +2084,4 @@ test.md
 dist/jest.config.js
 *.js
 *.map
+package-lock.json

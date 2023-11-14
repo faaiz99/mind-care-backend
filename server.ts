@@ -20,9 +20,11 @@ let onlineUsers: Array<IUserDetails> = [];
 const chatSessions: Array<IChatSession> = [];
 
 io.on("connection", async (socket) => {
+  console.log("New client connected", socket.id);
   socket.on("disconnect", () => {
     socket.emit("callEnded");
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+    console.log("Client disconnected", socket.id, onlineUsers)
 
     io.emit("getOnlineUsers", onlineUsers);
     //createMessage(chatSessions)

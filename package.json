@@ -12,6 +12,7 @@
     "test": "jest --detectOpenHandles ",
     "start": "nodemon ./dist/server.js",
     "dev": "nodemon server.ts --watch",
+    "dev:fix": "nodemon --loader ts-node/esm server.ts --watch",
     "lint": "npx eslint .",
     "prettier": "npx prettier . --write"
   },
@@ -26,7 +27,8 @@
     "mongoose": "^8.0.0",
     "nodemailer": "^6.9.7",
     "socket.io": "^4.7.2",
-    "stripe": "^14.4.0"
+    "stripe": "^14.4.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.2.0",
