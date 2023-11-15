@@ -13,8 +13,6 @@ export const createNotificationTherapist: RequestHandler = async (
       req.body,
       req.params.id,
     );
-
-    console.log(data)
     
     const payload = JSON.stringify({title:"Appointment Scheduled", body:"You have a new appointment scheduled for tomorrow at 10:00 AM"}) 
     const subscription = req.body

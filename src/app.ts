@@ -10,6 +10,7 @@ import { clientRouter } from "./routes/client/route.js";
 import { corsOptions } from "./utils/cors.util.js";
 import { createServer } from "http";
 import { handleError } from "./middlewares/error/middleware.js";
+import { notFound } from "./middlewares/not-found/middlware.js";
 import webpush from "web-push";
 // import compression from 'compression'
 // import swaggerUi from 'swagger-ui-express'
@@ -64,6 +65,10 @@ app.get(`${baseUrl}`, (req, res): void => {
   res.send("Mind Care API");
 });
 
+app.use(notFound)
+
 app.use(handleError);
+
+
 
 export const httpServer = createServer(app);
