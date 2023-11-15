@@ -4,5 +4,9 @@ import { Response } from "express";
 // data from service
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const handleResponse = (res: Response, status: number, data: any) => {
-  res.status(status).json({ data });
+  if(process.env.NODE_ENV==="production")
+    res.status(status).json(data);
+  else
+    res.status(status).json({data});
+
 };
