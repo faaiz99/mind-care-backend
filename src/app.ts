@@ -22,7 +22,7 @@ import webpush from "web-push";
 if(process.env.NODE_ENV === 'production') {
   if (process.env.MONGO_URI && process.env.VPublicKey && process.env.VPrivateKey) {
     connect(process.env.MONGO_URI);
-    webpush.setVapidDetails("test@email.com", process.env.VPublicKey, process.env.VPrivateKey);
+    webpush.setVapidDetails("mailto:test@email.com", process.env.VPublicKey, process.env.VPrivateKey);
   } else {
     console.error('Environment variables MONGO_URI, VPublicKey, and VPrivateKey must be defined');
   }
