@@ -24,7 +24,7 @@ io.on("connection", async (socket) => {
   socket.on("disconnect", () => {
     socket.emit("callEnded");
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
-    console.log("Client disconnected", socket.id, onlineUsers)
+    console.log("Client disconnected", socket.id, onlineUsers);
 
     io.emit("getOnlineUsers", onlineUsers);
     //createMessage(chatSessions)

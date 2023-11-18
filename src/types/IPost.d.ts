@@ -1,4 +1,4 @@
-import { Document, Schema  } from "mongoose";
+import { Document, Schema } from "mongoose";
 export interface IPost extends Document {
   clientId?: Schema.Types.ObjectId;
   therapistId?: Schema.Types.ObjectId;

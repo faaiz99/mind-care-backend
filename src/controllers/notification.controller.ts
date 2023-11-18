@@ -13,10 +13,13 @@ export const createNotificationTherapist: RequestHandler = async (
       req.body,
       req.params.id,
     );
-    
-    const payload = JSON.stringify({title:"Appointment Scheduled", body:"You have a new appointment scheduled for tomorrow at 10:00 AM"}) 
-    const subscription = req.body
-    await webpush.sendNotification(subscription, payload)
+
+    const payload = JSON.stringify({
+      title: "Appointment Scheduled",
+      body: "You have a new appointment scheduled for tomorrow at 10:00 AM",
+    });
+    const subscription = req.body;
+    await webpush.sendNotification(subscription, payload);
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
