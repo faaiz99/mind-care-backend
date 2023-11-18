@@ -1,23 +1,24 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
+import { IReport } from "../../../types/IReport.js";
 
-const reportSchema = new Schema({
+const reportSchema = new Schema<IReport>({
   commentId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "comment",
     required: true,
   },
   postId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "post",
     required: true,
   },
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
     required: false,
   },
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "therapist",
     required: false,
   },
@@ -32,4 +33,4 @@ const reportSchema = new Schema({
   ],
 });
 
-export const Report = model("report", reportSchema);
+export const Report = model<IReport>("report", reportSchema);

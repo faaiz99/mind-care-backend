@@ -1,25 +1,26 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
+import { IUpvote } from "../../../types/IUpvote.js";
 
-const upvoteSchema = new Schema({
+const upvoteSchema = new Schema<IUpvote>({
   upvoteId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
   },
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
   },
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "therapist",
   },
   postId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "post",
   },
   commentId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "comment",
   },
 });
 
-export const Upvote = model("upvote", upvoteSchema);
+export const Upvote = model<IUpvote>("upvote", upvoteSchema);

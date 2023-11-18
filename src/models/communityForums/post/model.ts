@@ -1,13 +1,14 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
+import { IPost } from "../../../types/IPost.js";
 
-const postSchema = new Schema({
+const postSchema = new Schema<IPost>({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
     required: false,
   },
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "therapist",
     required: false,
   },
@@ -31,35 +32,35 @@ const postSchema = new Schema({
   ],
   comments: [
     {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "comment",
       required: false,
     },
   ],
   upvotes: [
     {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "upvote",
       required: false,
     },
   ],
   downvotes: [
     {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "downvote",
       required: false,
     },
   ],
   postReport: [
     {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "report",
     },
   ],
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
-export const Post = model("post", postSchema);
+export const Post = model<IPost>("post", postSchema);

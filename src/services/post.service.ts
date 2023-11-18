@@ -3,7 +3,10 @@ import { Post } from "../models/communityForums/post/model.js";
 import { Upvote } from "../models/communityForums/upvote/model.js";
 import { Downvote } from "../models/communityForums/downvote/model.js";
 import { Report } from "../models/communityForums/report/model.js";
-
+import { IPost } from "../types/IPost.js";
+import { IUpvote } from "../types/IUpvote.js";
+import { IDownvote } from "../types/IDownvote.js";
+import { IReport } from "../types/IReport.js";
 export const getTrendingPosts = async () => {};
 
 export const getMostRecentPosts = () => {
@@ -14,13 +17,13 @@ export const getFeaturedPosts = () => {
   //TBD
 };
 
-export const createPost = async (post: any) => {
+export const createPost = async (post: IPost) => {
   const response = await Post.create(post);
   if (!response) throw new Error("Post Could not be Created");
   return response;
 };
 
-export const updatePost = async (post: any, id: string) => {
+export const updatePost = async (post: IPost, id: string) => {
   const response = await Post.findOneAndUpdate({ _id: id }, post, {
     returnOriginal: false,
   });
@@ -119,7 +122,7 @@ export const getPost = async (id: string) => {
   return response;
 };
 
-export const upvotePost = async (upvote: any, id: string) => {
+export const upvotePost = async (upvote: IUpvote, id: string) => {
   const { therapistId, postId } = upvote;
   // When upvote
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -141,7 +144,7 @@ export const upvotePost = async (upvote: any, id: string) => {
   return response;
 };
 
-export const downvotePost = async (downvote: any, id: string) => {
+export const downvotePost = async (downvote: IDownvote, id: string) => {
   const { therapistId, postId } = downvote;
   // When upvote
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -193,8 +196,8 @@ export const removeDownvotePost = async (did: string, pid: string) => {
   return response;
 };
 
-export const reportPost = async (post: any, id: string) => {
-  const report = await Report.create(post);
+export const reportPost = async (reportPost: IReport, id: string) => {
+  const report = await Report.create(reportPost);
   const response = await Post.findOneAndUpdate(
     { _id: id },
     {

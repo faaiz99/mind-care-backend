@@ -4,8 +4,10 @@ import { Upvote } from "../models/communityForums/upvote/model.js";
 import { Downvote } from "../models/communityForums/downvote/model.js";
 import { Report } from "../models/communityForums/report/model.js";
 import { Post } from "../models/communityForums/post/model.js";
+import { IComment } from "../types/IComment.js";
+import { IReport } from "../types/IReport.js";
 
-export const createComment = async (id: string, comment: any) => {
+export const createComment = async (id: string, comment: IComment) => {
   const responseDB = await Comment.create(comment);
   const response = await Post.findOneAndUpdate(
     { _id: id },
@@ -18,7 +20,7 @@ export const createComment = async (id: string, comment: any) => {
   return response;
 };
 
-export const replyComment = async (comment: any, id: string) => {
+export const replyComment = async (comment: IComment, id: string) => {
   const responseDB = await Comment.create(comment);
   const response = await Comment.findOneAndUpdate(
     { _id: id },
@@ -37,7 +39,7 @@ export const replyComment = async (comment: any, id: string) => {
   return response;
 };
 
-export const updateComment = async (comment: any, id: string) => {
+export const updateComment = async (comment: IComment, id: string) => {
   const response = await Comment.findOneAndUpdate({ _id: id }, comment);
   if (!response) throw new Error("Comment Updated");
   return response;
@@ -72,7 +74,7 @@ export const getComments = async (id: string) => {
   return response;
 };
 
-export const upvoteComment = async (comment: any, id: string) => {
+export const upvoteComment = async (comment: IComment, id: string) => {
   const upvote = await Upvote.create(comment);
   const response = await Comment.findOneAndUpdate(
     { _id: id },
@@ -84,7 +86,7 @@ export const upvoteComment = async (comment: any, id: string) => {
   return response;
 };
 
-export const downvoteComment = async (comment: any, id: string) => {
+export const downvoteComment = async (comment: IComment, id: string) => {
   const downvote = await Downvote.create(comment);
   const response = await Comment.findOneAndUpdate(
     { _id: id },
@@ -96,8 +98,8 @@ export const downvoteComment = async (comment: any, id: string) => {
   return response;
 };
 
-export const reportComment = async (comment: any, id: string) => {
-  const report = await Report.create(comment);
+export const reportComment = async (reportComment: IReport, id: string) => {
+  const report = await Report.create(reportComment);
   const response = await Comment.findOneAndUpdate(
     { _id: id },
     {
