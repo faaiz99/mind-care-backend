@@ -10,7 +10,9 @@ import { clientRouter } from "./routes/client/route.js";
 import { corsOptions } from "./utils/cors.util.js";
 import { createServer } from "http";
 import { handleError } from "./middlewares/error/middleware.js";
+
 import { notFound } from "./middlewares/not-found/middlware.js";
+import { preflight } from "./middlewares/preflight/middleware.js";
 import webpush from "web-push";
 // import compression from 'compression'
 // import swaggerUi from 'swagger-ui-express'
@@ -43,7 +45,7 @@ export const app: Application = express();
 // app.use(compression)
 
 // CORS Policy //
-
+app.use(preflight)
 app.use(cors(corsOptions));
 
 // API Documentation Setup //
