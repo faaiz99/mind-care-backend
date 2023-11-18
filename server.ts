@@ -1,7 +1,7 @@
 const { PORT } = process.env;
 import { httpServer } from "./src/app.js";
-import { app } from "./src/app.js";
-import { print } from "./src/utils/displayRoute.util.js";
+// import { app } from "./src/app.js";
+// import { print } from "./src/utils/displayRoute.util.js";
 
 //app._router.stack.forEach(print.bind(null, []))
 
@@ -20,9 +20,11 @@ let onlineUsers: Array<IUserDetails> = [];
 const chatSessions: Array<IChatSession> = [];
 
 io.on("connection", async (socket) => {
+  console.log("New client connected", socket.id);
   socket.on("disconnect", () => {
     socket.emit("callEnded");
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+    console.log("Client disconnected", socket.id, onlineUsers)
 
     io.emit("getOnlineUsers", onlineUsers);
     //createMessage(chatSessions)

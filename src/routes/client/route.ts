@@ -27,6 +27,6 @@ router.use(teletherapyRoutes);
 router.use(sleepTrackerRoutes);
 router.use(rescueSessionRoutes);
 router.use(fitnessRoutes);
-router.use(notifcationRoutes)
+router.use(notifcationRoutes);
 
 export { router as clientRouter };

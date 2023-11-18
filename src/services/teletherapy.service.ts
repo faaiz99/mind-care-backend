@@ -51,7 +51,6 @@ export const createMessage = async (chatSession: IChatSession) => {
   const therapistMessages = chatSession.messages.filter(
     (message) => message.senderRole === "therapist",
   );
-  //console.log('therapist chat', therapistMessages)
   if (therapistMessages.length > 0) {
     try {
       const { sessionId, senderId, senderRole, recipientId, recipientRole } =
@@ -89,7 +88,6 @@ export const createMessage = async (chatSession: IChatSession) => {
   const clientMessages = chatSession.messages.filter(
     (message) => message.senderRole === "client",
   );
-  //console.log('client chat', clientMessages)
 
   if (clientMessages.length > 0) {
     try {
@@ -185,6 +183,5 @@ export const getCurrentChat = async (cid: string, tid: string) => {
       path: "members.therapistId",
     });
   if (!response) throw new Error("Current Chat Could not be Found");
-
   return response;
 };
