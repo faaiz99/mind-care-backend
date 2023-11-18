@@ -1,29 +1,30 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
+import { IDownvote } from "../../../types/IDownvote.js";
 
-const downvoteSchema = new Schema({
+const downvoteSchema = new Schema<IDownvote>({
   downvoteId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
   },
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
     required: false,
   },
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "therapist",
     required: false,
   },
   postId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "post",
     required: false,
   },
   commentId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "comment",
     required: false,
   },
 });
 
-export const Downvote = model("downvote", downvoteSchema);
+export const Downvote = model<IDownvote>("downvote", downvoteSchema);

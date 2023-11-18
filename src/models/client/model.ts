@@ -1,5 +1,6 @@
 import { Schema, model, Model } from "mongoose";
 import { IClient } from "../../types/IClient.js";
+import { timeStamp } from "console";
 const clientSchema = new Schema<IClient>({
   firstName: {
     type: String,
@@ -38,7 +39,7 @@ const clientSchema = new Schema<IClient>({
     type: Date,
     required: false,
   },
-});
+}, {timestamps: true});
 
 export const Client: Model<IClient> = model<IClient>("client", clientSchema);
 
