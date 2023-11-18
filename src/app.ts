@@ -10,17 +10,34 @@ import { clientRouter } from "./routes/client/route.js";
 import { corsOptions } from "./utils/cors.util.js";
 import { createServer } from "http";
 import { handleError } from "./middlewares/error/middleware.js";
+
+import { notFound } from "./middlewares/not-found/middlware.js";
 import { preflight } from "./middlewares/preflight/middleware.js";
+import webpush from "web-push";
 // import compression from 'compression'
 // import swaggerUi from 'swagger-ui-express'
 // import swaggerJSDoc from "swagger-jsdoc";
 //import { options } from './utils/swagger.util.js'
 
-dotenv.config();
 
-// Database Connection //
-connect(dotenv.config().parsed?.MONGO_URI);
 
+if(process.env.NODE_ENV === 'production') {
+  if (process.env.MONGO_URI && process.env.VPublicKey && process.env.VPrivateKey) {
+    connect(process.env.MONGO_URI);
+    webpush.setVapidDetails("mailto:test@email.com", process.env.VPublicKey, process.env.VPrivateKey);
+  } else {
+    console.error('Environment variables MONGO_URI, VPublicKey, and VPrivateKey must be defined');
+  }
+}
+else {
+  dotenv.config();
+  // Database Connection //
+  connect(dotenv.config().parsed?.MONGO_URI);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+  webpush.setVapidDetails("mailto:faaizalam75@live.com", dotenv.config().parsed?.VPublicKey, dotenv.config().parsed?.VPrivateKey);
+
+}
 const baseUrl: string = "/api/v1";
 export const app: Application = express();
 // const swaggerSpec = swaggerJSDoc(options);
@@ -50,6 +67,10 @@ app.get(`${baseUrl}`, (req, res): void => {
   res.send("Mind Care API");
 });
 
+app.use(notFound)
+
 app.use(handleError);
+
+
 
 export const httpServer = createServer(app);

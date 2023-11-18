@@ -1,14 +1,14 @@
 import { model, Schema } from "mongoose";
 const notificationSchema = new Schema({
-  clientId:{
-    type:Schema.Types.ObjectId,
-    ref:'client',
-    required:false
+  clientId: {
+    type: Schema.Types.ObjectId,
+    ref: "client",
+    required: false,
   },
-  therapistId:{
-    type:Schema.Types.ObjectId,
-    ref:'therapist',
-    required:false
+  therapistId: {
+    type: Schema.Types.ObjectId,
+    ref: "therapist",
+    required: false,
   },
   notificationBody: {
     type: String,
@@ -17,13 +17,13 @@ const notificationSchema = new Schema({
     type: String,
   },
   notificationTime: {
-    type:Date,
+    type: Date,
     default: Date.now(),
   },
-  read:{
-    type:Boolean,
-    default:false,
-  }
+  read: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export const Notification = model("notification", notificationSchema);

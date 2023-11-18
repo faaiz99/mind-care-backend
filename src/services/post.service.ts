@@ -126,7 +126,7 @@ export const upvotePost = async (upvote: IUpvote, id: string) => {
   const { therapistId, postId } = upvote;
   // When upvote
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const existsInDownVote = await Downvote.findOneAndRemove({
+  const existsInDownVote = await Downvote.findOneAndDelete({
     postId: postId,
     therapistId: therapistId,
   });
@@ -148,7 +148,7 @@ export const downvotePost = async (downvote: IDownvote, id: string) => {
   const { therapistId, postId } = downvote;
   // When upvote
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const existsInUpvoteVote = await Upvote.findOneAndRemove({
+  const existsInUpvoteVote = await Upvote.findOneAndDelete({
     postId: postId,
     therapistId: therapistId,
   });

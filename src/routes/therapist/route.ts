@@ -18,6 +18,6 @@ router.use(paymentRoutes);
 router.use(appointmentRoutes);
 router.use(teletherapyRoutes);
 router.use(psychologicalProfileRoutes);
-router.use(notifcationRoutes)
+router.use(notifcationRoutes);
 
 export { router as therapistRouter };
