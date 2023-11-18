@@ -37,7 +37,6 @@ if (process.env.NODE_ENV === "production") {
   }
 } else {
   dotenv.config();
-  console.log(dotenv.config());
   // Database Connection //
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   const VPublicKey: string | undefined = dotenv.config().parsed?.VPublicKey;
