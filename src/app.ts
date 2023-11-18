@@ -33,8 +33,7 @@ else {
   dotenv.config();
   // Database Connection //
   connect(dotenv.config().parsed?.MONGO_URI);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-expect-error
+  //@ts-ignore
   webpush.setVapidDetails("mailto:faaizalam75@live.com", dotenv.config().parsed?.VPublicKey, dotenv.config().parsed?.VPrivateKey);
 
 }
