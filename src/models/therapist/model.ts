@@ -67,6 +67,20 @@ const therapistSchema = new Schema<ITherapist>({
     type: String,
     required: true,
   },
+  reInstatement: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  violation: {
+    type: String,
+    required: true,
+  },
+  isBlocked: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 export const Therapist: Model<ITherapist> = model<ITherapist>(

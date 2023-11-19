@@ -10,4 +10,7 @@ export interface IClient extends Document {
   profilePicture?: string; // Marked as optional
   dateOfBirth?: Date; // Marked as optional
   createdAt?: Date; // Marked as optional
+  reInstatement?: number;
+  violation?: string;
+  isBlocked?: boolean;
 }

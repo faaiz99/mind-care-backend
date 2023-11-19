@@ -41,8 +41,9 @@ if (process.env.NODE_ENV === "production") {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   const VPublicKey: string | undefined = dotenv.config().parsed?.VPublicKey;
   const VPrivateKey: string | undefined = dotenv.config().parsed?.VPrivateKey;
-
-  if (VPublicKey && VPrivateKey) {
+  const MONGO_URI: string | undefined = dotenv.config().parsed?.MONGO_URI;
+  if (VPublicKey && VPrivateKey && MONGO_URI) {
+        connect(MONGO_URI);
     webpush.setVapidDetails(
       "mailto:faaizalam75@live.com",
       VPublicKey,

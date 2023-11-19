@@ -45,7 +45,7 @@
 //       const signupServiceMock = jest
 //       .spyOn(adminService, "signup")
 //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//       // @ts-ignore   
+//       // @ts-ignore
 //       .mockReturnValueOnce(userPayload);
 //       const { body, statusCode } = await request(httpServer)
 //         .post("/api/v1/admin/signup")

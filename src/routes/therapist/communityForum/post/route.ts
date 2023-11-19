@@ -14,36 +14,6 @@ import {
   removeUpvotePost,
 } from "../../../../controllers/post.controller.js";
 
-/**
- * @swagger
- * tags:
- *   name: Post Controller
- *   description: API to manage posts
- */
-
-/**
- * @swagger
- * /posts:
- *   post:
- *     description: Gets all the posts
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: username
- *         description: Username to use for login.
- *         in: formData
- *         required: true
- *         type: string
- *       - name: password
- *         description: User's password.
- *         in: formData
- *         required: true
- *         type: string
- *     responses:
- *       200:
- *         description: login
- */
-
 router.get("/posts", getPosts); // Dynamic Feed
 
 router.post("/posts", createPost);

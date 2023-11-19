@@ -17,4 +17,7 @@ export interface ITherapist extends Document {
   experience: string;
   downloadURL: string;
   specialization: string;
+  reInstatement?: number;
+  violation?: string;
+  isBlocked?: boolean;
 }
