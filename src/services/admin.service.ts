@@ -7,37 +7,83 @@ import { Client } from "../models/client/model.js";
 import { Therapist } from "../models/therapist/model.js";
 import { Comment } from "../models/communityForums/comment/model.js";
 import { Post } from "../models/communityForums/post/model.js";
+import { IReportAccount } from "../types/IReportAccount.js";
 
-interface IReportAccount {
-  role: string;
-  violation: string;
-  isBlocked?: boolean;
-}
-export const groupClientsByAge = async () => {
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
+export const getReportedAcccounts = async () => {
+  const clientAccounts = await Client.find({ reInstatement: 1 });
+  const therapistAccount = await Therapist.find({ reInstatement: 1 });
+  const response = {
+    clientAccounts,
+    therapistAccount,
+  };
+  if (!response) throw new Error("No reported accounts found");
+  return response;
+};
 
-  const clients = await Client.aggregate([
-    {
-      $project: {
-        age: {
-          $subtract: [currentYear, { $year: "$dateOfBirth" }],
+export const getReportedComments = async () => {
+  const response = await Comment.find({
+    commentReport: { $exists: true, $not: { $size: 0 } },
+  });
+  if (!response) throw new Error("No reported comments found");
+  return response;
+};
+
+export const getReportedPosts = async () => {
+  const response = await Post.find({
+    postReport: { $exists: true, $not: { $size: 0 } },
+  });
+  if (!response) throw new Error("No reported posts found");
+  return response;
+};
+
+export const handleReportedComments = async (action: string, id: string) => {
+  if (action === "delete") {
+    const response = await Comment.updateOne(
+      { _id: id, commentReport: { $exists: true, $not: { $size: 0 } } },
+      { $set: { body: "removed by admin" } },
+    );
+    if (!response) throw new Error("Comment could not be found");
+    return response;
+  } else if (action === "ignore") {
+    const response = await Comment.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          commentReport: [],
         },
       },
-    },
-    {
-      $bucket: {
-        groupBy: "$age",
-        boundaries: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        default: "100+",
-        output: {
-          count: { $sum: 1 },
+    );
+    if (!response) throw new Error("Comment could not be found");
+    return response;
+  }
+};
+
+export const handleReportPosts = async (action: string, id: string) => {
+  if (action === "delete") {
+    const response = await Post.updateOne(
+      { _id: id, postReport: { $exists: true, $not: { $size: 0 } } },
+      { $set: { body: "removed by admin" } },
+    );
+    if (!response) throw new Error("Post could not be found");
+    return response;
+  } else if (action === "ignore") {
+    const response = await Post.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          postReport: [],
         },
       },
-    },
-  ]);
+    );
+    if (!response) throw new Error("Post could not be found");
+    return response;
+  }
+};
 
-  return clients;
+export const handleReportedAccounts = async (action: string, id: string) => {
+  const response = "Handle Report Accounts Triggered";
+  if (!response) throw new Error("Error");
+  return response;
 };
 
 export const getDashboardData = async () => {
@@ -119,7 +165,11 @@ export const handleBlockAccount = async (
   }
 };
 
-export const handleReportAccount = async (
+/**
+ *
+ * Used to report the account depending on the role of the user
+ */
+export const handleReportAccounts = async (
   reportAccount: IReportAccount,
   id: string,
 ) => {

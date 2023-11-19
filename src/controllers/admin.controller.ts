@@ -3,26 +3,81 @@ import * as adminService from "../services/admin.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
 
-export const getDashboardData: RequestHandler = async (
+export const getReportedPosts: RequestHandler = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const data = await adminService.getDashboardData();
+    const data = await adminService.getReportedPosts();
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
 };
 
-export const handleReportAccount: RequestHandler = async (
+export const getReportedComments: RequestHandler = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const data = await adminService.handleReportAccount(
+    const data = await adminService.getReportedComments();
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const getReportedAcccounts: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.getReportedAcccounts();
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const handleReportPosts: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.handleReportPosts(req.body, req.params.id);
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const handleReportedComments: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.handleReportedComments(
+      req.body,
+      req.params.id,
+    );
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const handleReportAccounts: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.handleReportAccounts(
       req.body,
       req.params.id,
     );
@@ -39,6 +94,19 @@ export const handleBlockAccount: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.handleBlockAccount(req.body, req.params.id);
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const getDashboardData: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.getDashboardData();
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
