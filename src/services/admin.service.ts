@@ -8,6 +8,31 @@ import { Therapist } from "../models/therapist/model.js";
 import { Comment } from "../models/communityForums/comment/model.js";
 import { Post } from "../models/communityForums/post/model.js";
 import { IReportAccount } from "../types/IReportAccount.js";
+import { Report } from "../models/communityForums/report/model.js";
+
+export const getReportedAcccount = async (id: string) => {
+  const response = await Client.findOne({ _id: id, reInstatement: 1 });
+  if (!response) throw new Error("No reported account found");
+  return response;
+};
+
+export const getReportedComment = async (id: string) => {
+  const response = await Comment.findOne({
+    _id: id,
+    commentReport: { $exists: true, $not: { $size: 0 } },
+  });
+  if (!response) throw new Error("No reported comment found");
+  return response;
+};
+
+export const getReportedPost = async (id: string) => {
+  const response = await Post.findOne({
+    _id: id,
+    postReport: { $exists: true, $not: { $size: 0 } },
+  });
+  if (!response) throw new Error("No reported post found");
+  return response;
+};
 
 export const getReportedAcccounts = async () => {
   const clientAccounts = await Client.find({ reInstatement: 1 });
@@ -21,17 +46,42 @@ export const getReportedAcccounts = async () => {
 };
 
 export const getReportedComments = async () => {
-  const response = await Comment.find({
-    commentReport: { $exists: true, $not: { $size: 0 } },
-  });
+  const response = await Report.find({})
+  .populate({
+    path: "commentId",
+    model: "comment",
+  }).populate({
+    path: "clientId",
+    model: "client",
+  }).populate({
+    path: "therapistId",
+    model: "therapist",
+  })
+  .exec();
+  // const response = await Comment.find({
+  //   commentReport: { $exists: true, $not: { $size: 0 } },
+  // });
+
   if (!response) throw new Error("No reported comments found");
   return response;
 };
 
 export const getReportedPosts = async () => {
-  const response = await Post.find({
-    postReport: { $exists: true, $not: { $size: 0 } },
-  });
+  const response = await Report.find({})
+  .populate({
+    path: "postId",
+    model: "post",
+  }).populate({
+    path: "clientId",
+    model: "client",
+  }).populate({
+    path: "therapistId",
+    model: "therapist",
+  })
+  .exec();
+  // const response = await Post.find({
+  //   postReport: { $exists: true, $not: { $size: 0 } },
+  // });
   if (!response) throw new Error("No reported posts found");
   return response;
 };
@@ -80,6 +130,7 @@ export const handleReportPosts = async (action: string, id: string) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const handleReportedAccounts = async (action: string, id: string) => {
   const response = "Handle Report Accounts Triggered";
   if (!response) throw new Error("Error");

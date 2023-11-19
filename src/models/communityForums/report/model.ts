@@ -5,12 +5,12 @@ const reportSchema = new Schema<IReport>({
   commentId: {
     type: Schema.Types.ObjectId,
     ref: "comment",
-    required: true,
+    required: false,
   },
   postId: {
     type: Schema.Types.ObjectId,
     ref: "post",
-    required: true,
+    required: false,
   },
   clientId: {
     type: Schema.Types.ObjectId,
@@ -22,15 +22,14 @@ const reportSchema = new Schema<IReport>({
     ref: "therapist",
     required: false,
   },
-  body: {
+  violation: {
     type: String,
-    required: true,
+    required: false,
   },
-  action: [
-    {
-      type: String,
-    },
-  ],
+  action: {
+    type: String,
+    required: false,
+  },
 });
 
 export const Report = model<IReport>("report", reportSchema);

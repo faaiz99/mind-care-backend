@@ -4,6 +4,6 @@ export interface IReport extends Document {
   postId: Schema.Types.ObjectId;
   clientId?: Schema.Types.ObjectId;
   therapistId?: Schema.Types.ObjectId;
-  body: string;
-  action: string[];
+  violation: string;
+  action: string;
 }

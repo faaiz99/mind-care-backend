@@ -3,6 +3,45 @@ import * as adminService from "../services/admin.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
 
+export const getReportedComment: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.getReportedComment();
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const getReportedPost: RequestHandler = async (
+  req: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.getReportedPost();
+    handleResponse(response, 200, data);
+  } catch (error) {
+    handleError(error, response, next);
+  }
+};
+
+export const getReportedAccount: RequestHandler = async (
+  req: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await adminService.getReportedAccount();
+    handleResponse(response, 200, data);
+  } catch (error) {
+    handleError(error, response, next);
+  }
+};
+
 export const getReportedPosts: RequestHandler = async (
   req: Request,
   res: Response,
