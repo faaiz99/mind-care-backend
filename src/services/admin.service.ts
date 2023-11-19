@@ -113,6 +113,7 @@ export const handleReportPosts = async (action: string, id: string) => {
     const response = await Post.updateOne(
       { _id: id, postReport: { $exists: true, $not: { $size: 0 } } },
       { $set: { body: "removed by admin" } },
+      { new: true}
     );
     if (!response) throw new Error("Post could not be found");
     return response;
@@ -124,6 +125,7 @@ export const handleReportPosts = async (action: string, id: string) => {
           postReport: [],
         },
       },
+      { new: true}
     );
     if (!response) throw new Error("Post could not be found");
     return response;
@@ -197,6 +199,7 @@ export const handleBlockAccount = async (
           isBlocked: isBlocked,
         },
       },
+      { new: true}
     );
     if (!response) throw new Error("Account could not be found");
     return response;
@@ -209,6 +212,7 @@ export const handleBlockAccount = async (
           isBlocked: isBlocked,
         },
       },
+      { new: true}
     );
 
     if (!response) throw new Error("Account could not be found");
