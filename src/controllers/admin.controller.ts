@@ -9,7 +9,7 @@ export const getReportedComment: RequestHandler = async (
   next: NextFunction,
 ) => {
   try {
-    const data = await adminService.getReportedComment();
+    const data = await adminService.getReportedComment(req.params.id);
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
@@ -22,7 +22,7 @@ export const getReportedPost: RequestHandler = async (
   next: NextFunction,
 ) => {
   try {
-    const data = await adminService.getReportedPost();
+    const data = await adminService.getReportedPost(req.params.id);
     handleResponse(response, 200, data);
   } catch (error) {
     handleError(error, response, next);
@@ -35,7 +35,7 @@ export const getReportedAccount: RequestHandler = async (
   next: NextFunction,
 ) => {
   try {
-    const data = await adminService.getReportedAccount();
+    const data = await adminService.getReportedAcccount(req.params.id);
     handleResponse(response, 200, data);
   } catch (error) {
     handleError(error, response, next);
