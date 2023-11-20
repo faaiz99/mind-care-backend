@@ -80,6 +80,17 @@ export const getPosts = async () => {
         },
       },
     })
+     .populate({
+      path: "comments",
+      populate: {
+        path: "replies",
+        model: "comment",
+        populate: {
+          path: "clientId",
+          model: "client",
+        },
+      },
+    })
     .populate({
       path: "comments",
       populate: {
@@ -107,6 +118,12 @@ export const getPosts = async () => {
       populate: {
         path: "therapistId",
         model: "therapist",
+      },
+    }) .populate({
+      path: "comments",
+      populate: {
+        path: "clientId",
+        model: "client",
       },
     });
   if (!response) throw new Error("Posts Could not be Found");
