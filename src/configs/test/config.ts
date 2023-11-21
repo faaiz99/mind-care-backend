@@ -1,8 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { httpServer } from "../../app.js";
 import { afterAll } from "@jest/globals";
-
+import { httpServer } from "../../../src/app.js";
 afterAll(async () => {
   httpServer.close();
 });

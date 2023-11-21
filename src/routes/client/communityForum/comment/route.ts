@@ -12,11 +12,11 @@ import {
   reportComment,
 } from "../../../../controllers/comment.controller.js";
 
-router.get("/comments", getComments);
+router.get("/comments/:id", getComments);
 
-router.post("/comments", createComment);
+router.post("/comments/:id", createComment);
 
-router.post("/reply-to-comment", replyComment);
+router.post("/reply-to-comment/:id", replyComment);
 
 router.patch("/comments/:id", updateComment);
 
@@ -27,5 +27,7 @@ router.post("/report-comments/:id", reportComment);
 router.post("/upvote-comments/:id", upvoteComment);
 
 router.post("/downvote-comments/:id", downvoteComment);
+
+
 
 export { router as commentRoutes };

@@ -116,7 +116,17 @@
     "server.ts",
     "./*.js",
     "src/**/*.ts",
-    "test/**/*.js",
-    "jest.config.ts"
+    "src/__tests__/therapist.test.js",
+    "src/__tests__/payment.test.js",
+    "src/__tests__/client.test.js",
+    "src/__tests__/appointment.test.js",
+    "src/__tests__/app.test.js",
+    "src/__tests__/admin.test.js"
+    // "test/**/*.ts",
+    // "jest.config.ts"
+  ],
+  "exclude": [
+    // "test/**/*.ts",
+    // "jest.config.ts"
   ]
 }
