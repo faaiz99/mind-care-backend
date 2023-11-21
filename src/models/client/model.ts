@@ -45,7 +45,7 @@ const clientSchema = new Schema<IClient>({
   },
   violation: {
     type: String,
-    required: true,
+    required: false,
   },
   isBlocked: {
     type: Boolean,
