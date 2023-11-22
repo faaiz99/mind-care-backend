@@ -69,7 +69,23 @@ export const getComments = async (id: string) => {
     .populate({
       path: "therapistId",
       model: "therapist",
-    });
+    })
+    .populate({
+      path: "clientId",
+      model: "client",
+    })
+    .populate({
+      path: "postId",
+      model: "post",
+    })
+    .populate({
+      path: "upvotes",
+      model: "upvote",
+    })
+    .populate({
+      path: "downvotes",
+      model: "downvote",
+    })
   if (!response) throw new Error("Comments Could not be Retrieved");
   return response;
 };
