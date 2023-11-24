@@ -93,8 +93,9 @@ export const removeUpvotePost: RequestHandler = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
+    
     const data = await postService.removeUpvotePost(
-      req.params.did,
+      req.params.uid,
       req.params.pid,
     );
     handleResponse(res, 200, data);
@@ -110,7 +111,7 @@ export const removeDownvotePost: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.removeDownvotePost(
-      req.params.uid,
+      req.params.did,
       req.params.pid,
     );
     handleResponse(res, 200, data);
