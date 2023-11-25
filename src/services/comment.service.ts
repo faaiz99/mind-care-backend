@@ -5,6 +5,8 @@ import { Report } from "../models/communityForums/report/model.js";
 import { Post } from "../models/communityForums/post/model.js";
 import { IComment } from "../types/IComment.js";
 import { IReport } from "../types/IReport.js";
+import { IUpvote } from "../types/IUpvote.js";
+import { IDownvote } from "../types/IDownvote.js";
 
 export const createComment = async (id: string, comment: IComment) => {
   const responseDB = await Comment.create(comment);
@@ -89,24 +91,60 @@ export const getComments = async (id: string) => {
   return response;
 };
 
-export const upvoteComment = async (comment: IComment, id: string) => {
-  const upvote = await Upvote.create(comment);
+export const upvoteComment = async (upvote:IUpvote, id: string) => {
+  const { therapistId, commentId, clientId } = upvote;
+  // When upvote
+  if (therapistId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInUpvoteVote = await Downvote.findOneAndDelete({
+      commentId: commentId,
+      therapistId: therapistId,
+    });
+  }
+  else if (clientId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInUpvoteVote = await Downvote.findOneAndDelete({
+      commentId: commentId,
+      clientId: clientId,
+    });
+  }
+  // When upvote
+  const upvoteInDB = await Upvote.create(upvote);
+  // CREATE A NEW UPVOTE WHEN IT DOES NOT EXISTS
+  if (!upvoteInDB) throw new Error("Upvote Could not be Created");
   const response = await Comment.findOneAndUpdate(
     { _id: id },
     {
-      $push: { upvotes: upvote },
+      $push: { upvotes: upvoteInDB },
     },
   );
   if (!response) throw new Error("Comment Could not be Upvoted");
   return response;
 };
 
-export const downvoteComment = async (comment: IComment, id: string) => {
-  const downvote = await Downvote.create(comment);
+export const downvoteComment = async (downvote:IDownvote, id: string) => {
+  const { therapistId, commentId, clientId } = downvote;
+  // When upvote
+  if (therapistId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInUpvoteVote = await Upvote.findOneAndDelete({
+      commentId: commentId,
+      therapistId: therapistId,
+    });
+  }
+  else if (clientId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInUpvoteVote = await Upvote.findOneAndDelete({
+      commentId: commentId,
+      clientId: clientId,
+    });
+  }
+  const downvoteInDB = await Downvote.create(downvote);
+  if (!downvoteInDB) throw new Error("Downvote Could not be Created");
   const response = await Comment.findOneAndUpdate(
     { _id: id },
     {
-      $push: { downvotes: downvote },
+      $push: { downvotes: downvoteInDB },
     },
   );
   if (!response) throw new Error("Comment Could not be Downvoted");

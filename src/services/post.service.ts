@@ -6,7 +6,7 @@ import { IPost } from "../types/IPost.js";
 import { IUpvote } from "../types/IUpvote.js";
 import { IDownvote } from "../types/IDownvote.js";
 import { IReport } from "../types/IReport.js";
-export const getTrendingPosts = async () => {};
+export const getTrendingPosts = async () => { };
 
 export const getMostRecentPosts = () => {
   //TBD
@@ -140,14 +140,22 @@ export const getPost = async (id: string) => {
 };
 
 export const upvotePost = async (upvote: IUpvote, id: string) => {
-  const { therapistId, postId } = upvote;
+  const { therapistId, postId, clientId } = upvote;
+  if (therapistId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInDownVote = await Downvote.findOneAndDelete({
+      postId: postId,
+      therapistId: therapistId,
+    });
+  }
+  else if (clientId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInDownVote = await Downvote.findOneAndDelete({
+      postId: postId,
+      clientId: clientId,
+    });
+  }
   // When upvote
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const existsInDownVote = await Downvote.findOneAndDelete({
-    postId: postId,
-    therapistId: therapistId,
-  });
-  //throw new Error('Not exists in Downvote')
   const upvoteInDB = await Upvote.create(upvote);
   // CREATE A NEW UPVOTE WHEN IT DOES NOT EXISTS
   if (!upvoteInDB) throw new Error("Upvote Could not be Created");
@@ -162,13 +170,22 @@ export const upvotePost = async (upvote: IUpvote, id: string) => {
 };
 
 export const downvotePost = async (downvote: IDownvote, id: string) => {
-  const { therapistId, postId } = downvote;
+  const { therapistId, postId, clientId } = downvote;
   // When upvote
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const existsInUpvoteVote = await Upvote.findOneAndDelete({
-    postId: postId,
-    therapistId: therapistId,
-  });
+  if (therapistId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInUpvoteVote = await Upvote.findOneAndDelete({
+      postId: postId,
+      therapistId: therapistId,
+    });
+  }
+  else if (clientId) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const existsInUpvoteVote = await Upvote.findOneAndDelete({
+      postId: postId,
+      clientId: clientId,
+    });
+  }
   const downvoteInDB = await Downvote.create(downvote);
   if (!downvote) throw new Error("Downvote Could not be Created");
   const response = await Post.findOneAndUpdate(
