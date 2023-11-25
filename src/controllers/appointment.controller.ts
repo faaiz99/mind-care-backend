@@ -108,7 +108,6 @@ export const getAppointmentsTherapist: RequestHandler = async (
   }
 };
 
-// Request Handlers for Session Notes and Therapist Reviews
 export const addSessionNotes: RequestHandler = async (
   req: Request,
   res: Response,
