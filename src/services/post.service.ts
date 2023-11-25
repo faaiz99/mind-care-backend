@@ -6,7 +6,7 @@ import { IPost } from "../types/IPost.js";
 import { IUpvote } from "../types/IUpvote.js";
 import { IDownvote } from "../types/IDownvote.js";
 import { IReport } from "../types/IReport.js";
-export const getTrendingPosts = async () => { };
+export const getTrendingPosts = async () => {};
 
 export const getMostRecentPosts = () => {
   //TBD
@@ -147,8 +147,7 @@ export const upvotePost = async (upvote: IUpvote, id: string) => {
       postId: postId,
       therapistId: therapistId,
     });
-  }
-  else if (clientId) {
+  } else if (clientId) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const existsInDownVote = await Downvote.findOneAndDelete({
       postId: postId,
@@ -178,8 +177,7 @@ export const downvotePost = async (downvote: IDownvote, id: string) => {
       postId: postId,
       therapistId: therapistId,
     });
-  }
-  else if (clientId) {
+  } else if (clientId) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const existsInUpvoteVote = await Upvote.findOneAndDelete({
       postId: postId,

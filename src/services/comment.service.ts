@@ -91,7 +91,7 @@ export const getComments = async (id: string) => {
   return response;
 };
 
-export const upvoteComment = async (upvote:IUpvote, id: string) => {
+export const upvoteComment = async (upvote: IUpvote, id: string) => {
   const { therapistId, commentId, clientId } = upvote;
   // When upvote
   if (therapistId) {
@@ -100,8 +100,7 @@ export const upvoteComment = async (upvote:IUpvote, id: string) => {
       commentId: commentId,
       therapistId: therapistId,
     });
-  }
-  else if (clientId) {
+  } else if (clientId) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const existsInUpvoteVote = await Downvote.findOneAndDelete({
       commentId: commentId,
@@ -122,7 +121,7 @@ export const upvoteComment = async (upvote:IUpvote, id: string) => {
   return response;
 };
 
-export const downvoteComment = async (downvote:IDownvote, id: string) => {
+export const downvoteComment = async (downvote: IDownvote, id: string) => {
   const { therapistId, commentId, clientId } = downvote;
   // When upvote
   if (therapistId) {
@@ -131,8 +130,7 @@ export const downvoteComment = async (downvote:IDownvote, id: string) => {
       commentId: commentId,
       therapistId: therapistId,
     });
-  }
-  else if (clientId) {
+  } else if (clientId) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const existsInUpvoteVote = await Upvote.findOneAndDelete({
       commentId: commentId,

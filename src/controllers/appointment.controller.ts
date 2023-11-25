@@ -12,7 +12,7 @@ export const createAppointment: RequestHandler = async (
     const data = await appointmentService.createAppointment(req.body);
     handleResponse(res, 201, data);
   } catch (error) {
-    handleError(error, res, next); 
+    handleError(error, res, next);
   }
 };
 

@@ -15,7 +15,6 @@ import { preflight } from "./middlewares/preflight/middleware.js";
 import webpush from "web-push";
 import { limiter } from "./utils/rate-limiter.util.js";
 
-
 // import compression from 'compression'
 // import swaggerUi from 'swagger-ui-express'
 // import swaggerJSDoc from "swagger-jsdoc";
@@ -58,7 +57,7 @@ if (process.env.NODE_ENV === "production") {
 }
 const baseUrl: string = "/api/v1";
 export const app: Application = express();
-app.use(limiter)
+app.use(limiter);
 // const swaggerSpec = swaggerJSDoc(options);
 
 // app.use(compression)
@@ -85,7 +84,6 @@ app.use(`${baseUrl}/admin`, adminRouter);
 app.get(`${baseUrl}`, (req, res): void => {
   res.send("Mind Care API");
 });
-
 
 app.use(notFound);
 app.use(handleError);
