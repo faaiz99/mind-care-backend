@@ -125,9 +125,9 @@ export const reportComment = async (reportComment: IReport, id: string) => {
   return response;
 };
 
-export const removeUpvoteComment = async (uid: string, pid: string) => {
+export const removeUpvoteComment = async (uid: string, cid: string) => {
   const response = await Comment.findOneAndUpdate(
-    { _id: pid },
+    { _id: cid },
     {
       $pull: {
         upvotes: uid,
@@ -141,9 +141,9 @@ export const removeUpvoteComment = async (uid: string, pid: string) => {
   return response;
 };
 
-export const removeDownvoteComment = async (did: string, pid: string) => {
+export const removeDownvoteComment = async (did: string, cid: string) => {
   const response = await Comment.findOneAndUpdate(
-    { _id: pid },
+    { _id: cid },
     {
       $pull: {
         downvotes: did,

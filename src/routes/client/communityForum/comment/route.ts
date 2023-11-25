@@ -30,8 +30,8 @@ router.post("/upvote-comments/:id", upvoteComment);
 
 router.post("/downvote-comments/:id", downvoteComment);
 
-router.delete("/upvote-post/:pid/:uid", removeUpvoteComment);
+router.delete("/upvote-comment/:cid/:uid", removeUpvoteComment);
 
-router.delete("/downvote-post/:pid/:did", removeDownvoteComment);
+router.delete("/downvote-comment/:cid/:did", removeDownvoteComment);
 
 export { router as commentRoutes };

@@ -118,7 +118,7 @@ export const removeUpvoteComment: RequestHandler = async (
   try {
     const data = await commentService.removeUpvoteComment(
       req.params.uid,
-      req.params.pid,
+      req.params.cid,
     );
     handleResponse(res, 200, data);
   } catch (error) {
@@ -134,7 +134,7 @@ export const removeDownvoteComment: RequestHandler = async (
   try {
     const data = await commentService.removeDownvoteComment(
       req.params.did,
-      req.params.pid,
+      req.params.cid,
     );
     handleResponse(res, 200, data);
   } catch (error) {
