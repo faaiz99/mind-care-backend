@@ -3,7 +3,6 @@ import * as appointmentService from "../services/appointment.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
 
-// Request Handlers for Appointments
 export const createAppointment: RequestHandler = async (
   req: Request,
   res: Response,
@@ -13,7 +12,7 @@ export const createAppointment: RequestHandler = async (
     const data = await appointmentService.createAppointment(req.body);
     handleResponse(res, 201, data);
   } catch (error) {
-    handleError(error, res, next); // Conflict when appointment cannot be created
+    handleError(error, res, next); 
   }
 };
 

@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { IFitness } from "../../../types/ISleepTracker.js";
 
-const fitnessSchema = new Schema({
+const fitnessSchema = new Schema<IFitness>({
   clientId: {
     type: Schema.Types.ObjectId,
     ref: "client",
@@ -30,4 +31,5 @@ const fitnessSchema = new Schema({
     required: false,
   },
 });
-export const Fitness = model("fitness", fitnessSchema);
+
+export const Fitness: Model<IFitness> = model("Fitness", fitnessSchema);

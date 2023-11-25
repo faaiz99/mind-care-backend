@@ -15,3 +15,13 @@ export interface ISleepTracker extends Document {
   clientId: Schema.Types.ObjectId;
   sleepSchedule: ISleepSchedule[];
 }
+
+export interface IFitness extends Document {
+  clientId: Schema.Types.ObjectId;
+  height: number;
+  weight: number;
+  steps?: number;
+  distanceTravalled?: number;
+  logDate: Date;
+  bmi?: number;
+}
