@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { IFeedback } from "../../../types/ITherapistReview.js";
 
-const feedbackSchema = new Schema({
+const feedbackSchema = new Schema<IFeedback>({
   clientName: {
     type: String,
     required: true,
@@ -14,4 +15,7 @@ const feedbackSchema = new Schema({
   },
 });
 
-export const feedbackModel = model("feedback", feedbackSchema);
+export const FeedbackModel: Model<IFeedback> = model(
+  "Feedback",
+  feedbackSchema,
+);

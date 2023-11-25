@@ -1,5 +1,15 @@
-import { model, Schema } from "mongoose";
-const notificationSchema = new Schema({
+import { Schema, model, Document, Model } from "mongoose";
+
+export interface INotification extends Document {
+  clientId: Schema.Types.ObjectId;
+  therapistId: Schema.Types.ObjectId;
+  notificationBody: string;
+  notificationTitle: string;
+  notificationTime: Date;
+  read: boolean;
+}
+
+const notificationSchema = new Schema<INotification>({
   clientId: {
     type: Schema.Types.ObjectId,
     ref: "client",
@@ -26,4 +36,7 @@ const notificationSchema = new Schema({
   },
 });
 
-export const Notification = model("notification", notificationSchema);
+export const Notification: Model<INotification> = model(
+  "notification",
+  notificationSchema,
+);

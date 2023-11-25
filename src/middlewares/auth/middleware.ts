@@ -3,13 +3,14 @@ import { IToken } from "../../types/ITokens.js";
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-// const { ACCESS_JWT_SECRET, REFRESH_JWT_SECRET } = process.env
+let ACCESS_JWT_SECRET = process.env.ACCESS_JWT_SECRET;
+let REFRESH_JWT_SECRET = process.env.REFRESH_JWT_SECRET;
+
 if (process.env.NODE_ENV !== "production") {
-  const ACCESS_JWT_SECRET = dotenv.config().parsed?.ACCESS_JWT_SECRET;
-  const REFRESH_JWT_SECRET = dotenv.config().parsed?.REFRESH_JWT_SECRET;
+  const dotenvConfig = dotenv.config().parsed;
+  ACCESS_JWT_SECRET = dotenvConfig?.ACCESS_JWT_SECRET;
+  REFRESH_JWT_SECRET = dotenvConfig?.REFRESH_JWT_SECRET;
 }
-const ACCESS_JWT_SECRET = process.env.ACCESS_JWT_SECRET;
-const REFRESH_JWT_SECRET = process.env.REFRESH_JWT_SECRET;
 
 export const authenticateToken: RequestHandler = async (
   req: Request,

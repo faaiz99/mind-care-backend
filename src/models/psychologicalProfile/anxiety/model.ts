@@ -3,7 +3,7 @@ import { IBeckAnxiety } from "../../../types/IAnxiety.js";
 const BeckAnxietySchema = new Schema<IBeckAnxiety>({
   clientId: {
     type: Schema.Types.ObjectId,
-    ref: "client", // Assuming you have a User model
+    ref: "client",
     required: true,
   },
   responses: [

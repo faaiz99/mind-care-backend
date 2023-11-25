@@ -4,7 +4,6 @@ import { beckAnxiety } from "../models/psychologicalProfile/anxiety/model.js";
 import { IBeckAnxiety } from "../types/IAnxiety.js";
 import { IBeckDepression } from "../types/IDepression.js";
 import { IPsychologicalProfile } from "../types/IPsychologicalProfile.js";
-import { options } from "../utils/swagger.util.js";
 
 export const buildPsychologicalProfile = async (
   id: string,

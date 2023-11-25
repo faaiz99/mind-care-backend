@@ -1,10 +1,6 @@
 import { Router } from "express";
 const router: Router = Router();
-
-import {
-  authenticateToken,
-  revalidateToken,
-} from "../../../middlewares/auth/middleware.js";
+import { revalidateToken } from "../../../middlewares/auth/middleware.js";
 import {
   signup,
   login,

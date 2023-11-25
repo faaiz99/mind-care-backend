@@ -1,4 +1,11 @@
-import { Document } from "mongoose";
+import { Document, Schema } from "mongoose";
+
+export interface ITherapistRemark extends Document {
+  createdAt: Date;
+  body: string;
+  therapist: Schema.Types.ObjectId;
+  client: Schema.Types.ObjectId;
+}
 
 export interface ITherapist extends Document {
   firstName: string;

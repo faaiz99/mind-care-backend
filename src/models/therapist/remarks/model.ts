@@ -1,6 +1,7 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { ITherapistRemark } from "../../../types/ITherapist.js";
 
-const therapistRemarksSchema = new Schema({
+const therapistRemarksSchema = new Schema<ITherapistRemark>({
   createdAt: {
     type: Date,
   },
@@ -8,14 +9,16 @@ const therapistRemarksSchema = new Schema({
     type: String,
   },
   therapist: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "therapist",
   },
   client: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
   },
 });
 
-const therapistRemarks = model("therapistRemarks", therapistRemarksSchema);
-module.exports = therapistRemarks;
+export const TherapistRemarks: Model<ITherapistRemark> = model(
+  "TherapistRemarks",
+  therapistRemarksSchema,
+);

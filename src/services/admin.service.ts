@@ -60,10 +60,6 @@ export const getReportedComments = async () => {
       model: "therapist",
     })
     .exec();
-  // const response = await Comment.find({
-  //   commentReport: { $exists: true, $not: { $size: 0 } },
-  // });
-
   if (!response) throw new Error("No reported comments found");
   return response;
 };
@@ -83,9 +79,7 @@ export const getReportedPosts = async () => {
       model: "therapist",
     })
     .exec();
-  // const response = await Post.find({
-  //   postReport: { $exists: true, $not: { $size: 0 } },
-  // });
+
   if (!response) throw new Error("No reported posts found");
   return response;
 };

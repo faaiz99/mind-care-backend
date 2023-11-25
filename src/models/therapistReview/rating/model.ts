@@ -1,9 +1,10 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { IRating } from "../../../types/ITherapistReview.js";
 
-const ratingSchema = new Schema({
+const ratingSchema = new Schema<IRating>({
   numberOfStars: {
     type: Number,
   },
 });
 
-export const ratingModel = model("rating", ratingSchema);
+export const RatingModel: Model<IRating> = model("Rating", ratingSchema);

@@ -1,4 +1,5 @@
 import { Notification } from "../models/notification/notification.model.js";
+import { INotification } from "../types/INotification.js";
 
 export const getNotificationsTherapist = async (id: string) => {
   const response = await Notification.find({ therapistId: id });
@@ -32,27 +33,25 @@ export const deleteNotificationById = async (id: string) => {
   return response;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createNotificationClient = async (
-  notification: any,
+  notification: INotification,
   id: string,
 ) => {
   const response = await Notification.create({
-    clientId: id,
     ...notification,
+    clientId: id,
   });
   if (!response) throw new Error(`Notification Created: ${id}`);
   return response;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createNotificationTherapist = async (
-  notification: any,
+  notification: INotification,
   id: string,
 ) => {
   const response = await Notification.create({
-    therapistId: id,
     ...notification,
+    therapistId: id,
   });
   if (!response) throw new Error(`Notification Created: ${id}`);
   return response;
