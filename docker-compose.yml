@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  # Backend service
+  backend:
+    image: node:18  # You can change the Node.js version as needed
+    working_dir: /app
+    volumes:
+      - ./backend:/app  # Mount your local backend code into the container
+    ports:
+      - "${PORT}:${API_PORT}"  # Map your local port to the container's port
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      API_PORT: ${API_PORT}
+      MONGO_URI: ${MONGO_URI}
+      ACCESS_JWT_SECRET: ${ACCESS_JWT_SECRET}
+      REFRESH_JWT_SECRET: ${REFRESH_JWT_SECRET}
+      API_URL: ${API_URL}
+      MOBILE_URL: ${MOBILE_URL}
+      FRONT_END: ${FRONT_END}
+      PUB_STRIPE: ${PUB_STRIPE}
+      SECRET_STRIPE: ${SECRET_STRIPE}
+      VPublicKey: ${VPublicKey}
+      VPrivateKey: ${VPrivateKey}
+    command: npm start  # Use your start command
