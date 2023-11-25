@@ -10,6 +10,8 @@ import {
   upvoteComment,
   downvoteComment,
   reportComment,
+  removeDownvoteComment,
+  removeUpvoteComment,
 } from "../../../../controllers/comment.controller.js";
 
 router.get("/comments/:id", getComments);
@@ -28,6 +30,8 @@ router.post("/upvote-comments/:id", upvoteComment);
 
 router.post("/downvote-comments/:id", downvoteComment);
 
+router.delete("/upvote-post/:pid/:uid", removeUpvoteComment);
 
+router.delete("/downvote-post/:pid/:did", removeDownvoteComment);
 
 export { router as commentRoutes };

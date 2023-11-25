@@ -47,17 +47,19 @@ export const getReportedAcccounts = async () => {
 
 export const getReportedComments = async () => {
   const response = await Report.find({})
-  .populate({
-    path: "commentId",
-    model: "comment",
-  }).populate({
-    path: "clientId",
-    model: "client",
-  }).populate({
-    path: "therapistId",
-    model: "therapist",
-  })
-  .exec();
+    .populate({
+      path: "commentId",
+      model: "comment",
+    })
+    .populate({
+      path: "clientId",
+      model: "client",
+    })
+    .populate({
+      path: "therapistId",
+      model: "therapist",
+    })
+    .exec();
   // const response = await Comment.find({
   //   commentReport: { $exists: true, $not: { $size: 0 } },
   // });
@@ -68,17 +70,19 @@ export const getReportedComments = async () => {
 
 export const getReportedPosts = async () => {
   const response = await Report.find({})
-  .populate({
-    path: "postId",
-    model: "post",
-  }).populate({
-    path: "clientId",
-    model: "client",
-  }).populate({
-    path: "therapistId",
-    model: "therapist",
-  })
-  .exec();
+    .populate({
+      path: "postId",
+      model: "post",
+    })
+    .populate({
+      path: "clientId",
+      model: "client",
+    })
+    .populate({
+      path: "therapistId",
+      model: "therapist",
+    })
+    .exec();
   // const response = await Post.find({
   //   postReport: { $exists: true, $not: { $size: 0 } },
   // });
@@ -113,7 +117,7 @@ export const handleReportPosts = async (action: string, id: string) => {
     const response = await Post.updateOne(
       { _id: id, postReport: { $exists: true, $not: { $size: 0 } } },
       { $set: { body: "removed by admin" } },
-      { new: true}
+      { new: true },
     );
     if (!response) throw new Error("Post could not be found");
     return response;
@@ -125,7 +129,7 @@ export const handleReportPosts = async (action: string, id: string) => {
           postReport: [],
         },
       },
-      { new: true}
+      { new: true },
     );
     if (!response) throw new Error("Post could not be found");
     return response;
@@ -199,7 +203,7 @@ export const handleBlockAccount = async (
           isBlocked: isBlocked,
         },
       },
-      { new: true}
+      { new: true },
     );
     if (!response) throw new Error("Account could not be found");
     return response;
@@ -212,7 +216,7 @@ export const handleBlockAccount = async (
           isBlocked: isBlocked,
         },
       },
-      { new: true}
+      { new: true },
     );
 
     if (!response) throw new Error("Account could not be found");

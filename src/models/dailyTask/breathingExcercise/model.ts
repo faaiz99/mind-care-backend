@@ -1,8 +1,9 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { IBreathingExercise } from "../../../types/IReminder.js";
 
-const breathingExcerciseSchema = new Schema({
+const breathingExcerciseSchema = new Schema<IBreathingExercise>({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
   },
   createdAt: {
@@ -14,7 +15,7 @@ const breathingExcerciseSchema = new Schema({
   },
 });
 
-export const BreathingExcercise = model(
-  "breathingExcerciseSchema",
+export const BreathingExcercise: Model<IBreathingExercise> = model(
+  "BreathingExcercise",
   breathingExcerciseSchema,
 );

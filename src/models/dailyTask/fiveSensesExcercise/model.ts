@@ -1,8 +1,9 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { IFiveSensesExercise } from "../../../types/IReminder.js";
 
-const fiveSensesExcerciseSchema = new Schema({
+const fiveSensesExcerciseSchema = new Schema<IFiveSensesExercise>({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
   },
   createdAt: {
@@ -14,7 +15,7 @@ const fiveSensesExcerciseSchema = new Schema({
   },
 });
 
-export const FiveSensesExcercise = model(
-  "fiveSensesExcerciseSchema",
+export const FiveSensesExcercise: Model<IFiveSensesExercise> = model(
+  "FiveSensesExcercise",
   fiveSensesExcerciseSchema,
 );

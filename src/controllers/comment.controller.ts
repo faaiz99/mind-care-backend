@@ -109,3 +109,35 @@ export const reportComment: RequestHandler = async (
     handleError(error, res, next);
   }
 };
+
+export const removeUpvoteComment: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const data = await commentService.removeUpvoteComment(
+      req.params.uid,
+      req.params.pid,
+    );
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const removeDownvoteComment: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const data = await commentService.removeDownvoteComment(
+      req.params.did,
+      req.params.pid,
+    );
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};

@@ -11,7 +11,7 @@ import {
   upvotePost,
   downvotePost,
   removeDownvotePost,
-  removeUpvotePost
+  removeUpvotePost,
 } from "../../../../controllers/post.controller.js";
 
 router.get("/posts", getPosts); // Dynamic Feed

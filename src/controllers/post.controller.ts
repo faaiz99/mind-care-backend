@@ -7,13 +7,6 @@ export const createPost: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  // postId -> generate at creation
-  // clientId | therapist Id(one Must)
-  // pictureLink Optional
-  // Title
-  // Body
-  // tags
-
   try {
     const data = await postService.createPost(req.body);
     handleResponse(res, 200, data);
@@ -93,7 +86,6 @@ export const removeUpvotePost: RequestHandler = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    
     const data = await postService.removeUpvotePost(
       req.params.uid,
       req.params.pid,

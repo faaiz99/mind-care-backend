@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Comment } from "../models/communityForums/comment/model.js";
 import { Upvote } from "../models/communityForums/upvote/model.js";
 import { Downvote } from "../models/communityForums/downvote/model.js";
@@ -85,7 +84,7 @@ export const getComments = async (id: string) => {
     .populate({
       path: "downvotes",
       model: "downvote",
-    })
+    });
   if (!response) throw new Error("Comments Could not be Retrieved");
   return response;
 };
@@ -123,5 +122,37 @@ export const reportComment = async (reportComment: IReport, id: string) => {
     },
   );
   if (!response) throw new Error("Comment Could not be Reported");
+  return response;
+};
+
+export const removeUpvoteComment = async (uid: string, pid: string) => {
+  const response = await Comment.findOneAndUpdate(
+    { _id: pid },
+    {
+      $pull: {
+        upvotes: uid,
+      },
+    },
+    { new: true },
+  );
+  const removeUpvote = await Upvote.findOneAndDelete({ _id: uid });
+  if (!response && !removeUpvote)
+    throw new Error("Upvote Could not be Removed");
+  return response;
+};
+
+export const removeDownvoteComment = async (did: string, pid: string) => {
+  const response = await Comment.findOneAndUpdate(
+    { _id: pid },
+    {
+      $pull: {
+        downvotes: did,
+      },
+    },
+    { new: true },
+  );
+  const removeDownvote = await Downvote.findOneAndDelete({ _id: did });
+  if (!response && !removeDownvote)
+    throw new Error("Downvote Could not be Removed");
   return response;
 };

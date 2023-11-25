@@ -1,8 +1,9 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+import { IUnplugUnwindExercise } from "../../../types/IReminder.js";
 
-const unplugUnwindSchema = new Schema({
+const unplugUnwindSchema = new Schema<IUnplugUnwindExercise>({
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
   },
   createdAt: {
@@ -14,7 +15,7 @@ const unplugUnwindSchema = new Schema({
   },
 });
 
-export const UnplugUnwindExcercise = model(
-  "unplugUnwindExcerciseSchema",
+export const UnplugUnwindExcercise: Model<IUnplugUnwindExercise> = model(
+  "UnplugUnwindExcercise",
   unplugUnwindSchema,
 );

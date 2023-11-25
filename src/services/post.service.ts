@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Post } from "../models/communityForums/post/model.js";
 import { Upvote } from "../models/communityForums/upvote/model.js";
 import { Downvote } from "../models/communityForums/downvote/model.js";
@@ -80,7 +79,7 @@ export const getPosts = async () => {
         },
       },
     })
-     .populate({
+    .populate({
       path: "comments",
       populate: {
         path: "replies",
@@ -119,7 +118,8 @@ export const getPosts = async () => {
         path: "therapistId",
         model: "therapist",
       },
-    }) .populate({
+    })
+    .populate({
       path: "comments",
       populate: {
         path: "clientId",

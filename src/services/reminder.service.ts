@@ -4,52 +4,54 @@ import { IReminder } from "../types/IReminder.js";
 import { BreathingExcercise } from "../models/dailyTask/breathingExcercise/model.js";
 import { FiveSensesExcercise } from "../models/dailyTask/fiveSensesExcercise/model.js";
 import { UnplugUnwindExcercise } from "../models/dailyTask/unplugUnwindExcercise/model.js";
+import {
+  IBreathingExercise,
+  IFiveSensesExercise,
+  IUnplugUnwindExercise,
+} from "../types/IReminder.js";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createBreathingExcersiceByClientId = async (
-  breathingExcercise: any,
+  breathingExcercise: IBreathingExercise,
   id: string,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
   const response = await BreathingExcercise.findOneAndUpdate(
     { clientId: id },
     {
-      clientId: id,
       ...breathingExcercise,
+      clientId: id,
     },
     options,
   );
   if (!response) throw new Error("Breathing Excercise Could not be created");
   return response;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createFiveSensesExcersiceByClientId = async (
-  fiveSensesExcercise: any,
+  fiveSensesExcercise: IFiveSensesExercise,
   id: string,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
   const response = await FiveSensesExcercise.findOneAndUpdate(
     { clientId: id },
     {
-      clientId: id,
       ...fiveSensesExcercise,
+      clientId: id,
     },
     options,
   );
   if (!response) throw new Error("Five Senses Excercise Could not be created");
   return response;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createUnplugUnwindExcerciseByClientId = async (
-  unplugUnwindExcercise: any,
+  unplugUnwindExcercise: IUnplugUnwindExercise,
   id: string,
 ) => {
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
   const response = await UnplugUnwindExcercise.findOneAndUpdate(
     { clientId: id },
     {
-      clientId: id,
       ...unplugUnwindExcercise,
+      clientId: id,
     },
     options,
   );
