@@ -1,14 +1,14 @@
-version: '3'
+version: "3"
 
 services:
   # Backend service
   backend:
-    image: node:18  # You can change the Node.js version as needed
+    image: node:18 # You can change the Node.js version as needed
     working_dir: /app
     volumes:
-      - ./backend:/app  # Mount your local backend code into the container
+      - ./backend:/app # Mount your local backend code into the container
     ports:
-      - "${PORT}:${API_PORT}"  # Map your local port to the container's port
+      - "${PORT}:${API_PORT}" # Map your local port to the container's port
     environment:
       NODE_ENV: ${NODE_ENV}
       PORT: ${PORT}
@@ -23,4 +23,4 @@ services:
       SECRET_STRIPE: ${SECRET_STRIPE}
       VPublicKey: ${VPublicKey}
       VPrivateKey: ${VPrivateKey}
-    command: npm start  # Use your start command
+    command: npm start # Use your start command

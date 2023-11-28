@@ -79,7 +79,6 @@ export const getReportedPosts = async () => {
       model: "therapist",
     })
     .exec();
-
   if (!response) throw new Error("No reported posts found");
   return response;
 };
