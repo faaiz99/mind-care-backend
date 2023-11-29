@@ -160,3 +160,15 @@ export const about: RequestHandler = async (
     handleError(error, res, next);
   }
 };
+
+export const queryTherapist: RequestHandler = async (req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const data = await therapistService.queryTherapist(req.query);
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+}

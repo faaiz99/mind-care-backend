@@ -3,6 +3,7 @@ import { Therapist } from "../models/therapist/model.js";
 import { issueTokens } from "../middlewares/auth/middleware.js";
 import { emailSender, resetAccountPassword } from "../utils/sendmail.util.js";
 import { ITherapist } from "../types/ITherapist.js";
+import { FilterQuery } from "mongoose";
 
 export const changePassword = async (email: string, password: string) => {
   const client = await Therapist.findOneAndUpdate(
@@ -109,3 +110,14 @@ export const aboutTherapist = async (id: string) => {
   if (!response) throw new Error("Account could not be found");
   return response;
 };
+
+export const queryTherapist = async (query: unknown) => {
+  if (typeof query === 'object' && query !== null) {
+    console.log('Query: ', query)
+    const response = await Therapist.find(query as FilterQuery<ITherapist>);
+    if (!response) throw new Error("Therapist not found");
+    return response;
+  }
+  else 
+    throw new Error("Invalid query: ", query as ErrorOptions);
+}
