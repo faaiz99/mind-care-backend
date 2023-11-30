@@ -540,7 +540,7 @@ export const getJournals: RequestHandler = async (
       handleResponse(res, 200, JSON.parse(cacheResults), isCached);
     } else {
       const data = await journalService.getJournals(req.params.id);
-      await redisClient.set("journals", JSON.stringify(data),{
+      await redisClient.set("journals", JSON.stringify(data), {
         EX: 180,
         NX: true,
       });

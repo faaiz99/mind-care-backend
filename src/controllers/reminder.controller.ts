@@ -1,5 +1,5 @@
 import { Request, Response, RequestHandler, NextFunction } from "express";
-import redisClient from "../config/redis.js";
+import { redisClient } from "../configs/redis/config.js";
 import * as reminderService from "../services/reminder.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
@@ -113,7 +113,8 @@ export const getReminders: RequestHandler = async (
       const data = await reminderService.getReminders(req.params.id);
       await redisClient.set(
         `reminders-${req.params.id}`,
-        JSON.stringify(data),{
+        JSON.stringify(data),
+        {
           EX: 180,
           NX: true,
         },

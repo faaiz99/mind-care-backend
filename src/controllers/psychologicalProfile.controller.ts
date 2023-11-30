@@ -57,7 +57,8 @@ export const getPsychologicalProfile: RequestHandler = async (
       );
       await redisClient.set(
         `psychological-profile-${req.params.id}`,
-        JSON.stringify(data),{
+        JSON.stringify(data),
+        {
           EX: 180,
           NX: true,
         },

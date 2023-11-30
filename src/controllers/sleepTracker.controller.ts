@@ -20,7 +20,8 @@ export const getSleepStats: RequestHandler = async (
       const data = await sleepTrackerService.getSleepStats(req.params.id);
       await redisClient.set(
         `sleep-stats-${req.params.id}`,
-        JSON.stringify(data),{
+        JSON.stringify(data),
+        {
           EX: 180,
           NX: true,
         },

@@ -56,7 +56,7 @@ export const getPosts: RequestHandler = async (
       return;
     } else {
       const data = await postService.getPosts();
-      await redisClient.set("posts", JSON.stringify(data),{
+      await redisClient.set("posts", JSON.stringify(data), {
         EX: 180,
         NX: true,
       });

@@ -23,7 +23,8 @@ export const getAllRescueSession: RequestHandler = async (
       );
       await redisClient.set(
         `rescue-sessions-${req.params.id}`,
-        JSON.stringify(data),{
+        JSON.stringify(data),
+        {
           EX: 180,
           NX: true,
         },
