@@ -65,7 +65,10 @@ export const getComments: RequestHandler = async (
 ) => {
   try {
     const data = await commentService.getComments(req.params.id);
-    await redisClient.set(`comments-${req.params.id}`, JSON.stringify(data));
+    await redisClient.set(`comments-${req.params.id}`, JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    },);
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);

@@ -167,7 +167,7 @@ export const cachedReportedPosts = async (
   next: NextFunction,
 ) => {
   let isCached = false;
-  const cachedResults = await redisClient.get("reportedPosts");
+  const cachedResults = await redisClient.get("reported-posts");
   if (cachedResults) {
     isCached = true;
     handleResponse(res, 200, JSON.parse(cachedResults), isCached);
@@ -182,7 +182,7 @@ export const cachedReportedAccounts = async (
   next: NextFunction,
 ) => {
   let isCached = false;
-  const cachedResults = await redisClient.get("reportedAccounts");
+  const cachedResults = await redisClient.get("reported-dccounts");
   if (cachedResults) {
     isCached = true;
     handleResponse(res, 200, JSON.parse(cachedResults), isCached);
@@ -197,7 +197,7 @@ export const cachedDashboardData = async (
   next: NextFunction,
 ) => {
   let isCached = false;
-  const cachedResults = await redisClient.get("dashboardData");
+  const cachedResults = await redisClient.get("dashboard-data");
   if (cachedResults) {
     isCached = true;
     handleResponse(res, 200, JSON.parse(cachedResults), isCached);
@@ -212,7 +212,7 @@ export const cachedReportedComments = async (
   next: NextFunction,
 ) => {
   let isCached = false;
-  const cachedResults = await redisClient.get("reportedComments");
+  const cachedResults = await redisClient.get("reported-comments");
   if (cachedResults) {
     isCached = true;
     handleResponse(res, 200, JSON.parse(cachedResults), isCached);
