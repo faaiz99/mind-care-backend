@@ -2,6 +2,7 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as psychologicalProfileService from "../services/psychologicaProfile.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
+import { redisClient } from "../configs/redis/config.js";
 
 export const buildPsychologicalProfile: RequestHandler = async (
   req: Request,
@@ -41,11 +42,28 @@ export const getPsychologicalProfile: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
+  let isCached = false;
   try {
-    const data = await psychologicalProfileService.getPsychologicalProfile(
-      req.params.id,
+    const cachedData = await redisClient.get(
+      `psychological-profile-${req.params.id}`,
     );
-    handleResponse(res, 200, data);
+    if (cachedData) {
+      isCached = true;
+      handleResponse(res, 200, JSON.parse(cachedData), isCached);
+      return;
+    } else {
+      const data = await psychologicalProfileService.getPsychologicalProfile(
+        req.params.id,
+      );
+      await redisClient.set(
+        `psychological-profile-${req.params.id}`,
+        JSON.stringify(data),{
+          EX: 180,
+          NX: true,
+        },
+      );
+      handleResponse(res, 200, data);
+    }
   } catch (error) {
     handleError(error, res, next);
   }

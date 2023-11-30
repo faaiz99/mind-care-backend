@@ -185,7 +185,10 @@ export const getTherapists: RequestHandler = async (
       handleResponse(res, 200, JSON.parse(cacheResults), true);
     } else {
       const data = await appointmentService.getTherapists();
-      await redisClient.set("therapists", JSON.stringify(data));
+      await redisClient.set("therapists", JSON.stringify(data),{
+        EX: 180,
+        NX: true,
+      });
       handleResponse(res, 200, data, isCached);
     }
   } catch (error) {
