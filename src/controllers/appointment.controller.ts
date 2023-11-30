@@ -2,6 +2,7 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as appointmentService from "../services/appointment.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
+import { redisClient } from "../configs/redis/config.js";
 
 export const createAppointment: RequestHandler = async (
   req: Request,
@@ -22,6 +23,7 @@ export const getAppointment: RequestHandler = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
+
     const data = await appointmentService.getAppointment(req.params.id);
     if (data) {
       handleResponse(res, 200, data);
@@ -98,6 +100,7 @@ export const getAppointmentsTherapist: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
+
   try {
     const data = await appointmentService.getAppointmentsTherapist(
       req.params.id,
@@ -158,9 +161,19 @@ export const getTherapists: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
+  let isCached = false;
   try {
-    const data = await appointmentService.getTherapists();
-    handleResponse(res, 200, data);
+    const cacheResults = await redisClient.get("therapists");
+    if(cacheResults){
+      isCached = true;      
+      handleResponse(res, 200, JSON.parse(cacheResults), true);
+    }
+    else {
+      const data = await appointmentService.getTherapists();
+      await redisClient.set("therapists", JSON.stringify(data));
+      handleResponse(res, 200, data, isCached);
+    }
+  
   } catch (error) {
     handleError(error, res, next);
   }

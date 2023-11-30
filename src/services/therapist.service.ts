@@ -113,7 +113,6 @@ export const aboutTherapist = async (id: string) => {
 
 export const queryTherapist = async (query: unknown) => {
   if (typeof query === 'object' && query !== null) {
-    console.log('Query: ', query)
     const response = await Therapist.find(query as FilterQuery<ITherapist>);
     if (!response) throw new Error("Therapist not found");
     return response;
