@@ -27,7 +27,7 @@ export const createPayment = async (sessionCharges: number) => {
       },
     ],
     mode: "payment",
-    success_url: `${MOBILE_URL}/client?success=true`,
+    success_url: `${MOBILE_URL}`,
     cancel_url: `${MOBILE_URL}/client?canceled=true`,
   });
   return session;
