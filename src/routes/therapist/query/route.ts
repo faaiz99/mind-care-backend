@@ -1,7 +1,5 @@
 import { Router } from "express";
-import {
-queryTherapist
-} from "../../../controllers/therapist.controller.js"
+import { queryTherapist } from "../../../controllers/therapist.controller.js";
 
 const router: Router = Router();
 

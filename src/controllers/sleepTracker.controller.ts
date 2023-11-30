@@ -2,15 +2,28 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as sleepTrackerService from "../services/sleep.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
+import { redisClient } from "../configs/redis/config.js";
 
 export const getSleepStats: RequestHandler = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
+  let isCached = false;
   try {
-    const data = await sleepTrackerService.getSleepStats(req.params.id);
-    handleResponse(res, 200, data);
+    const cachedData = await redisClient.get(`sleep-stats-${req.params.id}`);
+    if (cachedData) {
+      isCached = true;
+      handleResponse(res, 200, JSON.parse(cachedData), isCached);
+      return;
+    } else {
+      const data = await sleepTrackerService.getSleepStats(req.params.id);
+      await redisClient.set(
+        `sleep-stats-${req.params.id}`,
+        JSON.stringify(data),
+      );
+      handleResponse(res, 200, data);
+    }
   } catch (error) {
     handleError(error, res, next);
   }

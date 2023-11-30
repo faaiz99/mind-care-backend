@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
+import { redisClient } from "../configs/redis/config.js";
 import * as postService from "../services/post.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
@@ -46,9 +47,18 @@ export const getPosts: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
+  let isCached = false;
   try {
-    const data = await postService.getPosts();
-    handleResponse(res, 200, data);
+    const cachedData = await redisClient.get("posts");
+    if (cachedData) {
+      isCached = true;
+      handleResponse(res, 200, JSON.parse(cachedData), isCached);
+      return;
+    } else {
+      const data = await postService.getPosts();
+      await redisClient.set("posts", JSON.stringify(data));
+      handleResponse(res, 200, data);
+    }
   } catch (error) {
     handleError(error, res, next);
   }

@@ -161,7 +161,8 @@ export const about: RequestHandler = async (
   }
 };
 
-export const queryTherapist: RequestHandler = async (req: Request,
+export const queryTherapist: RequestHandler = async (
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
@@ -171,4 +172,4 @@ export const queryTherapist: RequestHandler = async (req: Request,
   } catch (error) {
     handleError(error, res, next);
   }
-}
+};

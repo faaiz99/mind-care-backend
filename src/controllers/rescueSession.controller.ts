@@ -2,14 +2,31 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as rescueSessionService from "../services/rescueSession.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
+import { redisClient } from "../configs/redis/config.js";
 export const getAllRescueSession: RequestHandler = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
+  let isCached = false;
   try {
-    const data = await rescueSessionService.getAllRescueSessions(req.params.id);
-    handleResponse(res, 200, data);
+    const cachedData = await redisClient.get(
+      `rescue-sessions-${req.params.id}`,
+    );
+    if (cachedData) {
+      isCached = true;
+      handleResponse(res, 200, JSON.parse(cachedData), isCached);
+      return;
+    } else {
+      const data = await rescueSessionService.getAllRescueSessions(
+        req.params.id,
+      );
+      await redisClient.set(
+        `rescue-sessions-${req.params.id}`,
+        JSON.stringify(data),
+      );
+      handleResponse(res, 200, data);
+    }
   } catch (error) {
     handleError(error, res, next);
   }
