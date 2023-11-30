@@ -3,11 +3,15 @@ import { Payment } from "../models/payment/model.js";
 import { IPayment } from "../types/IPayment.js";
 import dotenv from "dotenv";
 
-let MOBILE_URL: string | undefined;
+let MOBILE_URL: string | undefined = process.env.MOBILE_URL;
 if (process.env.NODE_ENV !== "production") {
-  MOBILE_URL = dotenv.config().parsed?.MOBILE_URL;
+  dotenv.config();
+  MOBILE_URL = process.env.MOBILE_URL;
 }
 
+if (!MOBILE_URL) {
+  throw new Error("MOBILE_URL is not defined");
+}
 export const createPayment = async (sessionCharges: number) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [

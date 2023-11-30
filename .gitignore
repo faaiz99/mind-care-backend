@@ -2085,3 +2085,5 @@ dist/jest.config.js
 *.js
 *.map
 package-lock.json
+docker-compose.dev.yml
+docker-compose.yml
