@@ -48,21 +48,13 @@ export const getReportedPosts: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  let isCached = false;
   try {
-    const cachedResults = await redisClient.get("reportedPosts");
-    if (cachedResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cachedResults), isCached);
-    } else {
-      const data = await adminService.getReportedPosts();
-      await redisClient.set("reportedPosts", JSON.stringify(data), {
-        EX: 180,
-        NX: true,
-      });
-      handleResponse(res, 200, data, isCached);
-    }
-
+    const data = await adminService.getReportedPosts();
+    await redisClient.set("reportedPosts", JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -75,6 +67,10 @@ export const getReportedComments: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.getReportedComments();
+    await redisClient.set("reportedComments", JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
@@ -86,20 +82,13 @@ export const getReportedAcccounts: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  let isCached = false;
   try {
-    const cachedResults = await redisClient.get("reportedAccounts");
-    if (cachedResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cachedResults), isCached);
-    } else {
-      const data = await adminService.getReportedAcccounts();
-      await redisClient.set("reportedAccounts", JSON.stringify(data), {
-        EX: 180,
-        NX: true,
-      });
-      handleResponse(res, 200, data, isCached);
-    }
+    const data = await adminService.getReportedAcccounts();
+    await redisClient.set("reportedAccounts", JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
+    handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -168,20 +157,13 @@ export const getDashboardData: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  let isCached = false;
   try {
-    const cachedResults = await redisClient.get("dashboardData");
-    if (cachedResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cachedResults), isCached);
-    } else {
-      const data = await adminService.getDashboardData();
-      await redisClient.set("dashboardData", JSON.stringify(data), {
-        EX: 180,
-        NX: true,
-      });
-      handleResponse(res, 200, data, isCached);
-    }
+    const data = await adminService.getDashboardData();
+    await redisClient.set("dashboardData", JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
+    handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
   }

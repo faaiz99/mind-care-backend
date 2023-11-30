@@ -9,25 +9,17 @@ export const getSleepStats: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  let isCached = false;
   try {
-    const cachedData = await redisClient.get(`sleep-stats-${req.params.id}`);
-    if (cachedData) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cachedData), isCached);
-      return;
-    } else {
-      const data = await sleepTrackerService.getSleepStats(req.params.id);
-      await redisClient.set(
-        `sleep-stats-${req.params.id}`,
-        JSON.stringify(data),
-        {
-          EX: 180,
-          NX: true,
-        },
-      );
-      handleResponse(res, 200, data);
-    }
+    const data = await sleepTrackerService.getSleepStats(req.params.id);
+    await redisClient.set(
+      `sleep-stats-${req.params.id}`,
+      JSON.stringify(data),
+      {
+        EX: 180,
+        NX: true,
+      },
+    );
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

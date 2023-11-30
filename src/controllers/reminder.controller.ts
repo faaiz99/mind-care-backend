@@ -102,25 +102,13 @@ export const getReminders: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  let isCached = false;
   try {
-    const cacheResults = await redisClient.get(`reminders-${req.params.id}`);
-    if (cacheResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cacheResults), isCached);
-      return;
-    } else {
-      const data = await reminderService.getReminders(req.params.id);
-      await redisClient.set(
-        `reminders-${req.params.id}`,
-        JSON.stringify(data),
-        {
-          EX: 180,
-          NX: true,
-        },
-      );
-      handleResponse(res, 200, data);
-    }
+    const data = await reminderService.getReminders(req.params.id);
+    await redisClient.set(`reminders-${req.params.id}`, JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

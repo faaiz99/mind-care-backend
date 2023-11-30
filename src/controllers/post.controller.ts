@@ -47,21 +47,13 @@ export const getPosts: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  let isCached = false;
   try {
-    const cachedData = await redisClient.get("posts");
-    if (cachedData) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cachedData), isCached);
-      return;
-    } else {
-      const data = await postService.getPosts();
-      await redisClient.set("posts", JSON.stringify(data), {
-        EX: 180,
-        NX: true,
-      });
-      handleResponse(res, 200, data);
-    }
+    const data = await postService.getPosts();
+    await redisClient.set("posts", JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

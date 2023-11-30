@@ -28,8 +28,9 @@ import {
   updateSleep,
   createSleep,
 } from "../../../controllers/rescueSession.controller.js";
+import { cachedRescueSession } from "../../../middlewares/cached/cache.middleware.js";
 
-router.get("/rescue-sessions/:id", getAllRescueSession);
+router.get("/rescue-sessions/:id", cachedRescueSession, getAllRescueSession);
 
 router.get("/envy/:id", getEnvy);
 router.patch("/envy/:id", updateEnvy);

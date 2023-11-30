@@ -14,8 +14,7 @@ import {
   createFiveSensesExcersiceByClientId,
   createUnplugUnwindExcerciseByClientId,
 } from "../../../controllers/reminder.controller.js";
-
-// router.get('/reminders-/:id', getReminders)
+import { cachedReminders } from "../../../middlewares/cached/cache.middleware.js";
 
 router.post(
   "/unplug-unwind-excercise/:id",
@@ -29,7 +28,7 @@ router.get("/breathing-excercise/:id", getBreathingExcersiceByClientId);
 router.post("/five-senses-excercise/:id", createFiveSensesExcersiceByClientId);
 router.get("/five-senses-excercise/:id", getFiveSensesExcersiceByClientId);
 
-router.get("/reminders/:id", getReminders);
+router.get("/reminders/:id", cachedReminders, getReminders);
 
 router.post("/reminders/:id", createReminder);
 

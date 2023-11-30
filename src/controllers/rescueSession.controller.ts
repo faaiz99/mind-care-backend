@@ -8,29 +8,17 @@ export const getAllRescueSession: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  let isCached = false;
   try {
-    const cachedData = await redisClient.get(
+    const data = await rescueSessionService.getAllRescueSessions(req.params.id);
+    await redisClient.set(
       `rescue-sessions-${req.params.id}`,
+      JSON.stringify(data),
+      {
+        EX: 180,
+        NX: true,
+      },
     );
-    if (cachedData) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cachedData), isCached);
-      return;
-    } else {
-      const data = await rescueSessionService.getAllRescueSessions(
-        req.params.id,
-      );
-      await redisClient.set(
-        `rescue-sessions-${req.params.id}`,
-        JSON.stringify(data),
-        {
-          EX: 180,
-          NX: true,
-        },
-      );
-      handleResponse(res, 200, data);
-    }
+    handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
   }

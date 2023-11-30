@@ -13,8 +13,9 @@ import {
   removeDownvotePost,
   removeUpvotePost,
 } from "../../../../controllers/post.controller.js";
+import { cachedPosts } from "../../../../middlewares/cached/cache.middleware.js";
 
-router.get("/posts", getPosts); // Dynamic Feed
+router.get("/posts", cachedPosts, getPosts); // Dynamic Feed
 
 router.post("/posts", createPost);
 

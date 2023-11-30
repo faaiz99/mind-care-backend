@@ -86,22 +86,17 @@ export const getAppointmentsClient: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  let isCached = false;
   try {
-    const cacheResults = await redisClient.get("appointments-client");
-    if (cacheResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cacheResults), true);
-    } else {
-      const data = await appointmentService.getAppointmentsClient(
-        req.params.id,
-      );
-      await redisClient.set("appointments-client", JSON.stringify(data),{
+    const data = await appointmentService.getAppointmentsClient(req.params.id);
+    await redisClient.set(
+      `appointments-client-${req.params.id}`,
+      JSON.stringify(data),
+      {
         EX: 180,
         NX: true,
-      });
-      handleResponse(res, 200, data, isCached);
-    }
+      },
+    );
+    handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -112,22 +107,19 @@ export const getAppointmentsTherapist: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  let isCached = false;
   try {
-    const cacheResults = await redisClient.get("appointments-therapist");
-    if (cacheResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cacheResults), true);
-    } else {
-      const data = await appointmentService.getAppointmentsTherapist(
-        req.params.id,
-      );
-      await redisClient.set("appointments-therapist", JSON.stringify(data),{
+    const data = await appointmentService.getAppointmentsTherapist(
+      req.params.id,
+    );
+    await redisClient.set(
+      `appointments-therapist-${req.params.id}`,
+      JSON.stringify(data),
+      {
         EX: 180,
         NX: true,
-      });
-      handleResponse(res, 200, data, isCached);
-    }
+      },
+    );
+    handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
   }
@@ -183,20 +175,13 @@ export const getTherapists: RequestHandler = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  let isCached = false;
   try {
-    const cacheResults = await redisClient.get("therapists");
-    if (cacheResults) {
-      isCached = true;
-      handleResponse(res, 200, JSON.parse(cacheResults), true);
-    } else {
-      const data = await appointmentService.getTherapists();
-      await redisClient.set("therapists", JSON.stringify(data), {
-        EX: 180,
-        NX: true,
-      });
-      handleResponse(res, 200, data, isCached);
-    }
+    const data = await appointmentService.getTherapists();
+    await redisClient.set("therapists", JSON.stringify(data), {
+      EX: 180,
+      NX: true,
+    });
+    handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
   }
