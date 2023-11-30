@@ -56,7 +56,7 @@ export const getReportedPosts: RequestHandler = async (
       handleResponse(res, 200, JSON.parse(cachedResults), isCached);
     } else {
       const data = await adminService.getReportedPosts();
-      await redisClient.set("reportedPosts", JSON.stringify(data) {
+      await redisClient.set("reportedPosts", JSON.stringify(data), {
         EX: 180,
         NX: true,
       });
@@ -94,7 +94,7 @@ export const getReportedAcccounts: RequestHandler = async (
       handleResponse(res, 200, JSON.parse(cachedResults), isCached);
     } else {
       const data = await adminService.getReportedAcccounts();
-      await redisClient.set("reportedAccounts", JSON.stringify(data) {
+      await redisClient.set("reportedAccounts", JSON.stringify(data), {
         EX: 180,
         NX: true,
       });
@@ -176,7 +176,7 @@ export const getDashboardData: RequestHandler = async (
       handleResponse(res, 200, JSON.parse(cachedResults), isCached);
     } else {
       const data = await adminService.getDashboardData();
-      await redisClient.set("dashboardData", JSON.stringify(data) {
+      await redisClient.set("dashboardData", JSON.stringify(data), {
         EX: 180,
         NX: true,
       });
