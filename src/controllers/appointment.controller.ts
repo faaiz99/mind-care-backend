@@ -122,7 +122,7 @@ export const getAppointmentsTherapist: RequestHandler = async (
       const data = await appointmentService.getAppointmentsTherapist(
         req.params.id,
       );
-      await redisClient.set("appointments-therapist", JSON.stringify(data) {
+      await redisClient.set("appointments-therapist", JSON.stringify(data),{
         EX: 180,
         NX: true,
       });
