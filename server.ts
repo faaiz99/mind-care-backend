@@ -42,7 +42,7 @@ io.on("connection", async (socket) => {
 
   socket.on('send-message', (messageObject) => {
     messages.push(messageObject.message);
-    io.emit('get-message', messageObject.message);
+    io.emit('get-message', messageObject);
   });
 
 
