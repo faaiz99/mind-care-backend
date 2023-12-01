@@ -27,17 +27,17 @@ io.on("connection", async (socket) => {
 
     // Check if the user already exists in the onlineUsers array
     console.log("user", user)
-    const existingUser = onlineUsers.find(onlineUser => onlineUser.userId === user.userId);
-    if (!existingUser) {
+    // const existingUser = onlineUsers.find(onlineUser => onlineUser.userId === user.userId);
+    // if (!existingUser) {
       onlineUsers.push({ ...user, socketId: socket.id });
       const chatSession = await createChat(onlineUsers);
      // console.log("chatSession", chatSession)
      // console.log("chat initate", onlineUsers)
       io.emit('getOnlineUsers', onlineUsers);
-    }
-    else {
-      console.log("user already exist")
-    }
+    // }
+    // else {
+    //   console.log("user already exist")
+    // }
   });
 
   socket.on('send-message', (messageObject) => {
