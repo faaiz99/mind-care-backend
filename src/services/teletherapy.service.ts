@@ -132,6 +132,7 @@ export const getMessages = async (id: string) => {
 
 // Teletherapy
 export const createChat = async (onlineUsers: Array<IUserDetails>) => {
+  console.log("Online Users", onlineUsers)
   const clientUser = onlineUsers.find((user) => user.role === "client");
   const therapistUser = onlineUsers.find((user) => user.role === "therapist");
 
@@ -157,6 +158,7 @@ export const createChat = async (onlineUsers: Array<IUserDetails>) => {
         },
       ],
     });
+    console.log("New Chat Created", newChat)
 
     // Populate the client and therapist fields
     const populatedChat = await Teletherapy.findOne({ _id: newChat._id })
