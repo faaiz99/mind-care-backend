@@ -16,7 +16,6 @@ const messages: Array<string> = [];
 
 io.on("connection", async (socket) => {
   console.log("new user connected", socket.id);
-
   socket.on("addUser", async (user: IUserDetails) => {
     onlineUsers.push({ ...user, socketId: socket.id });
     io.emit("getOnlineUsers", onlineUsers);

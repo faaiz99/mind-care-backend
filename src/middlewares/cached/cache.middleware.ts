@@ -3,6 +3,38 @@ import { redisClient } from "../../configs/redis/config.js";
 import { handleResponse } from "../response/middleware.js";
 
 /**CLIENT */
+export const cachedClientChat = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  let isCached = false;
+  const cachedResults = await redisClient.get(
+    `chat-${req.params.cid}-${req.params.tid}`,
+  );
+  if (cachedResults) {
+    isCached = true;
+    handleResponse(res, 200, JSON.parse(cachedResults), isCached);
+  } else {
+    next();
+  }
+};
+/**CLIENT */
+export const cachedClientChats = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  let isCached = false;
+  const cachedResults = await redisClient.get(`chats-${req.params.id}`);
+  if (cachedResults) {
+    isCached = true;
+    handleResponse(res, 200, JSON.parse(cachedResults), isCached);
+  } else {
+    next();
+  }
+};
+/**CLIENT */
 export const cachedSleepStats = async (
   req: Request,
   res: Response,
@@ -121,6 +153,38 @@ export const cachedAppointmentsClient = async (
   const cachedResults = await redisClient.get(
     `appointments-client-${req.params.id}`,
   );
+  if (cachedResults) {
+    isCached = true;
+    handleResponse(res, 200, JSON.parse(cachedResults), isCached);
+  } else {
+    next();
+  }
+};
+/**CLIENT */
+export const cachedTherapistChat = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  let isCached = false;
+  const cachedResults = await redisClient.get(
+    `chat-${req.params.tid}-${req.params.cid}`,
+  );
+  if (cachedResults) {
+    isCached = true;
+    handleResponse(res, 200, JSON.parse(cachedResults), isCached);
+  } else {
+    next();
+  }
+};
+/**CLIENT */
+export const cachedTherapistChats = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  let isCached = false;
+  const cachedResults = await redisClient.get(`chats-${req.params.id}`);
   if (cachedResults) {
     isCached = true;
     handleResponse(res, 200, JSON.parse(cachedResults), isCached);
