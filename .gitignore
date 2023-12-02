@@ -2087,3 +2087,4 @@ dist/jest.config.js
 package-lock.json
 docker-compose.dev.yml
 docker-compose.yml
+jest.config.old.ts

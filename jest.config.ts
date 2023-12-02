@@ -2,11 +2,14 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  moduleDirectories: ["node_modules", "src"],
-  // globalSetup:"./src/config/setup.config.ts",
-  setupFilesAfterEnv: ["./src/configs/test/config.ts"],
+  moduleDirectories: ["node_modules"],
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
+  setupFilesAfterEnv: [
+    "./src/configs/test/config.ts",
+    "./src/configs/redis/redis.mock.ts",
+  ],
   testMatch: ["<rootDir>./src/__tests__/*.test.ts"],
   moduleNameMapper: {
-    "^@app/(.*)$": "<rootDir>/src/$1",
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
 };

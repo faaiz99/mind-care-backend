@@ -88,4 +88,6 @@ app.get(`${baseUrl}`, (req, res): void => {
 app.use(notFound);
 app.use(handleError);
 
+export default app;
+
 export const httpServer = createServer(app);
