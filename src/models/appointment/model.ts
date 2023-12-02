@@ -1,13 +1,13 @@
-import { Schema, model, Types, Model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
 import { IAppointment } from "../../types/IAppointment.js";
 
 const appointmentSchema = new Schema<IAppointment>({
   therapistId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "therapist",
   },
   clientId: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "client",
   },
   appointmentDate: {

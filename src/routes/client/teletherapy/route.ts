@@ -1,29 +1,13 @@
 import { Router } from "express";
 const router: Router = Router();
 import {
-  getCurrentChat,
-  getMessages,
-  getTherapistChats,
   getClientChats,
+  getClientChat,
+  saveChat,
 } from "../../../controllers/teletherapy.controller.js";
 
-/**
- * Chat API
- * -Used for creating connection between Client/Therapist
- * -Fetch Chat history
- * -Current Chat
- */
-
-router.get("/client-chat/:id", getClientChats);
-router.get("/therapist-chat/:id", getTherapistChats); // therapistId
-router.get("/current-chat/:cid/:tid", getCurrentChat);
-
-/**
- * Message API
- * -Used for sending/recieving messages
- * -Gets Messages by chatId
- */
-
-router.get("/messages/:id", getMessages);
+router.post("save-chat", saveChat);
+router.get("/client-chats/:id", getClientChats);
+router.get("/client-chat/:cid/:tid", getClientChat);
 
 export { router as teletherapyRoutes };
