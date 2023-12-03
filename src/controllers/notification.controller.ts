@@ -81,7 +81,7 @@ export const getNotificationsTherapist: RequestHandler = async (
       req.params.id,
     );
     const payload = JSON.stringify({
-      title: `Notifications`,
+      title: `Hello Mind Care`,
       body: `You have new notifications`,
     });
     const subscription = req.body;
