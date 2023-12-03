@@ -20,4 +20,5 @@ export interface ITeletherapy extends Document {
   role: string;
   receiverId: Schema.Types.ObjectId;
   chat: IMessage[];
+  completed?: boolean;
 }

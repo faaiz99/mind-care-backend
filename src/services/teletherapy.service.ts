@@ -8,7 +8,10 @@ export const saveChat = async (teletherapy: ITeletherapy) => {
       receiverId: teletherapy.receiverId,
     },
     {
-      $set: { role: teletherapy.role },
+      $set: { 
+        role: teletherapy.role,
+        completed: teletherapy.completed
+      },
       $push: { chat: { $each: teletherapy.chat } },
     },
     {

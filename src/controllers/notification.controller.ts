@@ -11,12 +11,11 @@ export const createNotificationTherapist: RequestHandler = async (
   try {
     const data = await notificationService.createNotificationTherapist(
       req.body,
-      req.params.id,
-    );
+      req.params.id,);
 
     const payload = JSON.stringify({
-      title: "Appointment Scheduled",
-      body: "You have a new appointment scheduled for tomorrow at 10:00 AM",
+      title: `${data.notificationTitle}`,
+      body: `${data.notificationBody}`,
     });
     const subscription = req.body;
     await webpush.sendNotification(subscription, payload);
@@ -81,6 +80,12 @@ export const getNotificationsTherapist: RequestHandler = async (
     const data = await notificationService.getNotificationsTherapist(
       req.params.id,
     );
+    const payload = JSON.stringify({
+      title: `Notifications`,
+      body: `You have new notifications`,
+    });
+    const subscription = req.body;
+    await webpush.sendNotification(subscription, payload);
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
