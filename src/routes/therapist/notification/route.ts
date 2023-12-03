@@ -8,6 +8,7 @@ import {
 } from "../../../controllers/notification.controller.js";
 
 router.get("/notifiation/:id", getNotificationsTherapist);
+router.post("/notifiation-sw/:id", getNotificationsTherapist);
 router.post("/notification/:id", createNotificationTherapist);
 router.patch("/notification/:id", markAsReadNotificationById);
 router.delete("/notification/:id", deleteNotificationById);
