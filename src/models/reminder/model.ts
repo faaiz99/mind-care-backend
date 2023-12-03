@@ -10,7 +10,7 @@ const reminderSchema = new Schema<IReminder>({
     type: String,
   },
   time: {
-    type: Date,
+    type: String,
   },
   repeatDaily: {
     type: Boolean,

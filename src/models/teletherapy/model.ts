@@ -48,9 +48,8 @@ const TeletherapySchema = new Schema<ITeletherapy>({
   completed: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
-
 });
 
 export const Teletherapy = model<ITeletherapy>(

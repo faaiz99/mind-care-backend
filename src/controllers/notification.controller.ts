@@ -11,7 +11,8 @@ export const createNotificationTherapist: RequestHandler = async (
   try {
     const data = await notificationService.createNotificationTherapist(
       req.body,
-      req.params.id,);
+      req.params.id,
+    );
 
     const payload = JSON.stringify({
       title: `${data.notificationTitle}`,
