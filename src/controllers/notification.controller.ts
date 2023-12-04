@@ -13,13 +13,6 @@ export const createNotificationTherapist: RequestHandler = async (
       req.body,
       req.params.id,
     );
-
-    const payload = JSON.stringify({
-      title: `${data.notificationTitle}`,
-      body: `${data.notificationBody}`,
-    });
-    const subscription = req.body;
-    await webpush.sendNotification(subscription, payload);
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
