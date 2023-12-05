@@ -121,3 +121,34 @@ export const getDepressionTest: RequestHandler = async (
     handleError(error, res, next);
   }
 };
+
+export const setDiagnosedResult: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await psychologicalProfileService.setDiagnosedResult(
+      req.body,
+      req.params.id,
+    );
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};
+
+export const getDiagnosedResult: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = await psychologicalProfileService.getDiagnosedResult(
+      req.params.id,
+    );
+    handleResponse(res, 200, data);
+  } catch (error) {
+    handleError(error, res, next);
+  }
+};

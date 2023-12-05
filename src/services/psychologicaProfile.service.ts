@@ -3,7 +3,10 @@ import { beckDepression } from "../models/psychologicalProfile/depression/model.
 import { beckAnxiety } from "../models/psychologicalProfile/anxiety/model.js";
 import { IBeckAnxiety } from "../types/IAnxiety.js";
 import { IBeckDepression } from "../types/IDepression.js";
-import { IPsychologicalProfile } from "../types/IPsychologicalProfile.js";
+import {
+  IPsychologicalProfile,
+  IDiagnosisResults,
+} from "../types/IPsychologicalProfile.js";
 
 export const buildPsychologicalProfile = async (
   id: string,
@@ -108,5 +111,30 @@ export const getAnxietyTest = async (id: string) => {
     clientId: id,
   });
   if (!response) throw new Error("Anxiety Test Could not be Found");
+  return response;
+};
+
+export const setDiagnosedResult = async (
+  diagnosisResults: IDiagnosisResults,
+  id: string,
+) => {
+  const response = await psychologicalProfile.findOneAndUpdate(
+    { clientId: id },
+    {
+      $set: {
+        diagnosedResult: diagnosisResults.diagnosedResult,
+        diagnosedResultPercentage: diagnosisResults.diagnosedResultPercentage,
+      },
+    },
+  );
+  if (!response) throw new Error("Diagnosed Result Could not be Set");
+  return response;
+};
+
+export const getDiagnosedResult = async (id: string) => {
+  const response = await psychologicalProfile.findOne({
+    clientId: id,
+  });
+  if (!response) throw new Error("Diagnosed Result Could not be Found");
   return response;
 };

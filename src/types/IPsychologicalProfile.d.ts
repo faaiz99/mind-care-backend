@@ -18,4 +18,11 @@ export interface IPsychologicalProfile extends Document {
   anxietyTestTime?: Date;
   depressionTestEnabled?: boolean;
   anxietyTestEnabled?: boolean;
+  diagnosedResult?: string;
+  diagnosedResultPercentage?: number;
+}
+
+export interface IDiagnosisResults {
+  diagnosedResult: string;
+  diagnosedResultPercentage: number;
 }

@@ -59,6 +59,14 @@ const psychologicalProfileSchema = new Schema<IPsychologicalProfile>({
     type: Boolean,
     required: false,
   },
+  diagnosedResult: {
+    type: String,
+    required: false,
+  },
+  diagnosedResultPercentage: {
+    type: Number,
+    required: false,
+  },
 });
 
 export const psychologicalProfile: Model<IPsychologicalProfile> =

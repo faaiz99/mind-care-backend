@@ -152,6 +152,5 @@ export const calculateSleepEfficiency = (sleepData: Array<ISleepSchedule>) => {
   if (totalTimeInBed <= 0) {
     throw new Error("Total time in bed must be greater than zero.");
   }
-
   return (totalSleepTime / totalTimeInBed) * 100; // Convert to a percentage
 };
