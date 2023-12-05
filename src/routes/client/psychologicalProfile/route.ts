@@ -29,7 +29,7 @@ router.post("/depression-test/:id", saveDepressionTest);
 router.get("/psychological-profile/:id", getPsychologicalProfile);
 router.get("/anxiety-test/:id", getAnxietyTest);
 router.get("/depression-test/:id", getDepressionTest);
-router.get("diagnosed-result/:id", getDiagnosedResult);
-router.post("diagnosed-result/:id", setDiagnosedResult);
+router.get("/diagnosed-result/:id", getDiagnosedResult);
+router.post("/diagnosed-result/:id", setDiagnosedResult);
 
 export { router as psychologicalProfileRoutes };

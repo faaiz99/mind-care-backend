@@ -125,6 +125,7 @@ export const setDiagnosedResult = async (
         diagnosedResult: diagnosisResults.diagnosedResult,
         diagnosedResultPercentage: diagnosisResults.diagnosedResultPercentage,
       },
+      returnOriginal: false,
     },
   );
   if (!response) throw new Error("Diagnosed Result Could not be Set");
