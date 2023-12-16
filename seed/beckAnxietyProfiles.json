@@ -1,0 +1,912 @@
+[
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd976d"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 1
+			},
+			{
+				"questionNumber": 2,
+				"response": 0
+			},
+			{
+				"questionNumber": 3,
+				"response": 3
+			},
+			{
+				"questionNumber": 4,
+				"response": 2
+			},
+			{
+				"questionNumber": 5,
+				"response": 3
+			},
+			{
+				"questionNumber": 6,
+				"response": 0
+			},
+			{
+				"questionNumber": 7,
+				"response": 3
+			},
+			{
+				"questionNumber": 8,
+				"response": 1
+			},
+			{
+				"questionNumber": 9,
+				"response": 1
+			},
+			{
+				"questionNumber": 10,
+				"response": 1
+			},
+			{
+				"questionNumber": 11,
+				"response": 1
+			},
+			{
+				"questionNumber": 12,
+				"response": 2
+			},
+			{
+				"questionNumber": 13,
+				"response": 3
+			},
+			{
+				"questionNumber": 14,
+				"response": 3
+			},
+			{
+				"questionNumber": 15,
+				"response": 2
+			},
+			{
+				"questionNumber": 16,
+				"response": 0
+			},
+			{
+				"questionNumber": 17,
+				"response": 3
+			},
+			{
+				"questionNumber": 18,
+				"response": 3
+			},
+			{
+				"questionNumber": 19,
+				"response": 3
+			},
+			{
+				"questionNumber": 20,
+				"response": 3
+			}
+		],
+		"score": 19,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d010"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9771"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 1
+			},
+			{
+				"questionNumber": 2,
+				"response": 1
+			},
+			{
+				"questionNumber": 3,
+				"response": 1
+			},
+			{
+				"questionNumber": 4,
+				"response": 1
+			},
+			{
+				"questionNumber": 5,
+				"response": 0
+			},
+			{
+				"questionNumber": 6,
+				"response": 0
+			},
+			{
+				"questionNumber": 7,
+				"response": 2
+			},
+			{
+				"questionNumber": 8,
+				"response": 2
+			},
+			{
+				"questionNumber": 9,
+				"response": 0
+			},
+			{
+				"questionNumber": 10,
+				"response": 0
+			},
+			{
+				"questionNumber": 11,
+				"response": 0
+			},
+			{
+				"questionNumber": 12,
+				"response": 2
+			},
+			{
+				"questionNumber": 13,
+				"response": 3
+			},
+			{
+				"questionNumber": 14,
+				"response": 2
+			},
+			{
+				"questionNumber": 15,
+				"response": 0
+			},
+			{
+				"questionNumber": 16,
+				"response": 1
+			},
+			{
+				"questionNumber": 17,
+				"response": 1
+			},
+			{
+				"questionNumber": 18,
+				"response": 1
+			},
+			{
+				"questionNumber": 19,
+				"response": 2
+			},
+			{
+				"questionNumber": 20,
+				"response": 2
+			}
+		],
+		"score": 13,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d011"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9774"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 3
+			},
+			{
+				"questionNumber": 2,
+				"response": 3
+			},
+			{
+				"questionNumber": 3,
+				"response": 1
+			},
+			{
+				"questionNumber": 4,
+				"response": 0
+			},
+			{
+				"questionNumber": 5,
+				"response": 2
+			},
+			{
+				"questionNumber": 6,
+				"response": 1
+			},
+			{
+				"questionNumber": 7,
+				"response": 0
+			},
+			{
+				"questionNumber": 8,
+				"response": 3
+			},
+			{
+				"questionNumber": 9,
+				"response": 0
+			},
+			{
+				"questionNumber": 10,
+				"response": 2
+			},
+			{
+				"questionNumber": 11,
+				"response": 3
+			},
+			{
+				"questionNumber": 12,
+				"response": 3
+			},
+			{
+				"questionNumber": 13,
+				"response": 3
+			},
+			{
+				"questionNumber": 14,
+				"response": 2
+			},
+			{
+				"questionNumber": 15,
+				"response": 3
+			},
+			{
+				"questionNumber": 16,
+				"response": 3
+			},
+			{
+				"questionNumber": 17,
+				"response": 2
+			},
+			{
+				"questionNumber": 18,
+				"response": 0
+			},
+			{
+				"questionNumber": 19,
+				"response": 2
+			},
+			{
+				"questionNumber": 20,
+				"response": 0
+			}
+		],
+		"score": 23,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d012"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9772"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 3
+			},
+			{
+				"questionNumber": 2,
+				"response": 1
+			},
+			{
+				"questionNumber": 3,
+				"response": 2
+			},
+			{
+				"questionNumber": 4,
+				"response": 1
+			},
+			{
+				"questionNumber": 5,
+				"response": 2
+			},
+			{
+				"questionNumber": 6,
+				"response": 2
+			},
+			{
+				"questionNumber": 7,
+				"response": 1
+			},
+			{
+				"questionNumber": 8,
+				"response": 3
+			},
+			{
+				"questionNumber": 9,
+				"response": 3
+			},
+			{
+				"questionNumber": 10,
+				"response": 0
+			},
+			{
+				"questionNumber": 11,
+				"response": 0
+			},
+			{
+				"questionNumber": 12,
+				"response": 0
+			},
+			{
+				"questionNumber": 13,
+				"response": 0
+			},
+			{
+				"questionNumber": 14,
+				"response": 0
+			},
+			{
+				"questionNumber": 15,
+				"response": 0
+			},
+			{
+				"questionNumber": 16,
+				"response": 2
+			},
+			{
+				"questionNumber": 17,
+				"response": 0
+			},
+			{
+				"questionNumber": 18,
+				"response": 0
+			},
+			{
+				"questionNumber": 19,
+				"response": 0
+			},
+			{
+				"questionNumber": 20,
+				"response": 0
+			}
+		],
+		"score": 30,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d013"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd976f"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 2
+			},
+			{
+				"questionNumber": 2,
+				"response": 0
+			},
+			{
+				"questionNumber": 3,
+				"response": 0
+			},
+			{
+				"questionNumber": 4,
+				"response": 0
+			},
+			{
+				"questionNumber": 5,
+				"response": 0
+			},
+			{
+				"questionNumber": 6,
+				"response": 3
+			},
+			{
+				"questionNumber": 7,
+				"response": 2
+			},
+			{
+				"questionNumber": 8,
+				"response": 2
+			},
+			{
+				"questionNumber": 9,
+				"response": 0
+			},
+			{
+				"questionNumber": 10,
+				"response": 1
+			},
+			{
+				"questionNumber": 11,
+				"response": 1
+			},
+			{
+				"questionNumber": 12,
+				"response": 3
+			},
+			{
+				"questionNumber": 13,
+				"response": 2
+			},
+			{
+				"questionNumber": 14,
+				"response": 3
+			},
+			{
+				"questionNumber": 15,
+				"response": 1
+			},
+			{
+				"questionNumber": 16,
+				"response": 3
+			},
+			{
+				"questionNumber": 17,
+				"response": 2
+			},
+			{
+				"questionNumber": 18,
+				"response": 2
+			},
+			{
+				"questionNumber": 19,
+				"response": 2
+			},
+			{
+				"questionNumber": 20,
+				"response": 1
+			}
+		],
+		"score": 14,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d014"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9772"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 0
+			},
+			{
+				"questionNumber": 2,
+				"response": 3
+			},
+			{
+				"questionNumber": 3,
+				"response": 1
+			},
+			{
+				"questionNumber": 4,
+				"response": 0
+			},
+			{
+				"questionNumber": 5,
+				"response": 3
+			},
+			{
+				"questionNumber": 6,
+				"response": 1
+			},
+			{
+				"questionNumber": 7,
+				"response": 0
+			},
+			{
+				"questionNumber": 8,
+				"response": 2
+			},
+			{
+				"questionNumber": 9,
+				"response": 2
+			},
+			{
+				"questionNumber": 10,
+				"response": 3
+			},
+			{
+				"questionNumber": 11,
+				"response": 2
+			},
+			{
+				"questionNumber": 12,
+				"response": 1
+			},
+			{
+				"questionNumber": 13,
+				"response": 3
+			},
+			{
+				"questionNumber": 14,
+				"response": 2
+			},
+			{
+				"questionNumber": 15,
+				"response": 2
+			},
+			{
+				"questionNumber": 16,
+				"response": 3
+			},
+			{
+				"questionNumber": 17,
+				"response": 3
+			},
+			{
+				"questionNumber": 18,
+				"response": 1
+			},
+			{
+				"questionNumber": 19,
+				"response": 0
+			},
+			{
+				"questionNumber": 20,
+				"response": 2
+			}
+		],
+		"score": 26,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d015"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9772"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 0
+			},
+			{
+				"questionNumber": 2,
+				"response": 2
+			},
+			{
+				"questionNumber": 3,
+				"response": 0
+			},
+			{
+				"questionNumber": 4,
+				"response": 0
+			},
+			{
+				"questionNumber": 5,
+				"response": 3
+			},
+			{
+				"questionNumber": 6,
+				"response": 2
+			},
+			{
+				"questionNumber": 7,
+				"response": 0
+			},
+			{
+				"questionNumber": 8,
+				"response": 3
+			},
+			{
+				"questionNumber": 9,
+				"response": 1
+			},
+			{
+				"questionNumber": 10,
+				"response": 2
+			},
+			{
+				"questionNumber": 11,
+				"response": 0
+			},
+			{
+				"questionNumber": 12,
+				"response": 1
+			},
+			{
+				"questionNumber": 13,
+				"response": 3
+			},
+			{
+				"questionNumber": 14,
+				"response": 3
+			},
+			{
+				"questionNumber": 15,
+				"response": 0
+			},
+			{
+				"questionNumber": 16,
+				"response": 3
+			},
+			{
+				"questionNumber": 17,
+				"response": 1
+			},
+			{
+				"questionNumber": 18,
+				"response": 3
+			},
+			{
+				"questionNumber": 19,
+				"response": 3
+			},
+			{
+				"questionNumber": 20,
+				"response": 2
+			}
+		],
+		"score": 23,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d016"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd976e"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 3
+			},
+			{
+				"questionNumber": 2,
+				"response": 1
+			},
+			{
+				"questionNumber": 3,
+				"response": 0
+			},
+			{
+				"questionNumber": 4,
+				"response": 1
+			},
+			{
+				"questionNumber": 5,
+				"response": 3
+			},
+			{
+				"questionNumber": 6,
+				"response": 1
+			},
+			{
+				"questionNumber": 7,
+				"response": 0
+			},
+			{
+				"questionNumber": 8,
+				"response": 0
+			},
+			{
+				"questionNumber": 9,
+				"response": 0
+			},
+			{
+				"questionNumber": 10,
+				"response": 3
+			},
+			{
+				"questionNumber": 11,
+				"response": 0
+			},
+			{
+				"questionNumber": 12,
+				"response": 0
+			},
+			{
+				"questionNumber": 13,
+				"response": 2
+			},
+			{
+				"questionNumber": 14,
+				"response": 2
+			},
+			{
+				"questionNumber": 15,
+				"response": 1
+			},
+			{
+				"questionNumber": 16,
+				"response": 0
+			},
+			{
+				"questionNumber": 17,
+				"response": 3
+			},
+			{
+				"questionNumber": 18,
+				"response": 1
+			},
+			{
+				"questionNumber": 19,
+				"response": 1
+			},
+			{
+				"questionNumber": 20,
+				"response": 2
+			}
+		],
+		"score": 17,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d017"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9772"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 1
+			},
+			{
+				"questionNumber": 2,
+				"response": 1
+			},
+			{
+				"questionNumber": 3,
+				"response": 1
+			},
+			{
+				"questionNumber": 4,
+				"response": 0
+			},
+			{
+				"questionNumber": 5,
+				"response": 1
+			},
+			{
+				"questionNumber": 6,
+				"response": 2
+			},
+			{
+				"questionNumber": 7,
+				"response": 2
+			},
+			{
+				"questionNumber": 8,
+				"response": 2
+			},
+			{
+				"questionNumber": 9,
+				"response": 2
+			},
+			{
+				"questionNumber": 10,
+				"response": 0
+			},
+			{
+				"questionNumber": 11,
+				"response": 3
+			},
+			{
+				"questionNumber": 12,
+				"response": 1
+			},
+			{
+				"questionNumber": 13,
+				"response": 0
+			},
+			{
+				"questionNumber": 14,
+				"response": 1
+			},
+			{
+				"questionNumber": 15,
+				"response": 3
+			},
+			{
+				"questionNumber": 16,
+				"response": 0
+			},
+			{
+				"questionNumber": 17,
+				"response": 1
+			},
+			{
+				"questionNumber": 18,
+				"response": 1
+			},
+			{
+				"questionNumber": 19,
+				"response": 1
+			},
+			{
+				"questionNumber": 20,
+				"response": 3
+			}
+		],
+		"score": 20,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d018"
+		}
+	},
+	{
+		"clientId": {
+			"$oid": "657d60ecf4bbf03c5cdd9771"
+		},
+		"responses": [
+			{
+				"questionNumber": 1,
+				"response": 2
+			},
+			{
+				"questionNumber": 2,
+				"response": 1
+			},
+			{
+				"questionNumber": 3,
+				"response": 3
+			},
+			{
+				"questionNumber": 4,
+				"response": 2
+			},
+			{
+				"questionNumber": 5,
+				"response": 2
+			},
+			{
+				"questionNumber": 6,
+				"response": 0
+			},
+			{
+				"questionNumber": 7,
+				"response": 3
+			},
+			{
+				"questionNumber": 8,
+				"response": 1
+			},
+			{
+				"questionNumber": 9,
+				"response": 0
+			},
+			{
+				"questionNumber": 10,
+				"response": 1
+			},
+			{
+				"questionNumber": 11,
+				"response": 3
+			},
+			{
+				"questionNumber": 12,
+				"response": 3
+			},
+			{
+				"questionNumber": 13,
+				"response": 3
+			},
+			{
+				"questionNumber": 14,
+				"response": 0
+			},
+			{
+				"questionNumber": 15,
+				"response": 0
+			},
+			{
+				"questionNumber": 16,
+				"response": 3
+			},
+			{
+				"questionNumber": 17,
+				"response": 0
+			},
+			{
+				"questionNumber": 18,
+				"response": 1
+			},
+			{
+				"questionNumber": 19,
+				"response": 1
+			},
+			{
+				"questionNumber": 20,
+				"response": 1
+			}
+		],
+		"score": 17,
+		"_id": {
+			"$oid": "657d8fe131bb905496d3d019"
+		}
+	}
+]

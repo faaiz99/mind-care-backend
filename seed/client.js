@@ -1,34 +1,62 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var faker_1 = require("@faker-js/faker");
-var fs = require("fs");
-var generateClients = function (num) {
-    var client = [];
-    for (var i = 0; i < num; i++) {
-        var firstName = faker_1.faker.person.firstName();
-        var lastName = faker_1.faker.person.lastName();
-        var email = faker_1.faker.internet.email({ firstName: firstName, lastName: lastName });
-        var gender = faker_1.faker.person.sex();
-        var password = faker_1.faker.internet.password();
-        var picture = faker_1.faker.internet.avatar();
-        var dateofBirth = faker_1.faker.date.birthdate();
-        var createdAt = faker_1.faker.date.past();
-        var verifiedAccount = faker_1.faker.datatype.boolean(0.5);
-        var openJournalId = faker_1.faker.database.mongodbObjectId();
-        client.push({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            dateofBirth: dateofBirth,
-            gender: gender,
-            password: password,
-            picture: picture,
-            createdAt: createdAt,
-            verifiedAccount: verifiedAccount,
-            openJournalId: openJournalId
-        });
-    }
-    return client;
+
+import { Client } from "../dist/src/models/client/model.js"
+// import { ITherapist } from '../src/types/ITherapist.js'
+import { faker } from '@faker-js/faker';
+import * as fs from 'fs';
+import { Types } from "mongoose";
+
+
+const generateTherapists = (num) => {
+	const client = [];
+	for (let i = 0; i < num; i++) {
+		const firstName = faker.person.firstName();
+		const lastName = faker.person.lastName()
+		const email = faker.internet.email({ firstName: firstName, lastName: lastName });
+		const gender = faker.person.sex()
+		const password = faker.internet.password()
+		const picturePicture = faker.internet.avatar()
+		const dateOfBirth = faker.date.birthdate()
+		const createdAt = faker.date.past();
+		const verifiedAccount = faker.datatype.boolean(0.5)
+		const downloadURL = faker.internet.url()
+		const violation = faker.lorem.sentence()
+		const isBlocked = faker.datatype.boolean(0)
+		const reInstatement = faker.number.int({ min: 0, max: 0 })
+
+		const newClient = {
+			firstName,
+			lastName,
+			email,
+			dateOfBirth,
+			gender,
+			password,
+			picturePicture,
+			createdAt,
+			verifiedAccount,
+			downloadURL,
+			violation,
+			isBlocked,
+			reInstatement, 
+			_id: {$oid:new Types.ObjectId()}
+		  };
+		  client.push(newClient);
+		}
+		return client;
 };
-var client = generateClients(100);
+
+const client = generateTherapists(10);
+//therapist = JSON.stringify(therapist, null, '\t')
+
+//console.log(typeof therapist)
+
 fs.writeFileSync('client.json', JSON.stringify(client, null, '\t'));
+
+// const seedData = async () => {
+
+// 	fs.writeFileSync('data.json', JSON.stringify(dataObj, null, '\t'));
+
+// 	result = await Therapist.insertMany(therapist)
+// 	console.log('done', result)
+// }
+
+// seedData()
