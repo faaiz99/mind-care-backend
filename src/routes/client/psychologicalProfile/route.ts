@@ -14,14 +14,9 @@ import {
   setDiagnosedResult,
   getDiagnosedResult,
 } from "../../../controllers/psychologicalProfile.controller.js";
-import { cachedPsychologicalProfile } from "../../../middlewares/cached/cache.middleware.js";
 
 // ClientId required in body//
-router.post(
-  "/psychological-profile/:id",
-  cachedPsychologicalProfile,
-  buildPsychologicalProfile,
-);
+router.post("/psychological-profile/:id", buildPsychologicalProfile);
 
 //router.post('/psychological-test/:id', setTestScore)
 router.post("/anxiety-test/:id", saveAnxietyTest);

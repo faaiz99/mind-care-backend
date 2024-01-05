@@ -2,7 +2,6 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as appointmentService from "../services/appointment.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
-import { redisClient } from "../configs/redis/config.js";
 
 export const createAppointment: RequestHandler = async (
   req: Request,
@@ -88,14 +87,6 @@ export const getAppointmentsClient: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await appointmentService.getAppointmentsClient(req.params.id);
-    await redisClient.set(
-      `appointments-client-${req.params.id}`,
-      JSON.stringify(data),
-      {
-        EX: 180,
-        NX: true,
-      },
-    );
     handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
@@ -110,14 +101,6 @@ export const getAppointmentsTherapist: RequestHandler = async (
   try {
     const data = await appointmentService.getAppointmentsTherapist(
       req.params.id,
-    );
-    await redisClient.set(
-      `appointments-therapist-${req.params.id}`,
-      JSON.stringify(data),
-      {
-        EX: 180,
-        NX: true,
-      },
     );
     handleResponse(res, 200, data, false);
   } catch (error) {
@@ -177,10 +160,6 @@ export const getTherapists: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await appointmentService.getTherapists();
-    await redisClient.set("therapists", JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);

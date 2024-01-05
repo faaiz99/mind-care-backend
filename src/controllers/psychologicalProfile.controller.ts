@@ -2,7 +2,7 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as psychologicalProfileService from "../services/psychologicaProfile.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
-import { redisClient } from "../configs/redis/config.js";
+("");
 
 export const buildPsychologicalProfile: RequestHandler = async (
   req: Request,
@@ -45,14 +45,6 @@ export const getPsychologicalProfile: RequestHandler = async (
   try {
     const data = await psychologicalProfileService.getPsychologicalProfile(
       req.params.id,
-    );
-    await redisClient.set(
-      `psychological-profile-${req.params.id}`,
-      JSON.stringify(data),
-      {
-        EX: 180,
-        NX: true,
-      },
     );
     handleResponse(res, 200, data);
   } catch (error) {

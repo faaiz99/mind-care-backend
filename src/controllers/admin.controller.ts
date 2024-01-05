@@ -2,7 +2,6 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as adminService from "../services/admin.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
-import { redisClient } from "../configs/redis/config.js";
 
 export const getReportedComment: RequestHandler = async (
   req: Request,
@@ -50,10 +49,6 @@ export const getReportedPosts: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.getReportedPosts();
-    await redisClient.set("reported-posts", JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
@@ -67,10 +62,6 @@ export const getReportedComments: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.getReportedComments();
-    await redisClient.set("reported-comments", JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);
@@ -84,10 +75,6 @@ export const getReportedAcccounts: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.getReportedAcccounts();
-    await redisClient.set("reported-accounts", JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);
@@ -159,10 +146,6 @@ export const getDashboardData: RequestHandler = async (
 ) => {
   try {
     const data = await adminService.getDashboardData();
-    await redisClient.set("dashboard-data", JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);

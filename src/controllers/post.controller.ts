@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import { redisClient } from "../configs/redis/config.js";
+("");
 import * as postService from "../services/post.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
@@ -49,10 +49,6 @@ export const getPosts: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await postService.getPosts();
-    await redisClient.set("posts", JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);

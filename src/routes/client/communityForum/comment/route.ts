@@ -13,9 +13,8 @@ import {
   removeDownvoteComment,
   removeUpvoteComment,
 } from "../../../../controllers/comment.controller.js";
-import { cachedComments } from "../../../../middlewares/cached/cache.middleware.js";
 
-router.get("/comments/:id", cachedComments, getComments);
+router.get("/comments/:id", getComments);
 
 router.post("/comments/:id", createComment);
 

@@ -5,13 +5,9 @@ import {
   getTherapistChat,
   saveChat,
 } from "../../../controllers/teletherapy.controller.js";
-import {
-  cachedTherapistChat,
-  cachedTherapistChats,
-} from "../../../middlewares/cached/cache.middleware.js";
 
 router.post("/save-chat", saveChat);
-router.get("/therapist-chats/:id", cachedTherapistChats, getTherapistChats);
-router.get("/therapist-chat/:tid/:cid", cachedTherapistChat, getTherapistChat);
+router.get("/therapist-chats/:id", getTherapistChats);
+router.get("/therapist-chat/:tid/:cid", getTherapistChat);
 
 export { router as teletherapyRoutes };

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 import * as rescueSessionService from "../services/rescueSession.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
-import { redisClient } from "../configs/redis/config.js";
+("");
 export const getAllRescueSession: RequestHandler = async (
   req: Request,
   res: Response,
@@ -10,14 +10,6 @@ export const getAllRescueSession: RequestHandler = async (
 ) => {
   try {
     const data = await rescueSessionService.getAllRescueSessions(req.params.id);
-    await redisClient.set(
-      `rescue-sessions-${req.params.id}`,
-      JSON.stringify(data),
-      {
-        EX: 180,
-        NX: true,
-      },
-    );
     handleResponse(res, 200, data);
   } catch (error) {
     handleError(error, res, next);

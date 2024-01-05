@@ -2,7 +2,7 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import * as journalService from "../services/journal.service.js";
 import { handleError } from "../middlewares/error/middleware.js";
 import { handleResponse } from "../middlewares/response/middleware.js";
-import { redisClient } from "../configs/redis/config.js";
+("");
 export const getGratitudeJournal: RequestHandler = async (
   req: Request,
   res: Response,
@@ -534,10 +534,6 @@ export const getJournals: RequestHandler = async (
 ): Promise<void> => {
   try {
     const data = await journalService.getJournals(req.params.id);
-    await redisClient.set(`journals-${req.params.id}`, JSON.stringify(data), {
-      EX: 180,
-      NX: true,
-    });
     handleResponse(res, 200, data, false);
   } catch (error) {
     handleError(error, res, next);

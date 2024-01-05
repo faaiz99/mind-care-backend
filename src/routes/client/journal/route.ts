@@ -56,9 +56,8 @@ import {
   getReflectionJournal,
   getSelfAffirmationJournal,
 } from "../../../controllers/journal.controller.js";
-import { cachedJournals } from "../../../middlewares/cached/cache.middleware.js";
 
-router.get("/journals/:id", cachedJournals, getJournals);
+router.get("/journals/:id", getJournals);
 router.post("/anxiety-journal", createAnxietyThoughtReccordJournal);
 router.get("/anxiety-journal/:id", getAnxietyThoughtReccordJournal);
 router.delete("/anxiety-journal/:id", deleteAnxietyThoughtReccordJournal);
